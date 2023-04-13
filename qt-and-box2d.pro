@@ -57,7 +57,9 @@ SOURCES += \
     Box2D/Rope/b2Rope.cpp \
     SceneWidget.cpp \
     main.cpp \
-    MainWindow.cpp
+    MainWindow.cpp \
+    s1Pantry.cpp \
+    s2Recipe.cpp
 
 HEADERS += \
     Box2D/Box2D.h \
@@ -108,10 +110,14 @@ HEADERS += \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
     MainWindow.h \
-    SceneWidget.h
+    SceneWidget.h \
+    s1Pantry.h \
+    s2Recipe.h
 
 FORMS += \
-    MainWindow.ui
+    MainWindow.ui \
+    s1Pantry.ui \
+    s2Recipe.ui
 
 
 
