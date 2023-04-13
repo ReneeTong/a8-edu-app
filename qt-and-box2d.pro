@@ -59,7 +59,9 @@ SOURCES += \
     main.cpp \
     MainWindow.cpp \
     s1Pantry.cpp \
-    s2Recipe.cpp
+    s2Recipe.cpp \
+    s3Cooking.cpp \
+    s4Complete.cpp
 
 HEADERS += \
     Box2D/Box2D.h \
@@ -112,12 +114,16 @@ HEADERS += \
     MainWindow.h \
     SceneWidget.h \
     s1Pantry.h \
-    s2Recipe.h
+    s2Recipe.h \
+    s3Cooking.h \
+    s4Complete.h
 
 FORMS += \
     MainWindow.ui \
     s1Pantry.ui \
-    s2Recipe.ui
+    s2Recipe.ui \
+    s3Cooking.ui \
+    s4Complete.ui
 
 
 

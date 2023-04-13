@@ -18,11 +18,14 @@ public:
 public slots:
     void nextPage();
 
-private:
-    Ui::s1Pantry *ui;
-
 signals:
     void goToPage2();
+
+private:
+    Ui::s1Pantry *ui;
 };
+
+
+
 
 #endif // S1PANTRY_H

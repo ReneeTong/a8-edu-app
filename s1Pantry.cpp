@@ -6,7 +6,7 @@ s1Pantry::s1Pantry(QWidget *parent) :
     ui(new Ui::s1Pantry)
 {
     ui->setupUi(this);
-    connect(ui->confirmBtn, &QPushButton::clicked, this, &s1Pantry::nextPage);
+    connect(ui->nextBtn, &QPushButton::clicked, this, &s1Pantry::nextPage);
 }
 
 s1Pantry::~s1Pantry()

@@ -3,6 +3,8 @@
 
 #include "s1Pantry.h"
 #include "s2Recipe.h"
+#include "s3Cooking.h"
+#include "s4Complete.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -18,11 +20,12 @@ public:
     ~MainWindow();
 
 public slots:
-    void switchToPage2();
 
 private:
     Ui::MainWindow *ui;
     s1Pantry *page1;
     s2Recipe *page2;
+    s3Cooking *page3;
+    s4Complete *page4;
 };
 #endif // MAINWINDOW_H

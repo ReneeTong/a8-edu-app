@@ -16,15 +16,28 @@
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>591</width>
-     <height>411</height>
+     <x>40</x>
+     <y>10</y>
+     <width>441</width>
+     <height>271</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color:blue
 </string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="nextBtn">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>330</y>
+     <width>100</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>next</string>
    </property>
   </widget>
  </widget>

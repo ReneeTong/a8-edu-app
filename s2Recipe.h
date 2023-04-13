@@ -15,6 +15,12 @@ public:
     explicit s2Recipe(QWidget *parent = nullptr);
     ~s2Recipe();
 
+public slots:
+    void nextPage();
+
+signals:
+    void goToPage3();
+
 private:
     Ui::s2Recipe *ui;
 };
