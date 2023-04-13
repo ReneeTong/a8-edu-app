@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/sprites">
         <file>alien1.png</file>
+        <file>brick.png</file>
+        <file>grass.png</file>
     </qresource>
 </RCC>

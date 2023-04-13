@@ -6,42 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>520</width>
-    <height>370</height>
+    <width>525</width>
+    <height>378</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="widget" native="true">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>90</y>
-     <width>211</width>
-     <height>151</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:green
-
-
-</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="nextBtn">
-   <property name="geometry">
-    <rect>
-     <x>380</x>
-     <y>290</y>
-     <width>100</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>next</string>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>

@@ -56,6 +56,7 @@ SOURCES += \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
     SceneWidget.cpp \
+    box.cpp \
     main.cpp \
     MainWindow.cpp \
     s1Pantry.cpp \
@@ -113,6 +114,7 @@ HEADERS += \
     Box2D/Rope/b2Rope.h \
     MainWindow.h \
     SceneWidget.h \
+    box.h \
     s1Pantry.h \
     s2Recipe.h \
     s3Cooking.h \

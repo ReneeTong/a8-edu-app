@@ -2,6 +2,13 @@
 #define S3COOKING_H
 
 #include <QWidget>
+#include <Box2D/Box2D.h>
+#include <QTimer>
+#include<Qlist>
+#include<vector>
+#include<random>
+#include"box.h"
+using namespace std;
 
 namespace Ui {
 class s3Cooking;
@@ -15,14 +22,31 @@ public:
     explicit s3Cooking(QWidget *parent = nullptr);
     ~s3Cooking();
 
+    //Tzhou: play around
+    void paintEvent(QPaintEvent *);
+
 public slots:
     void nextPage();
+
+    //Tzhou
+    void updateWorld();
 
 signals:
     void goToPage4();
 
 private:
     Ui::s3Cooking *ui;
+
+
+    //Tzhou
+    b2World world;
+    vector<Box> boxes;
+    QTimer timer;
+    QImage image;
+    QImage imageGrass;
+
+    void createGroundBody();
+    void createBoxes();
 };
 
 #endif // S3COOKING_H
