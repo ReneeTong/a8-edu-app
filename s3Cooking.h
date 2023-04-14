@@ -45,8 +45,14 @@ private:
     QImage image;
     QImage imageGrass;
 
-    void createGroundBody();
+    void createWokBody();
     void createBoxes();
+
+    //AndyTran
+    void createGroundBody();
+    QImage imageWok;
+    b2Body* wokBody;
+    b2Body* groundBody;
 };
 
 #endif // S3COOKING_H

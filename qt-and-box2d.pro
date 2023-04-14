@@ -59,6 +59,7 @@ SOURCES += \
     box.cpp \
     main.cpp \
     MainWindow.cpp \
+    mycontactlistener.cpp \
     s1Pantry.cpp \
     s2Recipe.cpp \
     s3Cooking.cpp \
@@ -115,6 +116,7 @@ HEADERS += \
     MainWindow.h \
     SceneWidget.h \
     box.h \
+    mycontactlistener.h \
     s1Pantry.h \
     s2Recipe.h \
     s3Cooking.h \

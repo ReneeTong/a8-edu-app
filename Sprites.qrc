@@ -3,5 +3,6 @@
         <file>alien1.png</file>
         <file>brick.png</file>
         <file>grass.png</file>
+	<file>wok.png</file>
     </qresource>
 </RCC>
