@@ -31,6 +31,14 @@ s3Cooking::s3Cooking(QWidget *parent) :
     world.SetContactListener(listener);
 
     qDebug() << "Address of Boxes S3: " <<&boxes;
+
+    //Ruini Tong add backgound image
+    QPixmap image(":/sprites/Kitchen.PNG");
+    QLabel* background = ui->backgoundImage;
+    background->setPixmap(image);
+    background->setScaledContents(true); // Scale the image to fit the label
+    background->setGeometry(QRect(0, 0, background->width(), background->height()));
+    background->lower();
 }
 
 s3Cooking::~s3Cooking()
