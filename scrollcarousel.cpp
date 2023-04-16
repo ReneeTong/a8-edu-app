@@ -75,7 +75,7 @@ ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
                                          static_cast<QBoxLayout*>(new QVBoxLayout(gridContent));
 
         scrollContents->setSpacing(25);
-        scrollContents->setContentsMargins(0, 0, 0, 0);
+        scrollContents->setContentsMargins(isHorizontal * 25, 0, isHorizontal * 25, 0);
         scrollContents->setAlignment(Qt::AlignHCenter);
         gridContent->setLayout(scrollContents);
 
