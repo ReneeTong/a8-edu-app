@@ -8,7 +8,7 @@
 #include <Box2D/Box2D.h>
 
 // thoughts on enums? @jeffohh
-enum FoodCategory { MEAT, VEGGIE, CONDIMENT };
+enum FoodCategory { MEAT, VEGETABLE, CONDIMENT };
 enum FoodTags { NUT, VEGAN };
 
 class Ingredient
