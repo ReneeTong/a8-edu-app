@@ -1,44 +1,14 @@
-/**
- * @brief Scroll Carousel
- *
- * @author Jeffrey Le
- *
- */
 
 
 #include "scrollcarousel.h"
 
-/**
- * @brief The SquareButton class
- */
-class SquareButton : public QPushButton {
-public:
-    SquareButton();
-    SquareButton(int);
-    SquareButton(int, const QString &);
-};
 
-SquareButton::SquareButton() : QPushButton() {}
-
-SquareButton::SquareButton(int size) : QPushButton() {
-    setFixedSize(size, size);
-}
-
-SquareButton::SquareButton(int size, const QString &text) : SquareButton(size) {
-    setText(text);
-}
-
-
-/**
- * @brief ScrollCarousel::ScrollCarousel
- * @param parent
- */
 ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
     setStyleSheet(
-                "QScrollArea {background-color: transparent; border: 0px}"
                 "QScrollArea > QWidget > QWidget {background-color: transparent;}"
                 "ScrollCarousel {background-color: grey;}"
                   );
+
     setWidgetResizable(true);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -70,22 +40,31 @@ ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
         verticalScrollBar()->setEnabled(isHorizontal);
         horizontalScrollBar()->setEnabled(isHorizontal);
 
-        QWidget *gridContent = new QWidget(this);
-        QBoxLayout *scrollContents =  isHorizontal ? static_cast<QBoxLayout*>(new QHBoxLayout(gridContent)) :
-                                         static_cast<QBoxLayout*>(new QVBoxLayout(gridContent));
+        QWidget *widgetContents = new QWidget(this);
+        scrollLayout =  isHorizontal ? static_cast<QBoxLayout*>(new QHBoxLayout(widgetContents)) :
+                                         static_cast<QBoxLayout*>(new QVBoxLayout(widgetContents));
 
-        scrollContents->setSpacing(25);
-        scrollContents->setContentsMargins(isHorizontal * 25, 0, isHorizontal * 25, 0);
-        scrollContents->setAlignment(Qt::AlignHCenter);
-        gridContent->setLayout(scrollContents);
+        scrollLayout->setSpacing(25);
+        scrollLayout->setContentsMargins(isHorizontal * 25, !isHorizontal * 25, isHorizontal * 25, !isHorizontal * 25);
+        scrollLayout->setAlignment(Qt::AlignHCenter);
+        widgetContents->setLayout(scrollLayout);
 
         for (int i = 0; i < 25; i++) {
-            SquareButton *button = new SquareButton(75, QString::number(i));
-            scrollContents->addWidget(button);
+            QPushButton *button = new QPushButton(QString::number(i));
+            button->setFixedSize(75, 75);
+            scrollLayout->addWidget(button);
         }
-        setWidget(gridContent);
+        setWidget(widgetContents);
     });
 }
+
+void ScrollCarousel::addWidget(QWidget *widget) {
+    scrollLayout->addWidget(widget);
+}
+
+
+
+
 
 void ScrollCarousel::wheelEvent(QWheelEvent *event) {
     // Get current scroll target
