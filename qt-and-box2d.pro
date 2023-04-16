@@ -64,7 +64,8 @@ SOURCES += \
     s1Pantry.cpp \
     s2Recipe.cpp \
     s3Cooking.cpp \
-    s4Complete.cpp
+    s4Complete.cpp \
+    scrollcarousel.cpp
 
 HEADERS += \
     Box2D/Box2D.h \
@@ -122,7 +123,8 @@ HEADERS += \
     s1Pantry.h \
     s2Recipe.h \
     s3Cooking.h \
-    s4Complete.h
+    s4Complete.h \
+    scrollcarousel.h
 
 FORMS += \
     MainWindow.ui \
