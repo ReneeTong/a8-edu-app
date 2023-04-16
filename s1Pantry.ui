@@ -204,6 +204,32 @@
      <string>next</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="evenBox">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>151</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>even</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="oddBox">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>60</y>
+      <width>151</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>odd</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <customwidgets>

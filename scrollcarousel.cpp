@@ -1,5 +1,3 @@
-
-
 #include "scrollcarousel.h"
 
 
@@ -52,19 +50,42 @@ ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
         for (int i = 0; i < 25; i++) {
             QPushButton *button = new QPushButton(QString::number(i));
             button->setFixedSize(75, 75);
-            scrollLayout->addWidget(button);
+            addWidget(button);
         }
         setWidget(widgetContents);
     });
 }
 
 void ScrollCarousel::addWidget(QWidget *widget) {
+    widgets.append(widget);
+    widgetVisible[widget] = true;
+
     scrollLayout->addWidget(widget);
 }
 
+void ScrollCarousel::applyFilter(bool (*func)(Ingredient i)) {
+    for (QWidget *widget : widgets) {
+        widget->hide();
+    }
+}
 
+void ScrollCarousel::applyFilter(bool (*func)(int number)) {
+    for (QWidget *widget : widgets) {
 
+        QPushButton *button = dynamic_cast<QPushButton*>(widget);
 
+        if (!func(button->text().toInt())) {
+            widget->hide();
+        }
+    }
+}
+
+void ScrollCarousel::reset() {
+    for (QWidget *widget : widgets) {
+        widget->show();
+        scrollLayout->addWidget(widget);
+    }
+}
 
 void ScrollCarousel::wheelEvent(QWheelEvent *event) {
     // Get current scroll target
