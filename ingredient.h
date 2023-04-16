@@ -3,18 +3,19 @@
 #define INGREDIENT_H
 
 #include <QString>
-#include <vector>
-#include<QPixmap>
-#include<QString>
+#include <QPixmap>
+#include <QString>
 #include <Box2D/Box2D.h>
 
-using std::vector;
+// thoughts on enums? @jeffohh
+enum FoodCategory { MEAT, VEGGIE, CONDIMENT };
+enum FoodTags { NUT, VEGAN };
 
 class Ingredient
 {
 public:
     //Ingredient(QString name, QString category, QString color, QString image, vector<QString> tags, b2BodyDef box2ddef );
-    Ingredient(QString name,QString category, bool isVegan, bool isNutAllergic);
+    Ingredient(QString name, QString category, bool isVegan, bool isNutAllergic);
 
     // Getter methods
     QString getName() const;
@@ -25,8 +26,6 @@ public:
     bool getIsNutAllergic() const;
 
     void setPixmap();
-
-    static QList<Ingredient> &getIngredients();
 
 private:
     QString name;
