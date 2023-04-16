@@ -47,7 +47,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>Pizza</string>
+     <string>Meat</string>
     </property>
     <widget class="ScrollCarousel" name="scrollArea">
      <property name="geometry">
@@ -86,7 +86,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>Pizza</string>
+     <string>Veggie</string>
     </property>
     <widget class="ScrollCarousel" name="scrollArea_2">
      <property name="geometry">
@@ -125,7 +125,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>Pizza</string>
+     <string>Condiment</string>
     </property>
     <widget class="ScrollCarousel" name="scrollArea_3">
      <property name="geometry">
