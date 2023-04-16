@@ -2,7 +2,7 @@
 #define S1PANTRY_H
 
 #include <QWidget>
-
+#include"controller.h"
 namespace Ui {
 class s1Pantry;
 }
@@ -23,6 +23,7 @@ signals:
 
 private:
     Ui::s1Pantry *ui;
+    controller controller;
 };
 
 

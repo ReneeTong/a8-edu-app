@@ -1,5 +1,5 @@
 #include "scrollcarousel.h"
-
+#include"ingredient.h"
 
 ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
     setStyleSheet(
@@ -47,9 +47,18 @@ ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
         scrollLayout->setAlignment(Qt::AlignHCenter);
         widgetContents->setLayout(scrollLayout);
 
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 3; i++) { //orginal is 25
             QPushButton *button = new QPushButton(QString::number(i));
             button->setFixedSize(75, 75);
+
+            //Tzhou added, can be refoctor later:
+            vector<Ingredient*> allIngredients = controller.getAllIngredients();
+            if(allIngredients[i]){
+                button->setIcon(QIcon(allIngredients[i]->getPixmap()));
+                button->setIconSize(QSize(30,30));
+                buttonIngredientMap[button] = allIngredients[i];
+            }
+
             addWidget(button);
         }
         setWidget(widgetContents);
@@ -63,9 +72,14 @@ void ScrollCarousel::addWidget(QWidget *widget) {
     scrollLayout->addWidget(widget);
 }
 
-void ScrollCarousel::applyFilter(bool (*func)(Ingredient i)) {
+void ScrollCarousel::applyFilter(bool (*func)(Ingredient* i)) {
     for (QWidget *widget : widgets) {
-        widget->hide();
+
+        QPushButton *button = dynamic_cast<QPushButton*>(widget);
+        Ingredient* i = buttonIngredientMap.value(button);
+
+        if(func(i))
+            widget->hide();
     }
 }
 

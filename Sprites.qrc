@@ -5,5 +5,8 @@
         <file>grass.png</file>
         <file>wok.png</file>
         <file>Kitchen.PNG</file>
+        <file>broccoli.png</file>
+        <file>peanut.png</file>
+        <file>tomato.png</file>
     </qresource>
 </RCC>

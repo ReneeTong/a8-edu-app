@@ -36,6 +36,35 @@ s1Pantry::s1Pantry(QWidget *parent) :
             }
         }
     });
+
+    //Tzhou: To make things even more sore to eyes
+    connect(ui->veganBox, QCheckBox::stateChanged, this, [this](){
+        if(ui->veganBox->isChecked()){
+            auto is_vegan = [](Ingredient * i){return !i->getIsVegan();};
+            ui->scrollArea->applyFilter(is_vegan);
+        }else{
+            ui->scrollArea->reset();
+            if (ui->veganBox->isChecked()) {
+               auto is_not_vegan = [](Ingredient * i){return i->getIsVegan();};
+                ui->scrollArea->applyFilter(is_not_vegan);
+            }
+        }
+
+    });
+
+    connect(ui->allergyBox, QCheckBox::stateChanged, this, [this](){
+        if(ui->allergyBox->isChecked()){
+            auto is_allergy = [](Ingredient * i){return i->getIsNutAllergic();};
+            ui->scrollArea->applyFilter(is_allergy);
+        }else{
+            ui->scrollArea->reset();
+            if (ui->allergyBox->isChecked()) {
+               auto is_not_allergy = [](Ingredient * i){return !i->getIsVegan();};
+                ui->scrollArea->applyFilter(is_not_allergy);
+            }
+        }
+
+    });
 }
 
 s1Pantry::~s1Pantry()
