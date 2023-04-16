@@ -52,7 +52,7 @@ ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
 
         widgetContents->setLayout(scrollLayout);
 
-        for (int i = 0; i < 4; i++) { //orginal is 25
+        for (int i = 0; i < 25; i++) { //orginal is 25
             QPushButton *button = new QPushButton(QString::number(i));
             button->setFixedSize(75, 75);
 
