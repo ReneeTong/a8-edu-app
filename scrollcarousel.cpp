@@ -34,6 +34,7 @@ ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
     // define scroll layout
     QTimer::singleShot(0, this, [this]() {
         bool isHorizontal = property("isHorizontal").value<bool>();
+        int spacing = property("spacing").isValid() ? property("spacing").value<int>() : 25;
 
         verticalScrollBar()->setEnabled(isHorizontal);
         horizontalScrollBar()->setEnabled(isHorizontal);
@@ -42,7 +43,7 @@ ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
         scrollLayout =  isHorizontal ? static_cast<QBoxLayout*>(new QHBoxLayout(widgetContents)) :
                                          static_cast<QBoxLayout*>(new QVBoxLayout(widgetContents));
 
-        scrollLayout->setSpacing(25);
+        scrollLayout->setSpacing(spacing);
         scrollLayout->setContentsMargins(isHorizontal * 25, !isHorizontal * 25, isHorizontal * 25, !isHorizontal * 25);
         if (isHorizontal) {
             scrollLayout->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
@@ -51,21 +52,6 @@ ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
         }
 
         widgetContents->setLayout(scrollLayout);
-
-        for (int i = 0; i < 25; i++) { //orginal is 25
-            QPushButton *button = new QPushButton(QString::number(i));
-            button->setFixedSize(75, 75);
-
-//            //Tzhou added, can be refoctor later:
-//            vector<Ingredient*> allIngredients = controller.getAllIngredients();
-//            if(allIngredients[i]){
-//                button->setIcon(QIcon(allIngredients[i]->getPixmap()));
-//                button->setIconSize(QSize(30,30));
-//                buttonIngredientMap[button] = allIngredients[i];
-//            }
-
-            addWidget(button);
-        }
         setWidget(widgetContents);
     });
 }
