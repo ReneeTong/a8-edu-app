@@ -81,6 +81,26 @@ s1Pantry::s1Pantry(QWidget *parent) :
         }
     });
 
+
+    auto is_vegan = [](QWidget* widget) {
+        IngredientButton *button = dynamic_cast<IngredientButton*>(widget);
+        if (button) {
+            Ingredient ingredient = button->getIngredient();
+            return ingredient.getIsVegan();
+        } else {
+            return true;
+        }
+    };
+
+    connect(ui->veganBox, &QCheckBox::stateChanged, this, [this, is_vegan]() {
+        bool checked = ui->veganBox->isChecked();
+        if (checked) {
+            ui->scrollArea->addFilter(is_vegan);
+        } else {
+            ui->scrollArea->removeFilter(is_vegan);
+        }
+    });
+
 }
 
 s1Pantry::~s1Pantry()
