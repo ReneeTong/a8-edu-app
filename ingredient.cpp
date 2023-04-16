@@ -1,7 +1,7 @@
 
 #include "ingredient.h"
 
-Ingredient::Ingredient(QString name, QString category, QString color, QString image, std::vector<QString> tags, b2BodyDef box2ddef)
+Ingredient::Ingredient(QString name, QString category, QString color, QString image, vector<QString> tags, b2BodyDef box2ddef)
     : name(name), category(category), color(color), image(image), tags(tags), box2ddef(box2ddef) {
 
 }
