@@ -8,5 +8,8 @@
         <file>broccoli.png</file>
         <file>peanut.png</file>
         <file>tomato.png</file>
+        <file>beef.png</file>
+        <file>pork.png</file>
+        <file>chicken.png</file>
     </qresource>
 </RCC>

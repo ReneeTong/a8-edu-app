@@ -47,12 +47,13 @@ ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
         scrollLayout->setAlignment(Qt::AlignHCenter);
         widgetContents->setLayout(scrollLayout);
 
-        for (int i = 0; i < 3; i++) { //orginal is 25
+        vector<Ingredient*> allIngredients = controller.getAllIngredients();
+
+        for (unsigned i = 0; i < allIngredients.size(); i++) { //orginal is 25
             QPushButton *button = new QPushButton(QString::number(i));
             button->setFixedSize(75, 75);
 
             //Tzhou added, can be refoctor later:
-            vector<Ingredient*> allIngredients = controller.getAllIngredients();
             if(allIngredients[i]){
                 button->setIcon(QIcon(allIngredients[i]->getPixmap()));
                 button->setIconSize(QSize(30,30));
