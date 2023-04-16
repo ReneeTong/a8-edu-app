@@ -43,24 +43,32 @@ s1Pantry::s1Pantry(QWidget *parent) :
         }
     });
 
-
-
     // create Ingredient
-    Ingredient peanut("peanut", "condiment", true, true);
+    class controller c;
 
     // bind a "dynamic property" to link the QWidget to an Ingredient
     // add button to ScrollCarousel
-    IngredientButton *button = new IngredientButton(peanut, 75);
-    QTimer::singleShot(0, this, [this, button](){ ui->scrollArea->addWidget(button); });
-    button->setProperty("Ingredient", QVariant::fromValue(&peanut));
+
+    QTimer::singleShot(0, this, [this, c](){
+        for (int i = 0; i < 25; i++) {
+            int index = rand() % c.getAllIngredients().size();
+            Ingredient *ingredient = c.getAllIngredients()[index];
+
+            IngredientButton *button = new IngredientButton(*ingredient, 75);
+            button->setText(QString::number(i));
+            button->setProperty("Ingredient", QVariant::fromValue(ingredient));
+
+            ui->scrollArea->addWidget(button);
+        }
+    });
 
     // creating a filter, checking the Widget's Ingredient
     auto is_peanut = [](QWidget* widget) {
         Ingredient* ingredientFromWidget = qvariant_cast<Ingredient*>(widget->property("Ingredient"));
         if (ingredientFromWidget)
-            return ingredientFromWidget->getIsNutAllergic();
+            return !ingredientFromWidget->getIsNutAllergic();
         else
-            return false;
+            return true;
     };
 
     // link checkbox with ScrollCarousel's Filter
@@ -73,35 +81,6 @@ s1Pantry::s1Pantry(QWidget *parent) :
         }
     });
 
-
-    //Tzhou: To make things even more sore to eyes
-//    connect(ui->veganBox, &QCheckBox::stateChanged, this, [this](){
-//        if(ui->veganBox->isChecked()){
-//            auto is_vegan = [](Ingredient * i){return !i->getIsVegan();};
-//            ui->scrollArea->applyFilter(is_vegan);
-//        }else{
-//            ui->scrollArea->reset();
-//            if (ui->veganBox->isChecked()) {
-//               auto is_not_vegan = [](Ingredient * i){return i->getIsVegan();};
-//                ui->scrollArea->applyFilter(is_not_vegan);
-//            }
-//        }
-
-//    });
-
-//    connect(ui->allergyBox, &QCheckBox::stateChanged, this, [this](){
-//        if(ui->allergyBox->isChecked()){
-//            auto is_allergy = [](Ingredient * i){return i->getIsNutAllergic();};
-//            ui->scrollArea->applyFilter(is_allergy);
-//        }else{
-//            ui->scrollArea->reset();
-//            if (ui->allergyBox->isChecked()) {
-//               auto is_not_allergy = [](Ingredient * i){return !i->getIsVegan();};
-//                ui->scrollArea->applyFilter(is_not_allergy);
-//            }
-//        }
-
-//    });
 }
 
 s1Pantry::~s1Pantry()
