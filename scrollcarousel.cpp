@@ -44,20 +44,25 @@ ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
 
         scrollLayout->setSpacing(25);
         scrollLayout->setContentsMargins(isHorizontal * 25, !isHorizontal * 25, isHorizontal * 25, !isHorizontal * 25);
-        scrollLayout->setAlignment(Qt::AlignHCenter);
+        if (isHorizontal) {
+            scrollLayout->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        } else {
+            scrollLayout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
+        }
+
         widgetContents->setLayout(scrollLayout);
 
-        for (int i = 0; i < 3; i++) { //orginal is 25
+        for (int i = 0; i < 4; i++) { //orginal is 25
             QPushButton *button = new QPushButton(QString::number(i));
             button->setFixedSize(75, 75);
 
-            //Tzhou added, can be refoctor later:
-            vector<Ingredient*> allIngredients = controller.getAllIngredients();
-            if(allIngredients[i]){
-                button->setIcon(QIcon(allIngredients[i]->getPixmap()));
-                button->setIconSize(QSize(30,30));
-                buttonIngredientMap[button] = allIngredients[i];
-            }
+//            //Tzhou added, can be refoctor later:
+//            vector<Ingredient*> allIngredients = controller.getAllIngredients();
+//            if(allIngredients[i]){
+//                button->setIcon(QIcon(allIngredients[i]->getPixmap()));
+//                button->setIconSize(QSize(30,30));
+//                buttonIngredientMap[button] = allIngredients[i];
+//            }
 
             addWidget(button);
         }
@@ -72,29 +77,39 @@ void ScrollCarousel::addWidget(QWidget *widget) {
     scrollLayout->addWidget(widget);
 }
 
-void ScrollCarousel::applyFilter(bool (*func)(Ingredient* i)) {
+
+void ScrollCarousel::addFilter(bool (*filter)(QWidget*)) {
+    // append the filter to filter list
+    filterList.append(filter);
+
+    // loop through all elements
+    // hide them if they apply to the filter
     for (QWidget *widget : widgets) {
-
-        QPushButton *button = dynamic_cast<QPushButton*>(widget);
-        Ingredient* i = buttonIngredientMap.value(button);
-
-        if(func(i))
-            widget->hide();
-    }
-}
-
-void ScrollCarousel::applyFilter(bool (*func)(int number)) {
-    for (QWidget *widget : widgets) {
-
-        QPushButton *button = dynamic_cast<QPushButton*>(widget);
-
-        if (!func(button->text().toInt())) {
+        if (!filter(widget)) {
             widget->hide();
         }
     }
 }
 
+void ScrollCarousel::removeFilter(bool (*filter)(QWidget*)) {
+    // remove filter from list
+    filterList.removeAll(filter);
+
+    // show all widgets
+    reset();
+
+    // reapply existing filters to all widgets
+    for (QWidget *widget : widgets) {
+        for (bool (*filter)(QWidget*) : filterList) {
+            if (!filter(widget)) {
+                widget->hide();
+            }
+        }
+    }
+}
+
 void ScrollCarousel::reset() {
+    // this for loop may need full reset to retain order? idk, figure out later @jeffohh
     for (QWidget *widget : widgets) {
         widget->show();
         scrollLayout->addWidget(widget);
