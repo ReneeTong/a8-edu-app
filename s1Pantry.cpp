@@ -1,5 +1,8 @@
 #include "s1Pantry.h"
+#include "ingredientbutton.h"
 #include "ui_s1Pantry.h"
+
+#include "ingredient.h"
 
 s1Pantry::s1Pantry(QWidget *parent) :
     QWidget(parent),
@@ -22,8 +25,6 @@ s1Pantry::s1Pantry(QWidget *parent) :
         return number % 2 == 1;
     };
 
-    // very messy implementation
-    // we need to keep track of "filters" to apply
     connect(ui->evenBox, &QCheckBox::stateChanged, this, [this, is_even]() {
         bool checked = ui->evenBox->isChecked();
         if (checked) {
@@ -41,6 +42,37 @@ s1Pantry::s1Pantry(QWidget *parent) :
             ui->scrollArea->removeFilter(is_odd);
         }
     });
+
+
+
+    // create Ingredient
+    Ingredient peanut("peanut", "condiment", true, true);
+
+    // bind a "dynamic property" to link the QWidget to an Ingredient
+    // add button to ScrollCarousel
+    IngredientButton *button = new IngredientButton(peanut, 75);
+    QTimer::singleShot(0, this, [this, button](){ ui->scrollArea->addWidget(button); });
+    button->setProperty("Ingredient", QVariant::fromValue(&peanut));
+
+    // creating a filter, checking the Widget's Ingredient
+    auto is_peanut = [](QWidget* widget) {
+        Ingredient* ingredientFromWidget = qvariant_cast<Ingredient*>(widget->property("Ingredient"));
+        if (ingredientFromWidget)
+            return ingredientFromWidget->getIsNutAllergic();
+        else
+            return false;
+    };
+
+    // link checkbox with ScrollCarousel's Filter
+    connect(ui->allergyBox, &QCheckBox::stateChanged, this, [this, is_peanut]() {
+        bool checked = ui->allergyBox->isChecked();
+        if (checked) {
+            ui->scrollArea->addFilter(is_peanut);
+        } else {
+            ui->scrollArea->removeFilter(is_peanut);
+        }
+    });
+
 
     //Tzhou: To make things even more sore to eyes
 //    connect(ui->veganBox, &QCheckBox::stateChanged, this, [this](){
