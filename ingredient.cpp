@@ -1,30 +1,32 @@
 
 #include "ingredient.h"
 
-ingredient::ingredient(std::string name, std::string category, std::string color, std::string image, std::vector<std::string> tags, b2BodyDef box2ddef)
-    : name(name), category(category), color(color), image(image), tags(tags), box2ddef(box2ddef) {}
+Ingredient::Ingredient(QString name, QString category, QString color, QString image, std::vector<QString> tags, b2BodyDef box2ddef)
+    : name(name), category(category), color(color), image(image), tags(tags), box2ddef(box2ddef) {
+
+}
 
 //All getter methods:
-std::string ingredient::getName() const {
+QString Ingredient::getName() const {
     return name;
 }
 
-std::string ingredient::getCategory() const {
+QString Ingredient::getCategory() const {
     return category;
 }
 
-std::string ingredient::getColor() const {
+QString Ingredient::getColor() const {
     return color;
 }
 
-std::string ingredient::getImage() const {
+QString Ingredient::getImage() const {
     return image;
 }
 
-std::vector<std::string> ingredient::getTags() const {
+vector<QString> Ingredient::getTags() const {
     return tags;
 }
 
-b2BodyDef ingredient::getBox2dDef() const {
+b2BodyDef Ingredient::getBox2dDef() const {
     return box2ddef;
 }
