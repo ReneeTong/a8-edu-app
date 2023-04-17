@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "s0Title.h"
 #include "s1Pantry.h"
 #include "s2Recipe.h"
 #include "s3Cooking.h"
@@ -23,6 +24,7 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
+    s0Title *page0;
     s1Pantry *page1;
     s2Recipe *page2;
     s3Cooking *page3;

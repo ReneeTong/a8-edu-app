@@ -63,11 +63,13 @@ SOURCES += \
     main.cpp \
     MainWindow.cpp \
     mycontactlistener.cpp \
+    s0Title.cpp \
     s1Pantry.cpp \
     s2Recipe.cpp \
     s3Cooking.cpp \
     s4Complete.cpp \
-    scrollcarousel.cpp
+    scrollcarousel.cpp \
+    titledisplay.cpp
 
 HEADERS += \
     Box2D/Box2D.h \
@@ -124,14 +126,17 @@ HEADERS += \
     ingredient.h \
     ingredientbutton.h \
     mycontactlistener.h \
+    s0Title.h \
     s1Pantry.h \
     s2Recipe.h \
     s3Cooking.h \
     s4Complete.h \
-    scrollcarousel.h
+    scrollcarousel.h \
+    titledisplay.h
 
 FORMS += \
     MainWindow.ui \
+    s0Title.ui \
     s1Pantry.ui \
     s2Recipe.ui \
     s3Cooking.ui \
