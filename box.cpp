@@ -66,6 +66,21 @@ void Box::init(b2World &world, QPoint pos, std::vector<b2Body*> drawBodies )
     printf("Init world\n");
 }
 
+void Box ::updatePosition(QPoint pos){
+    int x = pos.x();
+    int y = pos.y();
+
+    //y = this->height() - y;
+
+    float scale = 20;
+    float bx = x /scale;
+    float by = y /scale;
+
+    //body->position.Set(bx, by);
+    b2Vec2 vec (bx, by);
+    body->SetTransform(vec, 0);
+}
+
 b2Body *Box::getBody()
 {
     return body;

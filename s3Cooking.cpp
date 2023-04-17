@@ -130,7 +130,7 @@ void s3Cooking::paintEvent(QPaintEvent *)
 
    //draw the object
     for (auto& body : drawBodies) {
-       qDebug() << "draw";
+       //qDebug() << "draw";
        b2Vec2 position = body->GetPosition();
        //qDebug()<< "body"<<&position;
        painter.drawImage((int)(position.x*20), (int)(position.y*20), imageGrass);
@@ -222,6 +222,15 @@ void s3Cooking::mousePressEvent(QMouseEvent *event)
         bodies.push_back(&tomato);
         qDebug() <<event->pos();
     }
+}
+
+void s3Cooking::mouseMoveEvent(QMouseEvent *event) {
+    if (event->button() == Qt::LeftButton) {
+        for (auto& body : bodies) {
+            body->updatePosition(event->pos());
+        }
+    }
+    //qDebug() <<"move";
 }
 
 void s3Cooking::mouseReleaseEvent(QMouseEvent *event)

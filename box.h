@@ -12,6 +12,7 @@ public:
     b2Body *getBody();
     b2Fixture *getFixture();
     void cut(const b2Vec2& position, const b2Vec2& velocity);
+    void updatePosition(QPoint pos);
 
 private:
     b2Body* body=nullptr;
