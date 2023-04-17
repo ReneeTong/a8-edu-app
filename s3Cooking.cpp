@@ -1,4 +1,5 @@
 #include "s3Cooking.h"
+#include "QtGui/qevent.h"
 #include "mycontactlistener.h"
 #include "ui_s3Cooking.h"
 #include <QPainter>
@@ -75,6 +76,7 @@ void s3Cooking::nextPage()
 
 void s3Cooking::paintEvent(QPaintEvent *)
 {
+
     QPainter painter(this);
 
     //Draw the ground box
@@ -126,12 +128,45 @@ void s3Cooking::paintEvent(QPaintEvent *)
        painter.drawImage((int)((groundPos.x*13)), (int)(groundPos.y*16), imageWok);
 
 
+   //draw the object
+    for (auto& body : drawBodies) {
+       qDebug() << "draw";
+       b2Vec2 position = body->GetPosition();
+       //qDebug()<< "body"<<&position;
+       painter.drawImage((int)(position.x*20), (int)(position.y*20), imageGrass);
+    }
+
     painter.end();
+
+
 }
 
 void s3Cooking::updateWorld()
 {
     world.Step(1.0/60.0, 6, 2);
+    //detect collide
+
+    for (auto& body : bodies) {
+
+        for (b2ContactEdge* ce = body->getBody()->GetContactList(); ce; ce = ce->next)
+        {
+            qDebug() << "update";
+//            b2Contact* c = ce->contact;
+//            //qDebug() << c->IsTouching();
+//            b2Body* bodyB = c->GetFixtureB()->GetBody();
+//            b2Body* bodyA = c->GetFixtureA()->GetBody();
+//            if(bodyA == groundBody){
+//                b2Vec2 myVec(1.0f, 2.0f);
+//                drawBodies.pop_back();
+//                //createParticles(bodyB->GetPosition(),myVec);
+//                body->cut(bodyB->GetPosition(),myVec);
+//                world.DestroyBody(bodyB);
+//                //bodies.pop_back();
+//            }
+
+        }
+    }
+
     update();
 }
 
@@ -171,6 +206,27 @@ void s3Cooking::createWokBody()
 
     // Add the ground fixture to the ground body.
     wokBody->CreateFixture(&groundBox, 0.0f);
+
+
+}
+
+//Ruini
+void s3Cooking::mousePressEvent(QMouseEvent *event)
+{
+    qDebug() <<event->pos();
+    if (event->button() == Qt::LeftButton) {
+        Box tomato;
+        tomato.init(world, event->pos(), drawBodies);
+        body = tomato.getBody();
+        drawBodies.push_back(body);
+        bodies.push_back(&tomato);
+        qDebug() <<event->pos();
+    }
+}
+
+void s3Cooking::mouseReleaseEvent(QMouseEvent *event)
+{
+
 }
 
 
@@ -182,7 +238,7 @@ void s3Cooking::createBoxes()
         Box b;
         float xrand = 10.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/20.0f));
         float yrand = 20.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/25.0f));
-        b.init(&world, b2Vec2(xrand,-yrand ));
-        boxes.push_back(b);
+        //b.init(&world, b2Vec2(xrand,-yrand ));
+        //boxes.push_back(b);
     }
 }
