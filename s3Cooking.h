@@ -25,6 +25,10 @@ public:
     //Tzhou: play around
     void paintEvent(QPaintEvent *);
 
+    //Ruini
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+
 public slots:
     void nextPage();
 
@@ -53,6 +57,11 @@ private:
     QImage imageWok;
     b2Body* wokBody;
     b2Body* groundBody;
+
+    //Ruini
+    std::vector<b2Body*> drawBodies;
+    std::vector<Box*> bodies;
+    b2Body* body=nullptr;
 };
 
 #endif // S3COOKING_H
