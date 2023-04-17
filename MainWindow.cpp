@@ -12,9 +12,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->widget->show();
 
+    //create stack element
     QStackedWidget *stackedWidget = new QStackedWidget;
     setCentralWidget(stackedWidget);
 
+    //add all the pages
     page0 = new s0Title(this);
     page1 = new s1Pantry(this);
     page2 = new s2Recipe(this);
@@ -27,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     stackedWidget->addWidget(page4);
     stackedWidget->setCurrentWidget(page0);
 
+    //connect to next page button
     connect(page0, &s0Title::goToPage1, this, [=]() {
         stackedWidget->setCurrentWidget(page1);
     });
