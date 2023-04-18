@@ -11,5 +11,7 @@
         <file>beef.png</file>
         <file>pork.png</file>
         <file>chicken.png</file>
+        <file>pepper.png</file>
+        <file>soysauce.png</file>
     </qresource>
 </RCC>
