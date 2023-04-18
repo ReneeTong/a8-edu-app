@@ -1,5 +1,5 @@
-#ifndef CONTROLLER_H
-#define CONTROLLER_H
+#ifndef FOODLIBRARY_H
+#define FOODLIBRARY_H
 #include "ingredient.h"
 #include<vector>
 using namespace std;
@@ -12,14 +12,14 @@ using namespace std;
 
 //I will first hook up controller with Jeffery's view
 //Then based on the cotroller to design the model
-class controller
+class FoodLibrary
 {
 public:
-    controller();
+    FoodLibrary();
     vector<Ingredient*>getAllIngredients()const;
 
 private:
     vector<Ingredient*> allIngredients;
 };
 
-#endif // CONTROLLER_H
+#endif // FOODLIBRARY_H

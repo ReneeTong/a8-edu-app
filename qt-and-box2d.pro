@@ -57,7 +57,7 @@ SOURCES += \
     Box2D/Rope/b2Rope.cpp \
     SceneWidget.cpp \
     box.cpp \
-    controller.cpp \
+    foodLibrary.cpp \
     ingredient.cpp \
     ingredientbutton.cpp \
     main.cpp \
@@ -122,7 +122,7 @@ HEADERS += \
     MainWindow.h \
     SceneWidget.h \
     box.h \
-    controller.h \
+    foodLibrary.h \
     ingredient.h \
     ingredientbutton.h \
     mycontactlistener.h \
