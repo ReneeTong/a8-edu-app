@@ -57,12 +57,13 @@ SOURCES += \
     Box2D/Rope/b2Rope.cpp \
     SceneWidget.cpp \
     box.cpp \
-    foodLibrary.cpp \
+    foodlibrary.cpp \
     ingredient.cpp \
     ingredientbutton.cpp \
     main.cpp \
     MainWindow.cpp \
     mycontactlistener.cpp \
+    recipe.cpp \
     s0Title.cpp \
     s1Pantry.cpp \
     s2Recipe.cpp \
@@ -122,10 +123,11 @@ HEADERS += \
     MainWindow.h \
     SceneWidget.h \
     box.h \
-    foodLibrary.h \
+    foodlibrary.h \
     ingredient.h \
     ingredientbutton.h \
     mycontactlistener.h \
+    recipe.h \
     s0Title.h \
     s1Pantry.h \
     s2Recipe.h \
