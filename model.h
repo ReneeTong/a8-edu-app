@@ -8,14 +8,14 @@
 #include <Box2D/Box2D.h>
 #include "Box.h"
 #include <Recipe.h>
-#include <Ingredient.h>
+#include <ingredient.h>
 
 //global uses
 enum STEP{
-    S1,
-    S2,
-    S3,
-    S4,
+    STEP1,
+    STEP2,
+    STEP3,
+    STEP4
 };
 
 class Model
@@ -26,11 +26,8 @@ public:
 
 public slots:
     //Andy Tran
-    //Call from S1: selected Ingredients
-    void onStepRecipe(vector<Ingredient>* selectedIngre);
-
     //Call from S2: receiving selected recipe
-    void onStepCooking(Recipe* recipe);
+    void onStepCooking(Recipe* recipe, vector<Ingredient>* selectedIngre);
 
     //Call from S3: update what have completed
     //Still need to dicuss what should View send back and forth
@@ -42,7 +39,7 @@ private:
     vector<Ingredient>* selectedIngre; //selected Ingredients
 
     //All these could be update according to the current step in recipe
-    STEP curStep = S1; //current step. Default is S1
+    STEP curStep = STEP1; //current step. Default is S1
     vector<Ingredient>* progessList; //list of Ingredients need to be done in current step
     vector<b2Body>* drawBodies; //all the objects that need to be drawn
     Box* boxes; //do we need this?
