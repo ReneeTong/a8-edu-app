@@ -46,6 +46,48 @@ s1Pantry::s1Pantry(QWidget *parent) :
     // create Ingredient
     class FoodLibrary f;
 
+    for (int i = MEAT; i <= CONDIMENT; i++) {
+        FoodCategory food = static_cast<FoodCategory>(i);
+
+        QGroupBox *box = new QGroupBox();
+        QHBoxLayout *layout = new QHBoxLayout(box);
+
+        switch (food) {
+        case MEAT:
+            box->setTitle("Meat");
+            break;
+        case VEGETABLE:
+            box->setTitle("Vegetable");
+            break;
+        case CONDIMENT:
+            box->setTitle("Condiment");
+            break;
+        default:
+            break;
+        }
+
+        ScrollCarousel *pantry = new ScrollCarousel(true);
+        pantry->setFixedSize(650, 100);
+        layout->addWidget(pantry);
+
+        QTimer::singleShot(0, this, [this, box, f, pantry] {
+            for (int i = 0; i < 25; i++) {
+                int index = rand() % f.getAllIngredients().size();
+                Ingredient *ingredient = f.getAllIngredients()[index];
+
+                IngredientButton *button = new IngredientButton(*ingredient, 75);
+                button->setText(QString::number(i));
+                button->setProperty("Ingredient", QVariant::fromValue(ingredient));
+
+                pantry->addWidget(button);
+            }
+
+            ui->pantryCategory->addWidget(box);
+        });
+    }
+
+
+
     // bind a "dynamic property" to link the QWidget to an Ingredient
     // add button to ScrollCarousel
 
