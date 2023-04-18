@@ -10,9 +10,9 @@ s3Cooking::s3Cooking(QWidget *parent) :
     ui(new Ui::s3Cooking),
     world(b2Vec2(0.0f, 10.0f)),
     timer(this),
-    image(":/sprites/brick.png"),
-    imageGrass(":/sprites/grass.png"),
-    imageWok(":/sprites/wok.png")
+    image(":/sprites/icons/brick.png"),
+    imageGrass(":/sprites/icons/grass.png"),
+    imageWok(":/sprites/icons/wok.png")
 {
     ui->setupUi(this);
     //connect(ui->nextBtn, &QPushButton::clicked, this, &s3Cooking::nextPage);
@@ -34,7 +34,7 @@ s3Cooking::s3Cooking(QWidget *parent) :
     qDebug() << "Address of Boxes S3: " <<&boxes;
 
     //Ruini Tong add backgound image
-    QPixmap image(":/sprites/Kitchen.PNG");
+    QPixmap image(":/sprites/icons/Kitchen.PNG");
     QLabel* background = ui->backgoundImage;
     background->setPixmap(image);
     background->setScaledContents(true); // Scale the image to fit the label

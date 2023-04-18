@@ -65,7 +65,7 @@ bool Ingredient::getIsFried() const
 
 void Ingredient::setPixmap()
 {
-    QString path = ":/sprites//";
+    QString path = ":/sprites/icons//";
     path += name;
     path+= ".png";
     QPixmap pix (path);
