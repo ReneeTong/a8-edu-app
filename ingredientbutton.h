@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QMainWindow>
 #include <QObject>
+#include <QEvent>
 
 class IngredientButton : public QPushButton
 {
@@ -13,9 +14,12 @@ public:
     IngredientButton(Ingredient, int, QWidget *parent = nullptr);
 
     Ingredient getIngredient() const;
+    bool getSelected() const;
+    void setSelected(bool);
 
 private:
     Ingredient ingredient;
+    bool selected;
 };
 
 #endif // INGREDIENTBUTTON_H
