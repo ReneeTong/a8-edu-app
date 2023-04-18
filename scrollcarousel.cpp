@@ -56,6 +56,10 @@ ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
     });
 }
 
+ScrollCarousel::ScrollCarousel(bool isHorizontal, QWidget *parent) : ScrollCarousel(parent) {
+    setProperty("isHorizontal", isHorizontal);
+}
+
 void ScrollCarousel::addWidget(QWidget *widget) {
     widgets.append(widget);
     widgetVisible[widget] = true;

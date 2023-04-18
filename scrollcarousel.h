@@ -28,6 +28,7 @@ class ScrollCarousel : public QScrollArea
     Q_OBJECT
 public:
     explicit ScrollCarousel(QWidget *parent = nullptr);
+    ScrollCarousel(bool, QWidget *parent = nullptr);
 
     void addWidget(QWidget*);
 
