@@ -44,15 +44,15 @@ s1Pantry::s1Pantry(QWidget *parent) :
     });
 
     // create Ingredient
-    class controller c;
+    class FoodLibrary f;
 
     // bind a "dynamic property" to link the QWidget to an Ingredient
     // add button to ScrollCarousel
 
-    QTimer::singleShot(0, this, [this, c](){
+    QTimer::singleShot(0, this, [this, f](){
         for (int i = 0; i < 25; i++) {
-            int index = rand() % c.getAllIngredients().size();
-            Ingredient *ingredient = c.getAllIngredients()[index];
+            int index = rand() % f.getAllIngredients().size();
+            Ingredient *ingredient = f.getAllIngredients()[index];
 
             IngredientButton *button = new IngredientButton(*ingredient, 75);
             button->setText(QString::number(i));

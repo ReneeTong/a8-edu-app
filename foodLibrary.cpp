@@ -1,6 +1,6 @@
-#include "controller.h"
+#include "foodLibrary.h"
 #include<QDebug>
-controller::controller()
+FoodLibrary::FoodLibrary()
 {
     Ingredient* broccoli = new Ingredient("broccoli", "vege",true, false);
     Ingredient* tomato = new Ingredient("tomato", "vege", true, false);
@@ -20,7 +20,7 @@ controller::controller()
     qDebug()<<allIngredients[2]->getName();
 }
 
-vector<Ingredient *> controller::getAllIngredients() const
+vector<Ingredient *> FoodLibrary::getAllIngredients() const
 {
     return allIngredients;
 }
