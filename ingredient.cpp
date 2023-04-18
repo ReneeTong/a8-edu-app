@@ -3,18 +3,20 @@
 
 Ingredient::Ingredient()
 {
-
+    isCut = false;
+    isMixed= false;
+    isBoiled = false;
+    isFried = false;
 }
 
-Ingredient::Ingredient(QString name, QString category, bool isVegan, bool isNutAllergic):
-name(name),
-category(category),
-isVegan(isVegan),
-isNutAllergic(isNutAllergic)
+Ingredient::Ingredient( QString name, FoodCategory cate, QVector<FoodTags> tags ):
+    name(name),
+    cate(cate),
+    tags(tags)
 {
     setPixmap();
     isCut = false;
-    isMixed = false;
+    isMixed= false;
     isBoiled = false;
     isFried = false;
 }
@@ -24,23 +26,9 @@ QString Ingredient::getName() const {
     return name;
 }
 
-QString Ingredient::getCategory() const {
-    return category;
-}
-
 QPixmap Ingredient::getPixmap() const
 {
     return pixmap;
-}
-
-bool Ingredient::getIsVegan() const
-{
-    return isVegan;
-}
-
-bool Ingredient::getIsNutAllergic() const
-{
-    return isNutAllergic;
 }
 
 bool Ingredient::getIsCut() const
@@ -71,8 +59,6 @@ void Ingredient::setPixmap()
     QPixmap pix (path);
     pixmap = pix;
 
-   qDebug()<<path;
-
 }
 
 void Ingredient::setIsCut(bool isCut)
@@ -93,4 +79,24 @@ void Ingredient::setIsBoiled(bool isBoiled)
 void Ingredient::setIsFried(bool isFried)
 {
     this->isFried = isFried;
+}
+
+FoodCategory Ingredient::getCate() const
+{
+    return cate;
+}
+
+void Ingredient::setCate(FoodCategory newCate)
+{
+    cate = newCate;
+}
+
+QVector<FoodTags> Ingredient::getTags() const
+{
+    return tags;
+}
+
+void Ingredient::setTags(const QVector<FoodTags> &newTags)
+{
+    tags = newTags;
 }

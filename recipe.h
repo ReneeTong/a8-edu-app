@@ -1,47 +1,49 @@
 #ifndef RECIPE_H
 #define RECIPE_H
 
-#include<vector>
+#include<QVector>
 #include<QMap>
 #include<QHash>
+#include<QFile>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include "ingredient.h"
-using namespace std;
+
+enum class Tag{GLUTENFREE, DAIRYFREE, NUTFREE};
+enum class Country{VIETNAM,CHINA};
 
 class Recipe
 {
 public:
-    Recipe(QHash<Ingredient *, int> ingredients, QMap<int, Ingredient *> prepSteps, QMap<int, Ingredient *> cookingSteps);
+
+    Recipe();
+    Recipe(QString name, int difficulty, QHash<Ingredient *, int> ingredients,
+           QMap<int, Ingredient *> prepSteps, QMap<int, Ingredient *> cookingSteps);
 
     //Getters
     QHash<Ingredient *, int> getIngredients() const; //pantry use this
     QMap<int, Ingredient *> getPrepSteps() const; // box2d cutting mixing stage use this
     QMap<int, Ingredient *> getCookingSteps() const; // box2d cooking stage use this
 
+    //Read from Json
+    static QJsonObject readJsonFile(const QString &filePath);
+    static Recipe deserialize(const QJsonObject &jsonObj);
+
+
+    void setName(const QString &newName);
+    void setDifficulty(int newDifficulty);
+    void setIngredients(const QHash<Ingredient *, int> &newIngredients);
+    void setPrepSteps(const QMap<int, Ingredient *> &newPrepSteps);
+    void setCookingSteps(const QMap<int, Ingredient *> &newCookingSteps);
+
 private:
+    QString name;
+    int difficulty; //(eg. 3/5)
+
     //ingredient is key, the amount is the value
     QHash<Ingredient*, int> ingredients;//when key is a ptr, need to use QHash
 
-    /**
-     *Recipe1:
-     *
-     *Ingredients :tomato 2, broccoli 1, beef 250 gram(1 serving), soysauce 1;
-     *
-     *Steps:
-     *  1. Cut all tomato, broccoli, beef;
-     *  2. Mix all pre-cut tomato and pre-cut broccoli;
-     *  3. Fry all pre-cut ingredients and add soysauce;
-     *
-     * How to verify:
-     *
-     *  1. prep steps should have:
-     *      1 cut tomato, 1 cut broccoli, 1 cut beef,
-     *      1 cut and mixed and tomato, 1 cut and mixed broccli;
-     *
-     *  2. cooking step should have
-     *      1 cut & mixed & fired tomato, 1 cut & mixed & fired broccoli,
-     *      1 cut & fried beef, 1 fired soysauce.
-     *
-     **/
     //step order is key, ingredient is the value
     QMap<int, Ingredient*> prepSteps;
     QMap<int, Ingredient*> cookingSteps;

@@ -22,15 +22,22 @@ private:
     void initialRecipes();
 
  protected:
-    Ingredient* broccoli = new Ingredient("broccoli", "vege",true, false);
-    Ingredient* tomato = new Ingredient("tomato", "vege", true, false);
-    Ingredient * peanut = new Ingredient("peanut", "condiment", true, true);
-    Ingredient* beef = new Ingredient("beef", "meat", false, false);
-    Ingredient * pork = new Ingredient("pork", "meat", false, false);
-    Ingredient* chicken = new Ingredient("chicken","meat", false, false);
-    Ingredient* pepper = new Ingredient("pepper", "condiment", true, false);
-    Ingredient* soysauce = new Ingredient("soysauce", "condiment", true, false);
-};
 
+    //enum FoodCategory { MEAT, VEGETABLE, CONDIMENT };
+    //enum FoodTags { NUT, VEGAN, DairyFree, LowSugar, GlutenFree};
+    //Ingredient(QString name, FoodCategory cate, QVector<FoodTags> tags);
+
+    Ingredient* broccoli = new Ingredient("broccoli", VEGETABLE, {VEGAN} );
+    Ingredient* tomato = new Ingredient("tomato", VEGETABLE, {VEGAN} );
+    Ingredient * peanut = new Ingredient("peanut", CONDIMENT, {VEGAN, NUT});
+    Ingredient* beef = new Ingredient("beef", MEAT, {});
+    Ingredient * pork = new Ingredient("pork", MEAT, {});
+    Ingredient* chicken = new Ingredient("chicken",MEAT, {});
+    Ingredient* pepper = new Ingredient("pepper", CONDIMENT, {VEGAN});
+    Ingredient* soysauce = new Ingredient("soysauce", CONDIMENT, {VEGAN});
+    Ingredient* riceNoodles = new Ingredient("riceNoodles", STAPLE, {VEGAN});
+    Ingredient* carrot = new Ingredient("carrot", VEGETABLE, {VEGAN});
+    Ingredient* cabbage = new Ingredient("cabbage", VEGETABLE, {VEGAN});
+};
 
 #endif // FOODLIBRARY_H

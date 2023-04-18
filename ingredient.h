@@ -5,24 +5,23 @@
 #include <QString>
 #include <QPixmap>
 #include <QString>
+#include<QVector>
 #include <Box2D/Box2D.h>
 
 // thoughts on enums? @jeffohh
-enum FoodCategory { MEAT, VEGETABLE, CONDIMENT };
-enum FoodTags { NUT, VEGAN };
+enum FoodCategory { MEAT, VEGETABLE, CONDIMENT, STAPLE };
+enum FoodTags { NUT, VEGAN, Dairy, SUGAR , Gluten};
 
 class Ingredient
 {
 public:
     Ingredient();
-    Ingredient(QString name, QString category, bool isVegan, bool isNutAllergic);
+    Ingredient(QString name, FoodCategory cate, QVector<FoodTags> tags);
 
     // Getter methods
     QString getName() const;
     QString getCategory() const;
     QPixmap getPixmap() const;
-    bool getIsVegan() const;
-    bool getIsNutAllergic() const;
     bool getIsCut() const;
     bool getIsMixed() const;
     bool getIsBoiled() const;
@@ -35,13 +34,17 @@ public:
     void setIsBoiled(bool isBoiled);
     void setIsFried(bool isFried);
 
+    FoodCategory getCate() const;
+    void setCate(FoodCategory newCate);
+    QVector<FoodTags> getTags() const;
+    void setTags(const QVector<FoodTags> &newTags);
+
 private:
     QString name;
-    QString category;
+    FoodCategory cate;
+    QVector<FoodTags> tags;
     QPixmap pixmap;
 
-    bool isVegan;
-    bool isNutAllergic;
     bool isCut;
     bool isMixed;
     bool isBoiled;

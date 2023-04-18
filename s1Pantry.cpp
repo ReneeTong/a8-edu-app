@@ -107,10 +107,13 @@ s1Pantry::s1Pantry(QWidget *parent) :
     // creating a filter, checking the Widget's Ingredient
     auto is_peanut = [](QWidget* widget) {
         Ingredient* ingredientFromWidget = qvariant_cast<Ingredient*>(widget->property("Ingredient"));
-        if (ingredientFromWidget)
-            return !ingredientFromWidget->getIsNutAllergic();
-        else
-            return true;
+        if (ingredientFromWidget){
+            for(FoodTags tag: ingredientFromWidget->getTags()){
+                if(tag==NUT)
+                    return false;
+            }
+        }
+        return true;
     };
 
     // link checkbox with ScrollCarousel's Filter
@@ -128,7 +131,11 @@ s1Pantry::s1Pantry(QWidget *parent) :
         IngredientButton *button = dynamic_cast<IngredientButton*>(widget);
         if (button) {
             Ingredient ingredient = button->getIngredient();
-            return ingredient.getIsVegan();
+            for(FoodTags tag : ingredient.getTags()){
+                if(tag==VEGAN)
+                    return true;
+            }
+            return false;
         } else {
             return true;
         }

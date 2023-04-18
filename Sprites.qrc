@@ -13,5 +13,9 @@
         <file>icons/soysauce.png</file>
         <file>icons/tomato.png</file>
         <file>icons/wok.png</file>
+        <file>icons/carrot.png</file>
+        <file>icons/cabbage.png</file>
+        <file>icons/riceNoodles.png</file>
+        <file>recipes/Pho.txt</file>
     </qresource>
 </RCC>
