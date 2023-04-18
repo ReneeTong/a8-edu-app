@@ -10,7 +10,7 @@
 #include <QJsonDocument>
 #include "ingredient.h"
 
-enum class Tag{GLUTENFREE, DAIRYFREE, NUTFREE};
+enum class RecipeTags{GLUTENFREE, DAIRYFREE, NUTFREE};
 enum class Country{VIETNAM,CHINA};
 
 class Recipe
@@ -19,6 +19,7 @@ public:
 
     Recipe();
     Recipe(QString name, int difficulty, QHash<Ingredient *, int> ingredients,
+           QVector<RecipeTags>recipeTags, Country country,QString description, QString learnMore,
            QMap<int, Ingredient *> prepSteps, QMap<int, Ingredient *> cookingSteps);
 
     //Getters
@@ -37,9 +38,24 @@ public:
     void setPrepSteps(const QMap<int, Ingredient *> &newPrepSteps);
     void setCookingSteps(const QMap<int, Ingredient *> &newCookingSteps);
 
+    QString getName() const;
+    int getDifficulty() const;
+    QVector<RecipeTags> getRecipeTags() const;
+    void setRecipeTags(const QVector<RecipeTags> &newRecipeTags);
+    Country getCountry() const;
+    void setCountry(Country newCountry);
+    QString getDescription() const;
+    void setDescription(const QString &newDescription);
+    QString getLearnMore() const;
+    void setLearnMore(const QString &newLearnMore);
+
 private:
     QString name;
     int difficulty; //(eg. 3/5)
+    QVector<RecipeTags> recipeTags;
+    Country country;
+    QString description;
+    QString learnMore;
 
     //ingredient is key, the amount is the value
     QHash<Ingredient*, int> ingredients;//when key is a ptr, need to use QHash

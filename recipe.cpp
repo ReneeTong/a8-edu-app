@@ -6,10 +6,15 @@ Recipe::Recipe()
 }
 
 Recipe::Recipe(QString name, int difficulty, QHash<Ingredient *, int> ingredients,
+               QVector<RecipeTags>recipeTags, Country country,QString description, QString learnMore,
                QMap<int, Ingredient *> prepSteps, QMap<int, Ingredient *> cookingSteps):
     name(name),
     difficulty(difficulty),
     ingredients(ingredients),
+    recipeTags(recipeTags),
+    country(country),
+    description(description),
+    learnMore(learnMore),
     prepSteps(prepSteps),
     cookingSteps(cookingSteps)
 {
@@ -64,12 +69,25 @@ Recipe Recipe::deserialize(const QJsonObject &jsonObj)
 {
     QString name;
     int difficulty;
+    Country country;
+    QString description;
+    QString learnMore;
+    QVector<RecipeTags> recipeTags;
     QHash<Ingredient*, int> ingredients;
     QMap<int, Ingredient*> prepSteps;
     QMap<int, Ingredient*> cookingSteps;
 
     name = jsonObj["name"].toString();
     difficulty = jsonObj["difficulty"].toInt();
+    description = jsonObj["description"].toString();
+    learnMore = jsonObj["learnMore"].toString();
+    country = static_cast<Country>(jsonObj["country"].toInt());
+
+    //Deserialize recipe tags
+     QJsonArray recipeTagsJson = jsonObj["recipeTags"].toArray();
+     for(const QJsonValue &recipeTagJson: recipeTagsJson){
+         recipeTags.append(static_cast<RecipeTags>(recipeTagJson.toInt()));
+     }
 
     // Deserialize ingredients
     QJsonObject ingredientsJson = jsonObj["ingredients"].toObject();
@@ -149,6 +167,9 @@ Recipe Recipe::deserialize(const QJsonObject &jsonObj)
     Recipe recipe;
     recipe.setName(name);
     recipe.setDifficulty(difficulty);
+    recipe.setCountry(country);
+    recipe.setDescription(description);
+    recipe.setLearnMore(learnMore);
     recipe.setIngredients(ingredients);
     recipe.setPrepSteps(prepSteps);
     recipe.setCookingSteps(cookingSteps);
@@ -179,5 +200,55 @@ void Recipe::setPrepSteps(const QMap<int, Ingredient *> &newPrepSteps)
 void Recipe::setCookingSteps(const QMap<int, Ingredient *> &newCookingSteps)
 {
     cookingSteps = newCookingSteps;
+}
+
+QString Recipe::getName() const
+{
+    return name;
+}
+
+int Recipe::getDifficulty() const
+{
+    return difficulty;
+}
+
+QVector<RecipeTags> Recipe::getRecipeTags() const
+{
+    return recipeTags;
+}
+
+void Recipe::setRecipeTags(const QVector<RecipeTags> &newRecipeTags)
+{
+    recipeTags = newRecipeTags;
+}
+
+Country Recipe::getCountry() const
+{
+    return country;
+}
+
+void Recipe::setCountry(Country newCountry)
+{
+    country = newCountry;
+}
+
+QString Recipe::getDescription() const
+{
+    return description;
+}
+
+void Recipe::setDescription(const QString &newDescription)
+{
+    description = newDescription;
+}
+
+QString Recipe::getLearnMore() const
+{
+    return learnMore;
+}
+
+void Recipe::setLearnMore(const QString &newLearnMore)
+{
+    learnMore = newLearnMore;
 }
 

@@ -3,6 +3,14 @@
 
   "difficulty" : 3,
 
+  "recipeTags": ["GLUTENFREE"],
+
+  "country": "VIETNAM",
+
+  "description": "This is description.",
+
+  "learnMore": "This is learn more.",
+
   "ingredients": {
     "carrot": {
       "amount": 2,

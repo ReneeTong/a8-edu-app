@@ -39,6 +39,10 @@ void FoodLibrary::initialRecipes()
     obj = Recipe::readJsonFile(":/sprites/recipes/Pho.txt");
     pho = Recipe::deserialize(obj);
 
+    qDebug()<<pho.getName();
+    qDebug()<<pho.getDifficulty();
+    qDebug()<<pho.getDescription();
+    qDebug()<<pho.getLearnMore();
     qDebug()<<"\nIngredients: ";
     qDebug()<<"Name   cut    mix    boil    fired ";
     QHash<Ingredient*, int> ingredients = pho.getIngredients();
