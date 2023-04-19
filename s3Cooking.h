@@ -67,9 +67,11 @@ private:
 
     //Ruini
     vector<b2Body*> drawBodies;
+    vector<b2Body*> particles;
     QMap<string, Box*> bodies;
     b2Body* body=nullptr;
     bool isCut = false;// check if there's currently something need to be cut
+    void destroyParticles();
 };
 
 #endif // S3COOKING_H

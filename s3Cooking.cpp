@@ -142,8 +142,9 @@ void s3Cooking::paintEvent(QPaintEvent *)
        if(ingredientName.compare("pieces") == 0){
             //qDebug() << "pieces";
             QImage pieces(":/sprites/icons/tomato_pieces.png");
-            QImage resizedImage = pieces.scaled(32, 32);
-            painter.drawImage((int)(position.x*20), (int)(position.y*20), resizedImage);
+//            QImage resizedImage = pieces.scaled(32, 32);
+            painter.drawImage((int)(position.x*20), (int)(position.y*20), pieces);
+//              painter.drawImage((int)(position.x*20), (int)(position.y*20), imageGrass);
         }else{
             painter.drawImage((int)(position.x*20), (int)(position.y*20), imageGrass);
        }
@@ -164,6 +165,15 @@ void s3Cooking::updateWorld()
         cut();
         //world.DestroyBody(body);
     }
+//    if(body != nullptr){
+//        for (b2ContactEdge* ce = body->GetContactList(); ce; ce = ce->next)
+//        {
+//            cut();
+//            // process c
+//            world.DestroyBody(body);
+//        }
+//    }
+
     update();
 }
 
@@ -290,27 +300,33 @@ void s3Cooking::cut() {
     b2Body* current = body;
     for (int i = 0; i < 4; i++) {
 
-        b2BodyDef bodyDef;
-        bodyDef.type = b2_dynamicBody;
+        //get a random position for particles
         std::random_device rd; // obtain a random seed from the hardware
         std::mt19937 gen(rd()); // initialize the random number engine with the seed
         std::uniform_int_distribution<> dist(1, 100); // define the range of the distribution
 
+        //create new particles
+        b2BodyDef bodyDef;
+        bodyDef.type = b2_dynamicBody;
         bodyDef.position.Set(body->GetPosition().x + dist(gen) % 10 - 5, body->GetPosition().y + dist(gen) % 10 - 5);
         bodyDef.linearVelocity.Set(velocity.x + dist(gen) % 20 - 10, velocity.y + dist(gen) % 20 - 10);
         b2Body* particle = world.CreateBody(&bodyDef);
 
+        //destroy the biggiest ingredient
         if(i == 0){
             world.DestroyBody(current);
         }
-
+        //store user data for particles
         const char* userDataString = "pieces";
         char* userDataChar = new char[strlen(userDataString) + 1];
         strcpy(userDataChar, userDataString);
         particle->SetUserData(userDataChar);
 
+        particles.push_back(particle);
         drawBodies.push_back(particle);
-        qDebug() << "cut";
+        //qDebug() << "cut";
+
+        //set particles's fixture
         b2PolygonShape dynamicBox;
         dynamicBox.SetAsBox(1.0f, 1.0f);
         b2FixtureDef fixtureDef;
@@ -321,4 +337,26 @@ void s3Cooking::cut() {
         particle->CreateFixture(&fixtureDef);
     }
     isCut = false;
+    //destroyParticles();
+}
+
+void s3Cooking::destroyParticles(){
+    // Create a new timer object
+    QTimer* timer = new QTimer(this);
+
+    // Set the interval for the timer in milliseconds
+    timer->setInterval(1000); // Timer fires every second
+
+    // Connect the timeout() signal of the timer to a slot or lambda function that handles the event
+    connect(timer, &QTimer::timeout, this, [this](){
+        //destroy the particles
+        for (int i = 0; i < particles.size(); i++) {
+            b2Body* particle =particles.back();
+            particles.pop_back();
+            world.DestroyBody(particle);
+        }
+    });
+
+    // Start the timer
+    timer->start();
 }

@@ -49,12 +49,6 @@ void MyContactListener::BeginContact(b2Contact* contact){
             if(ingredientName.compare("tomato") == 0){
                 //boxes->value("tomato");
                 if(boxes->contains(ingredientName)){
-                      //qDebug() << "2";
-//                    Box* ingredient = boxes->value("tomato");
-//                    b2World world(b2Vec2(0.0f, 10.0f));
-//                    QPoint velocity(ingredient->getBody()->GetPosition().x, ingredient->getBody()->GetPosition().y);
-//                    std::vector<b2Body*> drawBodies;
-//                    ingredient->cut(&world,velocity, drawBodies);
                     emit cut(ingredientName);
                 }
             }else if(ingredientName.compare("pieces") == 0){
@@ -69,8 +63,6 @@ void MyContactListener::BeginContact(b2Contact* contact){
 //            //removeImageFromBody(bodyB);
 //             qDebug() << "3";
 //        }
-
-    //Ruini
 
 
 }
