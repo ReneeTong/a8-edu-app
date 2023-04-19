@@ -8,6 +8,7 @@
 #include<vector>
 #include<random>
 #include"box.h"
+#include "box2d.h"
 using namespace std;
 
 namespace Ui {
@@ -29,12 +30,17 @@ public:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
+    void cut();
+
+
+    //Tzhou
+    void updateWorld();
 
 public slots:
     void nextPage();
 
-    //Tzhou
-    void updateWorld();
+    //Ruini
+    void handleCut(std::string name);
 
 signals:
     void goToPage4();
@@ -42,10 +48,10 @@ signals:
 private:
     Ui::s3Cooking *ui;
 
-
     //Tzhou
     b2World world;
-    vector<Box> boxes;
+    //vector<Box> boxes; Ruini edited
+    QMap<string, Box*> boxes;
     QTimer timer;
     QImage image;
     QImage imageGrass;
@@ -60,9 +66,10 @@ private:
     b2Body* groundBody;
 
     //Ruini
-    std::vector<b2Body*> drawBodies;
-    std::vector<Box*> bodies;
+    vector<b2Body*> drawBodies;
+    QMap<string, Box*> bodies;
     b2Body* body=nullptr;
+    bool isCut = false;// check if there's currently something need to be cut
 };
 
 #endif // S3COOKING_H

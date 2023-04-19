@@ -1,4 +1,6 @@
+
 #include "box.h"
+#include "QtCore/qdebug.h"
 #include <QPainter>
 #include <random>
 Box::Box()
@@ -6,24 +8,13 @@ Box::Box()
 }
 
 
-void Box::init(b2World &world, QPoint pos, std::vector<b2Body*> drawBodies )
+void Box:: init(b2World* world, QPoint pos, std::vector<b2Body*>& drawBodies)
 {
-    this->world = &world;
-    this->drawBodies = &drawBodies;
-//    b2BodyDef bodyDef;
-//    bodyDef.type= b2_dynamicBody;
-//    bodyDef.position.Set(position.x, position.y);
-//    body = world->CreateBody(&bodyDef);
+    worldBox = world;
+//    this->drawBodies = &drawBodies;
 
-//    b2PolygonShape boxShape;
-//    boxShape.SetAsBox(1.0f, 1.0f);
-
-//    b2FixtureDef fixtureDef;
-//    fixtureDef.shape = & boxShape;
-//    fixtureDef.density = 1.0f;
-//    fixtureDef.friction = 0.3f;
-//     fixtureDef.restitution = 0.5;
-//    fixture = body->CreateFixture(&fixtureDef);
+//    qDebug()<< "init" << &world;
+//    qDebug()<< "init" << &worldBox;
 
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
@@ -40,7 +31,14 @@ void Box::init(b2World &world, QPoint pos, std::vector<b2Body*> drawBodies )
 
     bodyDef.position.Set(bx, by);
 
-    body = world.CreateBody(&bodyDef);
+    body = worldBox->CreateBody(&bodyDef);
+
+    //store the user data
+    const char* userDataString = "tomato";
+    char* userDataChar = new char[strlen(userDataString) + 1];
+    strcpy(userDataChar, userDataString);
+    body->SetUserData(userDataChar);
+
     drawBodies.push_back(body);
 
     // Define another box shape for our dynamic body.
@@ -64,7 +62,20 @@ void Box::init(b2World &world, QPoint pos, std::vector<b2Body*> drawBodies )
     body->ApplyTorque(20,false);
     //body->ApplyAngularImpulse(20,true);
     printf("Init world\n");
+
+    //cut(worldBox, drawBodies);
+
 }
+
+//void Box::setName(std::string name){
+//    //this->name = name;
+//    qDebug() << name[0];
+//}
+
+//std::string Box::getName(){
+//    //qDebug() << &name;
+//    return name;
+//}
 
 void Box ::updatePosition(QPoint pos){
     int x = pos.x();
@@ -91,8 +102,11 @@ b2Fixture *Box::getFixture()
     return fixture;
 }
 
-void Box::cut(const b2Vec2& position, const b2Vec2& velocity) {
-    // Create a bunch of small particles with random positions and velocities
+void Box::cut(b2World* world, std::vector<b2Body*>& drawBodies) {
+
+    //qDebug()<< "cut" << &worldBox;
+    //b2World world = *worldBox;
+    b2Vec2 velocity(1.0f, 2.0f);
     for (int i = 0; i < 5; i++) {
         b2BodyDef bodyDef;
         bodyDef.type = b2_dynamicBody;
@@ -100,13 +114,13 @@ void Box::cut(const b2Vec2& position, const b2Vec2& velocity) {
         std::mt19937 gen(rd()); // initialize the random number engine with the seed
         std::uniform_int_distribution<> dist(1, 100); // define the range of the distribution
 
-        bodyDef.position.Set(position.x + dist(gen) % 10 - 5, position.y + dist(gen) % 10 - 5);
+        bodyDef.position.Set(body->GetPosition().x - 20 + dist(gen) % 10 - 5, body->GetPosition().y + dist(gen) % 10 - 5);
         bodyDef.linearVelocity.Set(velocity.x + dist(gen) % 20 - 10, velocity.y + dist(gen) % 20 - 10);
         b2Body* particle = world->CreateBody(&bodyDef);
-        drawBodies->push_back(particle);
-
-//        b2CircleShape circle;
-//        circle.m_radius = 0.1;
+        drawBodies.push_back(particle);
+        qDebug() << "cut";
+        b2CircleShape circle;
+        circle.m_radius = 0.1;
         b2PolygonShape dynamicBox;
         dynamicBox.SetAsBox(1.0f, 1.0f);
         b2FixtureDef fixtureDef;

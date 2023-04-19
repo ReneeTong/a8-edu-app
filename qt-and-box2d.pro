@@ -57,6 +57,7 @@ SOURCES += \
     Box2D/Rope/b2Rope.cpp \
     SceneWidget.cpp \
     box.cpp \
+    box2d.cpp \
     foodlibrary.cpp \
     ingredient.cpp \
     ingredientbutton.cpp \
@@ -125,6 +126,7 @@ HEADERS += \
     MainWindow.h \
     SceneWidget.h \
     box.h \
+    box2d.h \
     foodlibrary.h \
     ingredient.h \
     ingredientbutton.h \

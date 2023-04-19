@@ -5,7 +5,7 @@
  * @brief MyContactListener::MyContactListener
  * @param boxes
  */
-MyContactListener::MyContactListener(std::vector<Box>& boxes)
+MyContactListener::MyContactListener(QMap<std::string, Box*>&  boxes)
 {
     this->boxes = &boxes;
     qDebug() << "Address of Boxes MyContactListener: " << &(this->boxes);
@@ -14,15 +14,16 @@ MyContactListener::MyContactListener(std::vector<Box>& boxes)
 void MyContactListener::removeImageFromBody(b2Body* body) {
     // Find the image in the boxes vector and remove it
     for (auto it = boxes->begin(); it != boxes->end(); it++) {
-        if (it->getBody() == body) {
-            boxes->erase(it);
-            break;
-        }
+//        if (it->getBody() == body) {
+//            boxes->erase(it);
+//            break;
+//        }
     }
 //    qDebug() << boxes.size();
 }
 
 void MyContactListener::BeginContact(b2Contact* contact){
+
     // Get the two fixtures involved in the contact
     b2Fixture* fixtureA = contact->GetFixtureA();
     b2Fixture* fixtureB = contact->GetFixtureB();
@@ -38,15 +39,38 @@ void MyContactListener::BeginContact(b2Contact* contact){
         // Check if either body is a box
         if (bodyA->GetType() == b2_dynamicBody && bodyB->GetType() == b2_staticBody) {
             // Remove the image from the boxes vector
-            removeImageFromBody(bodyA);
+            qDebug() << "1";
+            //removeImageFromBody(bodyA);
         } else if (bodyB->GetType() == b2_dynamicBody && bodyA->GetType() == b2_staticBody) {
             // Remove the image from the boxes vector
-            removeImageFromBody(bodyB);
+
+
+            std::string ingredientName = static_cast<const char*>(bodyB->GetUserData());
+            if(ingredientName.compare("tomato") == 0){
+                //boxes->value("tomato");
+                if(boxes->contains(ingredientName)){
+                      //qDebug() << "2";
+//                    Box* ingredient = boxes->value("tomato");
+//                    b2World world(b2Vec2(0.0f, 10.0f));
+//                    QPoint velocity(ingredient->getBody()->GetPosition().x, ingredient->getBody()->GetPosition().y);
+//                    std::vector<b2Body*> drawBodies;
+//                    ingredient->cut(&world,velocity, drawBodies);
+                    emit cut(ingredientName);
+                }
+            }else if(ingredientName.compare("pieces") == 0){
+                //qDebug() << "pieces";
+            }
+
+            //qDebug() << "contact";
+            //removeImageFromBody(bodyB);
         }
-        else if (bodyA->GetType() == b2_dynamicBody && bodyB->GetType() == b2_dynamicBody){
-            removeImageFromBody(bodyA);
-            removeImageFromBody(bodyB);
-        }
+//        else if (bodyA->GetType() == b2_dynamicBody && bodyB->GetType() == b2_dynamicBody){
+//            //removeImageFromBody(bodyA);
+//            //removeImageFromBody(bodyB);
+//             qDebug() << "3";
+//        }
+
+    //Ruini
+
 
 }
-

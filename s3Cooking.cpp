@@ -1,6 +1,7 @@
 #include "s3Cooking.h"
 #include "QtGui/qevent.h"
 #include "mycontactlistener.h"
+#include "box2d.h"
 #include "ui_s3Cooking.h"
 #include <QPainter>
 #include <QDebug>
@@ -15,6 +16,7 @@ s3Cooking::s3Cooking(QWidget *parent) :
     imageWok(":/sprites/icons/wok.png")
 {
     ui->setupUi(this);
+
     //connect(ui->nextBtn, &QPushButton::clicked, this, &s3Cooking::nextPage);
 
     //AndyTran
@@ -40,6 +42,9 @@ s3Cooking::s3Cooking(QWidget *parent) :
     background->setScaledContents(true); // Scale the image to fit the label
     background->setGeometry(QRect(0, 0, background->width(), background->height()));
     background->lower();
+
+    connect(listener, &MyContactListener::cut, this, &s3Cooking::handleCut);
+
 }
 
 s3Cooking::~s3Cooking()
@@ -116,12 +121,12 @@ void s3Cooking::paintEvent(QPaintEvent *)
     }
 
     //Draw the ingredients: TODO - Need to change imageGrass to the picked ingredients
-    for(Box b : boxes){
-         b2Vec2 position = b.getBody()->GetPosition();
-        //float angle1 = b.getBody()->GetAngle();
-        //painter.rotate(angle1);
-        painter.drawImage((int)(position.x*20), (int)(position.y*20), imageGrass);
-    }
+//    for(Box b : boxes){
+//         b2Vec2 position = b.getBody()->GetPosition();
+//        //float angle1 = b.getBody()->GetAngle();
+//        //painter.rotate(angle1);
+//        painter.drawImage((int)(position.x*20), (int)(position.y*20), imageGrass);
+//    }
 
     //Draw the imageWok at the position of the groundBody: TODO - Need to change to the pot
        b2Vec2 groundPos = wokBody->GetPosition();
@@ -130,10 +135,19 @@ void s3Cooking::paintEvent(QPaintEvent *)
 
    //draw the object
     for (auto& body : drawBodies) {
-       //qDebug() << "draw";
+        //qDebug() << "draw";
        b2Vec2 position = body->GetPosition();
        //qDebug()<< "body"<<&position;
-       painter.drawImage((int)(position.x*20), (int)(position.y*20), imageGrass);
+       std::string ingredientName = static_cast<const char*>(body->GetUserData());
+       if(ingredientName.compare("pieces") == 0){
+            //qDebug() << "pieces";
+            QImage pieces(":/sprites/icons/tomato_pieces.png");
+            QImage resizedImage = pieces.scaled(32, 32);
+            painter.drawImage((int)(position.x*20), (int)(position.y*20), resizedImage);
+        }else{
+            painter.drawImage((int)(position.x*20), (int)(position.y*20), imageGrass);
+       }
+
     }
 
     painter.end();
@@ -143,30 +157,13 @@ void s3Cooking::paintEvent(QPaintEvent *)
 
 void s3Cooking::updateWorld()
 {
+
     world.Step(1.0/60.0, 6, 2);
     //detect collide
-
-//    for (auto& body : bodies) {
-
-//        for (b2ContactEdge* ce = body->getBody()->GetContactList(); ce; ce = ce->next)
-//        {
-//            qDebug() << "update";
-//            b2Contact* c = ce->contact;
-//            //qDebug() << c->IsTouching();
-//            b2Body* bodyB = c->GetFixtureB()->GetBody();
-//            b2Body* bodyA = c->GetFixtureA()->GetBody();
-//            if(bodyA == groundBody){
-//                b2Vec2 myVec(1.0f, 2.0f);
-//                drawBodies.pop_back();
-//                //createParticles(bodyB->GetPosition(),myVec);
-//                body->cut(bodyB->GetPosition(),myVec);
-//                world.DestroyBody(bodyB);
-//                //bodies.pop_back();
-//            }
-
-//        }
-//    }
-
+    if(isCut){
+        cut();
+        //world.DestroyBody(body);
+    }
     update();
 }
 
@@ -176,14 +173,21 @@ void s3Cooking::createGroundBody()
     b2BodyDef groundBodyDef;
     groundBodyDef.position.Set(20.0f, 20.0f); // y is where the floor
 
+
     // The body is also added to the world.
     groundBody = world.CreateBody(&groundBodyDef);
 
     // Define the ground box shape.
     b2PolygonShape groundBox;
 
+    //Ruini add
+    b2FixtureDef groundFixtureDef;
+    groundFixtureDef.shape = &groundBox;
+    groundFixtureDef.isSensor = true;
+
     // The extents are the half-widths of the box.
     groundBox.SetAsBox(15.0f, 1.5f);
+
 
     // Add the ground fixture to the ground body.
     groundBody->CreateFixture(&groundBox, 0.0f);
@@ -216,11 +220,24 @@ void s3Cooking::mousePressEvent(QMouseEvent *event)
     qDebug() <<event->pos();
     if (event->button() == Qt::LeftButton) {
         Box tomato;
-        tomato.init(world, event->pos(), drawBodies);
+        tomato.init(&world, event->pos(), drawBodies);
+
+        //tomato.init
         body = tomato.getBody();
         drawBodies.push_back(body);
-        bodies.push_back(&tomato);
-        qDebug() <<event->pos();
+        //bodies.push_back(&tomato);
+        boxes.insert("tomato",&tomato);
+        //tomato.setName("tomato");
+//        if(boxes.contains("tomato")){
+//            qDebug() << "tomato";
+//            //tomato.getName();
+//        }
+
+        //Box* myBox = new Box(&world, event->pos(), drawBodies);
+//        if (tomato.worldBox == &world) {
+//            qDebug() << "Error: worldBox is null";
+//        }
+        //qDebug() <<event->pos();
     }
 }
 
@@ -235,8 +252,16 @@ void s3Cooking::mouseMoveEvent(QMouseEvent *event) {
 
 void s3Cooking::mouseReleaseEvent(QMouseEvent *event)
 {
-
+    qDebug() <<event->pos();
 }
+
+//void MyContactListener::BeginContact(b2Contact* contact){
+//    b2Body* bodyA = contact->GetFixtureA()->GetBody();
+//    b2Body* bodyB = contact->GetFixtureB()->GetBody();
+
+
+
+//}
 
 
 void s3Cooking::createBoxes()
@@ -250,4 +275,50 @@ void s3Cooking::createBoxes()
         //b.init(&world, b2Vec2(xrand,-yrand ));
         //boxes.push_back(b);
     }
+}
+
+void s3Cooking::handleCut(std::string name){
+    isCut = true;
+}
+
+void s3Cooking::cut() {
+
+    //qDebug()<< "cut" << &worldBox;
+    //b2World world = *worldBox;
+    b2Vec2 velocity(1.0f, 2.0f);
+    //QPoint position(body->GetPosition().x*20, body->GetPosition().y*20);
+    b2Body* current = body;
+    for (int i = 0; i < 4; i++) {
+
+        b2BodyDef bodyDef;
+        bodyDef.type = b2_dynamicBody;
+        std::random_device rd; // obtain a random seed from the hardware
+        std::mt19937 gen(rd()); // initialize the random number engine with the seed
+        std::uniform_int_distribution<> dist(1, 100); // define the range of the distribution
+
+        bodyDef.position.Set(body->GetPosition().x + dist(gen) % 10 - 5, body->GetPosition().y + dist(gen) % 10 - 5);
+        bodyDef.linearVelocity.Set(velocity.x + dist(gen) % 20 - 10, velocity.y + dist(gen) % 20 - 10);
+        b2Body* particle = world.CreateBody(&bodyDef);
+
+        if(i == 0){
+            world.DestroyBody(current);
+        }
+
+        const char* userDataString = "pieces";
+        char* userDataChar = new char[strlen(userDataString) + 1];
+        strcpy(userDataChar, userDataString);
+        particle->SetUserData(userDataChar);
+
+        drawBodies.push_back(particle);
+        qDebug() << "cut";
+        b2PolygonShape dynamicBox;
+        dynamicBox.SetAsBox(1.0f, 1.0f);
+        b2FixtureDef fixtureDef;
+        fixtureDef.shape = &dynamicBox;
+        fixtureDef.density = 1.0;
+        fixtureDef.friction = 0.3f;
+        fixtureDef.restitution = 0.5;
+        particle->CreateFixture(&fixtureDef);
+    }
+    isCut = false;
 }
