@@ -6,16 +6,13 @@ recipeButton::recipeButton(const Recipe &recipe, QWidget *parent) :
     ui(new Ui::recipeButton)
 {
     ui->setupUi(this);
-
-//    // Customize the button appearance and behavior based on the provided recipe
-//    // For example, if you have a QLabel named "recipeNameLabel" in your .ui file:
-//    ui->recipeNameLabel->setText(recipe.getName());
-
-//    // If you have a QProgressBar named "difficultyProgressBar":
-//    ui->difficultyProgressBar->setValue(recipe.getDifficulty());
+    ui->recipeName->setText(recipe.getName());
+    qDebug() << "Recipe name:" << recipe.getName(); // Add this line
+    ui->recipeDifficulty->setValue(recipe.getDifficulty());
 }
 
 recipeButton::~recipeButton()
 {
     delete ui;
 }
+

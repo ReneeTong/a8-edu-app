@@ -16,13 +16,14 @@ s2Recipe::s2Recipe(QWidget *parent) :
         // Get the Pho recipe from the FoodLibrary
         Recipe phoRecipe;
         for (Recipe *recipe : foodLibrary.getAllRecipes()) {
-            if (recipe->getName() == "Pho") {
+            if (recipe->getName() == "pho") {
                 phoRecipe = *recipe;
                 break;
             }
         }
 
         recipeButton *phoButton = new recipeButton(phoRecipe);
+        phoButton->setFixedSize(550, 500);
         ui->scrollArea_2->addWidget(phoButton);
 
     });

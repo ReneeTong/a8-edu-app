@@ -1,6 +1,7 @@
 #ifndef RECIPEBUTTON_H
 #define RECIPEBUTTON_H
 
+#include <QPushButton>
 #include <QWidget>
 #include "recipe.h"
 
@@ -17,6 +18,7 @@ public:
     ~recipeButton();
 
 private:
+
     Ui::recipeButton *ui;
 };
 
