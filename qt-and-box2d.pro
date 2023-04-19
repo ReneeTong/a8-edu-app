@@ -152,7 +152,7 @@ FORMS += \
     s4Complete.ui
 
 
-
+ICON = icons/Kitchen.PNG
 #macx: LIBS += -L$$PWD/../box2d-master/build/bin/ -lbox2d
 
 #INCLUDEPATH += $$PWD/../box2d-master/include
