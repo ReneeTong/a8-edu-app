@@ -98,7 +98,7 @@
   <customwidget>
    <class>titleDisplay</class>
    <extends>QWidget</extends>
-   <header location="global">titledisplay.h</header>
+   <header>titledisplay.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

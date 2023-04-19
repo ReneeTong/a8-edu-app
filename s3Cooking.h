@@ -7,8 +7,6 @@
 #include<Qlist>
 #include<vector>
 #include<random>
-#include"box.h"
-#include "box2d.h"
 using namespace std;
 
 namespace Ui {
@@ -23,22 +21,22 @@ public:
     explicit s3Cooking(QWidget *parent = nullptr);
     ~s3Cooking();
 
-    //Tzhou: play around
-    void paintEvent(QPaintEvent *);
+//    //Tzhou: play around
+//    void paintEvent(QPaintEvent *);
 
-    //Ruini
-    void mousePressEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
+//    //Ruini
+//    void mousePressEvent(QMouseEvent *event);
+//    void mouseMoveEvent(QMouseEvent *event);
+//    void mouseReleaseEvent(QMouseEvent *event);
 
-    //Tzhou
-    void updateWorld();
+//    //Tzhou
+//    void updateWorld();
 
 public slots:
     void nextPage();
 
-    //Ruini
-    void handleCut(std::string name);
+//    //Ruini
+//    void handleCut(std::string name);
 
 signals:
     void goToPage4();
@@ -46,35 +44,35 @@ signals:
 private:
     Ui::s3Cooking *ui;
 
-    //Tzhou
-    b2World world;
-    //vector<Box> boxes; Ruini edited
-    //QMap<string, Box*> boxes;
-    QTimer timer;
-    QImage image;
-    QImage imageTomato;
+//    //Tzhou
+//    b2World world;
+//    //vector<Box> boxes; Ruini edited
+//    //QMap<string, Box*> boxes;
+//    QTimer timer;
+//    QImage image;
+//    QImage imageTomato;
 
-    void createWokBody();
-    //void createBoxes();
+//    void createWokBody();
+//    //void createBoxes();
 
-    //AndyTran
-    void createGroundBody();
-    QImage imageWok;
-    b2Body* wokBody;
-    b2Body* groundBody;
+//    //AndyTran
+//    void createGroundBody();
+//    QImage imageWok;
+//    b2Body* wokBody;
+//    b2Body* groundBody;
 
-    //Ruini
-    vector<b2Body*> drawBodies;
-    vector<b2Body*> particles;
-    QMap<string, b2Body*> boxes;
-    b2Body* body=nullptr;
-    bool isCut = false;// check if there's currently something need to be cut
-    void destroyParticles();
-    bool test = false;
-    bool isSelected = false;
-    b2Body* selectedObject;
-    void cut();
-    void createBox(QPoint pos,string name);
+//    //Ruini
+//    vector<b2Body*> drawBodies;
+//    vector<b2Body*> particles;
+//    QMap<string, b2Body*> boxes;
+//    b2Body* body=nullptr;
+//    bool isCut = false;// check if there's currently something need to be cut
+//    void destroyParticles();
+//    bool test = false;
+//    bool isSelected = false;
+//    b2Body* selectedObject;
+//    void cut();
+//    void createBox(QPoint pos,string name);
 };
 
 #endif // S3COOKING_H

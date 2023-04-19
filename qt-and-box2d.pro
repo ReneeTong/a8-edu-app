@@ -57,7 +57,6 @@ SOURCES += \
     Box2D/Rope/b2Rope.cpp \
     SceneWidget.cpp \
     box.cpp \
-    box2d.cpp \
     foodlibrary.cpp \
     ingredient.cpp \
     ingredientbutton.cpp \
@@ -73,6 +72,7 @@ SOURCES += \
     s3Cooking.cpp \
     s4Complete.cpp \
     scrollcarousel.cpp \
+    simulations.cpp \
     titledisplay.cpp
 
 HEADERS += \
@@ -126,7 +126,6 @@ HEADERS += \
     MainWindow.h \
     SceneWidget.h \
     box.h \
-    box2d.h \
     foodlibrary.h \
     ingredient.h \
     ingredientbutton.h \
@@ -140,6 +139,7 @@ HEADERS += \
     s3Cooking.h \
     s4Complete.h \
     scrollcarousel.h \
+    simulations.h \
     titledisplay.h
 
 FORMS += \
