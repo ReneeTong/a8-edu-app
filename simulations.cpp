@@ -10,7 +10,7 @@ simulations::simulations(QWidget *parent)
       timer(this),
       image(":/sprites/icons/brick.png"),
       imageTomato(":/sprites/icons/tomato.png"),
-      imageWok(":/sprites/icons/wok.png")
+      imageWok(":/sprites/icons/Wok.PNG")
 {
     qDebug() << "simulations";
 
@@ -43,41 +43,41 @@ void simulations::paintEvent(QPaintEvent *)
 
     QPainter painter(this);
 
-    //Draw the ground box
-    for (b2Fixture* f = wokBody->GetFixtureList(); f; f = f->GetNext()) {
-        if (f->GetType() == b2Shape::e_polygon) {
-            b2PolygonShape* shape = dynamic_cast<b2PolygonShape*>(f->GetShape());
-            if (shape) {
-                b2Vec2 vertices[b2_maxPolygonVertices];
-                for (int i = 0; i < shape->m_count; ++i) {
-                    vertices[i] = wokBody->GetWorldPoint(shape->m_vertices[i]);
-                }
-                painter.setPen(Qt::black);
-                for (int i = 0; i < shape->m_count - 1; ++i) {
-                    painter.drawLine((int)vertices[i].x*20, (int)vertices[i].y*20, (int)vertices[i+1].x*20, (int)vertices[i+1].y*20);
-                }
-                painter.drawLine((int)vertices[shape->m_count - 1].x*20, (int)vertices[shape->m_count - 1].y*20, (int)vertices[0].x*20, (int)vertices[0].y*20);
-            }
-        }
-    }
+//    //Draw the ground box
+//    for (b2Fixture* f = wokBody->GetFixtureList(); f; f = f->GetNext()) {
+//        if (f->GetType() == b2Shape::e_polygon) {
+//            b2PolygonShape* shape = dynamic_cast<b2PolygonShape*>(f->GetShape());
+//            if (shape) {
+//                b2Vec2 vertices[b2_maxPolygonVertices];
+//                for (int i = 0; i < shape->m_count; ++i) {
+//                    vertices[i] = wokBody->GetWorldPoint(shape->m_vertices[i]);
+//                }
+//                painter.setPen(Qt::black);
+//                for (int i = 0; i < shape->m_count - 1; ++i) {
+//                    painter.drawLine((int)vertices[i].x*20, (int)vertices[i].y*20, (int)vertices[i+1].x*20, (int)vertices[i+1].y*20);
+//                }
+//                painter.drawLine((int)vertices[shape->m_count - 1].x*20, (int)vertices[shape->m_count - 1].y*20, (int)vertices[0].x*20, (int)vertices[0].y*20);
+//            }
+//        }
+//    }
 
-    //Draw the ground box
-    for (b2Fixture* f = groundBody->GetFixtureList(); f; f = f->GetNext()) {
-        if (f->GetType() == b2Shape::e_polygon) {
-            b2PolygonShape* shape = dynamic_cast<b2PolygonShape*>(f->GetShape());
-            if (shape) {
-                b2Vec2 vertices[b2_maxPolygonVertices];
-                for (int i = 0; i < shape->m_count; ++i) {
-                    vertices[i] = groundBody->GetWorldPoint(shape->m_vertices[i]);
-                }
-                painter.setPen(Qt::black);
-                for (int i = 0; i < shape->m_count - 1; ++i) {
-                    painter.drawLine((int)vertices[i].x*20, (int)vertices[i].y*20, (int)vertices[i+1].x*20, (int)vertices[i+1].y*20);
-                }
-                painter.drawLine((int)vertices[shape->m_count - 1].x*20, (int)vertices[shape->m_count - 1].y*20, (int)vertices[0].x*20, (int)vertices[0].y*20);
-            }
-        }
-    }
+//    //Draw the ground box
+//    for (b2Fixture* f = groundBody->GetFixtureList(); f; f = f->GetNext()) {
+//        if (f->GetType() == b2Shape::e_polygon) {
+//            b2PolygonShape* shape = dynamic_cast<b2PolygonShape*>(f->GetShape());
+//            if (shape) {
+//                b2Vec2 vertices[b2_maxPolygonVertices];
+//                for (int i = 0; i < shape->m_count; ++i) {
+//                    vertices[i] = groundBody->GetWorldPoint(shape->m_vertices[i]);
+//                }
+//                painter.setPen(Qt::black);
+//                for (int i = 0; i < shape->m_count - 1; ++i) {
+//                    painter.drawLine((int)vertices[i].x*20, (int)vertices[i].y*20, (int)vertices[i+1].x*20, (int)vertices[i+1].y*20);
+//                }
+//                painter.drawLine((int)vertices[shape->m_count - 1].x*20, (int)vertices[shape->m_count - 1].y*20, (int)vertices[0].x*20, (int)vertices[0].y*20);
+//            }
+//        }
+//    }
 
     //Draw the ingredients: TODO - Need to change imageGrass to the picked ingredients
 //    for(Box b : boxes){
@@ -131,7 +131,7 @@ void simulations::createGroundBody()
 {
     // Define the ground body.
     b2BodyDef groundBodyDef;
-    groundBodyDef.position.Set(20.0f, 20.0f); // y is where the floor
+    groundBodyDef.position.Set(15.0f, 27.0f); // y is where the floor
 
 
     // The body is also added to the world.
@@ -163,7 +163,7 @@ void simulations::createWokBody()
 {
     // Define the ground body.
     b2BodyDef wokBodyDef;
-    wokBodyDef.position.Set(20.0f, 20.0f); // y is where the floor
+    wokBodyDef.position.Set(16.0f, 27.0f); // y is where the floor
 
     // The body is also added to the world.
     wokBody = world.CreateBody(&wokBodyDef);
@@ -190,6 +190,7 @@ void simulations::mousePressEvent(QMouseEvent *event)
 {
     //qDebug() <<event->pos();
     if (event->button() == Qt::LeftButton) {
+        createBox(event->pos(), "tomato");
         //mouse position convert to box2d coordinates
         b2Vec2 pos(event->pos().x()/20, event->pos().y()/20);
         if(test == true){

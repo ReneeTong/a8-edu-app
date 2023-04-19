@@ -12,11 +12,11 @@
         <file>icons/pork.png</file>
         <file>icons/soysauce.png</file>
         <file>icons/tomato.png</file>
-        <file>icons/wok.png</file>
         <file>icons/carrot.png</file>
         <file>icons/cabbage.png</file>
         <file>icons/riceNoodles.png</file>
         <file>recipes/Pho.txt</file>
         <file>icons/tomato_pieces.png</file>
+        <file>icons/Wok.PNG</file>
     </qresource>
 </RCC>
