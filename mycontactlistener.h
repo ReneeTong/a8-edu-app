@@ -11,13 +11,13 @@ class MyContactListener :public QObject,  public b2ContactListener
 {
     Q_OBJECT
 public:
-    MyContactListener(QMap<std::string, Box*>&  boxes);
+    MyContactListener(QMap<std::string, b2Body*>&  boxes);
     void BeginContact(b2Contact* contact) override;
     void removeImageFromBody(b2Body* body);
 
 private:
     //std::vector<Box>* boxes;
-    QMap<std::string, Box*>*  boxes;
+    QMap<std::string, b2Body*>*  boxes;
 
 signals:
     void cut(std::string);

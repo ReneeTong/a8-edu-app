@@ -12,7 +12,7 @@ s3Cooking::s3Cooking(QWidget *parent) :
     world(b2Vec2(0.0f, 10.0f)),
     timer(this),
     image(":/sprites/icons/brick.png"),
-    imageGrass(":/sprites/icons/grass.png"),
+    imageTomato(":/sprites/icons/tomato.png"),
     imageWok(":/sprites/icons/wok.png")
 {
     ui->setupUi(this);
@@ -25,7 +25,7 @@ s3Cooking::s3Cooking(QWidget *parent) :
     //Tzhou: box2d
     createWokBody();
     createGroundBody();
-    createBoxes();
+    //createBoxes();
     connect(&timer, &QTimer::timeout, this, &s3Cooking::updateWorld);
     timer.start(10);
 
@@ -44,6 +44,9 @@ s3Cooking::s3Cooking(QWidget *parent) :
     background->lower();
 
     connect(listener, &MyContactListener::cut, this, &s3Cooking::handleCut);
+    connect(ui->tomato, &QPushButton::clicked, this, [this]{
+        test = true;
+    } );
 
 }
 
@@ -146,7 +149,7 @@ void s3Cooking::paintEvent(QPaintEvent *)
             painter.drawImage((int)(position.x*20), (int)(position.y*20), pieces);
 //              painter.drawImage((int)(position.x*20), (int)(position.y*20), imageGrass);
         }else{
-            painter.drawImage((int)(position.x*20), (int)(position.y*20), imageGrass);
+            painter.drawImage((int)(position.x*20), (int)(position.y*20), imageTomato);
        }
 
     }
@@ -162,18 +165,10 @@ void s3Cooking::updateWorld()
     world.Step(1.0/60.0, 6, 2);
     //detect collide
     if(isCut){
+        destroyParticles();
         cut();
         //world.DestroyBody(body);
     }
-//    if(body != nullptr){
-//        for (b2ContactEdge* ce = body->GetContactList(); ce; ce = ce->next)
-//        {
-//            cut();
-//            // process c
-//            world.DestroyBody(body);
-//        }
-//    }
-
     update();
 }
 
@@ -186,6 +181,12 @@ void s3Cooking::createGroundBody()
 
     // The body is also added to the world.
     groundBody = world.CreateBody(&groundBodyDef);
+
+    const char* userDataString = "ground";
+    char* userDataChar = new char[strlen(userDataString) + 1];
+    strcpy(userDataChar, userDataString);
+    groundBody->SetUserData(userDataChar);
+
 
     // Define the ground box shape.
     b2PolygonShape groundBox;
@@ -212,6 +213,11 @@ void s3Cooking::createWokBody()
     // The body is also added to the world.
     wokBody = world.CreateBody(&wokBodyDef);
 
+    const char* userDataString = "wok";
+    char* userDataChar = new char[strlen(userDataString) + 1];
+    strcpy(userDataChar, userDataString);
+    wokBody->SetUserData(userDataChar);
+
     // Define the ground box shape.
     b2PolygonShape groundBox;
 
@@ -227,42 +233,58 @@ void s3Cooking::createWokBody()
 //Ruini
 void s3Cooking::mousePressEvent(QMouseEvent *event)
 {
-    qDebug() <<event->pos();
+    //qDebug() <<event->pos();
     if (event->button() == Qt::LeftButton) {
-        Box tomato;
-        tomato.init(&world, event->pos(), drawBodies);
+        //mouse position convert to box2d coordinates
+        b2Vec2 pos(event->pos().x()/20, event->pos().y()/20);
+        if(test == true){
+            createBox(event->pos(), "tomato");
+            test = false;
+        }else{
+            for (auto &key : boxes.keys()) {
+                b2Body* current = boxes.value(key);
+                if(current != nullptr && current->GetType() == b2_dynamicBody){
+                    for (b2Fixture* fixture = current->GetFixtureList(); fixture; fixture = fixture->GetNext()) {
+                        if (fixture->TestPoint(pos)) {
+                            // The mouse is inside this fixture
+                            // You can use this information to determine which object was clicked
+                            // For example, you can use the body's user data to identify the object
+                            qDebug() << key[0];
+                            selectedObject = current;
+                            isSelected = true;
+                            //return;
+                        }
+        ////                else if (fixture->RayCast(&output, input, 0)) {
+        ////                    // The ray cast intersects this fixture
+        ////                    // You can use this information to determine which object was clicked
+        ////                    // For example, you can use the body's user data to identify the object
+        ////                    qDebug() << "Object clicked";
+        ////                    return;
+        ////                }
+                    }
+                }
 
-        //tomato.init
-        body = tomato.getBody();
-        drawBodies.push_back(body);
-        //bodies.push_back(&tomato);
-        boxes.insert("tomato",&tomato);
-        //tomato.setName("tomato");
-//        if(boxes.contains("tomato")){
-//            qDebug() << "tomato";
-//            //tomato.getName();
-//        }
+            }
+        }
 
-        //Box* myBox = new Box(&world, event->pos(), drawBodies);
-//        if (tomato.worldBox == &world) {
-//            qDebug() << "Error: worldBox is null";
-//        }
+
         //qDebug() <<event->pos();
     }
 }
 
 void s3Cooking::mouseMoveEvent(QMouseEvent *event) {
-    if (event->button() == Qt::LeftButton) {
-        for (auto& body : bodies) {
-            body->updatePosition(event->pos());
-        }
-    }
     //qDebug() <<"move";
+    b2Vec2 pos(event->pos().x()/20, event->pos().y()/20);
+    //qDebug() << selectedObject[0];
+    if(isSelected){
+         selectedObject->SetTransform(pos, selectedObject->GetAngle());
+    }
+
 }
 
 void s3Cooking::mouseReleaseEvent(QMouseEvent *event)
 {
-    qDebug() <<event->pos();
+    //qDebug() <<event->pos();
 }
 
 //void MyContactListener::BeginContact(b2Contact* contact){
@@ -273,18 +295,71 @@ void s3Cooking::mouseReleaseEvent(QMouseEvent *event)
 
 //}
 
+//void s3Cooking::createBoxes()
+//{
+//    const int numBoxes = 10;
 
-void s3Cooking::createBoxes()
+//    for(int i =0; i<numBoxes; i++){
+//        Box b;
+//        float xrand = 10.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/20.0f));
+//        float yrand = 20.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/25.0f));
+//        //b.init(&world, b2Vec2(xrand,-yrand ));
+//        //boxes.push_back(b);
+//    }
+//}
+
+void s3Cooking::createBox(QPoint pos, string name)
 {
-    const int numBoxes = 10;
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_dynamicBody;
 
-    for(int i =0; i<numBoxes; i++){
-        Box b;
-        float xrand = 10.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/20.0f));
-        float yrand = 20.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/25.0f));
-        //b.init(&world, b2Vec2(xrand,-yrand ));
-        //boxes.push_back(b);
-    }
+    //convert qt coordinate to box2D coordinate
+    int x = pos.x();
+    int y = pos.y();
+
+    //y = this->height() - y;
+
+    float scale = 20;
+    float bx = x /scale;
+    float by = y /scale;
+
+    bodyDef.position.Set(bx, by);
+
+    body = world.CreateBody(&bodyDef);
+
+    //store the user data
+    const char* userDataString = "tomato";
+    char* userDataChar = new char[strlen(userDataString) + 1];
+    strcpy(userDataChar, userDataString);
+    body->SetUserData(userDataChar);
+
+    drawBodies.push_back(body);
+    boxes.insert(name, body);
+
+    // Define another box shape for our dynamic body.
+    b2PolygonShape dynamicBox;
+    dynamicBox.SetAsBox(1.0f, 1.0f);
+
+    // Define the dynamic body fixture.
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &dynamicBox;
+
+    // Set the box density to be non-zero, so it will be dynamic.
+    fixtureDef.density = 1.0f;
+
+    // Override the default friction.
+    fixtureDef.friction = 0.3f;
+    fixtureDef.restitution = 0.8;
+    // Add the shape to the body.
+    body->CreateFixture(&fixtureDef);
+
+
+    body->ApplyTorque(20,false);
+    //body->ApplyAngularImpulse(20,true);
+    printf("Init world\n");
+
+    //cut(worldBox, drawBodies);
+
 }
 
 void s3Cooking::handleCut(std::string name){
@@ -313,9 +388,9 @@ void s3Cooking::cut() {
         b2Body* particle = world.CreateBody(&bodyDef);
 
         //destroy the biggiest ingredient
-        if(i == 0){
-            world.DestroyBody(current);
-        }
+//        if(i == 0){
+//            world.DestroyBody(current);
+//        }
         //store user data for particles
         const char* userDataString = "pieces";
         char* userDataChar = new char[strlen(userDataString) + 1];
@@ -337,25 +412,27 @@ void s3Cooking::cut() {
         particle->CreateFixture(&fixtureDef);
     }
     isCut = false;
-    //destroyParticles();
+
 }
 
 void s3Cooking::destroyParticles(){
     // Create a new timer object
     QTimer* timer = new QTimer(this);
 
-    // Set the interval for the timer in milliseconds
-    timer->setInterval(1000); // Timer fires every second
+//    // Set the interval for the timer in milliseconds
+//    timer->setInterval(1000); // Timer fires every second
 
-    // Connect the timeout() signal of the timer to a slot or lambda function that handles the event
-    connect(timer, &QTimer::timeout, this, [this](){
-        //destroy the particles
-        for (int i = 0; i < particles.size(); i++) {
-            b2Body* particle =particles.back();
-            particles.pop_back();
-            world.DestroyBody(particle);
-        }
-    });
+//    // Connect the timeout() signal of the timer to a slot or lambda function that handles the event
+//    connect(timer, &QTimer::timeout, this, [this](){
+//        //destroy the particles
+
+//    });
+
+    for (int i = 0; i < particles.size(); i++) {
+        b2Body* particle =particles.back();
+        particles.pop_back();
+        world.DestroyBody(particle);
+    }
 
     // Start the timer
     timer->start();

@@ -30,8 +30,6 @@ public:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
-    void cut();
-
 
     //Tzhou
     void updateWorld();
@@ -51,13 +49,13 @@ private:
     //Tzhou
     b2World world;
     //vector<Box> boxes; Ruini edited
-    QMap<string, Box*> boxes;
+    //QMap<string, Box*> boxes;
     QTimer timer;
     QImage image;
-    QImage imageGrass;
+    QImage imageTomato;
 
     void createWokBody();
-    void createBoxes();
+    //void createBoxes();
 
     //AndyTran
     void createGroundBody();
@@ -68,10 +66,15 @@ private:
     //Ruini
     vector<b2Body*> drawBodies;
     vector<b2Body*> particles;
-    QMap<string, Box*> bodies;
+    QMap<string, b2Body*> boxes;
     b2Body* body=nullptr;
     bool isCut = false;// check if there's currently something need to be cut
     void destroyParticles();
+    bool test = false;
+    bool isSelected = false;
+    b2Body* selectedObject;
+    void cut();
+    void createBox(QPoint pos,string name);
 };
 
 #endif // S3COOKING_H

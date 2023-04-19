@@ -5,7 +5,7 @@
  * @brief MyContactListener::MyContactListener
  * @param boxes
  */
-MyContactListener::MyContactListener(QMap<std::string, Box*>&  boxes)
+MyContactListener::MyContactListener(QMap<std::string, b2Body*>&  boxes)
 {
     this->boxes = &boxes;
     qDebug() << "Address of Boxes MyContactListener: " << &(this->boxes);
@@ -46,7 +46,8 @@ void MyContactListener::BeginContact(b2Contact* contact){
 
 
             std::string ingredientName = static_cast<const char*>(bodyB->GetUserData());
-            if(ingredientName.compare("tomato") == 0){
+            std::string wok = static_cast<const char*>(bodyA->GetUserData());
+            if((ingredientName.compare("tomato") == 0)&&(wok.compare("wok") == 0)){
                 //boxes->value("tomato");
                 if(boxes->contains(ingredientName)){
                     emit cut(ingredientName);
