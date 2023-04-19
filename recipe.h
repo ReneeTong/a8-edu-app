@@ -63,6 +63,9 @@ private:
     //step order is key, ingredient is the value
     QMap<int, Ingredient*> prepSteps;
     QMap<int, Ingredient*> cookingSteps;
+
+    //All the recipe with ingredients. Not yet to all everything else.
+    QHash<Ingredient *, int> createPhoIngredients();
 };
 
 #endif // RECIPE_H

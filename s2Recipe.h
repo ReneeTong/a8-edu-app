@@ -2,6 +2,8 @@
 #define S2RECIPE_H
 
 #include <QWidget>
+#include "recipe.h"
+#include "foodlibrary.h"
 
 namespace Ui {
 class s2Recipe;

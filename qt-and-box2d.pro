@@ -59,12 +59,12 @@ SOURCES += \
     box.cpp \
     foodlibrary.cpp \
     ingredient.cpp \
-    ingredientbutton.cpp \
     main.cpp \
     MainWindow.cpp \
     model.cpp \
     mycontactlistener.cpp \
     recipe.cpp \
+    recipebutton.cpp \
     s0Title.cpp \
     s1Pantry.cpp \
     s2Recipe.cpp \
@@ -126,10 +126,10 @@ HEADERS += \
     box.h \
     foodlibrary.h \
     ingredient.h \
-    ingredientbutton.h \
     model.h \
     mycontactlistener.h \
     recipe.h \
+    recipebutton.h \
     s0Title.h \
     s1Pantry.h \
     s2Recipe.h \
@@ -140,6 +140,7 @@ HEADERS += \
 
 FORMS += \
     MainWindow.ui \
+    recipebutton.ui \
     s0Title.ui \
     s1Pantry.ui \
     s2Recipe.ui \

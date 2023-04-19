@@ -10,11 +10,11 @@ Recipe::Recipe(QString name, int difficulty, QHash<Ingredient *, int> ingredient
                QMap<int, Ingredient *> prepSteps, QMap<int, Ingredient *> cookingSteps):
     name(name),
     difficulty(difficulty),
-    ingredients(ingredients),
     recipeTags(recipeTags),
     country(country),
     description(description),
     learnMore(learnMore),
+    ingredients(ingredients),
     prepSteps(prepSteps),
     cookingSteps(cookingSteps)
 {

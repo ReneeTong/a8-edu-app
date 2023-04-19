@@ -134,3 +134,22 @@ void ScrollCarousel::wheelEvent(QWheelEvent *event) {
         verticalAnimation->start();
     }
 }
+
+//This function is used to rearrange widgets.
+void ScrollCarousel::rearrangeWidgets(){
+    for (QWidget *widget : widgets) {
+        scrollLayout->removeWidget(widget);
+    }
+    for (QWidget *widget : widgets) {
+        scrollLayout->addWidget(widget);
+    }
+}
+
+//This function act as a logic for rearrangewidget.
+void ScrollCarousel::sortWidgetsBy(std::function<bool(QWidget*, QWidget*)> compare) {
+    std::sort(widgets.begin(), widgets.end(), compare);
+    rearrangeWidgets();
+}
+
+
+

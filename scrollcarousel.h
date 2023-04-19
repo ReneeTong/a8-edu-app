@@ -34,12 +34,16 @@ public:
 
     void addFilter(bool (*)(QWidget*));
     void removeFilter(bool (*)(QWidget*));
+    void sortWidgetsBy(std::function<bool(QWidget*, QWidget*)>);
+
 
 protected:
     void wheelEvent(QWheelEvent *event) override;
 
 private:
     void reset();
+    void rearrangeWidgets();
+
 
     QBoxLayout *scrollLayout;
 
@@ -50,6 +54,11 @@ private:
 
     QPropertyAnimation *horizontalAnimation;
     QPropertyAnimation *verticalAnimation;
+
+
+
+
+
 };
 
 #endif // SCROLLCAROUSEL_H
