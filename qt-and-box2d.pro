@@ -59,6 +59,7 @@ SOURCES += \
     box.cpp \
     foodlibrary.cpp \
     ingredient.cpp \
+    ingredientbutton.cpp \
     main.cpp \
     MainWindow.cpp \
     model.cpp \
@@ -126,6 +127,7 @@ HEADERS += \
     box.h \
     foodlibrary.h \
     ingredient.h \
+    ingredientbutton.h \
     model.h \
     mycontactlistener.h \
     recipe.h \
