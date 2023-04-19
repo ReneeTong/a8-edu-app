@@ -4,7 +4,7 @@
 ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
     setStyleSheet(
                 "QScrollArea > QWidget > QWidget {background-color: transparent;}"
-                "ScrollCarousel {background-color: grey;}"
+                //"ScrollCarousel {background-color: grey;}"
                   );
 
     setWidgetResizable(true);

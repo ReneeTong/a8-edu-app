@@ -2,6 +2,7 @@
 #define S1PANTRY_H
 
 #include <QWidget>
+#include <QGroupBox>
 #include"foodLibrary.h"
 namespace Ui {
 class s1Pantry;

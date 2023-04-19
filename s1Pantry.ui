@@ -22,84 +22,6 @@
   <property name="autoFillBackground">
    <bool>true</bool>
   </property>
-  <widget class="QFrame" name="frame">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>80</y>
-     <width>731</width>
-     <height>591</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::Box</enum>
-   </property>
-   <property name="lineWidth">
-    <number>3</number>
-   </property>
-   <widget class="QGroupBox" name="groupBox">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>691</width>
-      <height>161</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Meat</string>
-    </property>
-    <widget class="ScrollCarousel" name="scrollArea">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>40</y>
-       <width>651</width>
-       <height>101</height>
-      </rect>
-     </property>
-     <property name="widgetResizable">
-      <bool>true</bool>
-     </property>
-     <property name="isHorizontal" stdset="0">
-      <bool>true</bool>
-     </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>649</width>
-        <height>99</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="ScrollCarousel" name="pantryCategory">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>199</y>
-      <width>691</width>
-      <height>361</height>
-     </rect>
-    </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents_2">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>689</width>
-       <height>359</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -149,32 +71,6 @@
      <string>next</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="evenBox">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>30</y>
-      <width>151</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>even</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="oddBox">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>60</y>
-      <width>151</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>odd</string>
-    </property>
-   </widget>
    <widget class="QCheckBox" name="veganBox">
     <property name="geometry">
      <rect>
@@ -199,6 +95,38 @@
     </property>
     <property name="text">
      <string>Allergic to Nuts</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="ScrollCarousel" name="pantryCategory">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>80</y>
+     <width>731</width>
+     <height>591</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Panel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
+   </property>
+   <property name="lineWidth">
+    <number>3</number>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>725</width>
+      <height>585</height>
+     </rect>
     </property>
    </widget>
   </widget>
