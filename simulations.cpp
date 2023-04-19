@@ -31,6 +31,7 @@ simulations::simulations(QWidget *parent)
 //    connect(ui->tomato, &QPushButton::clicked, this, [this]{
 //        test = true;
 //    } );
+    testTrue();
 }
 
 void simulations::testTrue(){
