@@ -56,6 +56,7 @@ SOURCES += \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
     SceneWidget.cpp \
+    draganddrop.cpp \
     foodlibrary.cpp \
     ingredient.cpp \
     ingredientbutton.cpp \
@@ -124,6 +125,7 @@ HEADERS += \
     Box2D/Rope/b2Rope.h \
     MainWindow.h \
     SceneWidget.h \
+    draganddrop.h \
     foodlibrary.h \
     ingredient.h \
     ingredientbutton.h \

@@ -5,9 +5,15 @@
 #include <Box2D/Box2D.h>
 #include <QTimer>
 #include<Qlist>
-#include<vector>
+#include<QVector>
+#include<QGraphicsView>
+#include<QGraphicsScene>
+#include"ingredient.h"
+#include"foodlibrary.h"
+#include"ingredientbutton.h"
+#include"draganddrop.h"
 #include<random>
-using namespace std;
+
 
 namespace Ui {
 class s3Cooking;
@@ -43,6 +49,10 @@ signals:
 
 private:
     Ui::s3Cooking *ui;
+
+    //tzhou drag:
+    QGraphicsScene* scene = new QGraphicsScene;
+    void imageEnter(QPixmap pixmap, QGraphicsView *view);
 
 //    //Tzhou
 //    b2World world;

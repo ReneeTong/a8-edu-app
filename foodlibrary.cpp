@@ -66,7 +66,6 @@ void FoodLibrary::initialRecipes()
 
     }
 
-
     qDebug()<<"\nPrep Steps: ";
     QMap<int,Ingredient*> prep = pho.getPrepSteps();
     QList<Ingredient*> prepList = prep.values();
