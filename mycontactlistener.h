@@ -5,7 +5,6 @@
 #include <Box2D/Box2D.h>
 #include <vector>
 #include "QtCore/qobject.h"
-#include "box.h"
 
 class MyContactListener :public QObject,  public b2ContactListener
 {

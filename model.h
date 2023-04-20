@@ -6,7 +6,6 @@
 
 //Andy Tran
 #include <Box2D/Box2D.h>
-#include "Box.h"
 #include <Recipe.h>
 #include <ingredient.h>
 
@@ -40,7 +39,7 @@ private:
     STEP curStep = STEP1; //current step. Default is STEP1(0)
     QVector<Ingredient>* progessList; //list of Ingredients need to be done in current step
     QVector<b2Body>* drawBodies; //all the objects that need to be drawn
-    Box* boxes; //do we need this?
+    //Box* boxes; //do we need this?
 
     //Render the b2Body for each step
     void renderBody();
