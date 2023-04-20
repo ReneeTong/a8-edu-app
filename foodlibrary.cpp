@@ -5,6 +5,29 @@ FoodLibrary::FoodLibrary()
     initialIngredients();
     initialRecipes();
 
+    //Andy Tran Added
+    Recipe recipe;
+    QHash<Ingredient*, int> myHash1;
+    myHash1.insert(broccoli, 1);
+    myHash1.insert(tomato, 2);
+    myHash1.insert(peanut, 3);
+
+    QHash<Ingredient*, int> myHash2;
+    myHash2.insert(broccoli, 1);
+    myHash2.insert(tomato, 2);
+    myHash2.insert(peanut, 3);
+
+    QHash<Ingredient*, int> myHash3;
+    myHash3.insert(broccoli, 1);
+    myHash3.insert(tomato, 2);
+    myHash3.insert(peanut, 3);
+    Step step1 = Step(Action::CUT, myHash1);
+    Step step2 = Step(Action::MIX, myHash2);
+    Step step3 = Step(Action::BOIL, myHash3);
+    QList<Step> stepVector = {step1,step2,step3};
+    recipe = Recipe(stepVector);
+
+    recipe.printSteps();
 }
 
 vector<Ingredient *> FoodLibrary::getAllIngredients() const
