@@ -11,8 +11,8 @@ class FoodLibrary
 public:
 
     FoodLibrary();
-    vector<Ingredient*>getAllIngredients()const;
-    vector<Recipe*>getAllRecipes() const;
+    vector<Ingredient*>getAllIngredients()const{return allIngredients;}
+    vector<Recipe*>getAllRecipes() const{return recipes;}
 
 private:
     vector<Ingredient*> allIngredients;

@@ -19,25 +19,29 @@ public:
     Ingredient(QString name, FoodCategory cate, QVector<FoodTags> tags);
 
     // Getter methods
-    QString getName() const;
-    QString getCategory() const;
-    QPixmap getPixmap() const;
-    bool getIsCut() const;
-    bool getIsMixed() const;
-    bool getIsBoiled() const;
-    bool getIsFried() const;
+    QString getName() const{return name; }
+    QPixmap getPixmap() const{return pixmap;}
+    FoodCategory getCate() const{return cate;}
+    QVector<FoodTags> getTags() const{return tags;}
+    bool getIsCut() const{return isCut;}
+    bool getIsMixed() const{return isMixed; }
+    bool getIsBoiled() const{return isBoiled;}
+    bool getIsFried() const{return isFried;}
 
     //Setters
-    void setPixmap();
-    void setIsCut(bool isCut);
-    void setIsMixed(bool isMixed);
-    void setIsBoiled(bool isBoiled);
-    void setIsFried(bool isFried);
-
-    FoodCategory getCate() const;
-    void setCate(FoodCategory newCate);
-    QVector<FoodTags> getTags() const;
-    void setTags(const QVector<FoodTags> &newTags);
+    void setPixmap(){
+        QString path = ":/sprites/icons//";
+        path += name;
+        path+= ".png";
+        QPixmap pix (path);
+        pixmap = pix;
+    }
+    void setIsCut(bool newIsCut){isCut = newIsCut;}
+    void setIsMixed(bool newIsMixed){isMixed = newIsMixed;}
+    void setIsBoiled(bool newIsBoiled){isBoiled = newIsBoiled;}
+    void setIsFried(bool newIsFried){isFried = newIsFried;}
+    void setCate(FoodCategory newCate){cate = newCate;}
+    void setTags(const QVector<FoodTags> &newTags){tags= newTags;}
 
 private:
     QString name;

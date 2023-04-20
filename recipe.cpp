@@ -34,20 +34,6 @@ Recipe::Recipe(QString name, int difficulty, QHash<Ingredient *, int> ingredient
 
 }
 
-QHash<Ingredient *, int> Recipe::getIngredients() const
-{
-    return ingredients;
-}
-
-QMap<int, Ingredient *> Recipe::getPrepSteps() const
-{
-    return prepSteps;
-}
-
-QMap<int, Ingredient *> Recipe::getCookingSteps() const
-{
-    return cookingSteps;
-}
 
 QJsonObject Recipe::readJsonFile(const QString &filePath)
 {
@@ -190,78 +176,4 @@ Recipe Recipe::deserialize(const QJsonObject &jsonObj)
 
 }
 
-void Recipe::setName(const QString &newName)
-{
-    name = newName;
-}
-
-void Recipe::setDifficulty(int newDifficulty)
-{
-    difficulty = newDifficulty;
-}
-
-void Recipe::setIngredients(const QHash<Ingredient *, int> &newIngredients)
-{
-    ingredients = newIngredients;
-}
-
-void Recipe::setPrepSteps(const QMap<int, Ingredient *> &newPrepSteps)
-{
-    prepSteps = newPrepSteps;
-}
-
-void Recipe::setCookingSteps(const QMap<int, Ingredient *> &newCookingSteps)
-{
-    cookingSteps = newCookingSteps;
-}
-
-QString Recipe::getName() const
-{
-    return name;
-}
-
-int Recipe::getDifficulty() const
-{
-    return difficulty;
-}
-
-QVector<RecipeTags> Recipe::getRecipeTags() const
-{
-    return recipeTags;
-}
-
-void Recipe::setRecipeTags(const QVector<RecipeTags> &newRecipeTags)
-{
-    recipeTags = newRecipeTags;
-}
-
-Country Recipe::getCountry() const
-{
-    return country;
-}
-
-void Recipe::setCountry(Country newCountry)
-{
-    country = newCountry;
-}
-
-QString Recipe::getDescription() const
-{
-    return description;
-}
-
-void Recipe::setDescription(const QString &newDescription)
-{
-    description = newDescription;
-}
-
-QString Recipe::getLearnMore() const
-{
-    return learnMore;
-}
-
-void Recipe::setLearnMore(const QString &newLearnMore)
-{
-    learnMore = newLearnMore;
-}
 

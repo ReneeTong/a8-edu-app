@@ -60,31 +60,32 @@ public:
     //------------------------
 
     //Getters
-    QHash<Ingredient *, int> getIngredients() const; //pantry use this
-    QMap<int, Ingredient *> getPrepSteps() const; // box2d cutting mixing stage use this
-    QMap<int, Ingredient *> getCookingSteps() const; // box2d cooking stage use this
+    QHash<Ingredient *, int> getIngredients() const{return ingredients;}
+    QMap<int, Ingredient *> getPrepSteps() const{return prepSteps;}
+    QMap<int, Ingredient *> getCookingSteps() const{return cookingSteps;}
+    QString getName() const{return name;}
+    int getDifficulty() const{return difficulty;}
+    QVector<RecipeTags> getRecipeTags() const{return recipeTags;}
+    Country getCountry() const{return country;}
+    QString getDescription() const{return description;}
+    QString getLearnMore() const{return learnMore;}
+    QList<Step> getSteps() const{return steps;}
+
+    //Setters
+    void setName(const QString &newName){name = newName;}
+    void setDifficulty(int newDifficulty){difficulty = newDifficulty;}
+    void setIngredients(const QHash<Ingredient *, int> &newIngredients){ingredients = newIngredients;}
+    void setPrepSteps(const QMap<int, Ingredient *> &newPrepSteps){ prepSteps = newPrepSteps; }
+    void setCookingSteps(const QMap<int, Ingredient *> &newCookingSteps){ cookingSteps = newCookingSteps; }
+    void setRecipeTags(const QVector<RecipeTags> &newRecipeTags){recipeTags = newRecipeTags; }
+    void setCountry(Country newCountry){country = newCountry; }
+    void setDescription(const QString &newDescription){description = newDescription;}
+    void setLearnMore(const QString &newLearnMore){learnMore = newLearnMore; }
+    void setSteps(const QList<Step> &newSteps){steps = newSteps;}
 
     //Read from Json
     static QJsonObject readJsonFile(const QString &filePath);
     static Recipe deserialize(const QJsonObject &jsonObj);
-
-
-    void setName(const QString &newName);
-    void setDifficulty(int newDifficulty);
-    void setIngredients(const QHash<Ingredient *, int> &newIngredients);
-    void setPrepSteps(const QMap<int, Ingredient *> &newPrepSteps);
-    void setCookingSteps(const QMap<int, Ingredient *> &newCookingSteps);
-
-    QString getName() const;
-    int getDifficulty() const;
-    QVector<RecipeTags> getRecipeTags() const;
-    void setRecipeTags(const QVector<RecipeTags> &newRecipeTags);
-    Country getCountry() const;
-    void setCountry(Country newCountry);
-    QString getDescription() const;
-    void setDescription(const QString &newDescription);
-    QString getLearnMore() const;
-    void setLearnMore(const QString &newLearnMore);
 
 private:
     QString name;

@@ -30,16 +30,6 @@ FoodLibrary::FoodLibrary()
     recipe.printSteps();
 }
 
-vector<Ingredient *> FoodLibrary::getAllIngredients() const
-{
-    return allIngredients;
-}
-
-vector<Recipe *> FoodLibrary::getAllRecipes() const
-{
-    return recipes;
-}
-
 void FoodLibrary::initialIngredients()
 {
     allIngredients.push_back(broccoli);
