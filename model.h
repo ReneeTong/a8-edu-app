@@ -27,7 +27,7 @@ public:
 public slots:
     //Andy Tran
     //Call from S2: receiving selected recipe
-    void onStepCooking(Recipe* recipe, QVector<Ingredient>* selectedIngre);
+    void onStepCooking(Recipe recipe, QVector<Ingredient>* selectedIngre);
 
     //Call from S3: update what have completed
     //Still need to dicuss what should View send back and forth
@@ -35,7 +35,7 @@ public slots:
 
 private:
     //Andy Tran
-    Recipe* recipe; //selected Recipe
+    Recipe recipe; //selected Recipe
     QVector<Ingredient>* selectedIngre; //selected Ingredients
     STEP curStep = STEP1; //current step. Default is STEP1(0)
     QVector<Ingredient>* progessList; //list of Ingredients need to be done in current step

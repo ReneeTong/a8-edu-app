@@ -7,11 +7,11 @@ Model::Model()
 
 //Andy Tran
 //Slots
-void Model::onStepCooking(Recipe* recipe, QVector<Ingredient>* selectedIngre){
-    //Update the recipe from S2
-    this->recipe = recipe;
-    this->selectedIngre = selectedIngre;
-}
+//void Model::onStepCooking(Recipe* recipe, QVector<Ingredient>* selectedIngre){
+//    //Update the recipe from S2
+//    this->recipe = recipe;
+//    this->selectedIngre = selectedIngre;
+//}
 
 void Model::onStepCookingUpdate(){
 

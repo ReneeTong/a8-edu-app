@@ -1,5 +1,18 @@
 #include "recipe.h"
 
+//Andy Tran Added
+Recipe:: Recipe(QList<Step> steps){
+    this->steps = steps;
+}
+
+void Recipe::printSteps(){
+    for (int i = 0; i < steps.size(); ++i) {
+        qDebug() << i+1 << "/" <<steps[i].toString();
+    }
+    qDebug() << 2+1 << "/" <<steps[2].toString();
+}
+//-----------------------------------
+
 Recipe::Recipe()
 {
 
