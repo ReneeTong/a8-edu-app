@@ -17,7 +17,7 @@ s3Cooking::s3Cooking(Model& model, QWidget *parent) :
     ui->labelStep->setText("STEP 1");
 
     //tzhou drag:this is just a static example, not connect to anything.
-    QLabel * label = new DragAndDropLabel(parent);
+    DragAndDropLabel * label = new DragAndDropLabel(parent);
     label->setParent(ui->leftFrame);
     QPixmap pix(":/sprites/icons/tomato.png");
     label->setGeometry(QRect(5,5,50,50));
@@ -32,8 +32,8 @@ s3Cooking::s3Cooking(Model& model, QWidget *parent) :
     ui->graphicsView->setScene(scene);
     connect(ui->graphicsView, &DragAndDropGraphicsView::itemDrop,
             this, &s3Cooking::imageEnter);
-//    connect(label, &DragAndDropLabel::mousePress,
-//            this, &s3Cooking::mousePress);
+    connect(label, &DragAndDropLabel::mousePress,
+            this, &s3Cooking::mousePress);
 
     //Ruini:add backgound image
     QPixmap image(":/sprites/icons/Kitchen.PNG");
