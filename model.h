@@ -11,6 +11,7 @@
 
 //global uses
 enum STEP{
+    STEP0,
     STEP1,
     STEP2,
     STEP3,
@@ -26,7 +27,7 @@ public:
 public slots:
     //Andy Tran
     //Call from S2: receiving selected recipe
-    void onStepCooking(Recipe recipe, QVector<Ingredient>* selectedIngre);
+    void onRecieveRecipe(Recipe* recipe, QVector<Ingredient>* selectedIngre);
 
     //Call from S3: update what have completed
     //Still need to dicuss what should View send back and forth
@@ -36,10 +37,9 @@ private:
     //Andy Tran
     Recipe recipe; //selected Recipe
     QVector<Ingredient>* selectedIngre; //selected Ingredients
-    STEP curStep = STEP1; //current step. Default is STEP1(0)
-    QVector<Ingredient>* progessList; //list of Ingredients need to be done in current step
+    STEP curStep = STEP0; //current step. Default is STEP0(0)
+    QVector<Ingredient>* todoList; //list of Ingredients need to be done in current step
     QVector<b2Body>* drawBodies; //all the objects that need to be drawn
-    //Box* boxes; //do we need this?
 
     //Render the b2Body for each step
     void renderBody();
@@ -50,7 +50,7 @@ private slots:
 signals:
     //Call when transfer from S2 -> S3 until S3 is complete.
     //Update the current step, recipe, the progress, and vector of b2Body for drawing purposes
-    void onS3Update(STEP curStep, QVector<Ingredient>* progessList, QVector<b2Body>* drawBodies);
+    void onS3Update(STEP curStep, QVector<Ingredient>* todoList);
 };
 
 #endif // MODEL_H
