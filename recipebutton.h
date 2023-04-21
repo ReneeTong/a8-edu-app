@@ -22,6 +22,8 @@ public:
     bool getSelected() const;
     void setSelected(bool selected);
 
+public slots:
+    void toggleSelected();
 protected:
     void paintEvent(QPaintEvent *event) override;
 private:

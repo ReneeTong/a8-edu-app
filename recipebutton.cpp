@@ -24,10 +24,8 @@ recipeButton::recipeButton(const Recipe &recipe, QWidget *parent) :
 
     // Populate the ingredients list
     populateIngredientsList(recipe.getIngredients(), chosenIngredients);
-    // Connect the clicked signal to a lambda function
-    connect(this, &QPushButton::clicked, this, [this]() {
-        setSelected(!selected);
-    });
+   connect(this, &QPushButton::clicked, this, &recipeButton::toggleSelected);
+
 }
 
 
@@ -95,4 +93,8 @@ void recipeButton::paintEvent(QPaintEvent *event)
         painter.setPen(pen);
         painter.drawRect(1, 1, width() - 2, height() - 2);
     }
+}
+
+void recipeButton::toggleSelected() {
+    setSelected(!selected);
 }
