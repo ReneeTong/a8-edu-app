@@ -20,17 +20,21 @@ s3Cooking::s3Cooking(QWidget *parent) :
     label->setScaledContents(true);
     label->show();
 
+    //set the background of the scene
+    QPixmap background(":/sprites/icons/Kitchen.PNG");
+    QBrush brush(background.scaled(300, 300));
+    scene->setBackgroundBrush(brush);
     ui->graphicsView->setScene(scene);
     connect(ui->graphicsView, &DragAndDropGraphicsView::itemDrop,
             this, &s3Cooking::imageEnter);
 
     //Ruini:add backgound image
-    QPixmap image(":/sprites/icons/Kitchen.PNG");
-    QLabel* background = ui->backgoundImage;
-    background->setPixmap(image);
-    background->setScaledContents(true); // Scale the image to fit the label
-    background->setGeometry(QRect(0, 0, background->width(), background->height()));
-    background->lower();
+    //QPixmap image(":/sprites/icons/Kitchen.PNG");
+    //QLabel* background = ui->backgoundImage;
+    //background->setPixmap(image);
+    //background->setScaledContents(true); // Scale the image to fit the label
+    //background->setGeometry(QRect(0, 0, background->width(), background->height()));
+    //background->lower();
 
     //connect(listener, &MyContactListener::cut, this, &s3Cooking::handleCut);
     //connect(ui->tomato, &QPushButton::clicked, this, &simulations::testTrue);
