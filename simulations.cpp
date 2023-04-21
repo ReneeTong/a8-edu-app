@@ -1,6 +1,5 @@
 #include "simulations.h"
 #include "QtGui/qevent.h"
-#include "mycontactlistener.h"
 #include <QPainter>
 #include <QDebug>
 
@@ -22,7 +21,7 @@ simulations::simulations(QWidget *parent)
     timer.start(10);
 
     // Add the collision listener to the world
-    MyContactListener* listener = new MyContactListener(boxes);
+    listener = new MyContactListener(boxes);
     world.SetContactListener(listener);
 
     qDebug() << "Address of Boxes S3: " <<&boxes;
@@ -35,6 +34,7 @@ simulations::simulations(QWidget *parent)
 }
 
 void simulations::testTrue(){
+    qDebug() << "testTrue";
     test = true;
 }
 
@@ -163,7 +163,7 @@ void simulations::createWokBody()
 {
     // Define the ground body.
     b2BodyDef wokBodyDef;
-    wokBodyDef.position.Set(16.0f, 27.0f); // y is where the floor
+    wokBodyDef.position.Set(16.0f, 25.0f); // y is where the floor
 
     // The body is also added to the world.
     wokBody = world.CreateBody(&wokBodyDef);
@@ -188,13 +188,13 @@ void simulations::createWokBody()
 //Ruini
 void simulations::mousePressEvent(QMouseEvent *event)
 {
-    //qDebug() <<event->pos();
+    qDebug() <<event->pos();
     if (event->button() == Qt::LeftButton) {
-        createBox(event->pos(), "tomato");
+        //createBox(event->pos(), "tomato");
         //mouse position convert to box2d coordinates
         b2Vec2 pos(event->pos().x()/20, event->pos().y()/20);
         if(test == true){
-            createBox(event->pos(), "tomato");
+            //createBox(event->pos(), "tomato");
             test = false;
         }else{
             for (auto &key : boxes.keys()) {
@@ -239,7 +239,11 @@ void simulations::mouseMoveEvent(QMouseEvent *event) {
 void simulations::mouseReleaseEvent(QMouseEvent *event)
 {
     //qDebug() <<event->pos();
-    //createBox(event->pos(), "tomato");
+    createBox(event->pos(), "tomato");
+    if(test == true){
+        qDebug() << "create tomato";
+        test = false;
+    }
 }
 
 //void s3Cooking::createBoxes()

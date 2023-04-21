@@ -26,27 +26,31 @@ s3Cooking::s3Cooking(Model& model, QWidget *parent) :
     label->show();
 
     //set the background of the scene
-    QPixmap background(":/sprites/icons/Kitchen.PNG");
-    QBrush brush(background.scaled(300, 300));
-    scene->setBackgroundBrush(brush);
+//    QPixmap background(":/sprites/icons/Kitchen.PNG");
+//    QBrush brush(background.scaled(300, 300));
+//    scene->setBackgroundBrush(brush);
     ui->graphicsView->setScene(scene);
     connect(ui->graphicsView, &DragAndDropGraphicsView::itemDrop,
             this, &s3Cooking::imageEnter);
+//    connect(label, &DragAndDropLabel::mousePress,
+//            this, &s3Cooking::mousePress);
 
     //Ruini:add backgound image
-    //QPixmap image(":/sprites/icons/Kitchen.PNG");
-    //QLabel* background = ui->backgoundImage;
-    //background->setPixmap(image);
-    //background->setScaledContents(true); // Scale the image to fit the label
-    //background->setGeometry(QRect(0, 0, background->width(), background->height()));
-    //background->lower();
+    QPixmap image(":/sprites/icons/Kitchen.PNG");
+    QLabel* background = ui->backgoundImage;
+    background->setPixmap(image);
+    background->setScaledContents(true); // Scale the image to fit the label
+    background->setGeometry(QRect(0, 0, background->width(), background->height()));
+    background->lower();
 
-    //connect(listener, &MyContactListener::cut, this, &s3Cooking::handleCut);
-    //connect(ui->tomato, &QPushButton::clicked, this, &simulations::testTrue);
+//    connect(listener, &MyContactListener::cut, this, &s3Cooking::handleCut);
+//    connect(ui->tomato, &QPushButton::clicked, ui->widget, &simulations::testTrue);
 
     //Andy Tran: connection to communicate btw Model and S3
     connect(&m_model, &Model::onS3Update, this, &s3Cooking::onS3Update);
-    connect(this, &s3Cooking::onStepCookingUpdate, &m_model, &Model::onStepCookingUpdate);
+    //connect(this, &s3Cooking::onStepCookingUpdate, &m_model, &Model::onStepCookingUpdate);
+    connect(ui->widget->listener, &MyContactListener::onStepCookingUpdate, &m_model, &Model::onStepCookingUpdate);
+
 }
 
 s3Cooking::~s3Cooking()
@@ -72,16 +76,24 @@ void s3Cooking::onS3Update(int curStep, QHash<Ingredient*, int>* todoList){
 //This is what the graphics view would do after the drop
 void s3Cooking::imageEnter(QPoint mousePos, QPixmap pixmap, QGraphicsView *view)
 {
-    qDebug()<<"Drop location: ( "<<mousePos.x()<<", "<<mousePos.y()<<" )";
-    QGraphicsScene* scene = view->scene();
-    if(scene->items().count()>0){
-        scene->clear();
-    }
-    scene->addPixmap(pixmap.scaled(26,26));
-    view->setScene(scene);
-    view->viewport()->update();
-    view->update();
-    view->show();
+//    qDebug()<<"Drop location: ( "<<mousePos.x()<<", "<<mousePos.y()<<" )";
+//    QGraphicsScene* scene = view->scene();
+//    if(scene->items().count()>0){
+//        scene->clear();
+//    }
+//    scene->addPixmap(pixmap.scaled(26,26));
+//    view->setScene(scene);
+//    view->viewport()->update();
+//    view->update();
+//    view->show();
 
 
+}
+void s3Cooking::mousePress(){
+    qDebug() << "mousePress";
+    // create a mouse press event
+    QMouseEvent *mousePressEvent = new QMouseEvent(QEvent::MouseButtonPress, pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+
+    // send the mouse press event to a widget
+    QCoreApplication::postEvent(ui->widget, mousePressEvent);
 }

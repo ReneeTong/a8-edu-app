@@ -1,5 +1,6 @@
 #include "mycontactlistener.h"
 #include <QDebug>
+#include <Recipe.h>
 /**
  * @author Andy Tran
  * @brief MyContactListener::MyContactListener
@@ -32,9 +33,6 @@ void MyContactListener::BeginContact(b2Contact* contact){
     b2Body* bodyA = fixtureA->GetBody();
     b2Body* bodyB = fixtureB->GetBody();
 
-    // Check if either fixture is an edge shape (i.e., the curved ground)
-//    bool isFixtureAEdge = (fixtureA->GetType() == b2Shape::e_edge);
-//    bool isFixtureBEdge = (fixtureB->GetType() == b2Shape::e_edge);
 
         // Check if either body is a box
         if (bodyA->GetType() == b2_dynamicBody && bodyB->GetType() == b2_staticBody) {
@@ -46,11 +44,19 @@ void MyContactListener::BeginContact(b2Contact* contact){
 
 
             std::string ingredientName = static_cast<const char*>(bodyB->GetUserData());
-            std::string wok = static_cast<const char*>(bodyA->GetUserData());
-            if((ingredientName.compare("tomato") == 0)&&(wok.compare("wok") == 0)){
+            QString qIngredientName = QString::fromStdString(ingredientName);
+            std::string utensil = static_cast<const char*>(bodyA->GetUserData());
+            //this if is for test purpose, will be removed
+            if((ingredientName.compare("tomato") == 0)&&(utensil.compare("wok") == 0)){
                 //boxes->value("tomato");
                 if(boxes->contains(ingredientName)){
                     emit cut(ingredientName);
+
+                    //Andy Tran: sending s3 update method
+                    if(utensil.compare("wok") == 0){
+                        Ingredient current(qIngredientName);
+                        emit onStepCookingUpdate(current, Action::CUT);
+                    }
                 }
             }else if(ingredientName.compare("pieces") == 0){
                 //qDebug() << "pieces";
@@ -59,11 +65,6 @@ void MyContactListener::BeginContact(b2Contact* contact){
             //qDebug() << "contact";
             //removeImageFromBody(bodyB);
         }
-//        else if (bodyA->GetType() == b2_dynamicBody && bodyB->GetType() == b2_dynamicBody){
-//            //removeImageFromBody(bodyA);
-//            //removeImageFromBody(bodyB);
-//             qDebug() << "3";
-//        }
 
 
 }

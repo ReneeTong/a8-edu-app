@@ -9,7 +9,7 @@
 #include<QGraphicsView>
 #include<QGraphicsScene>
 #include"ingredient.h"
-#include"foodlibrary.h"
+//#include"foodlibrary.h"
 #include"ingredientbutton.h"
 #include"draganddrop.h"
 #include<random>
@@ -49,8 +49,9 @@ public slots:
 signals:
     void goToPage4();
 
+    //Ruini: moved this to contact listner
     //Andy Tran: sending s3 update method
-    void onStepCookingUpdate(Ingredient, Action);
+//    void onStepCookingUpdate(Ingredient, Action);
 private:
     Model& m_model;
     Ui::s3Cooking *ui;
@@ -72,23 +73,9 @@ private:
 
     //AndyTran
     QHash<Ingredient*, int>* todoList;
-//    void createGroundBody();
-//    QImage imageWok;
-//    b2Body* wokBody;
-//    b2Body* groundBody;
 
-//    //Ruini
-//    vector<b2Body*> drawBodies;
-//    vector<b2Body*> particles;
-//    QMap<string, b2Body*> boxes;
-//    b2Body* body=nullptr;
-//    bool isCut = false;// check if there's currently something need to be cut
-//    void destroyParticles();
-//    bool test = false;
-//    bool isSelected = false;
-//    b2Body* selectedObject;
-//    void cut();
-//    void createBox(QPoint pos,string name);
+    //Ruini
+    void mousePress();
 };
 
 #endif // S3COOKING_H

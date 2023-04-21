@@ -6,6 +6,9 @@
 #include <vector>
 #include "QtCore/qobject.h"
 
+#include"foodlibrary.h"
+#include"ingredientbutton.h"
+
 class MyContactListener :public QObject,  public b2ContactListener
 {
     Q_OBJECT
@@ -20,6 +23,9 @@ private:
 
 signals:
     void cut(std::string);
+
+    //Andy Tran: sending s3 update method
+    void onStepCookingUpdate(Ingredient, Action);
 
 };
 #endif // MYCONTACTLISTENER_H

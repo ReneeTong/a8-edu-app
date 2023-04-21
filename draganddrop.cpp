@@ -71,9 +71,11 @@ void DragAndDropLabel::createDrag(const QPoint &pos, QWidget *widget)
     drag->setPixmap(widget->grab());
     drag->exec();
 
+
 }
 
 void DragAndDropLabel::mousePressEvent(QMouseEvent *event)
 {
     createDrag(event->pos(), this);
+    emit mousePress();
 }

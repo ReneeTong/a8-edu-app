@@ -7,6 +7,7 @@
 #include<Qlist>
 #include<vector>
 #include<random>
+#include "mycontactlistener.h"
 
 class simulations : public QWidget
 {
@@ -21,6 +22,8 @@ public:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
+
+    MyContactListener* listener;
 
     //Tzhou
     void updateWorld();

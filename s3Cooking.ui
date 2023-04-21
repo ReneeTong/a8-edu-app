@@ -102,9 +102,9 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>110</y>
+     <y>100</y>
      <width>641</width>
-     <height>601</height>
+     <height>611</height>
     </rect>
    </property>
    <widget class="DragAndDropGraphicsView" name="graphicsView">
@@ -112,8 +112,8 @@
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>631</width>
-      <height>551</height>
+      <width>16</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -129,6 +129,9 @@
       <italic>false</italic>
       <bold>false</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(0,0,0,0);</string>
     </property>
    </widget>
   </widget>

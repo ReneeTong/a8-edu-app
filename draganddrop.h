@@ -34,6 +34,10 @@ public:
     */
    explicit DragAndDropLabel(QWidget *widget = nullptr);
 
+signals:
+    //ruini test
+    void mousePress();
+
 private:
 
     /**
@@ -50,6 +54,7 @@ protected:
      */
     void mousePressEvent(QMouseEvent *event) override;
     using QLabel::QLabel;
+
 
 };
 
