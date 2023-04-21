@@ -16,6 +16,7 @@ class Ingredient
 {
 public:
     Ingredient();
+    Ingredient(const QString &name);
     Ingredient(QString name, FoodCategory cate, QVector<FoodTags> tags);
 
     // Getter methods

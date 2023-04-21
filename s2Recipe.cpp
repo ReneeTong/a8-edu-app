@@ -14,18 +14,20 @@ s2Recipe::s2Recipe(Model& model, QWidget *parent) :
 
         FoodLibrary foodLibrary;
 
-        // Get the Pho recipe from the FoodLibrary
-        Recipe phoRecipe;
-        for (Recipe *recipe : foodLibrary.getAllRecipes()) {
-            if (recipe->getName() == "pho") {
-                phoRecipe = *recipe;
-                break;
-            }
+
+
+        Recipe* phoRecipe = foodLibrary.getRecipeByName("Pho");
+
+        recipeButton *phoButton = new recipeButton(*phoRecipe);
+
+        ui->scrollArea_2->addWidget(phoButton);
+
+        for (int i = 0; i < 3; i++) {
+            QPushButton *button = new QPushButton("RECIPE " + QString::number(i));
+            button->setFixedSize(350, 425);
+            ui->scrollArea_2->addWidget(button);
         }
 
-        recipeButton *phoButton = new recipeButton(phoRecipe);
-        phoButton->setFixedSize(550, 500);
-        ui->scrollArea_2->addWidget(phoButton);
 
     });
 
@@ -71,3 +73,4 @@ bool sortRecipeByIngredients (QWidget *widget1, QWidget *widget2 ){
     return matchingIngredients1 > matchingIngredients2;
 
 }
+

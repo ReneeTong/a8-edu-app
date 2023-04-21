@@ -9,6 +9,18 @@ Ingredient::Ingredient()
     isFried = false;
 }
 
+
+Ingredient::Ingredient(const QString &name) :
+    name(name)
+{
+    setPixmap();
+    isCut = false;
+    isMixed = false;
+    isBoiled = false;
+    isFried = false;
+}
+
+
 Ingredient::Ingredient( QString name, FoodCategory cate, QVector<FoodTags> tags ):
     name(name),
     cate(cate),
@@ -20,4 +32,3 @@ Ingredient::Ingredient( QString name, FoodCategory cate, QVector<FoodTags> tags 
     isBoiled = false;
     isFried = false;
 }
-

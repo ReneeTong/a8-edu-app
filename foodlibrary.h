@@ -13,6 +13,8 @@ public:
     FoodLibrary();
     vector<Ingredient*>getAllIngredients()const{return allIngredients;}
     vector<Recipe*>getAllRecipes() const{return recipes;}
+      Recipe* getRecipeByName(const QString& recipeName) const;
+
 
 private:
     vector<Ingredient*> allIngredients;
@@ -20,6 +22,7 @@ private:
 
     void initialIngredients();
     void initialRecipes();
+
 
  protected:
 

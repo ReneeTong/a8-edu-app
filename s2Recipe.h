@@ -18,6 +18,8 @@ public:
     explicit s2Recipe(Model& model, QWidget *parent = nullptr);
     ~s2Recipe();
 
+
+
 public slots:
     void nextPage();
 
@@ -28,6 +30,7 @@ signals:
 private:
     Model& m_model;
     Ui::s2Recipe *ui;
+
 };
 
 #endif // S2RECIPE_H

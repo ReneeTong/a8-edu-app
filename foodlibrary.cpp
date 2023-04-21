@@ -53,6 +53,7 @@ void FoodLibrary::initialRecipes()
     Recipe pho;
     obj = Recipe::readJsonFile(":/sprites/recipes/Pho.txt");
     pho = Recipe::deserialize(obj);
+    recipes.push_back(new Recipe(pho));
 
     qDebug()<<pho.getName();
     qDebug()<<pho.getDifficulty();
@@ -83,3 +84,13 @@ void FoodLibrary::initialRecipes()
     }
 
 }
+
+Recipe* FoodLibrary::getRecipeByName(const QString& recipeName) const {
+    for (Recipe* recipe : recipes) {
+         if (recipe->getName() == recipeName) {
+             return recipe;
+         }
+    }
+    return nullptr;
+}
+
