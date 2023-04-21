@@ -13,7 +13,7 @@
 #include"ingredientbutton.h"
 #include"draganddrop.h"
 #include<random>
-
+#include "Model.h"
 
 namespace Ui {
 class s3Cooking;
@@ -24,7 +24,7 @@ class s3Cooking : public QWidget
     Q_OBJECT
 
 public:
-    explicit s3Cooking(QWidget *parent = nullptr);
+    explicit s3Cooking(Model& model, QWidget *parent = nullptr);
     ~s3Cooking();
 
 //    //Tzhou: play around
@@ -44,10 +44,15 @@ public slots:
 //    //Ruini
 //    void handleCut(std::string name);
 
+    //Andy Tran: receiving s3 update method
+    void onS3Update(int curStep, QHash<Ingredient*, int>* todoList);
 signals:
     void goToPage4();
 
+    //Andy Tran: sending s3 update method
+    void onStepCookingUpdate(Ingredient, Action);
 private:
+    Model& m_model;
     Ui::s3Cooking *ui;
 
     //tzhou drag:
@@ -65,7 +70,8 @@ private:
 //    void createWokBody();
 //    //void createBoxes();
 
-//    //AndyTran
+    //AndyTran
+    QHash<Ingredient*, int>* todoList;
 //    void createGroundBody();
 //    QImage imageWok;
 //    b2Body* wokBody;

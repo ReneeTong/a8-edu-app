@@ -2,8 +2,9 @@
 #include "recipebutton.h"
 #include "ui_s2Recipe.h"
 
-s2Recipe::s2Recipe(QWidget *parent) :
+s2Recipe::s2Recipe(Model& model, QWidget *parent) :
     QWidget(parent),
+    m_model(model),
     ui(new Ui::s2Recipe)
 {
     ui->setupUi(this);
@@ -27,6 +28,9 @@ s2Recipe::s2Recipe(QWidget *parent) :
         ui->scrollArea_2->addWidget(phoButton);
 
     });
+
+    //Andy Tran: connection to send recipe and selected ingredients
+     connect(this, &s2Recipe::onRecieveRecipe, &m_model, &Model::onRecieveRecipe);
 }
 
 s2Recipe::~s2Recipe()

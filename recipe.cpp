@@ -1,6 +1,16 @@
 #include "recipe.h"
 
 //Andy Tran Added
+void Recipe::resetNeededAmount(){
+    for (int i = 0; i < steps.size(); ++i) {
+        steps[i].resetAmount();
+        qDebug() << i+1 << "/" <<steps[i].toString();
+    }
+}
+QList<Step> Recipe::getSteps(){
+    return steps;
+}
+
 Recipe:: Recipe(QList<Step> steps){
     this->steps = steps;
 }

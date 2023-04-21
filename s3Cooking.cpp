@@ -4,12 +4,17 @@
 #include <QPainter>
 #include <QDebug>
 
-s3Cooking::s3Cooking(QWidget *parent) :
+s3Cooking::s3Cooking(Model& model, QWidget *parent) :
     QWidget(parent),
+    m_model(model),
     ui(new Ui::s3Cooking)
 {
     ui->setupUi(this);
     ui->widget->show();
+
+    //Andy Tran:
+    //Step label
+    ui->labelStep->setText("STEP 1");
 
     //tzhou drag:this is just a static example, not connect to anything.
     QLabel * label = new DragAndDropLabel(parent);
@@ -39,10 +44,9 @@ s3Cooking::s3Cooking(QWidget *parent) :
     //connect(listener, &MyContactListener::cut, this, &s3Cooking::handleCut);
     //connect(ui->tomato, &QPushButton::clicked, this, &simulations::testTrue);
 
-
-
-
-
+    //Andy Tran: connection to communicate btw Model and S3
+    connect(&m_model, &Model::onS3Update, this, &s3Cooking::onS3Update);
+    connect(this, &s3Cooking::onStepCookingUpdate, &m_model, &Model::onStepCookingUpdate);
 }
 
 s3Cooking::~s3Cooking()
@@ -54,6 +58,16 @@ void s3Cooking::nextPage()
 {
     emit goToPage4();
 }
+
+//Andy Tran: on s3 update
+void s3Cooking::onS3Update(int curStep, QHash<Ingredient*, int>* todoList){
+    ui->labelStep->setText("Step " + QString::number(curStep));
+    this->todoList = todoList;
+
+    //Update Left Frame and Right Frame to display properly
+
+}
+//----------------------------------------------------------------------------
 
 //This is what the graphics view would do after the drop
 void s3Cooking::imageEnter(QPoint mousePos, QPixmap pixmap, QGraphicsView *view)

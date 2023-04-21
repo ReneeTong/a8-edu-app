@@ -8,21 +8,15 @@
 #include <Box2D/Box2D.h>
 #include <Recipe.h>
 #include <ingredient.h>
+#include <QVector>
+#include <QHash>
 
-//global uses
-enum STEP{
-    STEP0,
-    STEP1,
-    STEP2,
-    STEP3,
-    STEP4
-};
-
-class Model
+class Model : public QObject
 {
+    Q_OBJECT
 
 public:
-    Model();
+    explicit Model(QObject *view = nullptr);
 
 public slots:
     //Andy Tran
@@ -31,15 +25,19 @@ public slots:
 
     //Call from S3: update what have completed
     //Still need to dicuss what should View send back and forth
-    void onStepCookingUpdate();
+    void onStepCookingUpdate(Ingredient, Action);
 
 private:
     //Andy Tran
     Recipe recipe; //selected Recipe
+    Recipe* copyRecipe; //selected Recipe
     QVector<Ingredient>* selectedIngre; //selected Ingredients
-    STEP curStep = STEP0; //current step. Default is STEP0(0)
-    QVector<Ingredient>* todoList; //list of Ingredients need to be done in current step
+    int curStep = 1; //current step. Default is STEP0(0)
+    QHash<Ingredient*, int>* todoList; //list of Ingredients need to be done in current step
     QVector<b2Body>* drawBodies; //all the objects that need to be drawn
+
+    //Set inital amounts need to all zero
+    void resetRecipe();
 
     //Render the b2Body for each step
     void renderBody();
@@ -50,7 +48,7 @@ private slots:
 signals:
     //Call when transfer from S2 -> S3 until S3 is complete.
     //Update the current step, recipe, the progress, and vector of b2Body for drawing purposes
-    void onS3Update(STEP curStep, QVector<Ingredient>* todoList);
+    void onS3Update(int curStep, QHash<Ingredient*, int>* todoList);
 };
 
 #endif // MODEL_H

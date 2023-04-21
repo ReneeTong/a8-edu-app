@@ -17,12 +17,32 @@ enum class Country{VIETNAM,CHINA};
 enum class Action{CUT,MIX,BOIL,STIR_FRY};
 class Step {
     Action action;
-    QHash<Ingredient*, int>ingredientsMap;
+    QHash<Ingredient*, int> ingredientsMap;
 public:
     Step(Action action, QHash<Ingredient*, int> ingredientsMap){
         this->action = action;
         this->ingredientsMap = ingredientsMap;
     }
+    void resetAmount(){
+        for (auto it = ingredientsMap.begin(); it != ingredientsMap.end(); ++it) {
+            it.value() = 0;
+        }
+    }
+    int getNeededAmount(Ingredient* ingredient){
+        if (ingredientsMap.contains(ingredient)) {
+            return ingredientsMap.value(ingredient);
+        }
+        return 0;
+    }
+
+    Action getAction(){
+        return action;
+    }
+
+    QHash<Ingredient*, int>* getIngredients(){
+        return &ingredientsMap;
+    }
+
     QString toString(){
         QString result;
         result += "Action: " + QString::fromStdString(actionToString(action)) + " | ";
@@ -57,6 +77,8 @@ public:
     //Andy Tran Added
     Recipe(QList<Step> steps);
     void printSteps();
+    QList<Step> getSteps();
+    void resetNeededAmount();
     //------------------------
 
     //Getters

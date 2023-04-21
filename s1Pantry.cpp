@@ -4,8 +4,9 @@
 
 #include "ingredient.h"
 
-s1Pantry::s1Pantry(QWidget *parent) :
+s1Pantry::s1Pantry(Model& model,QWidget *parent) :
     QWidget(parent),
+    m_model(model),
     ui(new Ui::s1Pantry)
 {
     ui->setupUi(this);
