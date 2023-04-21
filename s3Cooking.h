@@ -52,7 +52,7 @@ private:
 
     //tzhou drag:
     QGraphicsScene* scene = new QGraphicsScene;
-    void imageEnter(QPixmap pixmap, QGraphicsView *view);
+    void imageEnter(QPoint mousePos, QPixmap pixmap, QGraphicsView *view);
 
 //    //Tzhou
 //    b2World world;

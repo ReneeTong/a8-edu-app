@@ -103,7 +103,7 @@ public:
    /**
      * @brief itemDrop Item is dropped to a QGraphicsView
      */
-    void itemDrop(QPixmap, QGraphicsView*);
+    void itemDrop(QPoint, QPixmap, QGraphicsView*);
 
     /**
      * @brief customColorIsSelected A saved custom color is selected

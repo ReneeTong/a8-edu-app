@@ -55,8 +55,10 @@ void s3Cooking::nextPage()
     emit goToPage4();
 }
 
-void s3Cooking::imageEnter(QPixmap pixmap, QGraphicsView *view)
+//This is what the graphics view would do after the drop
+void s3Cooking::imageEnter(QPoint mousePos, QPixmap pixmap, QGraphicsView *view)
 {
+    qDebug()<<"Drop location: ( "<<mousePos.x()<<", "<<mousePos.y()<<" )";
     QGraphicsScene* scene = view->scene();
     if(scene->items().count()>0){
         scene->clear();

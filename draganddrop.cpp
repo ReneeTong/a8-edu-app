@@ -27,14 +27,21 @@ void DragAndDropGraphicsView::dragMoveEvent(QDragMoveEvent *event)
     event->acceptProposedAction();
 }
 
+//This is where we should modify to
+//1. get the mouse location
+//2. send a signal to s3
+//"this" = graphicsView
 void DragAndDropGraphicsView::dropEvent(QDropEvent *event)
 {
     if(event->source() == this) return;
     QLabel *label =qobject_cast<QLabel*>(event->source());
     QPixmap labelImage = label->pixmap();
-    emit itemDrop(labelImage, this);
+
+    QPoint mousePos = event->pos();
+    emit itemDrop(mousePos, labelImage, this);
 }
 
+//This is when we press on the graphics view. We can delete it.
 void DragAndDropGraphicsView::mousePressEvent(QMouseEvent *event)
 {
     Q_UNUSED(event)
