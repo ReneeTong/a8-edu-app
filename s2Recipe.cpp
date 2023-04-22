@@ -19,20 +19,29 @@ s2Recipe::s2Recipe(Model& model, QWidget *parent) :
         Recipe* phoRecipe = foodLibrary.getRecipeByName("Pho");
 
         recipeButton *phoButton = new recipeButton(*phoRecipe);
-
         ui->scrollArea_2->addWidget(phoButton);
 
-        for (int i = 0; i < 3; i++) {
-            QPushButton *button = new QPushButton("RECIPE " + QString::number(i));
-            button->setFixedSize(350, 425);
-            ui->scrollArea_2->addWidget(button);
-        }
+        //default is the first one
+        emit phoButton->clicked(true);
+
+        recipeButton *phoButton1 = new recipeButton(*phoRecipe);
+        ui->scrollArea_2->addWidget(phoButton1);
+
+        recipeButton *phoButton2 = new recipeButton(*phoRecipe);
+        ui->scrollArea_2->addWidget(phoButton2);
+
+//        for (int i = 0; i < 3; i++) {
+//            QPushButton *button = new QPushButton("RECIPE " + QString::number(i));
+//            button->setFixedSize(350, 425);
+//            ui->scrollArea_2->addWidget(button);
+//        }
 
 
     });
 
     //Andy Tran: connection to send recipe and selected ingredients
-     connect(this, &s2Recipe::onRecieveRecipe, &m_model, &Model::onRecieveRecipe);
+    connect(&m_model, &Model::onS2Update, this, &s2Recipe::onS2Update);
+    connect(this, &s2Recipe::onRecieveRecipe, &m_model, &Model::onRecieveRecipe);
 }
 
 s2Recipe::~s2Recipe()
@@ -43,6 +52,15 @@ s2Recipe::~s2Recipe()
 void s2Recipe::nextPage()
 {
     emit goToPage3();
+    emit onRecieveRecipe(recipeButton::previousClickedRecipe->getRecipe());
+}
+
+void s2Recipe::onS2Update(QVector<Ingredient>* selectedIngre){
+    this->selectedIngre = selectedIngre;
+    foreach (Ingredient i, *selectedIngre) {
+        qDebug() << i.getName();
+    }
+    qDebug() << "------------------";
 }
 
 //This function is used to compare recipe which will have more matching ingredient with choosenIngredients.

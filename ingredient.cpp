@@ -32,3 +32,7 @@ Ingredient::Ingredient( QString name, FoodCategory cate, QVector<FoodTags> tags 
     isBoiled = false;
     isFried = false;
 }
+
+bool Ingredient::operator==(const Ingredient& other) const {
+    return this->name == other.name;
+}

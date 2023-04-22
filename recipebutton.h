@@ -15,21 +15,29 @@ class recipeButton : public QPushButton
     Q_OBJECT
 
 public:
-    explicit recipeButton(const Recipe &recipe, QWidget *parent = nullptr);
+    explicit recipeButton(const Recipe &recipe, QWidget *parent = nullptr);   
     ~recipeButton();
+
+    static recipeButton* previousClickedRecipe;
+
     bool isIngredientChosen(Ingredient* ingredient, const QList<Ingredient*>& chosenIngredients);
     void populateIngredientsList(const QHash<Ingredient*, int>& ingredients, const QList<Ingredient*>& chosenIngredients);
     bool getSelected() const;
     void setSelected(bool selected);
 
+    Recipe* getRecipe();
 public slots:
-    void toggleSelected();
-protected:
-    void paintEvent(QPaintEvent *event) override;
+    void onClicked();
+
+//    void toggleSelected();
+//protected:
+//    void paintEvent(QPaintEvent *event) override;
+
 private:
 
     Ui::recipeButton *ui;
-      bool selected;
+    Recipe* recipe;
+    bool selected;
 };
 
 #endif // RECIPEBUTTON_H

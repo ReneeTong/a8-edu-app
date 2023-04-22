@@ -43,17 +43,20 @@ s1Pantry::s1Pantry(Model& model,QWidget *parent) :
             break;
         }
 
-        ScrollCarousel *pantry = new ScrollCarousel(true);
+        ScrollCarousel *pantry = new ScrollCarousel(true);       
         pantry->setStyleSheet("ScrollCarousel > QWidget > QWidget {background-color: transparent};");
         pantry->setFixedSize(650, 100);
         layout->addWidget(pantry);
 
         pantryList.append(pantry);
 
+
         QTimer::singleShot(0, this, [this, box, f, pantry, food] {
             for (Ingredient *ingredient : f.getAllIngredients()) {
                 if (ingredient->getCate() == food) {
                     IngredientButton *button = new IngredientButton(*ingredient, 75);
+                    //Set connection btw button and model
+                    connect(button, &IngredientButton::onSelectedListUpdate, &m_model, &Model::onSelectedListUpdate);
                     pantry->addWidget(button);
                 }
             }
@@ -111,6 +114,8 @@ s1Pantry::s1Pantry(Model& model,QWidget *parent) :
         }
     });
 
+    //Set connection from s1 to Model -> move to step 2 and send the selected list
+    connect(this, &s1Pantry::onSendS2SelectedIngredients, &m_model, &Model::onSendS2SelectedIngredients);
 }
 
 s1Pantry::~s1Pantry()
@@ -121,4 +126,5 @@ s1Pantry::~s1Pantry()
 void s1Pantry::nextPage()
 {
     emit goToPage2();
+    emit onSendS2SelectedIngredients();
 }

@@ -20,6 +20,8 @@ public:
 private:
     Ingredient ingredient;
     bool selected;
+signals:
+    void onSelectedListUpdate(Ingredient);
 };
 
 #endif // INGREDIENTBUTTON_H

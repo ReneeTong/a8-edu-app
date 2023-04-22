@@ -1,11 +1,16 @@
 #include "recipebutton.h"
 #include "ui_recipebutton.h"
 
+recipeButton* recipeButton::previousClickedRecipe = nullptr;
+
 recipeButton::recipeButton(const Recipe &recipe, QWidget *parent) :
     QPushButton(parent),
     ui(new Ui::recipeButton)
 {
     ui->setupUi(this);
+
+    Recipe recipeCopy = recipe;
+    this->recipe = new Recipe(recipeCopy);
 
     ui->recipeName->setText(recipe.getName());
     qDebug() << "Recipe name:" << recipe.getName();
@@ -16,23 +21,30 @@ recipeButton::recipeButton(const Recipe &recipe, QWidget *parent) :
     ui->difficultyLab->setText(QString("Difficulty: %1/5").arg(recipe.getDifficulty()));
 
 
-    QList<Ingredient*> chosenIngredients;
-
-    chosenIngredients.append(new Ingredient("broccoli"));
-    chosenIngredients.append(new Ingredient("carrot"));
-    chosenIngredients.append(new Ingredient("riceNoodles"));
+    QVector<Ingredient*> chosenIngredients;
+    chosenIngredients.push_back(new Ingredient("broccoli"));
+    chosenIngredients.push_back(new Ingredient("carrot"));
+    chosenIngredients.push_back(new Ingredient("riceNoodles"));
 
     // Populate the ingredients list
     populateIngredientsList(recipe.getIngredients(), chosenIngredients);
-   connect(this, &QPushButton::clicked, this, &recipeButton::toggleSelected);
 
+
+//   connect(this, &QPushButton::clicked, this, &recipeButton::toggleSelected);
+
+   connect(this, &QPushButton::clicked, this, [this]() {
+       setSelected(!getSelected());
+   });
+   connect(this, &QPushButton::clicked, this, &recipeButton::onClicked);
 }
-
-
 
 recipeButton::~recipeButton()
 {
     delete ui;
+}
+
+Recipe* recipeButton::getRecipe(){
+    return recipe;
 }
 
 bool recipeButton::isIngredientChosen(Ingredient *ingredient, const QList<Ingredient*> &chosenIngredients)
@@ -78,23 +90,41 @@ bool recipeButton::getSelected() const {
     return selected;
 }
 
+//void recipeButton::setSelected(bool selected) {
+//    this->selected = selected;
+//    update();
+//}
+
+//void recipeButton::paintEvent(QPaintEvent *event)
+//{
+//    QPushButton::paintEvent(event); // Call the base class paintEvent method
+
+//    if (selected) {
+//        QPainter painter(this);
+//        QPen pen(Qt::red, 2);
+//        painter.setPen(pen);
+//        painter.drawRect(1, 1, width() - 2, height() - 2);
+//    }
+//}
+
+//void recipeButton::toggleSelected() {
+//    setSelected(!selected);
+//}
+
 void recipeButton::setSelected(bool selected) {
     this->selected = selected;
-    update();
-}
-
-void recipeButton::paintEvent(QPaintEvent *event)
-{
-    QPushButton::paintEvent(event); // Call the base class paintEvent method
-
     if (selected) {
-        QPainter painter(this);
-        QPen pen(Qt::red, 2);
-        painter.setPen(pen);
-        painter.drawRect(1, 1, width() - 2, height() - 2);
+        setStyleSheet("QPushButton {border: 2px solid red};");
+    } else {
+        setStyleSheet("QPushButton {};");
     }
 }
 
-void recipeButton::toggleSelected() {
-    setSelected(!selected);
+void recipeButton::onClicked()
+{
+    if (previousClickedRecipe != nullptr) {
+        previousClickedRecipe->setStyleSheet("QPushButton {};");
+    }
+    setStyleSheet("QPushButton {border: 2px solid red};");
+    previousClickedRecipe = this;
 }
