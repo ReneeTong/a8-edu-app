@@ -35,8 +35,8 @@ public:
    explicit DragAndDropLabel(QWidget *widget = nullptr);
 
 signals:
-    //ruini test
-    void mousePress();
+//    //ruini test
+//    void mouseRelease(QPoint pos);
 
 private:
 
@@ -53,6 +53,7 @@ protected:
      * @param event QMouseEvent
      */
     void mousePressEvent(QMouseEvent *event) override;
+
     using QLabel::QLabel;
 
 
@@ -114,6 +115,9 @@ public:
      * @brief customColorIsSelected A saved custom color is selected
      */
     void customColorIsSelected(QGraphicsView*);
+
+    //ruini test
+    void mouseRelease(QPoint pos);
 
 };
 

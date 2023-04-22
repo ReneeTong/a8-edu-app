@@ -38,7 +38,10 @@ void DragAndDropGraphicsView::dropEvent(QDropEvent *event)
     QPixmap labelImage = label->pixmap();
 
     QPoint mousePos = event->pos();
-    emit itemDrop(mousePos, labelImage, this);
+    //emit itemDrop(mousePos, labelImage, this);
+
+    qDebug() << "label drop";
+    emit mouseRelease(event->pos());
 }
 
 //This is when we press on the graphics view. We can delete it.
@@ -50,7 +53,8 @@ void DragAndDropGraphicsView::mousePressEvent(QMouseEvent *event)
 
 DragAndDropLabel::DragAndDropLabel(QWidget *widget)
 {
-    Q_UNUSED(widget)
+    Q_UNUSED(widget);
+    setAcceptDrops(true);
 }
 
 
@@ -69,13 +73,14 @@ void DragAndDropLabel::createDrag(const QPoint &pos, QWidget *widget)
 
     drag->setHotSpot(p);
     drag->setPixmap(widget->grab());
-    drag->exec();
+    drag->exec(Qt::MoveAction);
 
 
 }
 
 void DragAndDropLabel::mousePressEvent(QMouseEvent *event)
 {
+    qDebug() << "label press";
     createDrag(event->pos(), this);
-    emit mousePress();
 }
+

@@ -46,6 +46,9 @@ public slots:
 
     //Andy Tran: receiving s3 update method
     void onS3Update(int curStep, QHash<Ingredient*, int>* todoList);
+
+    //Ruini
+    void mouseRelease(QPoint pos);
 signals:
     void goToPage4();
 
@@ -60,22 +63,13 @@ private:
     QGraphicsScene* scene = new QGraphicsScene;
     void imageEnter(QPoint mousePos, QPixmap pixmap, QGraphicsView *view);
 
-//    //Tzhou
-//    b2World world;
-//    //vector<Box> boxes; Ruini edited
-//    //QMap<string, Box*> boxes;
-//    QTimer timer;
-//    QImage image;
-//    QImage imageTomato;
-
-//    void createWokBody();
-//    //void createBoxes();
-
     //AndyTran
     QHash<Ingredient*, int>* todoList;
 
     //Ruini
-    void mousePress();
+    QMap<QString, QPixmap> xmaps;
+    void createLables();
+
 };
 
 #endif // S3COOKING_H

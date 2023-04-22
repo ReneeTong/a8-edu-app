@@ -110,10 +110,10 @@
    <widget class="DragAndDropGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>0</x>
       <y>0</y>
-      <width>16</width>
-      <height>16</height>
+      <width>651</width>
+      <height>571</height>
      </rect>
     </property>
     <property name="sizePolicy">
