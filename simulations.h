@@ -43,7 +43,7 @@ private:
     //QMap<string, Box*> boxes;
     QTimer timer;
     QImage image;
-    QImage imageTomato;
+//    QImage imageTomato;
 
     void createWokBody();
     //void createBoxes();
@@ -55,6 +55,7 @@ private:
     b2Body* groundBody;
 
     //Ruini
+    QMap<std::string, QImage> images;
     std::vector<b2Body*> drawBodies;
     std::vector<b2Body*> particles;
     QMap<std::string, b2Body*> boxes;

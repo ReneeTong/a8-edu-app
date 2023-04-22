@@ -8,7 +8,6 @@ simulations::simulations(QWidget *parent)
       world(b2Vec2(0.0f, 10.0f)),
       timer(this),
       image(":/sprites/icons/brick.png"),
-      imageTomato(":/sprites/icons/tomato.png"),
       imageWok(":/sprites/icons/Wok.PNG")
 {
     qDebug() << "simulations";
@@ -31,6 +30,9 @@ simulations::simulations(QWidget *parent)
 //        test = true;
 //    } );
     testTrue();
+
+    //fillin all the images
+    images.insert("tomato", QImage(":/sprites/icons/tomato.png"));
 }
 
 void simulations::testTrue(){
@@ -103,7 +105,8 @@ void simulations::paintEvent(QPaintEvent *)
 //            QImage resizedImage = pieces.scaled(32, 32);
             painter.drawImage((int)(position.x*20), (int)(position.y*20), pieces);
         }else{
-            painter.drawImage((int)(position.x*20), (int)(position.y*20), imageTomato);
+           QImage current = images.value(ingredientName);
+            painter.drawImage((int)(position.x*20), (int)(position.y*20), current);
        }
 
     }
@@ -189,6 +192,7 @@ void simulations::createWokBody()
 void simulations::mousePressEvent(QMouseEvent *event)
 {
     qDebug() <<event->pos();
+    qDebug() << "pressed";
     if (event->button() == Qt::LeftButton) {
         //createBox(event->pos(), "tomato");
         //mouse position convert to box2d coordinates
