@@ -5,13 +5,44 @@ Model::Model(QObject *parent) : QObject(parent){}
 
 //Andy Tran
 //Slots
-void Model::onRecieveRecipe(Recipe* recipe, QVector<Ingredient>* selectedIngre){
+//void Model::onRecieveRecipe(Recipe* recipe, QVector<Ingredient>* selectedIngre){
+//    //Update the recipe from S2
+//    this->recipe = *recipe;
+//    this->copyRecipe = recipe;
+//    this->selectedIngre = selectedIngre;
+////    this->todoList = *selectedIngre;
+//    recipe->resetNeededAmount();
+//}
+void Model::onSelectedListUpdate(Ingredient ingredient){
+    //Remove if contain already
+    if(selectedIngre->contains(ingredient)){
+        int index = selectedIngre->indexOf(ingredient);
+
+        // Remove the object at the index
+        if (index != -1) {
+            selectedIngre->remove(index);
+        }
+    }
+    //Add to the selected list
+    else{
+        selectedIngre->push_back(ingredient);
+    }
+    foreach (Ingredient i, *selectedIngre) {
+        qDebug() << i.getName();
+    }
+    qDebug() << "------------------";
+}
+
+void Model::onSendS2SelectedIngredients(){
+    emit onS2Update(this->selectedIngre);
+}
+
+void Model::onRecieveRecipe(Recipe* recipe){
     //Update the recipe from S2
     this->recipe = *recipe;
     this->copyRecipe = recipe;
-    this->selectedIngre = selectedIngre;
-//    this->todoList = *selectedIngre;
     recipe->resetNeededAmount();
+    qDebug() << "Recipe Model: " << recipe->getName();
 }
 
 void Model::onStepCookingUpdate(Ingredient ingredient, Action action){

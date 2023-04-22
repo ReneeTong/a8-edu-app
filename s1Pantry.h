@@ -23,6 +23,7 @@ public slots:
 
 signals:
     void goToPage2();
+    void onSendS2SelectedIngredients();
 
 private:
     Model& m_model;

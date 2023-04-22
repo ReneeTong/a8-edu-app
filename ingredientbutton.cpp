@@ -4,6 +4,7 @@ IngredientButton::IngredientButton(Ingredient ingredient, int size, QWidget *par
     //setStyleSheet("IngredientButton {background-color: transparent;};");
     setFixedSize(size, size);
 
+    this->ingredient = ingredient;
     selected = false;
 
     QPixmap pixmap = ingredient.getPixmap();
@@ -33,4 +34,6 @@ void IngredientButton::setSelected(bool selected) {
     } else {
         setStyleSheet("QPushButton {};");
     }
+    qDebug() << "Running";
+    emit onSelectedListUpdate(ingredient);
 }

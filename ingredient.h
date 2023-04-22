@@ -19,6 +19,9 @@ public:
     Ingredient(const QString &name);
     Ingredient(QString name, FoodCategory cate, QVector<FoodTags> tags);
 
+    // Overloaded operators
+    bool operator==(const Ingredient& other) const;
+
     // Getter methods
     QString getName() const{return name; }
     QPixmap getPixmap() const{return pixmap;}

@@ -12,7 +12,7 @@ ScrollCarousel::ScrollCarousel(QWidget *parent) : QScrollArea(parent) {
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     // define QScroller
-    QScroller::grabGesture(this, QScroller::LeftMouseButtonGesture);
+//    QScroller::grabGesture(this, QScroller::LeftMouseButtonGesture);
     QScroller *scroller = QScroller::scroller(this);
 
     QScrollerProperties scrollerProperties = scroller->scrollerProperties();

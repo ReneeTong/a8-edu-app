@@ -18,19 +18,18 @@ public:
     explicit s2Recipe(Model& model, QWidget *parent = nullptr);
     ~s2Recipe();
 
-
-
 public slots:
     void nextPage();
+    void onS2Update(QVector<Ingredient>* selectedIngre);
 
 signals:
     void goToPage3();
-    void onRecieveRecipe(Recipe* recipe, QVector<Ingredient>* selectedIngre);
+    void onRecieveRecipe(Recipe* recipe);
 
 private:
     Model& m_model;
     Ui::s2Recipe *ui;
-
+    QVector<Ingredient>* selectedIngre;
 };
 
 #endif // S2RECIPE_H
