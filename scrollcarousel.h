@@ -31,9 +31,11 @@ public:
     ScrollCarousel(bool, QWidget *parent = nullptr);
 
     void addWidget(QWidget*);
+    void clearWidgets();
 
     void addFilter(bool (*)(QWidget*));
     void removeFilter(bool (*)(QWidget*));
+
     void sortWidgetsBy(std::function<bool(QWidget*, QWidget*)>);
 
 
@@ -48,7 +50,6 @@ private:
     QBoxLayout *scrollLayout;
 
     QList<QWidget*> widgets;
-    QMap<QWidget*, bool> widgetVisible;
 
     QList<bool (*)(QWidget*)> filterList;
 

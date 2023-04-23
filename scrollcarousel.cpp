@@ -62,9 +62,15 @@ ScrollCarousel::ScrollCarousel(bool isHorizontal, QWidget *parent) : ScrollCarou
 
 void ScrollCarousel::addWidget(QWidget *widget) {
     widgets.append(widget);
-    widgetVisible[widget] = true;
 
     scrollLayout->addWidget(widget);
+}
+
+void ScrollCarousel::clearWidgets() {
+    for (QWidget *widget : widgets) {
+        delete widget;
+    }
+    widgets.clear();
 }
 
 
@@ -105,6 +111,8 @@ void ScrollCarousel::reset() {
         scrollLayout->addWidget(widget);
     }
 }
+
+
 
 void ScrollCarousel::wheelEvent(QWheelEvent *event) {
     // Get current scroll target

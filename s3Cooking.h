@@ -11,7 +11,6 @@
 #include"ingredient.h"
 //#include"foodlibrary.h"
 #include<random>
-#include "modelnew.h"
 namespace Ui {
 class s3Cooking;
 }
