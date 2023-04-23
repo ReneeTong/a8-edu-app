@@ -20,7 +20,6 @@ s3Cooking::s3Cooking(QWidget *parent) :
     });
     connect(render->getModel(), &Model::updateDisplayText, ui->stepLabel, &QLabel::setText);
 
-
     //Andy Tran:
     //Step label
     ui->labelStep->setText("STEP 1");
@@ -82,6 +81,22 @@ void s3Cooking::onS3Update(int curStep, QHash<Ingredient*, int>* todoList){
 }
 //----------------------------------------------------------------------------
 
+
+void s3Cooking::recieveSelectedRecipe(RecipeNew* recipe) {
+    render->getModel()->setRecipe(recipe);
+
+    ui->ingredientList->clearWidgets();
+    for (const auto& ingredient : recipe->getIngredeints()) {
+        DragAndDropLabel *label = new DragAndDropLabel(this);
+        label->setStyleSheet("background-color: transparent");
+        label->setFixedSize(50, 50);
+        label->setPixmap(ingredient.getPixmap());
+        label->setScaledContents(true);
+        label->show();
+
+        ui->ingredientList->addWidget(label);
+    }
+}
 
 
 void s3Cooking::createLables(){

@@ -42,13 +42,25 @@ s2Recipe::~s2Recipe()
 
 void s2Recipe::nextPage()
 {
+    // remove later
+    RecipeNew *noodle = new RecipeNew;
+    noodle->addTask("Cut %1 slices (%3/%2)\nBoil a %4 (%6/%5)", // hard coded, pls don't replicate
+                      {
+                          {Ingredient("tomato", {CUT}), 4},
+                          {Ingredient("tomato", {BOIL}), 1}
+                      });
+    noodle->addTask("Boil a %1 (%3/%2)",
+                      {
+                          {Ingredient("tomato", {BOIL}), 2}
+                      });
+
     emit goToPage3();
-    //emit onRecieveRecipe(recipeButton::previousClickedRecipe->getRecipe());
+    emit sendSelectedRecipe(noodle);
 }
 
-void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> selectedIngre){
+void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> selectedIngredients){
     ui->ingredientArea->clearWidgets();
-    for (Ingredient *ingredient : selectedIngre) {
+    for (Ingredient *ingredient : selectedIngredients) {
         IngredientButton *button = new IngredientButton(*ingredient, 75);
         button->setSelectable(false);
 

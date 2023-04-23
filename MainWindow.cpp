@@ -50,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     connect(page1, &s1Pantry::sendSelectedIngredients, page2, &s2Recipe::recieveSelectedIngredients);
+    connect(page2, &s2Recipe::sendSelectedRecipe, page3, &s3Cooking::recieveSelectedRecipe);
 }
 
 MainWindow::~MainWindow()

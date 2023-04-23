@@ -9,7 +9,7 @@ Ingredient::Ingredient()
 Ingredient::Ingredient(const QString &name):
     name(name)
 {
-
+    setPixmap();
 }
 
 

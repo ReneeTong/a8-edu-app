@@ -43,8 +43,12 @@ public slots:
     //Andy Tran: receiving s3 update method
     void onS3Update(int curStep, QHash<Ingredient*, int>* todoList);
 
+    //jeffeeeeeeee
+    void recieveSelectedRecipe(RecipeNew* recipe);
+
 signals:
     void goToPage4();
+
 
     //Ruini: moved this to contact listner
     //Andy Tran: sending s3 update method

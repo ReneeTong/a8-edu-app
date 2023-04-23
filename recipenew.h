@@ -13,6 +13,8 @@ public:
 
 
     // [== COOKING LOGIC ==]
+    QList<Ingredient> getIngredeints();
+
     map<Ingredient, int> getTasks(int step) const { return m_recipeTasks[step]; };
     QString getDisplayText(int step) const { return m_recipeDisplayText[step]; };
     int isCompleted(int step) const { return step == m_recipeTasks.count(); };;

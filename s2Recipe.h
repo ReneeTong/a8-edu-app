@@ -2,7 +2,7 @@
 #define S2RECIPE_H
 
 #include <QWidget>
-#include "recipe.h"
+#include "recipenew.h"
 
 namespace Ui {
 class s2Recipe;
@@ -22,7 +22,7 @@ public slots:
 
 signals:
     void goToPage3();
-    void onRecieveRecipe(Recipe* recipe);
+    void sendSelectedRecipe(RecipeNew* recipe);
     void backButtonClicked();
 
 private slots:

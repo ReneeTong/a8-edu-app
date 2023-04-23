@@ -77,6 +77,29 @@
    <property name="lineWidth">
     <number>3</number>
    </property>
+   <widget class="ScrollCarousel" name="ingredientList">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>111</width>
+      <height>451</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>109</width>
+       <height>449</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QPushButton" name="nextBtn">
    <property name="geometry">

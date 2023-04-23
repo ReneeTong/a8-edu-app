@@ -1,6 +1,5 @@
 #include "model.h"
 #include "qdebug.h"
-#include "qtimer.h"
 
 
 Model::Model(b2World *world, QObject *parent)
@@ -8,16 +7,6 @@ Model::Model(b2World *world, QObject *parent)
       m_world(world)
 {
 
-    RecipeNew *noodle = new RecipeNew;
-    noodle->addTask("Cut %1 slices (%3/%2)\nBoil a %4 (%6/%5)", // hard coded, pls don't replicate
-                      {
-                          {Ingredient("tomato", {CUT}), 4},
-                          {Ingredient("tomato", {BOIL}), 1}
-                      });
-    noodle->addTask("Boil a %1 (%3/%2)",
-                      {
-                          {Ingredient("tomato", {BOIL}), 2}
-                      });
 //    m_recipe->addTask({
 //                          {Ingredient("salt", {BOIL}), 1}
 //                   });
@@ -36,9 +25,6 @@ Model::Model(b2World *world, QObject *parent)
 //                          {Ingredient("soy sauce", {FRY}), 1},
 //                      });
 
-    QTimer::singleShot(0, this, [this, noodle]() {
-        setRecipe(noodle);
-    });
 }
 
 
