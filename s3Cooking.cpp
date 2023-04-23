@@ -88,10 +88,14 @@ void s3Cooking::recieveSelectedRecipe(RecipeNew* recipe) {
     ui->ingredientList->clearWidgets();
     for (const auto& ingredient : recipe->getIngredeints()) {
         DragAndDropLabel *label = new DragAndDropLabel(this);
+        label->setProperty("Ingredient", QVariant::fromValue(ingredient));
+        label->setText(ingredient.getName());
         label->setStyleSheet("background-color: transparent");
         label->setFixedSize(50, 50);
-        label->setPixmap(ingredient.getPixmap());
-        label->setScaledContents(true);
+        if (!ingredient.getPixmap().isNull()) {
+            label->setPixmap(ingredient.getPixmap());
+            label->setScaledContents(true);
+        }
         label->show();
 
         ui->ingredientList->addWidget(label);

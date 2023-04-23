@@ -1,9 +1,9 @@
 #include "render.h"
 #include "debugdraw.h"
+#include "draganddrop.h"
 #include "kitchencontactlistener.h"
 #include "qpainter.h"
 #include "shape.h"
-#include"foodLibrary.h"
 
 #include <QMouseEvent>
 #include<QApplication>
@@ -69,7 +69,7 @@ Render::Render(QWidget *parent)
         Shape* fryingPan = new Shape(&world, position, size);
         fryingPan->setStatic(true);
 
-        //connect(fryingPan, &Shape::onContact, &model, &Model::fry);
+        connect(fryingPan, &Shape::onContact, &model, &Model::fry);
     }
 
     QTimer *timer = new QTimer(this);
@@ -89,8 +89,7 @@ void Render::mousePressEvent(QMouseEvent* event) {
         shape->setStatic(false); 
         //shape->setData(new Ingredient("tomato", {}));
         //bad: delete later
-        FoodLibrary f;
-        shape->setData(f.tomato);
+        shape->setData(new Ingredient(currentDrop.getName(), {}));
     }
 }
 
@@ -104,7 +103,7 @@ void Render::paintEvent(QPaintEvent *) {
     world.DrawDebugData();
 }
 
-void Render::dropEvent(QDropEvent*)
+void Render::dropEvent(QDropEvent*event)
 {
     QPointF localPos = this->mapFromGlobal(QCursor::pos());
     QPointF windowPos = this->mapFromGlobal(QCursor::pos());
@@ -115,6 +114,9 @@ void Render::dropEvent(QDropEvent*)
     QMouseEvent *mousePressEvent = new QMouseEvent(QEvent::MouseButtonPress, localPos, windowPos, screenPos, button, buttons, modifiers);
     QApplication::postEvent(this, mousePressEvent);
 
+    DragAndDropLabel *label = qobject_cast<DragAndDropLabel*>(event->source());
+    currentDrop = qvariant_cast<Ingredient>(label->property("Ingredient"));
+    qDebug() << currentDrop.getName();
 }
 
 void Render::dragEnterEvent(QDragEnterEvent *event)

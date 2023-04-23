@@ -25,7 +25,7 @@ public:
 public slots:
     void cut(Shape*);
     void boil(Shape*);
-//    void fry(Shape*);
+    void fry(Shape*);
 //    void mix(Shape*);
 
 private:

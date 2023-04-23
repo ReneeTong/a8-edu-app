@@ -44,14 +44,26 @@ void s2Recipe::nextPage()
 {
     // remove later
     RecipeNew *noodle = new RecipeNew;
-    noodle->addTask("Cut %1 slices (%3/%2)\nBoil a %4 (%6/%5)", // hard coded, pls don't replicate
-                      {
-                          {Ingredient("tomato", {CUT}), 4},
-                          {Ingredient("tomato", {BOIL}), 1}
+    noodle->addTask("Boil %1 (%3/%2)",
+                    {
+                          {Ingredient("salt", {BOIL}), 1}
+                   });
+    noodle->addTask("Cut %1 (%3/%2)\nBoil %4 (%6/%5)\nPut %7 in frying pan (%9/%8)",
+                    {
+                          {Ingredient("noodle", {BOIL}), 1},
+                          {Ingredient("garlic", {CUT}), 4},
+                          {Ingredient("oil", {FRY}), 1},
+                   });
+    noodle->addTask("Fry %1 (%3/%2)\nFry %4 (%6/%5)",
+                    {
+                          {Ingredient("noodle", {FRY}), 1},
+                          {Ingredient("garlic", {FRY}), 1} // if we were to do two at once, more code is needed
                       });
-    noodle->addTask("Boil a %1 (%3/%2)",
-                      {
-                          {Ingredient("tomato", {BOIL}), 2}
+    noodle->addTask("Add to frying pan\n%1 (%3/%2)\n%4 (%6/%5)\n%7 (%9/%8)",
+                    {
+                          {Ingredient("pepper", {FRY}), 1},
+                          {Ingredient("chili yum", {FRY}), 1},
+                          {Ingredient("soy sauce", {FRY}), 1},
                       });
 
     emit goToPage3();

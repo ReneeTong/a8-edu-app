@@ -165,3 +165,19 @@ void Model::boil(Shape *shape) {
         incrementIngredient(ingredient);
     }
 }
+
+void Model::fry(Shape *shape) {
+    Ingredient *ingredient = static_cast<Ingredient*>(shape->getData());
+    if (!ingredient) return;
+
+    ingredient->actions.append(FRY);
+
+    if (ingredient->actions.contains(FRY)) {
+        auto method = [shape]() {
+            delete shape;
+        };
+        actionQueue.append(method);
+
+        incrementIngredient(ingredient);
+    }
+}

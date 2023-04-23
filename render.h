@@ -35,6 +35,8 @@ private:
     b2World world;
     Model model;
 
+    Ingredient currentDrop;
+
 signals:
     void mouseClicked(QPoint);
     void itemDrop(QPoint);
