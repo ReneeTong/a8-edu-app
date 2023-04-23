@@ -1,12 +1,10 @@
 #include "s2Recipe.h"
-#include "ingredientbutton.h"
+#include "foodLibrary.h"
 #include "recipebutton.h"
 #include "ui_s2Recipe.h"
-#include "modelnew.h"
 
-s2Recipe::s2Recipe(ModelNew& model, QWidget *parent) :
+s2Recipe::s2Recipe(QWidget *parent) :
     QWidget(parent),
-    m_model(model),
     ui(new Ui::s2Recipe)
 {
     ui->setupUi(this);
@@ -16,19 +14,19 @@ s2Recipe::s2Recipe(ModelNew& model, QWidget *parent) :
 
         FoodLibrary foodLibrary;
 
-        Recipe* phoRecipe = foodLibrary.getRecipeByName("Pho");
+//        Recipe* phoRecipe = foodLibrary.getRecipeByName("Pho");
 
-        recipeButton *phoButton = new recipeButton(*phoRecipe);
-        ui->scrollArea_2->addWidget(phoButton);
+//        recipeButton *phoButton = new recipeButton(*phoRecipe);
+//        ui->scrollArea_2->addWidget(phoButton);
 
-        //default is the first one
-        emit phoButton->clicked(true);
+//        //default is the first one
+//        emit phoButton->clicked(true);
 
-        recipeButton *phoButton1 = new recipeButton(*phoRecipe);
-        ui->scrollArea_2->addWidget(phoButton1);
+//        recipeButton *phoButton1 = new recipeButton(*phoRecipe);
+//        ui->scrollArea_2->addWidget(phoButton1);
 
-        recipeButton *phoButton2 = new recipeButton(*phoRecipe);
-        ui->scrollArea_2->addWidget(phoButton2);
+//        recipeButton *phoButton2 = new recipeButton(*phoRecipe);
+//        ui->scrollArea_2->addWidget(phoButton2);
 
 //        for (int i = 0; i < 3; i++) {
 //            QPushButton *button = new QPushButton("RECIPE " + QString::number(i));
@@ -51,7 +49,7 @@ s2Recipe::~s2Recipe()
 void s2Recipe::nextPage()
 {
     emit goToPage3();
-    emit onRecieveRecipe(recipeButton::previousClickedRecipe->getRecipe());
+    //emit onRecieveRecipe(recipeButton::previousClickedRecipe->getRecipe());
 }
 
 void s2Recipe::onS2Update(QVector<Ingredient>* selectedIngre){

@@ -14,18 +14,18 @@ Ingredient::Ingredient(const QString &name):
 
 
 Ingredient::Ingredient(const QString &name ,QList<ActionsPerformed> actions) :
-    name(name),
-    actions(actions)
+    actions(actions),
+    name(name)
 {
     setPixmap();
 }
 
 
 Ingredient::Ingredient( QString name, FoodCategory cate, QVector<FoodTags> tags,QList<ActionsPerformed> actions ):
+    actions(actions),
     name(name),
     cate(cate),
-    tags(tags),
-    actions(actions)
+    tags(tags)
 {
     setPixmap();
 

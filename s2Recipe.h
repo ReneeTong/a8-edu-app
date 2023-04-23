@@ -3,8 +3,6 @@
 
 #include <QWidget>
 #include "recipe.h"
-#include "foodlibrary.h"
-#include"modelnew.h"
 
 namespace Ui {
 class s2Recipe;
@@ -15,7 +13,7 @@ class s2Recipe : public QWidget
     Q_OBJECT
 
 public:
-    explicit s2Recipe(ModelNew& model, QWidget *parent = nullptr);
+    explicit s2Recipe(QWidget *parent = nullptr);
     ~s2Recipe();
 
 public slots:
@@ -27,7 +25,6 @@ signals:
     void onRecieveRecipe(Recipe* recipe);
 
 private:
-    ModelNew& m_model;
     Ui::s2Recipe *ui;
     QVector<Ingredient>* selectedIngre;
 };

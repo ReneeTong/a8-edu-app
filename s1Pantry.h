@@ -15,7 +15,7 @@ class s1Pantry : public QWidget
     Q_OBJECT
 
 public:
-    explicit s1Pantry(ModelNew& model, QWidget *parent = nullptr);
+    explicit s1Pantry(QWidget *parent = nullptr);
     ~s1Pantry();
 
 public slots:
@@ -26,7 +26,6 @@ signals:
     void onSendS2SelectedIngredients();
 
 private:
-    ModelNew& m_model;
     Ui::s1Pantry *ui;
     FoodLibrary foodLib;
 

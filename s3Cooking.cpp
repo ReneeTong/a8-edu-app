@@ -6,9 +6,8 @@
 #include <QPainter>
 #include <QDebug>
 
-s3Cooking::s3Cooking(ModelNew& model, QWidget *parent) :
+s3Cooking::s3Cooking(QWidget *parent) :
     QWidget(parent),
-    m_model(model),
     ui(new Ui::s3Cooking)
 {
     ui->setupUi(this);

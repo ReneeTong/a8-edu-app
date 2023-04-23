@@ -10,7 +10,7 @@ recipeButton::recipeButton(const Recipe &recipe, QWidget *parent) :
     ui->setupUi(this);
 
     Recipe recipeCopy = recipe;
-    this->recipe = new Recipe(recipeCopy);
+    this->recipe = new Recipe(recipe);
 
     ui->recipeName->setText(recipe.getName());
     qDebug() << "Recipe name:" << recipe.getName();

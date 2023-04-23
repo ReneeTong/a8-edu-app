@@ -10,8 +10,6 @@
 #include<QGraphicsScene>
 #include"ingredient.h"
 //#include"foodlibrary.h"
-#include"ingredientbutton.h"
-#include"draganddrop.h"
 #include<random>
 #include "modelnew.h"
 namespace Ui {
@@ -23,7 +21,7 @@ class s3Cooking : public QWidget
     Q_OBJECT
 
 public:
-    explicit s3Cooking(ModelNew& model, QWidget *parent = nullptr);
+    explicit s3Cooking(QWidget *parent = nullptr);
     ~s3Cooking();
 
 //    //Tzhou: play around
@@ -55,7 +53,6 @@ signals:
     //Andy Tran: sending s3 update method
 //    void onStepCookingUpdate(Ingredient, Action);
 private:
-    ModelNew& m_model;
     Ui::s3Cooking *ui;
 
     //tzhou drag:

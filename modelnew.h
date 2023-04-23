@@ -67,7 +67,7 @@ public:
     QString getDisplayText() {
         if (currentTask == m_recipeDisplayText.count()) return "Completed!";
 
-        map<IngredientNew, int> tasks = m_recipeTasks[currentTask];
+        map<Ingredient, int> tasks = m_recipeTasks[currentTask];
 
         QString displayText = m_recipeDisplayText[currentTask];
         for (const auto& [ingredient, count] : tasks) {
@@ -85,14 +85,14 @@ public:
 
     bool isComplete = false;
 
-
+    void addTask(QString text, map<Ingredient, int> tasks) {
         m_recipeTasks.append(tasks);
         m_recipeDisplayText.append(text);
     }
 
 private:
 
-    QList<map<IngredientNew, int>> m_recipeTasks;
+    QList<map<Ingredient, int>> m_recipeTasks;
     QList<QString> m_recipeDisplayText;
 
 };
