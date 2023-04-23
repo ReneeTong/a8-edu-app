@@ -47,7 +47,7 @@ Render::Render(QWidget *parent)
         Shape* cuttingBoard = new Shape(&world, position, size);
         cuttingBoard->setStatic(true);
 
-        connect(cuttingBoard, &Shape::onContact, &model, &ModelNew::cut);
+        connect(cuttingBoard, &Shape::onContact, &model, &Model::cut);
     }
 
     {
@@ -57,7 +57,7 @@ Render::Render(QWidget *parent)
         Shape* boilingPot = new Shape(&world, position, size);
         boilingPot->setStatic(true);
 
-        connect(boilingPot, &Shape::onContact, &model, &ModelNew::boil);
+        connect(boilingPot, &Shape::onContact, &model, &Model::boil);
     }
 
     {

@@ -1,5 +1,5 @@
-#ifndef MODELNEW_H
-#define MODELNEW_H
+#ifndef MODEL_H
+#define MODEL_H
 
 #include "ingredient.h"
 #include "qdebug.h"
@@ -103,11 +103,11 @@ private:
 
 
 
-class ModelNew : public QObject
+class Model : public QObject
 {
     Q_OBJECT
 public:
-    explicit ModelNew(b2World *world, QObject *parent = nullptr);
+    explicit Model(b2World *world, QObject *parent = nullptr);
 
     QVector<function<void()>> actionQueue;
 
@@ -125,4 +125,4 @@ signals:
     void updateDisplayText(QString text);
 };
 
-#endif // MODELNEW_H
+#endif // MODEL_H

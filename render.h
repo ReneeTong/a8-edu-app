@@ -1,7 +1,7 @@
 #ifndef RENDER_H
 #define RENDER_H
 
-#include "modelnew.h"
+#include "model.h"
 #include <Box2D/Box2D.h>
 
 #include <QObject>
@@ -18,7 +18,7 @@ public:
 
     explicit Render(QWidget *parent = nullptr);
 
-    ModelNew* getModel() { return &model; }
+    Model* getModel() { return &model; }
     void mousePressEvent(QMouseEvent * event) override;
 
 protected:
@@ -33,7 +33,7 @@ private:
     void renderWorld();
 
     b2World world;
-    ModelNew model;
+    Model model;
 
 signals:
     void mouseClicked(QPoint);

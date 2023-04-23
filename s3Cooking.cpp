@@ -3,7 +3,7 @@
 #include "render.h"
 #include "ui_s3Cooking.h"
 #include"draganddrop.h"
-#include"modelnew.h"
+#include"model.h"
 #include <QPainter>
 #include <QDebug>
 
@@ -18,7 +18,7 @@ s3Cooking::s3Cooking(QWidget *parent) :
     QTimer::singleShot(10, this, [this]() {
         ui->scrollArea->addWidget(render);//render moved to .h
 
-        connect(render->getModel(), &ModelNew::updateDisplayText, ui->stepLabel, &QLabel::setText);
+        connect(render->getModel(), &Model::updateDisplayText, ui->stepLabel, &QLabel::setText);
     });
 
 
