@@ -68,6 +68,7 @@ SOURCES += \
     mycontactlistener.cpp \
     recipe.cpp \
     recipebutton.cpp \
+    recipenew.cpp \
     render.cpp \
     s0Title.cpp \
     s1Pantry.cpp \
@@ -139,6 +140,7 @@ HEADERS += \
     mycontactlistener.h \
     recipe.h \
     recipebutton.h \
+    recipenew.h \
     render.h \
     s0Title.h \
     s1Pantry.h \

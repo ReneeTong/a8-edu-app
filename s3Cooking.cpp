@@ -14,13 +14,11 @@ s3Cooking::s3Cooking(QWidget *parent) :
     ui->setupUi(this);
     ui->widget->show();
 
-    // jeffrey
-    QTimer::singleShot(10, this, [this]() {
+    // jeffeeeeeeeee
+    QTimer::singleShot(0, this, [this]() {
         ui->scrollArea->addWidget(render);//render moved to .h
-
-        connect(render->getModel(), &Model::updateDisplayText, ui->stepLabel, &QLabel::setText);
     });
-
+    connect(render->getModel(), &Model::updateDisplayText, ui->stepLabel, &QLabel::setText);
 
 
     //Andy Tran:

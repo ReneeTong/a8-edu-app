@@ -38,6 +38,8 @@ Render::Render(QWidget *parent)
         ground->setStatic(true);
     }
 
+
+    // [== CREATE UTENSILS AND CONNECT THEM ==]
     int const UTENSIL_COUNT = 3;
 
     {
@@ -67,7 +69,7 @@ Render::Render(QWidget *parent)
         Shape* fryingPan = new Shape(&world, position, size);
         fryingPan->setStatic(true);
 
-        //connect(fryingPan, &Shape::onContact, &model, &Model::boil);
+        //connect(fryingPan, &Shape::onContact, &model, &Model::fry);
     }
 
     QTimer *timer = new QTimer(this);
