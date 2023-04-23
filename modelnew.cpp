@@ -7,11 +7,14 @@ ModelNew::ModelNew(b2World *world, QObject *parent)
       m_world(world)
 {
     m_recipe = new RecipeNew;
-    m_recipe->addTask({
-                          {IngredientNew("tomato", {CUT}), 4}
-                   });
-    m_recipe->addTask({
+    m_recipe->addTask("Cut %1 slices (%3/%2)\nBoil a %4 (%6/%5)",
+                      {
+                          {IngredientNew("tomato", {CUT}), 4},
                           {IngredientNew("tomato", {BOIL}), 1}
+                      });
+    m_recipe->addTask("Boil a %1 (%3/%2)",
+                      {
+                          {IngredientNew("tomato", {BOIL}), 2}
                       });
 //    m_recipe->addTask({
 //                          {Ingredient("salt", {BOIL}), 1}
@@ -30,7 +33,6 @@ ModelNew::ModelNew(b2World *world, QObject *parent)
 //                          {Ingredient("chili yum", {FRY}), 1},
 //                          {Ingredient("soy sauce", {FRY}), 1},
 //                      });
-
 }
 
 void ModelNew::cut(Shape *shape) {
@@ -48,6 +50,7 @@ void ModelNew::cut(Shape *shape) {
         actionQueue.append(method);
 
         m_recipe->incrementIngredient(ingredient);
+        emit updateDisplayText(m_recipe->getDisplayText());
         return;
     }
 
@@ -92,5 +95,6 @@ void ModelNew::boil(Shape *shape) {
         actionQueue.append(method);
 
         m_recipe->incrementIngredient(ingredient);
+        emit updateDisplayText(m_recipe->getDisplayText());
     }
 }
