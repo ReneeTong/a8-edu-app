@@ -26,7 +26,7 @@
      <x>150</x>
      <y>100</y>
      <width>651</width>
-     <height>571</height>
+     <height>331</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -104,7 +104,7 @@
      <x>150</x>
      <y>100</y>
      <width>641</width>
-     <height>611</height>
+     <height>331</height>
     </rect>
    </property>
    <widget class="DragAndDropGraphicsView" name="graphicsView">
@@ -234,6 +234,39 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
+  <widget class="ScrollCarousel" name="scrollArea">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>440</y>
+     <width>651</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>649</width>
+      <height>229</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="Render" name="render" native="true">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>650</y>
+     <width>120</width>
+     <height>80</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -246,6 +279,18 @@
    <class>DragAndDropGraphicsView</class>
    <extends>QGraphicsView</extends>
    <header location="global">draganddrop.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Render</class>
+   <extends>QWidget</extends>
+   <header>render.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ScrollCarousel</class>
+   <extends>QScrollArea</extends>
+   <header>scrollcarousel.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

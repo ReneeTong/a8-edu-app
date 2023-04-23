@@ -12,6 +12,11 @@ s3Cooking::s3Cooking(Model& model, QWidget *parent) :
     ui->setupUi(this);
     ui->widget->show();
 
+    // jeffrey
+    QTimer::singleShot(0, this, [this]() {
+        ui->scrollArea->addWidget(ui->render);
+    });
+
     //Andy Tran:
     //Step label
     ui->labelStep->setText("STEP 1");

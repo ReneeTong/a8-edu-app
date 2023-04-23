@@ -1,4 +1,5 @@
 #include "s2Recipe.h"
+#include "ingredientbutton.h"
 #include "recipebutton.h"
 #include "ui_s2Recipe.h"
 
@@ -13,8 +14,6 @@ s2Recipe::s2Recipe(Model& model, QWidget *parent) :
     QTimer::singleShot(0, this, [this](){
 
         FoodLibrary foodLibrary;
-
-
 
         Recipe* phoRecipe = foodLibrary.getRecipeByName("Pho");
 
@@ -36,7 +35,6 @@ s2Recipe::s2Recipe(Model& model, QWidget *parent) :
 //            ui->scrollArea_2->addWidget(button);
 //        }
 
-
     });
 
     //Andy Tran: connection to send recipe and selected ingredients
@@ -56,7 +54,10 @@ void s2Recipe::nextPage()
 }
 
 void s2Recipe::onS2Update(QVector<Ingredient>* selectedIngre){
+
+
     this->selectedIngre = selectedIngre;
+
     foreach (Ingredient i, *selectedIngre) {
         qDebug() << i.getName();
     }
