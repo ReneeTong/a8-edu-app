@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>recipeButton</class>
- <widget class="QWidget" name="recipeButton">
+ <class>RecipeButton</class>
+ <widget class="QWidget" name="RecipeButton">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -9,6 +9,9 @@
     <width>350</width>
     <height>425</height>
    </rect>
+  </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -58,14 +61,20 @@
   <widget class="QPushButton" name="aboutBtn">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>350</y>
-     <width>81</width>
-     <height>41</height>
+     <x>210</x>
+     <y>340</y>
+     <width>101</width>
+     <height>51</height>
     </rect>
    </property>
+   <property name="mouseTracking">
+    <bool>true</bool>
+   </property>
    <property name="text">
-    <string>About</string>
+    <string>Learn More</string>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="difficultyLab">
@@ -89,6 +98,12 @@
      <width>141</width>
      <height>211</height>
     </rect>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::NoSelection</enum>
+   </property>
+   <property name="selectionRectVisible">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="matchingLab">

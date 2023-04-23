@@ -29,17 +29,13 @@ s2Recipe::s2Recipe(Model& model, QWidget *parent) :
         recipeButton *phoButton2 = new recipeButton(*phoRecipe);
         ui->scrollArea_2->addWidget(phoButton2);
 
-//        for (int i = 0; i < 3; i++) {
-//            QPushButton *button = new QPushButton("RECIPE " + QString::number(i));
-//            button->setFixedSize(350, 425);
-//            ui->scrollArea_2->addWidget(button);
-//        }
-
     });
 
     //Andy Tran: connection to send recipe and selected ingredients
     connect(&m_model, &Model::onS2Update, this, &s2Recipe::onS2Update);
     connect(this, &s2Recipe::onRecieveRecipe, &m_model, &Model::onRecieveRecipe);
+    connect(ui->backBtn, &QPushButton::clicked, this, &s2Recipe::on_backButton_clicked);
+
 }
 
 s2Recipe::~s2Recipe()
@@ -93,3 +89,6 @@ bool sortRecipeByIngredients (QWidget *widget1, QWidget *widget2 ){
 
 }
 
+void s2Recipe::on_backButton_clicked() {
+    emit backButtonClicked();
+}

@@ -44,6 +44,10 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     connect(page4, &s4Complete::goToPage1, this, [=]() {
         stackedWidget->setCurrentWidget(page0);
     });
+    connect(page2, &s2Recipe::backButtonClicked, this, [=]() {
+        stackedWidget->setCurrentWidget(page1);
+    });
+
 }
 
 MainWindow::~MainWindow()
