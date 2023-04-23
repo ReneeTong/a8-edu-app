@@ -65,7 +65,6 @@ SOURCES += \
     kitchencontactlistener.cpp \
     main.cpp \
     MainWindow.cpp \
-    model.cpp \
     modelnew.cpp \
     mycontactlistener.cpp \
     recipe.cpp \
@@ -138,7 +137,6 @@ HEADERS += \
     ingredientbutton.h \
     ingredientnew.h \
     kitchencontactlistener.h \
-    model.h \
     modelnew.h \
     mycontactlistener.h \
     recipe.h \

@@ -4,7 +4,7 @@
 #include "ui_MainWindow.h"
 #include <QStackedWidget>
 
-MainWindow::MainWindow(Model& model, QWidget *parent)
+MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow)
 {
@@ -17,9 +17,9 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
 
     //add all the pages
     page0 = new s0Title(this);
-    page1 = new s1Pantry(model, this);
-    page2 = new s2Recipe(model, this);
-    page3 = new s3Cooking(model, this);
+    page1 = new s1Pantry(this);
+    page2 = new s2Recipe(this);
+    page3 = new s3Cooking(this);
     page4 = new s4Complete(this);
     stackedWidget->addWidget(page0);
     stackedWidget->addWidget(page1);

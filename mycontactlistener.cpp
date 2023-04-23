@@ -55,7 +55,7 @@ void MyContactListener::BeginContact(b2Contact* contact){
                     //Andy Tran: sending s3 update method
                     if(utensil.compare("wok") == 0){
                         Ingredient current(qIngredientName);
-                        emit onStepCookingUpdate(current, Action::CUT);
+                        //emit onStepCookingUpdate(current, Action::CUT);
                     }
                 }
             }else if(ingredientName.compare("pieces") == 0){

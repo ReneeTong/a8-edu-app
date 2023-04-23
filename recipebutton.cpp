@@ -13,7 +13,7 @@ recipeButton::recipeButton(const Recipe &recipe, QWidget *parent) :
 setObjectName("mainRecipeButton");
 
     Recipe recipeCopy = recipe;
-    this->recipe = new Recipe(recipeCopy);
+    this->recipe = new Recipe(recipe);
 
     ui->matchingList->setEnabled(false);
     ui->recipeName->setText(recipe.getName());
@@ -31,7 +31,7 @@ setObjectName("mainRecipeButton");
     chosenIngredients.push_back(new Ingredient("riceNoodles"));
 
     // Populate the ingredients list
-    populateIngredientsList(recipe.getIngredients(), chosenIngredients);
+    populateIngredientsList(recipe.getTasks(), chosenIngredients);
 
     connect(ui->aboutBtn, &QPushButton::clicked, this, [this, &recipe]() {
         QMessageBox msgBox(this);
@@ -66,19 +66,19 @@ bool recipeButton::isIngredientChosen(Ingredient *ingredient, const QList<Ingred
     return false;
 }
 
-void recipeButton::populateIngredientsList(const QHash<Ingredient *, int> &ingredients, const QList<Ingredient *> &chosenIngredients)
+void recipeButton::populateIngredientsList(const  QMap<Ingredient, int> tasks, const QList<Ingredient *> &chosenIngredients)
 {
     int matchingIngredientsCount = 0;
 
-    for (auto it = ingredients.begin(); it != ingredients.end(); ++it)
+    for (auto it = tasks.constBegin(); it != tasks.constEnd(); ++it)
     {
-        Ingredient *ingredient = it.key();
+        Ingredient ingredient = it.key();
         int amount = it.value();
 
         QListWidgetItem *listItem = new QListWidgetItem(ui->matchingList);
-        listItem->setText(QString("%1 x %2").arg(amount).arg(ingredient->getName()));
+        listItem->setText(QString("%1 x %2").arg(amount).arg(ingredient.getName()));
 
-        if (isIngredientChosen(ingredient, chosenIngredients))
+        if (isIngredientChosen(&ingredient, chosenIngredients))
         {
             listItem->setForeground(Qt::green);
             matchingIngredientsCount++;

@@ -1,10 +1,11 @@
 #include "s2Recipe.h"
-#include "foodLibrary.h"
+#include "ingredientbutton.h"
 #include "recipebutton.h"
 #include "ui_s2Recipe.h"
 
-s2Recipe::s2Recipe(QWidget *parent) :
+s2Recipe::s2Recipe(Model& model, QWidget *parent) :
     QWidget(parent),
+    m_model(model),
     ui(new Ui::s2Recipe)
 {
     ui->setupUi(this);
@@ -14,28 +15,31 @@ s2Recipe::s2Recipe(QWidget *parent) :
 
         FoodLibrary foodLibrary;
 
-//        Recipe* phoRecipe = foodLibrary.getRecipeByName("Pho");
+        Recipe* phoRecipe = foodLibrary.getRecipeByName("Pho");
 
-//        recipeButton *phoButton = new recipeButton(*phoRecipe);
-//        ui->scrollArea_2->addWidget(phoButton);
+        recipeButton *phoButton = new recipeButton(*phoRecipe);
+        ui->scrollArea_2->addWidget(phoButton);
 
-//        //default is the first one
-//        emit phoButton->clicked(true);
+        //default is the first one
+        emit phoButton->clicked(true);
 
-//        recipeButton *phoButton1 = new recipeButton(*phoRecipe);
-//        ui->scrollArea_2->addWidget(phoButton1);
+        recipeButton *phoButton1 = new recipeButton(*phoRecipe);
+        ui->scrollArea_2->addWidget(phoButton1);
 
-//        recipeButton *phoButton2 = new recipeButton(*phoRecipe);
-//        ui->scrollArea_2->addWidget(phoButton2);
+        recipeButton *phoButton2 = new recipeButton(*phoRecipe);
+        ui->scrollArea_2->addWidget(phoButton2);
+
+//        for (int i = 0; i < 3; i++) {
+//            QPushButton *button = new QPushButton("RECIPE " + QString::number(i));
+//            button->setFixedSize(350, 425);
+//            ui->scrollArea_2->addWidget(button);
+//        }
 
     });
 
     //Andy Tran: connection to send recipe and selected ingredients
-
-    connect(ui->backBtn, &QPushButton::clicked, this, &s2Recipe::on_backButton_clicked);
-    //connect(&m_model, &ModelNew::onS2Update, this, &s2Recipe::onS2Update);
-    //connect(this, &s2Recipe::onRecieveRecipe, &m_model, &ModelNew::onRecieveRecipe);
-
+    connect(&m_model, &Model::onS2Update, this, &s2Recipe::onS2Update);
+    connect(this, &s2Recipe::onRecieveRecipe, &m_model, &Model::onRecieveRecipe);
 }
 
 s2Recipe::~s2Recipe()
@@ -46,7 +50,7 @@ s2Recipe::~s2Recipe()
 void s2Recipe::nextPage()
 {
     emit goToPage3();
-    //emit onRecieveRecipe(recipeButton::previousClickedRecipe->getRecipe());
+    emit onRecieveRecipe(recipeButton::previousClickedRecipe->getRecipe());
 }
 
 void s2Recipe::onS2Update(QVector<Ingredient>* selectedIngre){

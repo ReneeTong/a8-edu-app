@@ -6,15 +6,16 @@ ModelNew::ModelNew(b2World *world, QObject *parent)
     : QObject{parent},
       m_world(world)
 {
+
     m_recipe = new RecipeNew;
     m_recipe->addTask("Cut %1 slices (%3/%2)\nBoil a %4 (%6/%5)",
                       {
-                          {IngredientNew("tomato", {CUT}), 4},
-                          {IngredientNew("tomato", {BOIL}), 1}
+                          {Ingredient("tomato", {CUT}), 4},
+                          {Ingredient("tomato", {BOIL}), 1}
                       });
     m_recipe->addTask("Boil a %1 (%3/%2)",
                       {
-                          {IngredientNew("tomato", {BOIL}), 2}
+                          {Ingredient("tomato", {BOIL}), 2}
                       });
 //    m_recipe->addTask({
 //                          {Ingredient("salt", {BOIL}), 1}
@@ -36,7 +37,7 @@ ModelNew::ModelNew(b2World *world, QObject *parent)
 }
 
 void ModelNew::cut(Shape *shape) {
-    IngredientNew *ingredient = static_cast<IngredientNew*>(shape->getData());
+    Ingredient *ingredient = static_cast<Ingredient*>(shape->getData());
     if (!ingredient) return;
 
     // check if cuttable?
@@ -83,7 +84,7 @@ void ModelNew::cut(Shape *shape) {
 }
 
 void ModelNew::boil(Shape *shape) {
-    IngredientNew *ingredient = static_cast<IngredientNew*>(shape->getData());
+    Ingredient *ingredient = static_cast<Ingredient*>(shape->getData());
     if (!ingredient) return;
 
     ingredient->actions.append(BOIL);

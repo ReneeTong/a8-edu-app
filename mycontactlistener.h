@@ -25,7 +25,7 @@ signals:
     void cut(std::string);
 
     //Andy Tran: sending s3 update method
-    void onStepCookingUpdate(Ingredient, Action);
+    //void onStepCookingUpdate(Ingredient, Action);
 
 };
 #endif // MYCONTACTLISTENER_H

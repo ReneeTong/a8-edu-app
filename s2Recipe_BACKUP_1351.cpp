@@ -89,3 +89,6 @@ bool sortRecipeByIngredients (QWidget *widget1, QWidget *widget2 ){
 
 }
 
+void s2Recipe::on_backButton_clicked() {
+    emit backButtonClicked();
+}
