@@ -26,7 +26,7 @@ s3Cooking::s3Cooking(Model& model, QWidget *parent) :
     xmaps.insert("tomato",QPixmap(":/sprites/icons/tomato.png"));
     xmaps.insert("carrot",QPixmap(":/sprites/icons/carrot.png"));
 
-    createLables();
+    //createLables();
 
     DragAndDropLabel * label2 = new DragAndDropLabel(parent);
     label2->setParent(ui->leftFrame);
