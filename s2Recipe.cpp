@@ -1,5 +1,6 @@
 #include "s2Recipe.h"
 #include "foodLibrary.h"
+#include "ingredientbutton.h"
 #include "recipebutton.h"
 #include "ui_s2Recipe.h"
 
@@ -35,10 +36,6 @@ s2Recipe::s2Recipe(QWidget *parent) :
 //        }
 
     });
-
-    //Andy Tran: connection to send recipe and selected ingredients
-    //connect(&m_model, &ModelNew::onS2Update, this, &s2Recipe::onS2Update);
-    //connect(this, &s2Recipe::onRecieveRecipe, &m_model, &ModelNew::onRecieveRecipe);
 }
 
 s2Recipe::~s2Recipe()
@@ -52,15 +49,14 @@ void s2Recipe::nextPage()
     //emit onRecieveRecipe(recipeButton::previousClickedRecipe->getRecipe());
 }
 
-void s2Recipe::onS2Update(QVector<Ingredient>* selectedIngre){
+void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> selectedIngre){
+    ui->ingredientArea->clearWidgets();
+    for (Ingredient *ingredient : selectedIngre) {
+        IngredientButton *button = new IngredientButton(*ingredient, 75);
+        button->setSelectable(false);
 
-
-    this->selectedIngre = selectedIngre;
-
-    foreach (Ingredient i, *selectedIngre) {
-        qDebug() << i.getName();
+        ui->ingredientArea->addWidget(button);
     }
-    qDebug() << "------------------";
 }
 
 //This function is used to compare recipe which will have more matching ingredient with choosenIngredients.

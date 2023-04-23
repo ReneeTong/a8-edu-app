@@ -4,7 +4,6 @@
 #include <QWidget>
 #include <QGroupBox>
 #include"foodLibrary.h"
-#include "modelnew.h"
 
 namespace Ui {
 class s1Pantry;
@@ -18,16 +17,20 @@ public:
     explicit s1Pantry(QWidget *parent = nullptr);
     ~s1Pantry();
 
+    void addIngredient(Ingredient *i);
+    void removeIngredient(Ingredient *i);
+
 public slots:
     void nextPage();
 
 signals:
     void goToPage2();
-    void onSendS2SelectedIngredients();
+    void sendSelectedIngredients(QList<Ingredient*>);
 
 private:
     Ui::s1Pantry *ui;
-    FoodLibrary foodLib;
+
+    QList<Ingredient*> selectedIngredients;
 
 };
 

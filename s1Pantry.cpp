@@ -1,7 +1,6 @@
 #include "s1Pantry.h"
 #include "ingredientbutton.h"
 #include "ui_s1Pantry.h"
-#include"modelnew.h"
 #include "ingredient.h"
 
 s1Pantry::s1Pantry(QWidget *parent) :
@@ -51,15 +50,25 @@ s1Pantry::s1Pantry(QWidget *parent) :
 
 
         QTimer::singleShot(0, this, [this, box, f, pantry, food] {
+
             for (Ingredient *ingredient : f.getAllIngredients()) {
                 if (ingredient->getCate() == food) {
+
                     IngredientButton *button = new IngredientButton(*ingredient, 75);
-                    //Set connection btw button and model
-                    //connect(button, &IngredientButton::onSelectedListUpdate, &m_model, &ModelNew::onSelectedListUpdate);
+                    connect(button, &IngredientButton::onSelected, this, [this, ingredient](bool selected) {
+                        if (selected) {
+                            addIngredient(ingredient);
+                        } else {
+                            removeIngredient(ingredient);
+                        }
+                    });
                     pantry->addWidget(button);
+
                 }
             }
+
             ui->pantryCategory->addWidget(box);
+
         });
     }
 
@@ -72,7 +81,7 @@ s1Pantry::s1Pantry(QWidget *parent) :
             return !ingredient.getTags().contains(NUT);
         }
 
-        return true; // if we cast, but not correct button then default true
+        return true;
     };
 
     auto is_vegan = [](QWidget* widget) {
@@ -82,7 +91,7 @@ s1Pantry::s1Pantry(QWidget *parent) :
             return ingredient.getTags().contains(VEGAN);
         }
 
-        return true; // if we cast, but not correct button then default true
+        return true;
     };
 
 
@@ -112,9 +121,6 @@ s1Pantry::s1Pantry(QWidget *parent) :
             }
         }
     });
-
-    //Set connection from s1 to Model -> move to step 2 and send the selected list
-    //connect(this, &s1Pantry::onSendS2SelectedIngredients, &m_model, &ModelNew::onSendS2SelectedIngredients);
 }
 
 s1Pantry::~s1Pantry()
@@ -122,8 +128,16 @@ s1Pantry::~s1Pantry()
     delete ui;
 }
 
+void s1Pantry::addIngredient(Ingredient *i) {
+    selectedIngredients.append(i);
+}
+
+void s1Pantry::removeIngredient(Ingredient *i) {
+    selectedIngredients.removeAll(i);
+}
+
 void s1Pantry::nextPage()
 {
     emit goToPage2();
-    emit onSendS2SelectedIngredients();
+    emit sendSelectedIngredients(selectedIngredients);
 }

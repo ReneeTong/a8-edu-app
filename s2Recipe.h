@@ -18,7 +18,7 @@ public:
 
 public slots:
     void nextPage();
-    void onS2Update(QVector<Ingredient>* selectedIngre);
+    void recieveSelectedIngredients(QList<Ingredient*>);
 
 signals:
     void goToPage3();
@@ -26,7 +26,7 @@ signals:
 
 private:
     Ui::s2Recipe *ui;
-    QVector<Ingredient>* selectedIngre;
+
 };
 
 #endif // S2RECIPE_H

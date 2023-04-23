@@ -31,7 +31,7 @@
    <property name="lineWidth">
     <number>3</number>
    </property>
-   <widget class="ScrollCarousel" name="scrollArea">
+   <widget class="ScrollCarousel" name="ingredientArea">
     <property name="geometry">
      <rect>
       <x>10</x>
