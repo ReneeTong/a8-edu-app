@@ -1,54 +1,9 @@
 #include "draganddrop.h"
+#include <QApplication>
+#include <QMouseEvent>
 
 DragAndDrop::DragAndDrop(){
 
-}
-
-DragAndDropGraphicsView::DragAndDropGraphicsView(QWidget *widget): QGraphicsView(widget){
-    setAcceptDrops(true);
-}
-
-void DragAndDropGraphicsView::dragEnterEvent(QDragEnterEvent *event)
-{
-    event->accept();
-    event->acceptProposedAction();
-
-}
-
-void DragAndDropGraphicsView::dragLeaveEvent(QDragLeaveEvent *event)
-{
-    event->accept();
-
-}
-
-void DragAndDropGraphicsView::dragMoveEvent(QDragMoveEvent *event)
-{
-    event->accept();
-    event->acceptProposedAction();
-}
-
-//This is where we should modify to
-//1. get the mouse location
-//2. send a signal to s3
-//"this" = graphicsView
-void DragAndDropGraphicsView::dropEvent(QDropEvent *event)
-{
-    if(event->source() == this) return;
-    QLabel *label =qobject_cast<QLabel*>(event->source());
-    QPixmap labelImage = label->pixmap();
-
-    QPoint mousePos = event->pos();
-    //emit itemDrop(mousePos, labelImage, this);
-
-    qDebug() << "label drop";
-    emit mouseRelease(event->pos());
-}
-
-//This is when we press on the graphics view. We can delete it.
-void DragAndDropGraphicsView::mousePressEvent(QMouseEvent *event)
-{
-    Q_UNUSED(event)
-    emit customColorIsSelected(this);
 }
 
 DragAndDropLabel::DragAndDropLabel(QWidget *widget)

@@ -2,6 +2,7 @@
 #include "s3Cooking.h"
 #include "render.h"
 #include "ui_s3Cooking.h"
+#include"draganddrop.h"
 #include"modelnew.h"
 #include <QPainter>
 #include <QDebug>
@@ -15,8 +16,7 @@ s3Cooking::s3Cooking(QWidget *parent) :
 
     // jeffrey
     QTimer::singleShot(10, this, [this]() {
-        Render* render = new Render;
-        ui->scrollArea->addWidget(render);
+        ui->scrollArea->addWidget(render);//render moved to .h
 
         connect(render->getModel(), &ModelNew::updateDisplayText, ui->stepLabel, &QLabel::setText);
     });
@@ -32,11 +32,11 @@ s3Cooking::s3Cooking(QWidget *parent) :
     xmaps.insert("tomato",QPixmap(":/sprites/icons/tomato.png"));
     xmaps.insert("carrot",QPixmap(":/sprites/icons/carrot.png"));
 
-    //createLables();
+    createLables();
 
+    //static label for ingredient
     DragAndDropLabel * label2 = new DragAndDropLabel(parent);
     label2->setParent(ui->leftFrame);
-    //ui->leftFrame->setAcceptDrops(true);
     QPixmap pixCarrot(":/sprites/icons/carrot.png");
     label2->setGeometry(QRect(5,5,50,50));
     label2->setPixmap(pixCarrot);
@@ -44,18 +44,6 @@ s3Cooking::s3Cooking(QWidget *parent) :
     label2->show();
     label2->setStyleSheet("background-color: rgba(0,0,0,0);");
     label2->move(50, 50);
-
-    //set the background of the scene
-//    QPixmap background(":/sprites/icons/Kitchen.PNG");
-//    QBrush brush(background.scaled(300, 300));
-//    scene->setBackgroundBrush(brush);
-    ui->graphicsView->setScene(scene);
-
-//    connect(ui->graphicsView, &DragAndDropGraphicsView::itemDrop,
-//            this, &s3Cooking::imageEnter);
-    connect(ui->graphicsView, &DragAndDropGraphicsView::mouseRelease,
-            this, &s3Cooking::mouseRelease);
-
 
     //Ruini:add backgound image
     QPixmap image(":/sprites/icons/Kitchen.PNG");
@@ -65,8 +53,8 @@ s3Cooking::s3Cooking(QWidget *parent) :
     background->setGeometry(QRect(0, 0, background->width(), background->height()));
     background->lower();
 
-//    connect(listener, &MyContactListener::cut, this, &s3Cooking::handleCut);
-//    connect(ui->tomato, &QPushButton::clicked, ui->widget, &simulations::testTrue);
+    //    connect(listener, &MyContactListener::cut, this, &s3Cooking::handleCut);
+    //    connect(ui->tomato, &QPushButton::clicked, ui->widget, &simulations::testTrue);
 
     //Andy Tran: connection to communicate btw Model and S3
     //connect(&m_model, &ModelNew::onS3Update, this, &s3Cooking::onS3Update);
@@ -96,49 +84,9 @@ void s3Cooking::onS3Update(int curStep, QHash<Ingredient*, int>* todoList){
 }
 //----------------------------------------------------------------------------
 
-//This is what the graphics view would do after the drop
-void s3Cooking::imageEnter(QPoint mousePos, QPixmap pixmap, QGraphicsView *view)
-{
-    qDebug()<<"Drop location: ( "<<mousePos.x()<<", "<<mousePos.y()<<" )";
-    QGraphicsScene* scene = view->scene();
-    if(scene->items().count()>0){
-        scene->clear();
-    }
-    scene->addPixmap(pixmap.scaled(26,26));
-    view->setScene(scene);
-    view->viewport()->update();
-    view->update();
-    view->show();
 
-}
-void s3Cooking::mouseRelease(QPoint pos){
-    qDebug() << "release";
-    // create a mouse press event
-    QMouseEvent *mouseReleaseEvent = new QMouseEvent(QEvent::MouseButtonRelease, pos, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
-
-    // send the mouse press event to a widget
-    QCoreApplication::postEvent(ui->widget, mouseReleaseEvent);
-}
 
 void s3Cooking::createLables(){
-    if(todoList != nullptr){
-        QHash<Ingredient*, int>::const_iterator it;
-        for (it = todoList->constBegin(); it != todoList->constEnd(); ++it) {
-            // 'it.key()' is the Ingredient pointer
-            // 'it.value()' is the integer value associated with the Ingredient
-            // Do something with 'it.key()' and 'it.value()' here
 
-            //tzhou drag:this is just a static example, not connect to anything.
-            DragAndDropLabel * label1 = new DragAndDropLabel();
-            label1->setParent(ui->leftFrame);
-            QPixmap ingredientIcon = xmaps.value(it.key()->getName());
-            label1->setGeometry(QRect(5,5,50,50));
-            label1->setPixmap(ingredientIcon);
-            label1->setScaledContents(true);
-            label1->show();
-            label1->setStyleSheet("background-color: rgba(0,0,0,0);");
-            label1->move(10, 10);
-        }
-    }
 
 }
