@@ -9,7 +9,7 @@
 #include<QGraphicsView>
 #include<QGraphicsScene>
 #include"ingredient.h"
-//#include"foodlibrary.h"
+#include"render.h"
 #include<random>
 #include "modelnew.h"
 namespace Ui {
@@ -44,8 +44,6 @@ public slots:
     //Andy Tran: receiving s3 update method
     void onS3Update(int curStep, QHash<Ingredient*, int>* todoList);
 
-    //Ruini
-    void mouseRelease(QPoint pos);
 signals:
     void goToPage4();
 
@@ -54,10 +52,7 @@ signals:
 //    void onStepCookingUpdate(Ingredient, Action);
 private:
     Ui::s3Cooking *ui;
-
-    //tzhou drag:
-    QGraphicsScene* scene = new QGraphicsScene;
-    void imageEnter(QPoint mousePos, QPixmap pixmap, QGraphicsView *view);
+     Render* render = new Render();
 
     //AndyTran
     QHash<Ingredient*, int>* todoList;

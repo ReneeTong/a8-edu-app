@@ -59,66 +59,57 @@ protected:
 
 };
 
-/**
- * @brief The DragAndDropGraphicsView class Custom QGraphicsView class
- */
-class DragAndDropGraphicsView : public QGraphicsView{
-    Q_OBJECT
+///**
+// * @brief The DragAndDropGraphicsView class Custom QGraphicsView class
+// */
+//class DragAndDropWidget : public QWidget{
+//    Q_OBJECT
 
-public:
+//public:
 
-    /**
-    * @brief DragAndDropGraphicsView Constructor
-    * @param widget QWidget
-    */
-   explicit DragAndDropGraphicsView(QWidget *widget = nullptr);
+//    /**
+//    * @brief DragAndDropGraphicsView Constructor
+//    * @param widget QWidget
+//    */
+//   explicit DragAndDropWidget(QWidget *parent);
 
-    /**
-    * @brief dragEnterEvent Drag enters a QGraphicsView event
-    * @param event QDragEnterEvent
-    */
-   void dragEnterEvent(QDragEnterEvent* event) override;
+//    /**
+//    * @brief dragEnterEvent Drag enters a QGraphicsView event
+//    * @param event QDragEnterEvent
+//    */
+//   void dragEnterEvent(QDragEnterEvent* event) override;
 
-   /**
-    * @brief dragLeaveEvent Drag leaves a QGraphicsView event
-    * @param event QDragLeaveEvent
-    */
-   void dragLeaveEvent(QDragLeaveEvent* event) override;
+//   /**
+//    * @brief dragLeaveEvent Drag leaves a QGraphicsView event
+//    * @param event QDragLeaveEvent
+//    */
+//   void dragLeaveEvent(QDragLeaveEvent* event) override;
 
-   /**
-    * @brief dragMoveEvent Drag moves event
-    * @param event QDragMoveEvent
-    */
-   void dragMoveEvent(QDragMoveEvent* event) override;
+//   /**
+//    * @brief dragMoveEvent Drag moves event
+//    * @param event QDragMoveEvent
+//    */
+//   void dragMoveEvent(QDragMoveEvent* event) override;
 
-   /**
-    * @brief dropEvent A drop event
-    * @param event QDropEvent
-    */
-   void dropEvent(QDropEvent* event) override;
+//   /**
+//    * @brief dropEvent A drop event
+//    * @param event QDropEvent
+//    */
+//   void dropEvent(QDropEvent* event) override;
 
-   /**
-    * @brief mousePressEvent Mouse press event
-    * @param event QMouseEvent
-    */
-   void mousePressEvent(QMouseEvent *event) override;
-   using QGraphicsView::QGraphicsView;
+//   using QWidget::QWidget;
 
- signals:
+// signals:
 
-   /**
-     * @brief itemDrop Item is dropped to a QGraphicsView
-     */
-    void itemDrop(QPoint, QPixmap, QGraphicsView*);
+//   /**
+//     * @brief itemDrop Item is dropped to a QGraphicsView
+//     */
+//    void itemDrop(QPoint, QPixmap, QGraphicsView*);
 
-    /**
-     * @brief customColorIsSelected A saved custom color is selected
-     */
-    void customColorIsSelected(QGraphicsView*);
 
-    //ruini test
-    void mouseRelease(QPoint pos);
+//    //ruini test
+//    void mouseRelease(QPoint pos);
 
-};
+//};
 
 #endif // DRAGANDDROP_H

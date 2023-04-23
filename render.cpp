@@ -6,6 +6,8 @@
 #include"foodLibrary.h"
 
 #include <QMouseEvent>
+#include<QApplication>
+#include<QLabel>
 #include <QTimer>
 #include <Box2D/Box2D.h>
 
@@ -16,6 +18,7 @@ Render::Render(QWidget *parent)
 {
     setStyleSheet("background-color: grey;");
     setFixedSize(WINDOW_WIDTH+1, WINDOW_HEIGHT+1);
+    setAcceptDrops(true);
 
     {
         KitchenContactListener *contactListen = new KitchenContactListener;
@@ -70,6 +73,7 @@ Render::Render(QWidget *parent)
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Render::renderWorld);
     timer->start(1000 / 60);
+
 }
 
 void Render::mousePressEvent(QMouseEvent* event) {
@@ -96,6 +100,32 @@ void Render::paintEvent(QPaintEvent *) {
     painter.drawPixmap(rect(), background);
 
     world.DrawDebugData();
+}
+
+void Render::dropEvent(QDropEvent *event)
+{
+
+    QPoint pos = event->pos();
+    QMouseEvent *mousePressEvent = new QMouseEvent(QEvent::MouseButtonPress, pos, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+    QApplication::postEvent(this, mousePressEvent);
+
+}
+
+void Render::dragEnterEvent(QDragEnterEvent *event)
+{
+    event->accept();
+    event->acceptProposedAction();
+}
+
+void Render::dragLeaveEvent(QDragLeaveEvent *event)
+{
+    event->accept();
+}
+
+void Render::dragMoveEvent(QDragMoveEvent *event)
+{
+    event->accept();
+    event->acceptProposedAction();
 }
 
 void Render::renderWorld() {

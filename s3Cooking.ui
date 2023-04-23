@@ -107,33 +107,6 @@
      <height>331</height>
     </rect>
    </property>
-   <widget class="DragAndDropGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>651</width>
-      <height>571</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="font">
-     <font>
-      <family>Comic Sans MS</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgba(0,0,0,0);</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -280,11 +253,6 @@
    <extends>QWidget</extends>
    <header location="global">simulations.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>DragAndDropGraphicsView</class>
-   <extends>QGraphicsView</extends>
-   <header location="global">draganddrop.h</header>
   </customwidget>
   <customwidget>
    <class>ScrollCarousel</class>
