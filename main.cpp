@@ -1,11 +1,11 @@
 #include "MainWindow.h"
 #include <QApplication>
-#include "model.h"
+#include"modelnew.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Model model;
+    ModelNew model;
     MainWindow w(model);
 
     //set app icon

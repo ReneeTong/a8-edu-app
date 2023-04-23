@@ -3,6 +3,7 @@
 #include "kitchencontactlistener.h"
 #include "qpainter.h"
 #include "shape.h"
+#include"foodLibrary.h"
 
 #include <QMouseEvent>
 #include <QTimer>
@@ -79,8 +80,11 @@ void Render::mousePressEvent(QMouseEvent* event) {
         b2Vec2 size(10.0f, 10.0f);
 
         Shape* shape = new Shape(&world, position, size);
-        shape->setStatic(false);
-        shape->setData(new IngredientNew("tomato", {}));
+        shape->setStatic(false); 
+        //shape->setData(new Ingredient("tomato", {}));
+        //bad: delete later
+        FoodLibrary f;
+        shape->setData(f.tomato);
     }
 }
 

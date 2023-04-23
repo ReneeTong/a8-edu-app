@@ -21,7 +21,7 @@ public:
     static recipeButton* previousClickedRecipe;
 
     bool isIngredientChosen(Ingredient* ingredient, const QList<Ingredient*>& chosenIngredients);
-    void populateIngredientsList(const QHash<Ingredient*, int>& ingredients, const QList<Ingredient*>& chosenIngredients);
+    void populateIngredientsList(const QMap<Ingredient, int> tasks, const QList<Ingredient*>& chosenIngredients);
     bool getSelected() const;
     void setSelected(bool selected);
 

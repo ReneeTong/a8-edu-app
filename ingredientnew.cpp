@@ -1,8 +1,8 @@
-#include "ingredientnew.h"
+//#include "ingredientnew.h"
 
-IngredientNew::IngredientNew(QString name, QList<ActionsPerformed> actions)
-    : actions(actions),
-      m_name(name)
-{
+//IngredientNew::IngredientNew(QString name, QList<ActionsPerformed> actions)
+//    : actions(actions),
+//      m_name(name)
+//{
 
-}
+//}

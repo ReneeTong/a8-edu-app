@@ -6,8 +6,8 @@
 #include "s2Recipe.h"
 #include "s3Cooking.h"
 #include "s4Complete.h"
+#include"modelnew.h"
 #include <QMainWindow>
-#include "Model.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,7 +18,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(Model& model,QWidget *parent = nullptr);
+    MainWindow(ModelNew& model,QWidget *parent = nullptr);
     ~MainWindow();
 
 public slots:

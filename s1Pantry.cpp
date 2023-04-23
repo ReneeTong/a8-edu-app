@@ -1,10 +1,10 @@
 #include "s1Pantry.h"
 #include "ingredientbutton.h"
 #include "ui_s1Pantry.h"
-
+#include"modelnew.h"
 #include "ingredient.h"
 
-s1Pantry::s1Pantry(Model& model,QWidget *parent) :
+s1Pantry::s1Pantry(ModelNew& model,QWidget *parent) :
     QWidget(parent),
     m_model(model),
     ui(new Ui::s1Pantry)
@@ -56,7 +56,7 @@ s1Pantry::s1Pantry(Model& model,QWidget *parent) :
                 if (ingredient->getCate() == food) {
                     IngredientButton *button = new IngredientButton(*ingredient, 75);
                     //Set connection btw button and model
-                    connect(button, &IngredientButton::onSelectedListUpdate, &m_model, &Model::onSelectedListUpdate);
+                    //connect(button, &IngredientButton::onSelectedListUpdate, &m_model, &ModelNew::onSelectedListUpdate);
                     pantry->addWidget(button);
                 }
             }
@@ -115,7 +115,7 @@ s1Pantry::s1Pantry(Model& model,QWidget *parent) :
     });
 
     //Set connection from s1 to Model -> move to step 2 and send the selected list
-    connect(this, &s1Pantry::onSendS2SelectedIngredients, &m_model, &Model::onSendS2SelectedIngredients);
+    //connect(this, &s1Pantry::onSendS2SelectedIngredients, &m_model, &ModelNew::onSendS2SelectedIngredients);
 }
 
 s1Pantry::~s1Pantry()

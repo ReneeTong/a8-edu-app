@@ -1,7 +1,7 @@
 #ifndef MODELNEW_H
 #define MODELNEW_H
 
-#include "ingredientnew.h"
+#include "ingredient.h"
 #include "qdebug.h"
 #include "shape.h"
 #include <QObject>
@@ -18,12 +18,12 @@ public:
 
     int currentTask = 0;
 
-    map<IngredientNew, int> tasksTracker;
+    map<Ingredient, int> tasksTracker;
 
-    void incrementIngredient(IngredientNew* ingredient) {
+    void incrementIngredient(Ingredient* ingredient) {
         if (currentTask == m_recipeTasks.count()) return;
 
-        map<IngredientNew, int> tasks = m_recipeTasks[currentTask];
+        map<Ingredient, int> tasks = m_recipeTasks[currentTask];
 
         // if the ingredient is part of current "tasks"
         if (tasks.find(*ingredient) != tasks.end()) {
@@ -50,7 +50,7 @@ public:
     }
 
     bool checkTasks() {
-        map<IngredientNew, int> tasks = m_recipeTasks[currentTask];
+        map<Ingredient, int> tasks = m_recipeTasks[currentTask];
         for (const auto& [ingredient, count] : tasks) {
             if (tasksTracker.find(ingredient) != tasks.end()) {
                 if (tasksTracker[ingredient] < count) {
@@ -85,12 +85,13 @@ public:
 
     bool isComplete = false;
 
-    void addTask(QString text, map<IngredientNew, int> tasks) {
+
         m_recipeTasks.append(tasks);
         m_recipeDisplayText.append(text);
     }
 
 private:
+
     QList<map<IngredientNew, int>> m_recipeTasks;
     QList<QString> m_recipeDisplayText;
 
