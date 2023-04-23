@@ -11,12 +11,14 @@ class Render : public QWidget
 {
     Q_OBJECT
 public:
-    static const int WINDOW_WIDTH = 1000;
-    static const int WINDOW_HEIGHT = 150;
+    static const int WINDOW_WIDTH = 600;
+    static const int WINDOW_HEIGHT = 500;
 
-    static const int GROUND_HEIGHT = 10;
+    static const int GROUND_HEIGHT = 30;
 
     explicit Render(QWidget *parent = nullptr);
+
+    ModelNew* getModel() { return &model; }
 
 protected:
     void mousePressEvent(QMouseEvent * event) override;

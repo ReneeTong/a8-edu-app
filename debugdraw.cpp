@@ -9,6 +9,7 @@ DebugDraw::DebugDraw(QWidget *widget) : widget(widget)
 void DebugDraw::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
     // Draw the polygon using Qt's QPainter
     QPainter painter(widget);
+
     painter.setPen(QPen(QColor(color.r * 255, color.g * 255, color.b * 255), 1));
     painter.setBrush(Qt::NoBrush);
 
@@ -25,8 +26,13 @@ void DebugDraw::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2C
 void DebugDraw::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
 {
     QPainter painter(widget);
+
     painter.setPen(QPen(QColor(color.r * 255, color.g * 255, color.b * 255), 1));
-    painter.setBrush(Qt::SolidPattern);
+
+    QColor c(Qt::black);
+    c.setAlpha(128);
+    QBrush brush(c, Qt::SolidPattern);
+    painter.setBrush(brush);
 
     QVector<QPointF> points;
     for (int i = 0; i < vertexCount; i++)
