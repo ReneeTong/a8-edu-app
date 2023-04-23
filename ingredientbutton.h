@@ -17,11 +17,16 @@ public:
     bool getSelected() const;
     void setSelected(bool);
 
+    void setSelectable(bool);
+
 private:
     Ingredient ingredient;
     bool selected;
+    bool selectable;
+
 signals:
     void onSelectedListUpdate(Ingredient);
+    void onSelected(bool);
 };
 
 #endif // INGREDIENTBUTTON_H

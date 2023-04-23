@@ -1,11 +1,12 @@
 #include "ingredientbutton.h"
 
-IngredientButton::IngredientButton(Ingredient ingredient, int size, QWidget *parent) : QPushButton(parent), ingredient(ingredient) {
-    //setStyleSheet("IngredientButton {background-color: transparent;};");
+IngredientButton::IngredientButton(Ingredient ingredient, int size, QWidget *parent)
+    : QPushButton(parent),
+      ingredient(ingredient),
+      selected(false),
+      selectable(true)
+{
     setFixedSize(size, size);
-
-    this->ingredient = ingredient;
-    selected = false;
 
     QPixmap pixmap = ingredient.getPixmap();
     QIcon icon(pixmap);
@@ -14,7 +15,10 @@ IngredientButton::IngredientButton(Ingredient ingredient, int size, QWidget *par
     // setIconSize(this->size());
 
     connect(this, &QPushButton::clicked, this, [this]() {
-        setSelected(!getSelected());
+        if (selectable) {
+            setSelected(!getSelected());
+            emit onSelected(getSelected());
+        }
     });
 }
 
@@ -34,6 +38,8 @@ void IngredientButton::setSelected(bool selected) {
     } else {
         setStyleSheet("QPushButton {};");
     }
-    qDebug() << "Running";
-    emit onSelectedListUpdate(ingredient);
+}
+
+void IngredientButton::setSelectable(bool value) {
+    selectable = value;
 }
