@@ -1,5 +1,4 @@
 #include "modelnew.h"
-#include "ingredientnew.h"
 
 
 ModelNew::ModelNew(b2World *world, QObject *parent)

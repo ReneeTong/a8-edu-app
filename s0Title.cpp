@@ -1,6 +1,5 @@
 #include "s0Title.h"
 #include "ui_s0Title.h"
-#include "titledisplay.h"
 
 s0Title::s0Title(QWidget *parent) :
     QWidget(parent),

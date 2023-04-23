@@ -32,12 +32,7 @@ s2Recipe::s2Recipe(QWidget *parent) :
 
     });
 
-     connect(ui->backBtn, &QPushButton::clicked, this, &s2Recipe::on_backButton_clicked);
-
-    //Andy Tran: connection to send recipe and selected ingredients
-    //connect(&m_model, &ModelNew::onS2Update, this, &s2Recipe::onS2Update);
-    //connect(this, &s2Recipe::onRecieveRecipe, &m_model, &ModelNew::onRecieveRecipe);
-
+    connect(ui->backBtn, &QPushButton::clicked, this, &s2Recipe::on_backButton_clicked);
 }
 
 s2Recipe::~s2Recipe()
