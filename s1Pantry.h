@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QGroupBox>
 #include"foodLibrary.h"
-#include "Model.h"
+#include "modelnew.h"
 
 namespace Ui {
 class s1Pantry;
@@ -15,7 +15,7 @@ class s1Pantry : public QWidget
     Q_OBJECT
 
 public:
-    explicit s1Pantry(Model& model, QWidget *parent = nullptr);
+    explicit s1Pantry(ModelNew& model, QWidget *parent = nullptr);
     ~s1Pantry();
 
 public slots:
@@ -26,7 +26,7 @@ signals:
     void onSendS2SelectedIngredients();
 
 private:
-    Model& m_model;
+    ModelNew& m_model;
     Ui::s1Pantry *ui;
     FoodLibrary foodLib;
 

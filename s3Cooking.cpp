@@ -1,10 +1,11 @@
 //#include "simulations.h"
 #include "s3Cooking.h"
 #include "ui_s3Cooking.h"
+#include"modelnew.h"
 #include <QPainter>
 #include <QDebug>
 
-s3Cooking::s3Cooking(Model& model, QWidget *parent) :
+s3Cooking::s3Cooking(ModelNew& model, QWidget *parent) :
     QWidget(parent),
     m_model(model),
     ui(new Ui::s3Cooking)
@@ -63,10 +64,10 @@ s3Cooking::s3Cooking(Model& model, QWidget *parent) :
 //    connect(ui->tomato, &QPushButton::clicked, ui->widget, &simulations::testTrue);
 
     //Andy Tran: connection to communicate btw Model and S3
-    connect(&m_model, &Model::onS3Update, this, &s3Cooking::onS3Update);
+    //connect(&m_model, &ModelNew::onS3Update, this, &s3Cooking::onS3Update);
     //connect(this, &s3Cooking::onStepCookingUpdate, &m_model, &Model::onStepCookingUpdate);
     //Ruini edit
-    connect(ui->widget->listener, &MyContactListener::onStepCookingUpdate, &m_model, &Model::onStepCookingUpdate);
+    //connect(ui->widget->listener, &MyContactListener::onStepCookingUpdate, &m_model, &ModelNew::onStepCookingUpdate);
 
 }
 

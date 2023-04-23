@@ -2,8 +2,9 @@
 #include "ingredientbutton.h"
 #include "recipebutton.h"
 #include "ui_s2Recipe.h"
+#include "modelnew.h"
 
-s2Recipe::s2Recipe(Model& model, QWidget *parent) :
+s2Recipe::s2Recipe(ModelNew& model, QWidget *parent) :
     QWidget(parent),
     m_model(model),
     ui(new Ui::s2Recipe)
@@ -38,8 +39,8 @@ s2Recipe::s2Recipe(Model& model, QWidget *parent) :
     });
 
     //Andy Tran: connection to send recipe and selected ingredients
-    connect(&m_model, &Model::onS2Update, this, &s2Recipe::onS2Update);
-    connect(this, &s2Recipe::onRecieveRecipe, &m_model, &Model::onRecieveRecipe);
+    //connect(&m_model, &ModelNew::onS2Update, this, &s2Recipe::onS2Update);
+    //connect(this, &s2Recipe::onRecieveRecipe, &m_model, &ModelNew::onRecieveRecipe);
 }
 
 s2Recipe::~s2Recipe()
