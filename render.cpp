@@ -104,11 +104,15 @@ void Render::paintEvent(QPaintEvent *) {
     world.DrawDebugData();
 }
 
-void Render::dropEvent(QDropEvent *event)
+void Render::dropEvent(QDropEvent*)
 {
-
-    QPoint pos = event->pos();
-    QMouseEvent *mousePressEvent = new QMouseEvent(QEvent::MouseButtonPress, pos, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+    QPointF localPos = this->mapFromGlobal(QCursor::pos());
+    QPointF windowPos = this->mapFromGlobal(QCursor::pos());
+    QPointF screenPos = QCursor::pos();
+    Qt::MouseButton button = Qt::LeftButton;
+    Qt::MouseButtons buttons = Qt::LeftButton;
+    Qt::KeyboardModifiers modifiers = Qt::NoModifier;
+    QMouseEvent *mousePressEvent = new QMouseEvent(QEvent::MouseButtonPress, localPos, windowPos, screenPos, button, buttons, modifiers);
     QApplication::postEvent(this, mousePressEvent);
 
 }
