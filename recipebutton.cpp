@@ -31,15 +31,23 @@ setObjectName("mainRecipeButton");
     chosenIngredients.push_back(new Ingredient("riceNoodles"));
 
     // Populate the ingredients list
-    populateIngredientsList(recipe.getTasks(), chosenIngredients);
+    //populateIngredientsList(recipe.getIngredients(), chosenIngredients);
 
     connect(ui->aboutBtn, &QPushButton::clicked, this, [this, &recipe]() {
         QMessageBox msgBox(this);
-        msgBox.setText(recipe.getDescription());
+        msgBox.setWindowTitle("Learn more");
+        msgBox.setText(recipe.getLearnMore());
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
     });
 
+    connect(ui->stepsBtn, &QPushButton::clicked, this, [this, &recipe]() {
+        QMessageBox msgBox(this);
+         msgBox.setWindowTitle("Step By Step");
+        msgBox.setText(recipe.getDescription());
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.exec();
+    });
 
    connect(this, &QPushButton::clicked, this, [this]() {
        setSelected(!getSelected());

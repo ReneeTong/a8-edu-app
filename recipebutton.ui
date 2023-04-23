@@ -61,10 +61,10 @@
   <widget class="QPushButton" name="aboutBtn">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>340</y>
-     <width>101</width>
-     <height>51</height>
+     <x>200</x>
+     <y>360</y>
+     <width>121</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="mouseTracking">
@@ -96,7 +96,7 @@
      <x>30</x>
      <y>180</y>
      <width>141</width>
-     <height>211</height>
+     <height>221</height>
     </rect>
    </property>
    <property name="selectionMode">
@@ -126,6 +126,19 @@
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="stepsBtn">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>310</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Step By Step</string>
    </property>
   </widget>
  </widget>
