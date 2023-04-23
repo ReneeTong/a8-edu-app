@@ -63,6 +63,7 @@ void FoodLibrary::initialRecipes()
                         "6. Pour all content to a bowl. ");
     pho->setLearnMore("This is learn more. ");
     pho->setRecipeTags({RecipeTags::DAIRYFREE, RecipeTags::GLUTENFREE, RecipeTags::NUTFREE});
+    recipes.push_back(pho);
     pho->setTasks(  {
                         {Ingredient(QString("broccoli"), {ActionsPerformed::CUT}), 1},
                         {Ingredient(QString("carrort"), {ActionsPerformed::CUT}), 1},
@@ -78,6 +79,7 @@ void FoodLibrary::initialRecipes()
                         {Ingredient(QString("cabbage"   ), {ActionsPerformed::CUT, ActionsPerformed::BOIL}), 1},
                         {Ingredient(QString("riceNoodle"),{ActionsPerformed::BOIL}), 1},
                         {Ingredient(QString("soysauce"  ) ,{ActionsPerformed::BOIL}), 1}
+
                     });
 }
 

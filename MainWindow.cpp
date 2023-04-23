@@ -44,6 +44,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(page4, &s4Complete::goToPage1, this, [=]() {
         stackedWidget->setCurrentWidget(page0);
     });
+    connect(page2, &s2Recipe::backButtonClicked, this, [=]() {
+        stackedWidget->setCurrentWidget(page1);
+    });
 
 
     connect(page1, &s1Pantry::sendSelectedIngredients, page2, &s2Recipe::recieveSelectedIngredients);

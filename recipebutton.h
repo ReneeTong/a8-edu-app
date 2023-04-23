@@ -5,9 +5,10 @@
 #include <QWidget>
 #include "recipe.h"
 #include <QPainter>
+#include <QMessageBox>
 
 namespace Ui {
-class recipeButton;
+class RecipeButton;
 }
 
 class recipeButton : public QPushButton
@@ -26,6 +27,9 @@ public:
     void setSelected(bool selected);
 
     Recipe* getRecipe();
+protected:
+    recipeButton(QWidget *parent = nullptr);
+
 public slots:
     void onClicked();
 
@@ -35,7 +39,7 @@ public slots:
 
 private:
 
-    Ui::recipeButton *ui;
+    Ui::RecipeButton *ui;
     Recipe* recipe;
     bool selected;
 };

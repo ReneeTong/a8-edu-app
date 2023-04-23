@@ -23,6 +23,11 @@ public slots:
 signals:
     void goToPage3();
     void onRecieveRecipe(Recipe* recipe);
+    void backButtonClicked();
+
+private slots:
+    void on_backButton_clicked();
+
 
 private:
     Ui::s2Recipe *ui;
