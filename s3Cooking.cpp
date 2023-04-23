@@ -1,5 +1,6 @@
 //#include "simulations.h"
 #include "s3Cooking.h"
+#include "render.h"
 #include "ui_s3Cooking.h"
 #include"modelnew.h"
 #include <QPainter>
@@ -14,9 +15,14 @@ s3Cooking::s3Cooking(ModelNew& model, QWidget *parent) :
     ui->widget->show();
 
     // jeffrey
-    QTimer::singleShot(0, this, [this]() {
-        ui->scrollArea->addWidget(ui->render);
+    QTimer::singleShot(10, this, [this]() {
+        Render* render = new Render;
+        ui->scrollArea->addWidget(render);
+
+        connect(render->getModel(), &ModelNew::updateDisplayText, ui->stepLabel, &QLabel::setText);
     });
+
+
 
     //Andy Tran:
     //Step label

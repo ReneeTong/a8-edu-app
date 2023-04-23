@@ -12,7 +12,7 @@ using std::function;
 
 class RecipeNew {
 public:
-    RecipeNew() : tasksTracker{}, m_recipeTasks{} {
+    RecipeNew() : tasksTracker{}, m_recipeTasks{}, m_recipeDisplayText{} {
 
     };
 
@@ -64,14 +64,37 @@ public:
         return true;
     }
 
+    QString getDisplayText() {
+        if (currentTask == m_recipeDisplayText.count()) return "Completed!";
+
+        map<IngredientNew, int> tasks = m_recipeTasks[currentTask];
+
+        QString displayText = m_recipeDisplayText[currentTask];
+        for (const auto& [ingredient, count] : tasks) {
+            displayText = displayText.arg(ingredient.getName()).arg(count);
+
+            int progress = 0;
+            if (tasksTracker.find(ingredient) != tasks.end()) {
+                progress = tasksTracker[ingredient];
+            }
+            displayText = displayText.arg(progress);
+        }
+
+        return "Step " + QString::number(currentTask + 1) + ":\n" + displayText;
+    }
+
     bool isComplete = false;
 
-    void addTask(map<Ingredient, int> tasks) {
+
         m_recipeTasks.append(tasks);
+        m_recipeDisplayText.append(text);
     }
 
 private:
-    QList<map<Ingredient, int>> m_recipeTasks;
+
+    QList<map<IngredientNew, int>> m_recipeTasks;
+    QList<QString> m_recipeDisplayText;
+
 };
 
 
@@ -99,7 +122,7 @@ private:
     b2World *m_world;
 
 signals:
-
+    void updateDisplayText(QString text);
 };
 
 #endif // MODELNEW_H

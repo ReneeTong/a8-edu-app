@@ -38,8 +38,8 @@ Render::Render(QWidget *parent)
     int const UTENSIL_COUNT = 3;
 
     {
-        b2Vec2 size = b2Vec2(70, 10);
-        b2Vec2 position = b2Vec2(WINDOW_WIDTH/(UTENSIL_COUNT+1), WINDOW_HEIGHT-GROUND_HEIGHT-size.y);
+        b2Vec2 size = b2Vec2(60, 10);
+        b2Vec2 position = b2Vec2(WINDOW_WIDTH/(UTENSIL_COUNT+1), WINDOW_HEIGHT-(GROUND_HEIGHT*2)-size.y);
 
         Shape* cuttingBoard = new Shape(&world, position, size);
         cuttingBoard->setStatic(true);
@@ -49,7 +49,7 @@ Render::Render(QWidget *parent)
 
     {
         b2Vec2 size = b2Vec2(60, 50);
-        b2Vec2 position = b2Vec2(WINDOW_WIDTH/(UTENSIL_COUNT+1) * 2, WINDOW_HEIGHT-GROUND_HEIGHT-size.y);
+        b2Vec2 position = b2Vec2(WINDOW_WIDTH/(UTENSIL_COUNT+1) * 2, WINDOW_HEIGHT-(GROUND_HEIGHT*2)-size.y);
 
         Shape* boilingPot = new Shape(&world, position, size);
         boilingPot->setStatic(true);
@@ -58,8 +58,8 @@ Render::Render(QWidget *parent)
     }
 
     {
-        b2Vec2 size = b2Vec2(40, 15);
-        b2Vec2 position = b2Vec2(WINDOW_WIDTH/(UTENSIL_COUNT+1) * 3, WINDOW_HEIGHT-GROUND_HEIGHT-size.y);
+        b2Vec2 size = b2Vec2(60, 15);
+        b2Vec2 position = b2Vec2(WINDOW_WIDTH/(UTENSIL_COUNT+1) * 3, WINDOW_HEIGHT-(GROUND_HEIGHT*2)-size.y);
 
         Shape* fryingPan = new Shape(&world, position, size);
         fryingPan->setStatic(true);
@@ -91,6 +91,9 @@ void Render::mousePressEvent(QMouseEvent* event) {
 void Render::paintEvent(QPaintEvent *) {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::gray);
+
+    QPixmap background(":/sprites/icons/Kitchen.PNG");
+    painter.drawPixmap(rect(), background);
 
     world.DrawDebugData();
 }

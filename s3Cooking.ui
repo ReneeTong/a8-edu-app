@@ -185,6 +185,22 @@
    <property name="lineWidth">
     <number>3</number>
    </property>
+   <widget class="QLabel" name="stepLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>161</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="QLabel" name="labelStep">
    <property name="geometry">
@@ -238,9 +254,9 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>440</y>
+     <y>100</y>
      <width>651</width>
-     <height>231</height>
+     <height>571</height>
     </rect>
    </property>
    <property name="widgetResizable">
@@ -252,20 +268,10 @@
       <x>0</x>
       <y>0</y>
       <width>649</width>
-      <height>229</height>
+      <height>569</height>
      </rect>
     </property>
    </widget>
-  </widget>
-  <widget class="Render" name="render" native="true">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>650</y>
-     <width>120</width>
-     <height>80</height>
-    </rect>
-   </property>
   </widget>
  </widget>
  <customwidgets>
@@ -279,12 +285,6 @@
    <class>DragAndDropGraphicsView</class>
    <extends>QGraphicsView</extends>
    <header location="global">draganddrop.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Render</class>
-   <extends>QWidget</extends>
-   <header>render.h</header>
-   <container>1</container>
   </customwidget>
   <customwidget>
    <class>ScrollCarousel</class>
