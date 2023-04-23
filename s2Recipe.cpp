@@ -15,10 +15,10 @@ s2Recipe::s2Recipe(QWidget *parent) :
 
         FoodLibrary foodLibrary;
 
-        Recipe* phoRecipe = foodLibrary.getRecipeByName("Pho"); // Make sure the name matches the recipe in the FoodLibrary
+        Recipe* phoRecipe = foodLibrary.getRecipeByName("Pho");
 
-            recipeButton *phoButton = new recipeButton(*phoRecipe);
-            ui->scrollArea_2->addWidget(phoButton);
+        recipeButton *phoButton = new recipeButton(*phoRecipe, this, selectedIngredients);
+        ui->scrollArea_2->addWidget(phoButton);
 
 
         //default is the first one
@@ -31,6 +31,7 @@ s2Recipe::s2Recipe(QWidget *parent) :
        ui->scrollArea_2->addWidget(phoButton2);
 
     });
+
 
     connect(ui->backBtn, &QPushButton::clicked, this, &s2Recipe::on_backButton_clicked);
 }
@@ -70,7 +71,11 @@ void s2Recipe::nextPage()
     emit sendSelectedRecipe(noodle);
 }
 
-void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> selectedIngredients){
+void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> receivedIngredients){
+
+    qDebug() << "Received ingredients count:" << receivedIngredients.size();
+    selectedIngredients = receivedIngredients;
+    qDebug() << "selected ingredients count:" << this->selectedIngredients.size();
     ui->ingredientArea->clearWidgets();
     for (Ingredient *ingredient : selectedIngredients) {
         IngredientButton *button = new IngredientButton(*ingredient, 75);
@@ -78,36 +83,38 @@ void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> selectedIngredients
 
         ui->ingredientArea->addWidget(button);
     }
-}
-
-//This function is used to compare recipe which will have more matching ingredient with choosenIngredients.
-bool sortRecipeByIngredients (QWidget *widget1, QWidget *widget2 ){
-    Recipe *recipe1 = widget1->property("recipe").value<Recipe *>();
-    Recipe *recipe2 = widget2->property("recipe").value<Recipe *>();
-
-    if(!recipe1 || !recipe2){
-         return false;
-     }
-
-     //TODO: Add the list in here later.
-    QList<Ingredient*> choosenIngredients = {};
-
-     auto countMatchingIngredient = [&](Recipe *recipe){
-        int count = 0;
-            for(Ingredient *ingredient : choosenIngredients){
-            if(recipe->getIngredients().contains(ingredient)){
-                    count++;
-                }
-        }
-            return count;
-    };
-
-    int matchingIngredients1 = countMatchingIngredient(recipe1);
-    int matchingIngredients2 = countMatchingIngredient(recipe2);
-
-    return matchingIngredients1 > matchingIngredients2;
 
 }
+
+
+////This function is used to compare recipe which will have more matching ingredient with choosenIngredients.
+//bool sortRecipeByIngredients (QWidget *widget1, QWidget *widget2 ){
+//    Recipe *recipe1 = widget1->property("recipe").value<Recipe *>();
+//    Recipe *recipe2 = widget2->property("recipe").value<Recipe *>();
+
+//    if(!recipe1 || !recipe2){
+//         return false;
+//     }
+
+//     //TODO: Add the list in here later.
+//    QList<Ingredient*> choosenIngredients = {};
+
+//     auto countMatchingIngredient = [&](Recipe *recipe){
+//        int count = 0;
+//            for(Ingredient *ingredient : choosenIngredients){
+//            if(recipe->getIngredients().contains(ingredient)){
+//                    count++;
+//                }
+//        }
+//            return count;
+//    };
+
+//    int matchingIngredients1 = countMatchingIngredient(recipe1);
+//    int matchingIngredients2 = countMatchingIngredient(recipe2);
+
+//    return matchingIngredients1 > matchingIngredients2;
+
+//}
 
 void s2Recipe::on_backButton_clicked() {
     emit backButtonClicked();

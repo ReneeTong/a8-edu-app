@@ -27,7 +27,3 @@ Recipe::Recipe()
 {
 
 }
-
-
-
-

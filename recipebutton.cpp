@@ -5,7 +5,7 @@ recipeButton* recipeButton::previousClickedRecipe = nullptr;
 
 
 
-recipeButton::recipeButton(const Recipe &recipe, QWidget *parent) :
+recipeButton::recipeButton(const Recipe &recipe, QWidget *parent, const QList<Ingredient *> &selectedIngredients) :
     QPushButton(parent),
     ui(new Ui::RecipeButton)
 {
@@ -24,14 +24,7 @@ setObjectName("mainRecipeButton");
     setFixedSize(350,425);
     ui->difficultyLab->setText(QString("Difficulty: %1/5").arg(recipe.getDifficulty()));
 
-
-    QVector<Ingredient*> chosenIngredients;
-    chosenIngredients.push_back(new Ingredient("broccoli"));
-    chosenIngredients.push_back(new Ingredient("carrot"));
-    chosenIngredients.push_back(new Ingredient("riceNoodles"));
-
-    // Populate the ingredients list
-    //populateIngredientsList(recipe.getIngredients(), chosenIngredients);
+     populateIngredientsList(recipe.getIngredients(), selectedIngredients);
 
     connect(ui->aboutBtn, &QPushButton::clicked, this, [this, &recipe]() {
         QMessageBox msgBox(this);
@@ -49,6 +42,10 @@ setObjectName("mainRecipeButton");
         msgBox.exec();
     });
 
+    connect(this, &recipeButton::ingredientsReadySignal, this, [this, recipe, selectedIngredients]() {
+        populateIngredientsList(recipe.getIngredients(), selectedIngredients);
+    });
+
    connect(this, &QPushButton::clicked, this, [this]() {
        setSelected(!getSelected());
    });
@@ -64,29 +61,32 @@ Recipe* recipeButton::getRecipe(){
     return recipe;
 }
 
-bool recipeButton::isIngredientChosen(Ingredient *ingredient, const QList<Ingredient*> &chosenIngredients)
+bool recipeButton::isIngredientChosen(const Ingredient &recipeIngredient, const QList<Ingredient *> &selectedIngredients)
 {
-    for (Ingredient *chosenIngredient : chosenIngredients) {
-        if (ingredient->getName() == chosenIngredient->getName()) {
+    if (selectedIngredients.isEmpty()) {
+        qDebug() << "The selectedIngredients list is empty.";
+        return false;
+    }
+    for (Ingredient *selectedIngredient : selectedIngredients) {
+        if (recipeIngredient.getName() == selectedIngredient->getName()) {
             return true;
         }
     }
     return false;
+
 }
 
-void recipeButton::populateIngredientsList(const  QMap<Ingredient, int> tasks, const QList<Ingredient *> &chosenIngredients)
+void recipeButton::populateIngredientsList(const QList<Ingredient *> &recipeIngredients, const QList<Ingredient *> &selectedIngredients)
 {
     int matchingIngredientsCount = 0;
+    int totalIngredientsCount = 0;
 
-    for (auto it = tasks.constBegin(); it != tasks.constEnd(); ++it)
+    for (Ingredient *recipeIngredient : recipeIngredients)
     {
-        Ingredient ingredient = it.key();
-        int amount = it.value();
-
         QListWidgetItem *listItem = new QListWidgetItem(ui->matchingList);
-        listItem->setText(QString("%1 x %2").arg(amount).arg(ingredient.getName()));
+        listItem->setText(recipeIngredient->getName());
 
-        if (isIngredientChosen(&ingredient, chosenIngredients))
+        if (isIngredientChosen(*recipeIngredient, selectedIngredients))
         {
             listItem->setForeground(Qt::green);
             matchingIngredientsCount++;
@@ -97,10 +97,10 @@ void recipeButton::populateIngredientsList(const  QMap<Ingredient, int> tasks, c
         }
 
         ui->matchingList->addItem(listItem);
+        totalIngredientsCount++;
     }
 
-    // Update the matching ingredients label
-    ui->matchingLab->setText(QString("Matching ingredients: %1").arg(matchingIngredientsCount));
+    ui->matchingLab->setText(QString("%1/%2").arg(matchingIngredientsCount).arg(totalIngredientsCount));
 }
 
 bool recipeButton::getSelected() const {
@@ -124,3 +124,5 @@ void recipeButton::onClicked()
     setStyleSheet("recipeButton {border: 2px solid red};");
     previousClickedRecipe = this;
 }
+
+

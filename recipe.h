@@ -74,6 +74,7 @@ public:
            QVector<RecipeTags>recipeTags, Country country,QString description, QString learnMore,
            QMap<int, Ingredient *> prepSteps, QMap<int, Ingredient *> cookingSteps);
 
+
     //Andy Tran Added
 //    Recipe(QList<Step> steps);
 //    void printSteps();
@@ -82,7 +83,8 @@ public:
     //------------------------
 
     //Getters
-    QVector<Ingredient *> getIngredients() const{return ingredients;}
+
+    QList<Ingredient *> getIngredients() const{return ingredients;}
     QString getName() const{return name;}
     int getDifficulty() const{return difficulty;}
     QVector<RecipeTags> getRecipeTags() const{return recipeTags;}

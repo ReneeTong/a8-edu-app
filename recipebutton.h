@@ -16,15 +16,18 @@ class recipeButton : public QPushButton
     Q_OBJECT
 
 public:
-    explicit recipeButton(const Recipe &recipe, QWidget *parent = nullptr);   
+     explicit recipeButton(const Recipe &recipe, QWidget *parent = nullptr, const QList<Ingredient *> &selectedIngredients = QList<Ingredient *>());
     ~recipeButton();
+
+   Q_SIGNAL void ingredientsReadySignal(const QList<Ingredient *> &selectedIngredients);
 
     static recipeButton* previousClickedRecipe;
 
-    bool isIngredientChosen(Ingredient* ingredient, const QList<Ingredient*>& chosenIngredients);
-    void populateIngredientsList(const QMap<Ingredient, int> tasks, const QList<Ingredient*>& chosenIngredients);
+    bool isIngredientChosen(const Ingredient &recipeIngredient, const QList<Ingredient *> &chosenIngredients);
+    void populateIngredientsList(const QList<Ingredient *> &recipeIngredients, const QList<Ingredient *> &chosenIngredients);
+
     bool getSelected() const;
-    void setSelected(bool selected);
+    void setSelected(bool);
 
     Recipe* getRecipe();
 protected:

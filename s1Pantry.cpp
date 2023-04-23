@@ -121,6 +121,8 @@ s1Pantry::s1Pantry(QWidget *parent) :
             }
         }
     });
+
+
 }
 
 s1Pantry::~s1Pantry()
@@ -140,4 +142,5 @@ void s1Pantry::nextPage()
 {
     emit goToPage2();
     emit sendSelectedIngredients(selectedIngredients);
+
 }

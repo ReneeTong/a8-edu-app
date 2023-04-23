@@ -20,6 +20,7 @@ public slots:
     void nextPage();
     void recieveSelectedIngredients(QList<Ingredient*>);
 
+
 signals:
     void goToPage3();
     void sendSelectedRecipe(RecipeNew* recipe);
@@ -31,6 +32,8 @@ private slots:
 
 private:
     Ui::s2Recipe *ui;
+    QList<Ingredient*> selectedIngredients;
+
 
 };
 
