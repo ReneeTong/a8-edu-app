@@ -106,8 +106,6 @@ void Render::paintEvent(QPaintEvent *) {
 
 void Render::dropEvent(QDropEvent*)
 {
-
-    //QPoint pos = event->position().toPoint();
     QPointF localPos = this->mapFromGlobal(QCursor::pos());
     QPointF windowPos = this->mapFromGlobal(QCursor::pos());
     QPointF screenPos = QCursor::pos();
