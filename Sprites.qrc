@@ -10,15 +10,14 @@
         <file>icons/Carrot.png</file>
         <file>icons/Cabbage.png</file>
         <file>icons/RiceNoodles.png</file>
-
         <file>icons/SoySauce.png</file>
         <file>icons/Salt.png</file>
-
         <file>icons/Kitchen.PNG</file>
         <file>recipes/Pho.txt</file>
         <file>icons/Tomato_Pieces.png</file>
         <file>icons/Wok.PNG</file>
         <file>icons/FryPan.png</file>
         <file>icons/Title.png</file>
+        <file>icons/pho.png</file>
     </qresource>
 </RCC>

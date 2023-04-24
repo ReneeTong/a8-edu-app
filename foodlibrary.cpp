@@ -52,7 +52,7 @@ void FoodLibrary::initialRecipes()
     Recipe* pho = new Recipe();
     //Set all ingredient
     pho->setIngredients({broccoli, carrot, cabbage, riceNoodles,beef, chicken,soysauce});
-    pho->loadImageFromFile("");
+    pho->loadImageFromFile(":/sprites/icons/pho.png");
     pho->setCountry(Country::VIETNAM);
     pho->setName("Pho");
     pho->setDifficulty(3);
