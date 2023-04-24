@@ -84,6 +84,10 @@ void Render::mousePressEvent(QMouseEvent* event) {
         QPointF clickPos = event->pos();
         b2Vec2 targetPos = b2Vec2(clickPos.x(), clickPos.y());
 
+        if (!m_mouseJoints.empty()) {
+            mouseReleaseEvent(event);
+        }
+
         // Iterate through all bodies in the world
         for (b2Body* body = world.GetBodyList(); body; body = body->GetNext())
         {
@@ -125,7 +129,10 @@ void Render::mouseMoveEvent(QMouseEvent* event) {
 void Render::mouseReleaseEvent(QMouseEvent* event) {
     if (event->button() == Qt::LeftButton) {
         for (b2MouseJoint *joint : m_mouseJoints) {
-            world.DestroyJoint(joint);
+            b2Body *bodyB = joint->GetBodyB();
+            if (joint && bodyB->IsActive()) {
+                world.DestroyJoint(joint);
+            }
         }
         m_mouseJoints.clear();
     }
