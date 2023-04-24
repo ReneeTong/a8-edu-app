@@ -18,6 +18,7 @@ s3Cooking::s3Cooking(QWidget *parent) :
         ui->scrollArea->addWidget(render);//render moved to .h
     });
     connect(render->getModel(), &Model::updateDisplayText, ui->stepLabel, &QLabel::setText);
+     connect(ui->nextBtn, &QPushButton::clicked, this, &s3Cooking::nextPage);
 
     //Andy Tran:
     setAcceptDrops(true);

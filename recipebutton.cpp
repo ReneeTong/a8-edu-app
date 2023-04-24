@@ -21,6 +21,12 @@ recipeButton::recipeButton(const Recipe &recipe, QWidget *parent, const QList<In
     ui->recipeDifficulty->setValue((recipe.getDifficulty() * 100) / 5); // Calculate the percentage based on difficulty level
     setFixedSize(350,425);
     ui->difficultyLab->setText(QString("Difficulty: %1/5").arg(recipe.getDifficulty()));
+    QLabel *imageLabel = new QLabel(this);
+    ui->imageLab->setPixmap(recipe.getImage());
+    ui->imageLab->setScaledContents(true);
+    ui->imageLab->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+    imageLabel->setScaledContents(true);
+    imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 
      populateIngredientsList(recipe.getIngredients(), selectedIngredients);
 
@@ -148,5 +154,7 @@ void recipeButton::onClicked()
         previousClickedRecipe = this;
     }
 }
+
+
 
 

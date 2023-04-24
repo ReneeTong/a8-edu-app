@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <Box2D/Box2D.h>
+#include "recipenew.h"
 
 using namespace std;
 
@@ -21,15 +22,17 @@ public:
 
 public slots:
     void nextPage();
-
+//    void receiveSelectedRecipe(RecipeNew *recipe);
 
 
 signals:
     void goToPage1();
+    void exitButtonClicked();
+    void restartApp();
 
 private:
     Ui::s4Complete *ui;
-
+     RecipeNew *currentRecipe;
 };
 
 #endif // S4COMPLETE_H

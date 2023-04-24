@@ -177,6 +177,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    ../../../Downloads/pho.png \
     Box2D/Box2DConfig.cmake \
     Box2D/CMakeLists.txt \
     alien1.png \

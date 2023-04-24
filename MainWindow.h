@@ -7,6 +7,7 @@
 #include "s3Cooking.h"
 #include "s4Complete.h"
 #include <QMainWindow>
+#include <QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,6 +22,7 @@ public:
     ~MainWindow();
 
 public slots:
+    void restart();
 
 private:
     Ui::MainWindow *ui;

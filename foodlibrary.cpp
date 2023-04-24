@@ -52,6 +52,7 @@ void FoodLibrary::initialRecipes()
     Recipe* pho = new Recipe();
     //Set all ingredient
     pho->setIngredients({broccoli, carrot, cabbage, riceNoodles,beef, chicken,soysauce});
+    pho->loadImageFromFile(":/sprites/icons/pho.png");
     pho->setCountry(Country::VIETNAM);
     pho->setName("Pho");
     pho->setDifficulty(3);
@@ -61,6 +62,7 @@ void FoodLibrary::initialRecipes()
                         "4. Add all the vegetables into the soup and cook 30 minutes or more. \n"
                         "5. Cook the noodle in the soup for 5 minutes. And add some soysauce. \n"
                         "6. Pour all content to a bowl. ");
+
     pho->setLearnMore("<p>What is Phở?</p>"
                          "<p>- Phở is a Vietnamese soup dish consisting of broth, rice noodles (bánh phở), herbs, and meat (usually beef (phở bò), sometimes chicken (phở gà)). Phở is a popular food in Vietnam, where it is served in households, street-stalls, and restaurants country-wide.</p>"
                          "<p>Where did Phở emerge?</p>"

@@ -141,6 +141,19 @@
     <string>Step By Step</string>
    </property>
   </widget>
+  <widget class="QLabel" name="imageLab">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>180</y>
+     <width>111</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

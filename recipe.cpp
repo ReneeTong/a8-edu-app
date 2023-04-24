@@ -1,4 +1,5 @@
 #include "recipe.h"
+#include <QFileInfo>
 
 //Andy Tran Added
 //void Recipe::resetNeededAmount(){
@@ -26,4 +27,12 @@
 Recipe::Recipe()
 {
 
+}
+
+bool Recipe::loadImageFromFile(const QString &filePath)
+{
+    if (QFileInfo::exists(filePath)) {
+        return image.load(filePath);
+    }
+    return false;
 }
