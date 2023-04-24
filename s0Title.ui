@@ -111,7 +111,7 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>90</y>
+     <y>570</y>
      <width>671</width>
      <height>111</height>
     </rect>
@@ -123,6 +123,36 @@
     </font>
    </property>
   </widget>
+  <widget class="QLabel" name="background">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1001</width>
+     <height>701</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>background</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="title">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>20</y>
+     <width>641</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Title</string>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>verticalLayoutWidget</zorder>
+  <zorder>titleDisplayWidget</zorder>
+  <zorder>title</zorder>
  </widget>
  <customwidgets>
   <customwidget>
