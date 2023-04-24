@@ -25,7 +25,7 @@ public:
     bool getSelected() const;
     void setSelected(bool);
 
-    RecipeNew* getRecipe() const { return m_recipe; } ;
+    RecipeNew* getRecipe() const { return m_recipe; }
 
     // jeffohh
     void setTitle(QString text);
