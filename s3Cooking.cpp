@@ -26,8 +26,8 @@ s3Cooking::s3Cooking(QWidget *parent) :
     ui->labelStep->setText("STEP 1");
     setAcceptDrops(true);
 
-    xmaps.insert("tomato",QPixmap(":/sprites/icons/tomato.png"));
-    xmaps.insert("carrot",QPixmap(":/sprites/icons/carrot.png"));
+    xmaps.insert("Tomato",QPixmap(":/sprites/icons/Tomato.png"));
+    xmaps.insert("Carrot",QPixmap(":/sprites/icons/Carrot.png"));
 
     //Ruini:add backgound image
     QPixmap image(":/sprites/icons/Kitchen.PNG");

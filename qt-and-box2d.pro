@@ -180,7 +180,8 @@ DISTFILES += \
     ../../../Downloads/pho.png \
     Box2D/Box2DConfig.cmake \
     Box2D/CMakeLists.txt \
-    alien1.png
+    alien1.png \
+    icons/Salt.png
 
 RESOURCES += \
     Sprites.qrc

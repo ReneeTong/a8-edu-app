@@ -1,24 +1,24 @@
 <RCC>
     <qresource prefix="/sprites">
-        <file>icons/alien1.png</file>
-        <file>icons/beef.png</file>
-        <file>icons/brick.png</file>
-        <file>icons/broccoli.png</file>
-        <file>icons/chicken.png</file>
-        <file>icons/grass.png</file>
+        <file>icons/Beef.png</file>
+        <file>icons/Broccoli.png</file>
+        <file>icons/Chicken.png</file>
+        <file>icons/Peanut.png</file>
+        <file>icons/Pepper.png</file>
+        <file>icons/Pork.png</file>
+        <file>icons/Tomato.png</file>
+        <file>icons/Carrot.png</file>
+        <file>icons/Cabbage.png</file>
+        <file>icons/RiceNoodles.png</file>
+
+        <file>icons/SoySauce.png</file>
+        <file>icons/Salt.png</file>
+
         <file>icons/Kitchen.PNG</file>
-        <file>icons/peanut.png</file>
-        <file>icons/pepper.png</file>
-        <file>icons/pork.png</file>
-        <file>icons/soysauce.png</file>
-        <file>icons/tomato.png</file>
-        <file>icons/carrot.png</file>
-        <file>icons/cabbage.png</file>
-        <file>icons/riceNoodles.png</file>
         <file>recipes/Pho.txt</file>
-        <file>icons/tomato_pieces.png</file>
+        <file>icons/Tomato_Pieces.png</file>
         <file>icons/Wok.PNG</file>
-        <file>icons/fryPan.png</file>
-        <file>icons/title.png</file>
+        <file>icons/FryPan.png</file>
+        <file>icons/Title.png</file>
     </qresource>
 </RCC>

@@ -4,13 +4,12 @@
 recipeButton* recipeButton::previousClickedRecipe = nullptr;
 
 
-
 recipeButton::recipeButton(const Recipe &recipe, QWidget *parent, const QList<Ingredient *> &selectedIngredients) :
     QPushButton(parent),
     ui(new Ui::RecipeButton)
 {
     ui->setupUi(this);
-setObjectName("mainRecipeButton");
+    setObjectName("mainRecipeButton");
 
     Recipe recipeCopy = recipe;
     this->recipe = new Recipe(recipe);
@@ -118,7 +117,7 @@ void recipeButton::populateIngredientsList(const QList<Ingredient *> &recipeIngr
         }
         else
         {
-            listItem->setForeground(Qt::red);
+            listItem->setForeground(Qt::gray);
         }
 
         ui->matchingList->addItem(listItem);
@@ -135,7 +134,7 @@ bool recipeButton::getSelected() const {
 void recipeButton::setSelected(bool selected) {
     this->selected = selected;
     if (selected) {
-        setStyleSheet("recipeButton {border: 2px solid red};");
+        setStyleSheet("recipeButton {border: 2px solid rgba(0, 255, 0, 0.5);}");
     } else {
         setStyleSheet("recipeButton {};");
     }
@@ -145,7 +144,7 @@ void recipeButton::onClicked()
 {
     if (previousClickedRecipe != nullptr) {
         previousClickedRecipe->setStyleSheet("");
-        setStyleSheet("recipeButton {border: 2px solid red};");
+        setStyleSheet("recipeButton {border: 2px solid rgba(0, 255, 0, 0.5);}");
         previousClickedRecipe = this;
     }
 }

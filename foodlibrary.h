@@ -15,17 +15,17 @@ public:
     vector<Recipe*>getAllRecipes() const{return recipes;}
     Recipe* getRecipeByName(const QString& recipeName) const;
 
-    Ingredient* broccoli = new Ingredient("broccoli", VEGETABLE, {VEGAN}, {} );
-    Ingredient* tomato = new Ingredient("tomato", VEGETABLE, {VEGAN}, {} );
-    Ingredient * peanut = new Ingredient("peanut", CONDIMENT, {VEGAN, NUT}, {});
-    Ingredient* beef = new Ingredient("beef", MEAT, {}, {});
-    Ingredient * pork = new Ingredient("pork", MEAT, {}, {});
-    Ingredient* chicken = new Ingredient("chicken",MEAT, {}, {});
-    Ingredient* pepper = new Ingredient("pepper", CONDIMENT, {VEGAN}, {});
-    Ingredient* soysauce = new Ingredient("soysauce", CONDIMENT, {VEGAN}, {});
-    Ingredient* riceNoodles = new Ingredient("riceNoodles", STAPLE, {VEGAN}, {});
-    Ingredient* carrot = new Ingredient("carrot", VEGETABLE, {VEGAN}, {});
-    Ingredient* cabbage = new Ingredient("cabbage", VEGETABLE, {VEGAN}, {});
+    Ingredient* broccoli = new Ingredient("Broccoli", VEGETABLE, {VEGAN}, {} );
+    Ingredient* tomato = new Ingredient("Tomato", VEGETABLE, {VEGAN}, {} );
+    Ingredient * peanut = new Ingredient("Peanut", CONDIMENT, {VEGAN, NUT}, {});
+    Ingredient* beef = new Ingredient("Beef", MEAT, {}, {});
+    Ingredient * pork = new Ingredient("Pork", MEAT, {}, {});
+    Ingredient* chicken = new Ingredient("Chicken",MEAT, {}, {});
+    Ingredient* pepper = new Ingredient("Pepper", CONDIMENT, {VEGAN}, {});
+    Ingredient* soysauce = new Ingredient("SoySauce", CONDIMENT, {VEGAN}, {});
+    Ingredient* riceNoodles = new Ingredient("RiceNoodles", STAPLE, {VEGAN}, {});
+    Ingredient* carrot = new Ingredient("Carrot", VEGETABLE, {VEGAN}, {});
+    Ingredient* cabbage = new Ingredient("Cabbage", VEGETABLE, {VEGAN}, {});
 
 private:
     vector<Ingredient*> allIngredients;
