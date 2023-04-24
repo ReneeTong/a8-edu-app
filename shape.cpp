@@ -9,7 +9,7 @@ Shape::Shape(b2World* world, const b2Vec2& position, const b2Vec2& size, float32
     m_size(size)
 {
     b2BodyDef bodyDef;
-    bodyDef.type = b2_staticBody;
+    bodyDef.type = b2_dynamicBody;
     bodyDef.position = position;
 
     b2PolygonShape shape;
@@ -26,18 +26,19 @@ Shape::Shape(b2World* world, const b2Vec2& position, const b2Vec2& size, float32
     m_body = world->CreateBody(&bodyDef);
     m_body->CreateFixture(&fixtureDef);
     m_body->SetUserData(this);
-
-    //shapes[m_body] = this;
 }
 
 Shape::~Shape() {
     for (b2JointEdge* edge = m_body->GetJointList(); edge; edge = edge->next) {
         b2Joint* joint = edge->joint;
+
+        bool* destroyed = new bool(true);
+        joint->SetUserData(destroyed);
+
         m_body->GetWorld()->DestroyJoint(joint);
     }
     m_body->GetWorld()->DestroyBody( m_body );
-
-    //shapes.erase(m_body);
+    m_body = nullptr;
 }
 
 

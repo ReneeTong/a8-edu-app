@@ -135,12 +135,12 @@ void Render::mouseMoveEvent(QMouseEvent* event) {
 
 void Render::mouseReleaseEvent(QMouseEvent* event) {
     if (event->button() == Qt::LeftButton) {
-//        for (b2MouseJoint *joint : m_mouseJoints) {
-//            b2Body *bodyB = joint->GetBodyB();
-//            if (joint && bodyB) {
-//                world.DestroyJoint(joint);
-//            }
-//        }
+        for (b2MouseJoint *joint : m_mouseJoints) {
+            bool destroyed = (bool) joint->GetUserData();
+            if (!destroyed) {
+                world.DestroyJoint(joint);
+            }
+        }
         m_mouseJoints.clear();
     }
 }
