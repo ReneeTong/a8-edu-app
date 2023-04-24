@@ -20,72 +20,45 @@ s2Recipe::~s2Recipe()
 
 void s2Recipe::nextPage()
 {
-    // move to library later
-    RecipeNew *noodle = new RecipeNew;
-    noodle->addTask("First, describe tasks...",
-                    {
-                        {Ingredient("Salt", {BOIL}),                {1, "Put salt in the boiling pot"}}
-                    });
-    noodle->addTask("Very cool!",
-                    {
-                        {Ingredient("RiceNoodles", {BOIL}),         {1, "Boil the rice noodles until soft"}},
-                        {Ingredient("Garlic", {CUT}),               {2, "Mince garlic"}},
-                        {Ingredient("Oil", {FRY}),                  {1, "Oil the frying pan"}}
-                    });
-    noodle->addTask("Epic?",
-                    {
-                        {Ingredient("RiceNoodles", {FRY}),          {1, "Fry the rice noodles"}},
-                        {Ingredient("Garlic", {CUT, FRY}),          {8, "Fry the minced garlic"}}
-                    });
-    noodle->addTask("Almost done!",
-                    {
-                        {Ingredient("Pepper", {FRY}),               {1, "Add pepper to the frying pan"}},
-                        {Ingredient("ChiliYum", {FRY}),             {1, "Add chili yum to the frying pan"}},
-                        {Ingredient("SoySauce", {FRY}),             {1, "Add soy sauce to the frying pan"}}
-                    });
+    if (selectedRecipe == nullptr) return;
 
     emit goToPage3();
-    emit sendSelectedRecipe(noodle);
+    emit sendSelectedRecipe(selectedRecipe);
 }
 
 void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> receivedIngredients){
-
-    selectedIngredients = receivedIngredients;
     ui->ingredientArea->clearWidgets();
-    for (Ingredient *ingredient : selectedIngredients) {
+    for (Ingredient *ingredient : receivedIngredients) {
         IngredientButton *button = new IngredientButton(*ingredient, 75);
         button->setSelectable(false);
 
         ui->ingredientArea->addWidget(button);
     }
 
-    ui->scrollArea_2->clearWidgets();
-    initializeRecipeButtons();
 
-}
-
-void s2Recipe::initializeRecipeButtons()
-{
-
-
+    // load recipes
     ui->scrollArea_2->clearWidgets();
 
-    FoodLibrary foodLibrary;
+    QList<recipeButton*> buttons;
+    for (RecipeNew* recipe : foodLibrary.getAllRecipesNew()) {
+        recipeButton *button = new recipeButton(recipe, receivedIngredients);
+        buttons.append(button);
 
-    Recipe* phoRecipe = foodLibrary.getRecipeByName("Pho");
+        // we can sort here maybe????
+        // recipe button can contain some "matching" stuff
+        // sort by matching, then difficulty
+        ui->scrollArea_2->addWidget(button);
+    }
 
-    recipeButton *phoButton = new recipeButton(*phoRecipe, this, selectedIngredients);
-    ui->scrollArea_2->addWidget(phoButton);
-
-    //default is the first one
-    emit phoButton->clicked(true);
-
-//    //test one, replace with real one.
-//    recipeButton *phoButton1 = new recipeButton(*phoRecipe);
-//    ui->scrollArea_2->addWidget(phoButton1);
-
-//    recipeButton *phoButton2 = new recipeButton(*phoRecipe);
-//    ui->scrollArea_2->addWidget(phoButton2);
+    for (recipeButton* button : buttons) {
+        connect(button, &QPushButton::clicked, this, [this, buttons, button]() {
+            for (const auto& btn : buttons) {
+                btn->setSelected(false);
+            }
+            button->setSelected(true);
+            selectedRecipe = button->getRecipe();
+        });
+    }
 }
 
 
@@ -119,13 +92,5 @@ void s2Recipe::initializeRecipeButtons()
 //}
 
 void s2Recipe::backButtonClickedSlot() {
-    selectedIngredients.clear();
     emit backButtonClicked();
-
-
 }
-
-void sendNameOfRecipe(Recipe recipe){
-    emit
-}
-

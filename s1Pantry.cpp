@@ -15,7 +15,7 @@ s1Pantry::s1Pantry(QWidget *parent) :
 
     QList<ScrollCarousel*> pantryList;
 
-    for (int i = MEAT; i <= STAPLE; i++) {
+    for (int i = STAPLE; i <= CONDIMENT; i++) {
         FoodCategory food = static_cast<FoodCategory>(i);
 
         QGroupBox *box = new QGroupBox();
@@ -25,6 +25,9 @@ s1Pantry::s1Pantry(QWidget *parent) :
         QHBoxLayout *layout = new QHBoxLayout(box);
 
         switch (food) {
+        case STAPLE:
+            box->setTitle("Staple");
+            break;
         case MEAT:
             box->setTitle("Meat");
             break;
@@ -33,9 +36,6 @@ s1Pantry::s1Pantry(QWidget *parent) :
             break;
         case CONDIMENT:
             box->setTitle("Condiment");
-            break;
-        case STAPLE:
-            box->setTitle("Staple");
             break;
         default:
             break;

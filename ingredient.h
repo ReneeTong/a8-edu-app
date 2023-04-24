@@ -13,7 +13,7 @@ using std::is_permutation;
 
 // thoughts on enums? @jeffohh
 enum ActionsPerformed { CUT, BOIL, MIX, FRY};
-enum FoodCategory { MEAT, VEGETABLE, CONDIMENT, STAPLE };
+enum FoodCategory { STAPLE, MEAT, VEGETABLE, CONDIMENT };
 enum FoodTags { NUT, VEGAN, Dairy, SUGAR , Gluten};
 
 class Ingredient

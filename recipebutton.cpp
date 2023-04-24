@@ -1,37 +1,45 @@
 #include "recipebutton.h"
 #include "ui_recipebutton.h"
 
-recipeButton* recipeButton::previousClickedRecipe = nullptr;
-
-
-recipeButton::recipeButton(const Recipe &recipe, QWidget *parent, const QList<Ingredient *> &selectedIngredients) :
+recipeButton::recipeButton(RecipeNew *recipe, QList<Ingredient*> pantry, QWidget *parent) :
     QPushButton(parent),
-    ui(new Ui::RecipeButton)
+    ui(new Ui::RecipeButton),
+    m_recipe(recipe)
 {
     ui->setupUi(this);
     setObjectName("mainRecipeButton");
-
-    Recipe recipeCopy = recipe;
-    this->recipe = new Recipe(recipe);
-
-    ui->matchingList->setEnabled(false);
-    ui->recipeName->setText(recipe.getName());
-    ui->recipeDifficulty->setValue(recipe.getDifficulty());
-    ui->recipeDifficulty->setRange(0, 100); // Set range from 0 to 100
-    ui->recipeDifficulty->setValue((recipe.getDifficulty() * 100) / 5); // Calculate the percentage based on difficulty level
     setFixedSize(350,425);
-    ui->difficultyLab->setText(QString("Difficulty: %1/5").arg(recipe.getDifficulty()));
-    QLabel *imageLabel = new QLabel(this);
-    ui->imageLab->setPixmap(recipe.getImage());
-    ui->imageLab->setScaledContents(true);
-    ui->imageLab->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-    imageLabel->setScaledContents(true);
-    imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 
-     populateIngredientsList(recipe.getIngredients(), selectedIngredients);
+    setTitle(recipe->getName());
+    setDescription(recipe->getDescription());
+    setLearnMore(recipe->getLearnMore());
+    setDifficulty(recipe->getDifficulty());
+    setPixmap(recipe->getPixmap());
+    setIngredientList(recipe->getIngredeints(), pantry);
 
-    connect(ui->aboutBtn, &QPushButton::clicked, this, [this, &recipe]() {
-        QMessageBox msgBox(this);
+    connect(this, &QPushButton::clicked, this, [this]() {
+        setSelected(!getSelected());
+    });
+}
+
+// [== ABSTRACTION ADDED BY JEFFREY ==]
+void recipeButton::setTitle(QString text) {
+    ui->recipeName->setText(text);
+};
+
+void recipeButton::setDescription(QString text) {
+    connect(ui->stepsBtn, &QPushButton::clicked, this, [this, text]() {
+        QMessageBox *msgBox = new QMessageBox(this);
+        msgBox->setWindowTitle("Step By Step");
+        msgBox->setText(text);
+        msgBox->setStandardButtons(QMessageBox::Ok);
+        msgBox->exec();
+    });
+};
+
+void recipeButton::setLearnMore(QString text) {
+    connect(ui->aboutBtn, &QPushButton::clicked, this, [this, text]() {
+        QMessageBox *msgBox = new QMessageBox(this);
 
         // Set up the messagebox style
         QString msgBoxStyle = "QMessageBox {"
@@ -55,82 +63,58 @@ recipeButton::recipeButton(const Recipe &recipe, QWidget *parent, const QList<In
                               "QPushButton:pressed {"
                               "background-color: #444444;"
                               "}";
-        msgBox.setStyleSheet(msgBoxStyle);
+        msgBox->setStyleSheet(msgBoxStyle);
 
-        msgBox.setWindowTitle("Learn more");
-        msgBox.setInformativeText(recipe.getLearnMore());
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.setTextFormat(Qt::RichText);
+        msgBox->setWindowTitle("Learn more");
+        msgBox->setInformativeText(text);
+        msgBox->setStandardButtons(QMessageBox::Ok);
+        msgBox->setTextFormat(Qt::RichText);
 
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        msgBox->setStandardButtons(QMessageBox::Ok);
+        msgBox->exec();
     });
+};
 
-    connect(ui->stepsBtn, &QPushButton::clicked, this, [this, &recipe]() {
-        QMessageBox msgBox(this);
-        msgBox.setWindowTitle("Step By Step");
-        msgBox.setText(recipe.getDescription());
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
-    });
+void recipeButton::setDifficulty(int difficulty) {
+    ui->recipeDifficulty->setValue(difficulty);
 
-    connect(this, &recipeButton::ingredientsReadySignal, this, [this, recipe, selectedIngredients]() {
-        populateIngredientsList(recipe.getIngredients(), selectedIngredients);
-    });
+    QString text = "Difficulty: %1/5";
+    text = text.arg(difficulty);
+    ui->difficultyLab->setText(text);
+};
 
-   connect(this, &QPushButton::clicked, this, [this]() {
-       setSelected(!getSelected());
-   });
-   connect(this, &QPushButton::clicked, this, &recipeButton::onClicked);
-}
+void recipeButton::setPixmap(QPixmap pixmap){
+    ui->imageLab->setPixmap(pixmap);
+    ui->imageLab->setScaledContents(true);
+};
+
+void recipeButton::setIngredientList(QList<Ingredient> ingredients, QList<Ingredient*> pantry) {
+    int matchingCount = 0;
+    for (const auto &ingredient : ingredients) {
+        QListWidgetItem *listItem = new QListWidgetItem(ui->matchingList);
+        listItem->setText(ingredient.getName());
+
+        listItem->setForeground(Qt::gray);
+        for (const auto& selected : pantry) {
+            if (selected->getName() == ingredient.getName()) {
+                listItem->setForeground(Qt::green);
+                matchingCount++;
+                break;
+            }
+        }
+    }
+
+    QString matchingText = "%1/%2";
+    matchingText = matchingText.arg(matchingCount);
+    matchingText = matchingText.arg(ingredients.size());
+    ui->matchingLab->setText(matchingText);
+};
+
+// [== END ==]
 
 recipeButton::~recipeButton()
 {
     delete ui;
-}
-
-Recipe* recipeButton::getRecipe(){
-    return recipe;
-}
-
-bool recipeButton::isIngredientChosen(const Ingredient &recipeIngredient, const QList<Ingredient *> &selectedIngredients)
-{
-    for (Ingredient *selectedIngredient : selectedIngredients) {
-        if (recipeIngredient == *selectedIngredient) {
-            return true;
-        }
-    }
-    return false;
-
-}
-
-void recipeButton::populateIngredientsList(const QList<Ingredient *> &recipeIngredients, const QList<Ingredient *> &selectedIngredients)
-{
-    int matchingIngredientsCount = 0;
-    int totalIngredientsCount = 0;
-
-    for (Ingredient *recipeIngredient : recipeIngredients)
-    {
-        QListWidgetItem *listItem = new QListWidgetItem(ui->matchingList);
-        listItem->setText(recipeIngredient->getName());
-
-        qDebug() << "*recipeIngredient: " << recipeIngredient->getName();
-        qDebug() << "selectedIngredients: " << recipeIngredient->getName();
-        if (isIngredientChosen(*recipeIngredient, selectedIngredients))
-        {
-            listItem->setForeground(Qt::green);
-            matchingIngredientsCount++;
-        }
-        else
-        {
-            listItem->setForeground(Qt::gray);
-        }
-
-        ui->matchingList->addItem(listItem);
-        totalIngredientsCount++;
-    }
-
-    ui->matchingLab->setText(QString("%1/%2").arg(matchingIngredientsCount).arg(totalIngredientsCount));
 }
 
 bool recipeButton::getSelected() const {
@@ -146,14 +130,6 @@ void recipeButton::setSelected(bool selected) {
     }
 }
 
-void recipeButton::onClicked()
-{
-    if (previousClickedRecipe != nullptr) {
-        previousClickedRecipe->setStyleSheet("");
-        setStyleSheet("recipeButton {border: 2px solid rgba(0, 255, 0, 0.5);}");
-        previousClickedRecipe = this;
-    }
-}
 
 
 

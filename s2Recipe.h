@@ -21,22 +21,19 @@ public slots:
     void nextPage();
     void recieveSelectedIngredients(QList<Ingredient*>);
 
-
 signals:
     void goToPage3();
-    void sendSelectedRecipe(RecipeNew* recipe);
-    void sendNameOfRecipe(Recipe recipe);
     void backButtonClicked();
+    void sendSelectedRecipe(RecipeNew* recipe);
 
 private slots:
     void backButtonClickedSlot();
 
-
 private:
     Ui::s2Recipe *ui;
-    QList<Ingredient*> selectedIngredients;
     FoodLibrary foodLibrary;
-    void initializeRecipeButtons();
+
+    RecipeNew* selectedRecipe;
 
 };
 

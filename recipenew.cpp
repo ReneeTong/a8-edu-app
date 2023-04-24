@@ -1,9 +1,11 @@
 #include "recipenew.h"
 
-RecipeNew::RecipeNew() : m_recipeTasks{}, m_recipeDisplayText{}
+RecipeNew::RecipeNew(QString name) : m_name(name)
 {
 
 }
+
+
 
 QList<Ingredient> RecipeNew::getIngredeints() {
     // check filter list from s1 maybe?

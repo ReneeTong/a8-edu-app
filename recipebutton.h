@@ -3,7 +3,7 @@
 
 #include <QPushButton>
 #include <QWidget>
-#include "recipe.h"
+#include "recipenew.h"
 #include <QPainter>
 #include <QMessageBox>
 #include <QTextBlockFormat>
@@ -18,34 +18,30 @@ class recipeButton : public QPushButton
     Q_OBJECT
 
 public:
-     explicit recipeButton(const Recipe &recipe, QWidget *parent = nullptr, const QList<Ingredient *> &selectedIngredients = QList<Ingredient *>());
+    //explicit recipeButton(const Recipe &recipe, QWidget *parent = nullptr, const QList<Ingredient *> &selectedIngredients = QList<Ingredient *>());
+    explicit recipeButton(RecipeNew* recipe, QList<Ingredient*> pantry, QWidget *parent = nullptr);
     ~recipeButton();
-
-   Q_SIGNAL void ingredientsReadySignal(const QList<Ingredient *> &selectedIngredients);
-
-    static recipeButton* previousClickedRecipe;
-
-    bool isIngredientChosen(const Ingredient &recipeIngredient, const QList<Ingredient *> &chosenIngredients);
-    void populateIngredientsList(const QList<Ingredient *> &recipeIngredients, const QList<Ingredient *> &chosenIngredients);
 
     bool getSelected() const;
     void setSelected(bool);
 
-    Recipe* getRecipe();
+    RecipeNew* getRecipe() const { return m_recipe; } ;
+
+    // jeffohh
+    void setTitle(QString text);
+    void setDescription(QString text);
+    void setLearnMore(QString text);
+    void setDifficulty(int difficulty);
+    void setPixmap(QPixmap pixmap);
+
+    void setIngredientList(QList<Ingredient> ingredients, QList<Ingredient*> pantry);
+
 protected:
     recipeButton(QWidget *parent = nullptr);
 
-public slots:
-    void onClicked();
-
-//    void toggleSelected();
-//protected:
-//    void paintEvent(QPaintEvent *event) override;
-
 private:
-
     Ui::RecipeButton *ui;
-    Recipe* recipe;
+    RecipeNew* m_recipe;
     bool selected;
 };
 
