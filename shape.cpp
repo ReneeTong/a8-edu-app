@@ -1,4 +1,5 @@
 #include "shape.h"
+#include "qdebug.h"
 
 
 //map<b2Body*, Shape*> Shape::shapes = map<b2Body*, Shape*>();
@@ -19,6 +20,8 @@ Shape::Shape(b2World* world, const b2Vec2& position, const b2Vec2& size, float32
     fixtureDef.density = density;
     fixtureDef.friction = friction;
 
+    qDebug() << world->GetBodyCount();
+
     m_body = world->CreateBody(&bodyDef);
     m_body->CreateFixture(&fixtureDef);
     m_body->SetUserData(this);
@@ -27,7 +30,14 @@ Shape::Shape(b2World* world, const b2Vec2& position, const b2Vec2& size, float32
 }
 
 Shape::~Shape() {
+
+    for (b2JointEdge* edge = m_body->GetJointList(); edge; edge = edge->next) {
+        b2Joint* joint = edge->joint;
+        qDebug() << joint;
+        m_body->GetWorld()->DestroyJoint(joint);
+    }
     m_body->GetWorld()->DestroyBody( m_body );
+
     //shapes.erase(m_body);
 }
 

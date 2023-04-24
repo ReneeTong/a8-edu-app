@@ -13,14 +13,19 @@ void KitchenContactListener::BeginContact(b2Contact* contact) {
     b2Body* bodyA = fixtureA->GetBody();
     b2Body* bodyB = fixtureB->GetBody();
 
+    bool staticA = bodyA->GetType() == b2_staticBody;
+    bool staticB = bodyB->GetType() == b2_staticBody;
+
     // Check if one of the bodies is the static body you're interested in.
-    if (bodyA->GetType() == b2_staticBody || bodyB->GetType() == b2_staticBody) {
+    if (staticA || staticB) {
 
         Shape* shapeA = static_cast<Shape*>(bodyA->GetUserData());
         Shape* shapeB = static_cast<Shape*>(bodyB->GetUserData());
 
-        emit shapeA->onContact(shapeB);
-        emit shapeB->onContact(shapeA);
+        if (staticA)
+            emit shapeA->onContact(shapeB);
+        else
+            emit shapeB->onContact(shapeA);
     }
 }
 
