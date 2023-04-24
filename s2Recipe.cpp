@@ -22,27 +22,27 @@ void s2Recipe::nextPage()
 {
     // remove later
     RecipeNew *noodle = new RecipeNew;
-    noodle->addTask("Boil %1 (%3/%2)",
+    noodle->addTask("First, describe tasks...",
                     {
-                          {Ingredient("salt", {BOIL}), 1}
-                   });
-    noodle->addTask("Cut %1 (%3/%2)\nBoil %4 (%6/%5)\nPut %7 in frying pan (%9/%8)",
+                        {Ingredient("Salt", {BOIL}),                {1, "Put salt in the boiling pot"}}
+                    });
+    noodle->addTask("Very cool!",
                     {
-                          {Ingredient("noodle", {BOIL}), 1},
-                          {Ingredient("garlic", {CUT}), 4},
-                          {Ingredient("oil", {FRY}), 1},
-                   });
-    noodle->addTask("Fry %1 (%3/%2)\nFry %4 (%6/%5)",
+                        {Ingredient("RiceNoodles", {BOIL}),         {1, "Boil the rice noodles until soft"}},
+                        {Ingredient("Garlic", {CUT}),               {2, "Mince garlic"}},
+                        {Ingredient("Oil", {FRY}),                  {1, "Oil the frying pan"}}
+                    });
+    noodle->addTask("Epic?",
                     {
-                          {Ingredient("noodle", {FRY}), 1},
-                          {Ingredient("garlic", {FRY}), 1} // if we were to do two at once, more code is needed
-                      });
-    noodle->addTask("Add to frying pan\n%1 (%3/%2)\n%4 (%6/%5)\n%7 (%9/%8)",
+                        {Ingredient("RiceNoodles", {FRY}),          {1, "Fry the rice noodles"}},
+                        {Ingredient("Garlic", {CUT, FRY}),          {8, "Fry the minced garlic"}}
+                    });
+    noodle->addTask("Almost done!",
                     {
-                          {Ingredient("pepper", {FRY}), 1},
-                          {Ingredient("chili yum", {FRY}), 1},
-                          {Ingredient("soy sauce", {FRY}), 1},
-                      });
+                        {Ingredient("Pepper", {FRY}),               {1, "Add pepper to the frying pan"}},
+                        {Ingredient("ChiliYum", {FRY}),             {1, "Add chili yum to the frying pan"}},
+                        {Ingredient("SoySauce", {FRY}),             {1, "Add soy sauce to the frying pan"}}
+                    });
 
     emit goToPage3();
     emit sendSelectedRecipe(noodle);

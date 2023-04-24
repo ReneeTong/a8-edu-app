@@ -79,6 +79,9 @@ Render::Render(QWidget *parent)
 
 }
 
+
+
+// [== BOX2D DRAGGING SECTION ==]
 void Render::mousePressEvent(QMouseEvent* event) {
     if (event->button() == Qt::LeftButton) {
         QPointF clickPos = event->pos();
@@ -91,6 +94,8 @@ void Render::mousePressEvent(QMouseEvent* event) {
         // Iterate through all bodies in the world
         for (b2Body* body = world.GetBodyList(); body; body = body->GetNext())
         {
+            if (body == fryingPan->getBody()) continue;
+
             // Calculate the distance between the mouse click and the body position
             b2Vec2 bodyPos = body->GetPosition();
             b2Vec2 clickPosB2(bodyPos.x - clickPos.x(), bodyPos.y - clickPos.y());
@@ -138,6 +143,9 @@ void Render::mouseReleaseEvent(QMouseEvent* event) {
     }
 }
 
+
+// [== PAINT SECTION ==]
+
 void Render::paintEvent(QPaintEvent *) {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::gray);
@@ -172,9 +180,12 @@ void Render::paintEvent(QPaintEvent *) {
 
 
     painter.end();
-
 }
 
+
+
+
+// [== DRAG AND DROP SECTION ==]
 void Render::dropEvent(QDropEvent*event)
 {
 //    QPointF localPos = this->mapFromGlobal(QCursor::pos());
@@ -217,6 +228,8 @@ void Render::dragMoveEvent(QDragMoveEvent *event)
     event->acceptProposedAction();
 }
 
+
+// [== WORLD STEP SECTION ==]
 void Render::renderWorld() {
     world.Step(1.0/60.0, 6, 2);
 

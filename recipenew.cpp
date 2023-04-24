@@ -21,7 +21,23 @@ QList<Ingredient> RecipeNew::getIngredeints() {
     return ingredientList;
 }
 
-void RecipeNew::addTask(QString text, map<Ingredient, int> tasks) {
+map<Ingredient, int> RecipeNew::getTasks(int step) const {
+    map<Ingredient, int> tasksMap;
+    for (const auto& [key, value] : m_recipeTasks[step]) {
+        tasksMap[key] = std::get<0>(value);
+    }
+    return tasksMap;
+};
+
+map<Ingredient, QString> RecipeNew::getTasksText(int step) const {
+    map<Ingredient, QString> tasksMap;
+    for (const auto& [key, value] : m_recipeTasks[step]) {
+        tasksMap[key] = std::get<1>(value);
+    }
+    return tasksMap;
+};
+
+void RecipeNew::addTask(QString text, map<Ingredient, tuple<int, QString>> tasks) {
     m_recipeTasks.append(tasks);
     m_recipeDisplayText.append(text);
 }

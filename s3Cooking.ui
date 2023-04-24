@@ -20,44 +20,12 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QFrame" name="frame_2">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>100</y>
-     <width>651</width>
-     <height>331</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::Panel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Plain</enum>
-   </property>
-   <property name="lineWidth">
-    <number>3</number>
-   </property>
-   <widget class="QLabel" name="backgoundImage">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>641</width>
-      <height>571</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
-  </widget>
   <widget class="QFrame" name="leftFrame">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>100</y>
-     <width>131</width>
+     <width>111</width>
      <height>571</height>
     </rect>
    </property>
@@ -82,7 +50,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>111</width>
+      <width>91</width>
       <height>551</height>
      </rect>
     </property>
@@ -94,7 +62,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>109</width>
+       <width>89</width>
        <height>549</height>
       </rect>
      </property>
@@ -104,9 +72,9 @@
   <widget class="QPushButton" name="nextBtn">
    <property name="geometry">
     <rect>
-     <x>810</x>
+     <x>739</x>
      <y>620</y>
-     <width>180</width>
+     <width>251</width>
      <height>50</height>
     </rect>
    </property>
@@ -121,22 +89,12 @@
     <string>COOK</string>
    </property>
   </widget>
-  <widget class="simulations" name="widget" native="true">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>100</y>
-     <width>641</width>
-     <height>331</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>130</x>
      <y>10</y>
-     <width>611</width>
+     <width>601</width>
      <height>71</height>
     </rect>
    </property>
@@ -159,9 +117,9 @@
   <widget class="QFrame" name="rightFrame">
    <property name="geometry">
     <rect>
-     <x>810</x>
+     <x>740</x>
      <y>100</y>
-     <width>181</width>
+     <width>251</width>
      <height>511</height>
     </rect>
    </property>
@@ -186,9 +144,16 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>161</width>
+      <width>231</width>
       <height>491</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="text">
      <string>TextLabel</string>
@@ -198,36 +163,12 @@
     </property>
    </widget>
   </widget>
-  <widget class="QLabel" name="labelStep">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>60</y>
-     <width>131</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Comic Sans MS</family>
-     <pointsize>16</pointsize>
-     <bold>true</bold>
-     <underline>true</underline>
-    </font>
-   </property>
-   <property name="text">
-    <string>Step 1</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
   <widget class="QLabel" name="labelStep_2">
    <property name="geometry">
     <rect>
-     <x>810</x>
+     <x>740</x>
      <y>60</y>
-     <width>181</width>
+     <width>251</width>
      <height>41</height>
     </rect>
    </property>
@@ -249,9 +190,9 @@
   <widget class="ScrollCarousel" name="scrollArea">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>130</x>
      <y>100</y>
-     <width>651</width>
+     <width>601</width>
      <height>571</height>
     </rect>
    </property>
@@ -263,7 +204,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>649</width>
+      <width>599</width>
       <height>569</height>
      </rect>
     </property>
@@ -271,12 +212,6 @@
   </widget>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>simulations</class>
-   <extends>QWidget</extends>
-   <header location="global">simulations.h</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>ScrollCarousel</class>
    <extends>QScrollArea</extends>

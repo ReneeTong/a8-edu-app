@@ -12,7 +12,6 @@ s3Cooking::s3Cooking(QWidget *parent) :
     ui(new Ui::s3Cooking)
 {
     ui->setupUi(this);
-    ui->widget->show();
 
     // jeffeeeeeeeee
     QTimer::singleShot(0, this, [this]() {
@@ -21,20 +20,18 @@ s3Cooking::s3Cooking(QWidget *parent) :
     connect(render->getModel(), &Model::updateDisplayText, ui->stepLabel, &QLabel::setText);
 
     //Andy Tran:
-    //Step label
-    ui->labelStep->setText("STEP 1");
     setAcceptDrops(true);
 
     xmaps.insert("Tomato",QPixmap(":/sprites/icons/Tomato.png"));
     xmaps.insert("Carrot",QPixmap(":/sprites/icons/Carrot.png"));
 
     //Ruini:add backgound image
-    QPixmap image(":/sprites/icons/Kitchen.PNG");
-    QLabel* background = ui->backgoundImage;
-    background->setPixmap(image);
-    background->setScaledContents(true); // Scale the image to fit the label
-    background->setGeometry(QRect(0, 0, background->width(), background->height()));
-    background->lower();
+//    QPixmap image(":/sprites/icons/Kitchen.PNG");
+//    QLabel* background = ui->backgoundImage;
+//    background->setPixmap(image);
+//    background->setScaledContents(true); // Scale the image to fit the label
+//    background->setGeometry(QRect(0, 0, background->width(), background->height()));
+//    background->lower();
 }
 
 s3Cooking::~s3Cooking()
