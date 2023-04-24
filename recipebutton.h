@@ -6,6 +6,8 @@
 #include "recipe.h"
 #include <QPainter>
 #include <QMessageBox>
+#include <QTextBlockFormat>
+#include <QTextCursor>
 
 namespace Ui {
 class RecipeButton;

@@ -53,7 +53,10 @@ setObjectName("mainRecipeButton");
         msgBox.setStyleSheet(msgBoxStyle);
 
         msgBox.setWindowTitle("Learn more");
-        msgBox.setText(recipe.getLearnMore());
+        msgBox.setInformativeText(recipe.getLearnMore());
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setTextFormat(Qt::RichText);
+
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
     });
