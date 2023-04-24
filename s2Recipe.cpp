@@ -10,7 +10,6 @@ s2Recipe::s2Recipe(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->nextBtn, &QPushButton::clicked, this, &s2Recipe::nextPage);
     connect(ui->backBtn, &QPushButton::clicked, this, &s2Recipe::backButtonClickedSlot);
-
 }
 
 s2Recipe::~s2Recipe()

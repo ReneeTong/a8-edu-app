@@ -41,7 +41,7 @@ protected:
 
 private:
     Ui::RecipeButton *ui;
-    RecipeNew* m_recipe = nullptr;
+    RecipeNew* m_recipe;
     bool selected;
 };
 
