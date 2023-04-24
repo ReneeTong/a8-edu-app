@@ -85,6 +85,7 @@ void s3Cooking::onS3Update(int curStep, QHash<Ingredient*, int>* todoList){
 void s3Cooking::recieveSelectedRecipe(RecipeNew* recipe) {
     render->getModel()->setRecipe(recipe);
 
+
     ui->ingredientList->clearWidgets();
     for (const auto& ingredient : recipe->getIngredeints()) {
         DragAndDropLabel *label = new DragAndDropLabel(this);

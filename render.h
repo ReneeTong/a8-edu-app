@@ -37,6 +37,10 @@ private:
 
     Ingredient currentDrop;
 
+    QVector<Shape*> shapes;
+    Shape* fryingPan;
+
+
 signals:
     void mouseClicked(QPoint);
     void itemDrop(QPoint);

@@ -20,6 +20,7 @@ Render::Render(QWidget *parent)
     setFixedSize(WINDOW_WIDTH+1, WINDOW_HEIGHT+1);
     setAcceptDrops(true);
 
+
     {
         KitchenContactListener *contactListen = new KitchenContactListener;
         world.SetContactListener(contactListen);
@@ -66,7 +67,7 @@ Render::Render(QWidget *parent)
         b2Vec2 size = b2Vec2(60, 15);
         b2Vec2 position = b2Vec2(WINDOW_WIDTH/(UTENSIL_COUNT+1) * 3, WINDOW_HEIGHT-(GROUND_HEIGHT*2)-size.y);
 
-        Shape* fryingPan = new Shape(&world, position, size);
+        fryingPan = new Shape(&world, position, size);
         fryingPan->setStatic(true);
 
         connect(fryingPan, &Shape::onContact, &model, &Model::fry);
@@ -86,10 +87,11 @@ void Render::mousePressEvent(QMouseEvent* event) {
         b2Vec2 size(10.0f, 10.0f);
 
         Shape* shape = new Shape(&world, position, size);
-        shape->setStatic(false); 
+        shape->setStatic(false);
         //shape->setData(new Ingredient("tomato", {}));
         //bad: delete later
         shape->setData(new Ingredient(currentDrop.getName(), {}));
+        shapes.push_back(shape);
     }
 }
 
@@ -100,11 +102,42 @@ void Render::paintEvent(QPaintEvent *) {
     QPixmap background(":/sprites/icons/Kitchen.PNG");
     painter.drawPixmap(rect(), background);
 
+
+
+
+    //painter.drawPixmap(30, 30, currentDrop.getPixmap());
+
+//    for (Shape* shape : shapes) {
+//        b2Vec2 position = shape->getBody()->GetPosition();
+//        Ingredient* ingredient = static_cast<Ingredient*>(shape->getData());
+
+
+//        QList<Ingredient> ingredients= model.getRecipe()->getIngredeints();
+
+//        qDebug() <<ingredient->getName();
+
+//        QPixmap current = parentWidget()->findChild<QWidget*>("ingredientList")->property("pixmap").value<QPixmap>();
+//        painter.drawPixmap((int)(position.x*20), (int)(position.y*20), current);
+//    }
+
+    b2Vec2 panPos = fryingPan->getBody()->GetPosition();
+    QPixmap panPix(":/sprites/icons/fryPan.png");
+    QPixmap scaledPixmap = panPix.scaled(QSize(200, 200), Qt::KeepAspectRatio);
+    int x = (int)(panPos.x - scaledPixmap.width() / 2.0) + 32;//32 is the offset
+    int y = (int)(panPos.y - scaledPixmap.height() / 2.0);
+    painter.drawPixmap(x, y, scaledPixmap);
+
     world.DrawDebugData();
+//    painter.drawPixmap((int)((panPos.x*13)), (int)(panPos.y*16), panPix);
+
+
+    painter.end();
+
 }
 
 void Render::dropEvent(QDropEvent*event)
 {
+    //qDebug() << "drop";
     QPointF localPos = this->mapFromGlobal(QCursor::pos());
     QPointF windowPos = this->mapFromGlobal(QCursor::pos());
     QPointF screenPos = QCursor::pos();

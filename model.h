@@ -17,6 +17,7 @@ public:
     QVector<function<void()>> actionQueue;
 
     void setRecipe(RecipeNew*);
+    RecipeNew * getRecipe(){return m_recipe;};
 
     void incrementIngredient(Ingredient* ingredient);
     bool checkTasks();

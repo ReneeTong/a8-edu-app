@@ -18,5 +18,7 @@
         <file>recipes/Pho.txt</file>
         <file>icons/tomato_pieces.png</file>
         <file>icons/Wok.PNG</file>
+        <file>icons/fryPan.png</file>
+        <file>icons/title.png</file>
     </qresource>
 </RCC>
