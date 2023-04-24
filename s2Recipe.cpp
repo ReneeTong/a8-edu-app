@@ -125,4 +125,7 @@ void s2Recipe::backButtonClickedSlot() {
 
 }
 
+void sendNameOfRecipe(Recipe recipe){
+    emit
+}
 

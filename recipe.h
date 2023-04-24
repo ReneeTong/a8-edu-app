@@ -8,6 +8,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QPixmap>
 #include "ingredient.h"
 
 enum class RecipeTags{GLUTENFREE, DAIRYFREE, NUTFREE};
@@ -82,6 +83,10 @@ public:
 //    void resetNeededAmount();
     //------------------------
 
+    QPixmap getImage() const { return image; }
+    void setImage(const QPixmap &newImage) { image = newImage; }
+    bool loadImageFromFile(const QString &filePath);
+
     //Getters
 
     QList<Ingredient *> getIngredients() const{return ingredients;}
@@ -112,6 +117,7 @@ private:
     QString learnMore;
     QMap<Ingredient, int> tasks;
     QVector<Ingredient*> ingredients;
+    QPixmap image;
 
 //    //Andy Tran Added:
 //    //QList contains all the steps, QMap is all the ingredients in one step

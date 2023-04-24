@@ -25,6 +25,7 @@ public slots:
 signals:
     void goToPage3();
     void sendSelectedRecipe(RecipeNew* recipe);
+    void sendNameOfRecipe(Recipe recipe);
     void backButtonClicked();
 
 private slots:
