@@ -161,7 +161,7 @@ void Render::paintEvent(QPaintEvent *) {
 //    }
 
     b2Vec2 panPos = fryingPan->getBody()->GetPosition();
-    QPixmap panPix(":/sprites/icons/fryPan.png");
+    QPixmap panPix(":/sprites/icons/FryPan.png");
     QPixmap scaledPixmap = panPix.scaled(QSize(200, 200), Qt::KeepAspectRatio);
     int x = (int)(panPos.x - scaledPixmap.width() / 2.0) + 32;//32 is the offset
     int y = (int)(panPos.y - scaledPixmap.height() / 2.0);

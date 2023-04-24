@@ -81,8 +81,8 @@ void FoodLibrary::initialRecipes()
                         {Ingredient(QString("Broccoli"  ),{ActionsPerformed::CUT, ActionsPerformed::BOIL}), 1},
                         {Ingredient(QString("Carrot"    ),  {ActionsPerformed::CUT, ActionsPerformed::BOIL}), 1},
                         {Ingredient(QString("Cabbage"   ), {ActionsPerformed::CUT, ActionsPerformed::BOIL}), 1},
-                        {Ingredient(QString("Rice Noodle"),{ActionsPerformed::BOIL}), 1},
-                        {Ingredient(QString("Soy Sauce"  ) ,{ActionsPerformed::BOIL}), 1}
+                        {Ingredient(QString("RiceNoodles"),{ActionsPerformed::BOIL}), 1},
+                        {Ingredient(QString("SoySauce"  ) ,{ActionsPerformed::BOIL}), 1}
 
                     });
 }

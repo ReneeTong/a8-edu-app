@@ -49,7 +49,7 @@ bool IngredientButton::getSelected() const {
 void IngredientButton::setSelected(bool selected) {
     this->selected = selected;
     if (selected) {
-        setStyleSheet("QPushButton {border: 2px solid red};");
+        setStyleSheet("QPushButton {border: 2px solid rgba(0, 255, 0, 0.5);}");
     } else {
         setStyleSheet("QPushButton {};");
     }
