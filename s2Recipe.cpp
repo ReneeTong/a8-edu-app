@@ -66,6 +66,8 @@ void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> receivedIngredients
 
 void s2Recipe::initializeRecipeButtons()
 {
+    ui->scrollArea_2->clearWidgets();
+
     FoodLibrary foodLibrary;
     Recipe* phoRecipe = foodLibrary.getRecipeByName("Pho");
 
@@ -75,12 +77,12 @@ void s2Recipe::initializeRecipeButtons()
     //default is the first one
     emit phoButton->clicked(true);
 
-    //test one, replace with real one.
-    recipeButton *phoButton1 = new recipeButton(*phoRecipe);
-    ui->scrollArea_2->addWidget(phoButton1);
+//    //test one, replace with real one.
+//    recipeButton *phoButton1 = new recipeButton(*phoRecipe);
+//    ui->scrollArea_2->addWidget(phoButton1);
 
-    recipeButton *phoButton2 = new recipeButton(*phoRecipe);
-    ui->scrollArea_2->addWidget(phoButton2);
+//    recipeButton *phoButton2 = new recipeButton(*phoRecipe);
+//    ui->scrollArea_2->addWidget(phoButton2);
 }
 
 
