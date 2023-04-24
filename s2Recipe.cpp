@@ -1,5 +1,4 @@
 #include "s2Recipe.h"
-#include "foodLibrary.h"
 #include "ingredientbutton.h"
 #include "recipebutton.h"
 #include "ui_s2Recipe.h"
@@ -60,13 +59,14 @@ void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> receivedIngredients
         ui->ingredientArea->addWidget(button);
     }
 
+    ui->scrollArea_2->clearWidgets();
     initializeRecipeButtons();
 
 }
 
 void s2Recipe::initializeRecipeButtons()
 {
-    FoodLibrary foodLibrary;
+
     Recipe* phoRecipe = foodLibrary.getRecipeByName("Pho");
 
     recipeButton *phoButton = new recipeButton(*phoRecipe, this, selectedIngredients);
@@ -119,4 +119,5 @@ void s2Recipe::backButtonClickedSlot() {
 
 
 }
+
 

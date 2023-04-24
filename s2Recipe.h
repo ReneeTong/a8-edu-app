@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "recipenew.h"
+#include "foodlibrary.h"
 
 namespace Ui {
 class s2Recipe;
@@ -33,6 +34,7 @@ private slots:
 private:
     Ui::s2Recipe *ui;
     QList<Ingredient*> selectedIngredients;
+    FoodLibrary foodLibrary;
     void initializeRecipeButtons();
 
 };
