@@ -33,7 +33,7 @@ private:
     Ui::s2Recipe *ui;
     FoodLibrary foodLibrary;
 
-    RecipeNew* selectedRecipe;
+    RecipeNew* selectedRecipe = nullptr;
 
 };
 
