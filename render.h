@@ -11,8 +11,8 @@ class Render : public QWidget
 {
     Q_OBJECT
 public:
-    static const int WINDOW_WIDTH = 600;
-    static const int WINDOW_HEIGHT = 500;
+    static const int WINDOW_WIDTH = 750;
+    static const int WINDOW_HEIGHT = 600;
 
     static const int GROUND_HEIGHT = 30;
 

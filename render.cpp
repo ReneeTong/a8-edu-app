@@ -44,8 +44,9 @@ Render::Render(QWidget *parent)
     int const UTENSIL_COUNT = 3;
 
     {
-        b2Vec2 size = b2Vec2(60, 10);
+        b2Vec2 size = b2Vec2(70, 5);
         b2Vec2 position = b2Vec2(WINDOW_WIDTH/(UTENSIL_COUNT+1), WINDOW_HEIGHT-(GROUND_HEIGHT*2)-size.y);
+        position -= b2Vec2(30, 0); // hard coded to space them evenly
 
         Shape* cuttingBoard = new Shape(&world, position, size);
         cuttingBoard->setStatic(true);
@@ -66,6 +67,7 @@ Render::Render(QWidget *parent)
     {
         b2Vec2 size = b2Vec2(60, 15);
         b2Vec2 position = b2Vec2(WINDOW_WIDTH/(UTENSIL_COUNT+1) * 3, WINDOW_HEIGHT-(GROUND_HEIGHT*2)-size.y);
+        position += b2Vec2(30, 0); // hard coded to space them evenly
 
         fryingPan = new Shape(&world, position, size);
         fryingPan->setStatic(true);

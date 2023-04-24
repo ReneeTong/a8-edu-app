@@ -20,7 +20,7 @@ s2Recipe::~s2Recipe()
 
 void s2Recipe::nextPage()
 {
-    // remove later
+    // move to library later
     RecipeNew *noodle = new RecipeNew;
     noodle->addTask("First, describe tasks...",
                     {

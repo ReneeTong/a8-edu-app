@@ -24,9 +24,9 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>100</y>
+     <y>10</y>
      <width>111</width>
-     <height>571</height>
+     <height>661</height>
     </rect>
    </property>
    <property name="font">
@@ -51,7 +51,7 @@
       <x>10</x>
       <y>10</y>
       <width>91</width>
-      <height>551</height>
+      <height>641</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -63,7 +63,7 @@
        <x>0</x>
        <y>0</y>
        <width>89</width>
-       <height>549</height>
+       <height>639</height>
       </rect>
      </property>
     </widget>
@@ -89,38 +89,13 @@
     <string>COOK</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>10</y>
-     <width>601</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Comic Sans MS</family>
-     <pointsize>30</pointsize>
-     <italic>false</italic>
-     <bold>true</bold>
-     <underline>false</underline>
-    </font>
-   </property>
-   <property name="text">
-    <string>Cooking</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
   <widget class="QFrame" name="rightFrame">
    <property name="geometry">
     <rect>
      <x>740</x>
-     <y>100</y>
+     <y>10</y>
      <width>251</width>
-     <height>511</height>
+     <height>601</height>
     </rect>
    </property>
    <property name="font">
@@ -143,9 +118,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>50</y>
       <width>231</width>
-      <height>491</height>
+      <height>541</height>
      </rect>
     </property>
     <property name="font">
@@ -162,38 +137,38 @@
      <bool>true</bool>
     </property>
    </widget>
-  </widget>
-  <widget class="QLabel" name="labelStep_2">
-   <property name="geometry">
-    <rect>
-     <x>740</x>
-     <y>60</y>
-     <width>251</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Comic Sans MS</family>
-     <pointsize>16</pointsize>
-     <bold>true</bold>
-     <underline>true</underline>
-    </font>
-   </property>
-   <property name="text">
-    <string>Descriptions</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
+   <widget class="QLabel" name="labelStep_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>231</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="text">
+     <string>Descriptions</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="ScrollCarousel" name="scrollArea">
    <property name="geometry">
     <rect>
      <x>130</x>
-     <y>100</y>
+     <y>10</y>
      <width>601</width>
-     <height>571</height>
+     <height>661</height>
     </rect>
    </property>
    <property name="widgetResizable">
@@ -205,7 +180,7 @@
       <x>0</x>
       <y>0</y>
       <width>599</width>
-      <height>569</height>
+      <height>659</height>
      </rect>
     </property>
    </widget>
