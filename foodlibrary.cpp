@@ -57,8 +57,8 @@ void FoodLibrary::initialRecipes()
     pho->setDifficulty(3);
     pho->setDescription("1. Chop broccoli, carrot and cabbage. \n "
                         "2. Chop all the proteins including beef or chicken. \n"
-                        "3. Put all the chopped meat to boiling water to cook for 2 hours. \n"
-                        "4. Add all the vegetables into the soup and cook 30 more minutes. \n"
+                        "3. Put all the chopped meat to boiling water to cook for 5 hours. \n"
+                        "4. Add all the vegetables into the soup and cook 30 minutes or more. \n"
                         "5. Cook the noodle in the soup for 5 minutes. And add some soysauce. \n"
                         "6. Pour all content to a bowl. ");
     pho->setLearnMore("Phở is a Vietnamese soup dish consisting of broth, rice noodles (bánh phở), herbs, and meat (usually beef (phở bò), sometimes chicken (phở gà)). Phở is a popular food in Vietnam, where it is served in households, street-stalls, and restaurants country-wide.\n"
@@ -69,20 +69,20 @@ void FoodLibrary::initialRecipes()
     pho->setRecipeTags({RecipeTags::DAIRYFREE, RecipeTags::GLUTENFREE, RecipeTags::NUTFREE});
     recipes.push_back(pho);
     pho->setTasks(  {
-                        {Ingredient(QString("broccoli"), {ActionsPerformed::CUT}), 1},
-                        {Ingredient(QString("carrort"), {ActionsPerformed::CUT}), 1},
-                        {Ingredient(QString("cabbage"), {ActionsPerformed::CUT}), 1},
-                        {Ingredient(QString("beef" ) , {ActionsPerformed::CUT}), 1},
-                        {Ingredient(QString("chicken"), {ActionsPerformed::CUT}), 1},
+                        {Ingredient(QString("Broccoli"), {ActionsPerformed::CUT}), 1},
+                        {Ingredient(QString("Carrort"), {ActionsPerformed::CUT}), 1},
+                        {Ingredient(QString("Cabbage"), {ActionsPerformed::CUT}), 1},
+                        {Ingredient(QString("Beef" ) , {ActionsPerformed::CUT}), 1},
+                        {Ingredient(QString("Chicken"), {ActionsPerformed::CUT}), 1},
 
                         //Boil
-                        {Ingredient(QString("beef"      ) ,    {ActionsPerformed::CUT, ActionsPerformed::BOIL}), 1},
-                        {Ingredient(QString("chicken"   ) , {ActionsPerformed::CUT, ActionsPerformed::BOIL}), 1},
-                        {Ingredient(QString("broccoli"  ),{ActionsPerformed::CUT, ActionsPerformed::BOIL}), 1},
-                        {Ingredient(QString("carrot"    ),  {ActionsPerformed::CUT, ActionsPerformed::BOIL}), 1},
-                        {Ingredient(QString("cabbage"   ), {ActionsPerformed::CUT, ActionsPerformed::BOIL}), 1},
-                        {Ingredient(QString("riceNoodle"),{ActionsPerformed::BOIL}), 1},
-                        {Ingredient(QString("soysauce"  ) ,{ActionsPerformed::BOIL}), 1}
+                        {Ingredient(QString("Beef"      ) ,    {ActionsPerformed::CUT, ActionsPerformed::BOIL}), 1},
+                        {Ingredient(QString("Chicken"   ) , {ActionsPerformed::CUT, ActionsPerformed::BOIL}), 1},
+                        {Ingredient(QString("Broccoli"  ),{ActionsPerformed::CUT, ActionsPerformed::BOIL}), 1},
+                        {Ingredient(QString("Carrot"    ),  {ActionsPerformed::CUT, ActionsPerformed::BOIL}), 1},
+                        {Ingredient(QString("Cabbage"   ), {ActionsPerformed::CUT, ActionsPerformed::BOIL}), 1},
+                        {Ingredient(QString("Rice Noodle"),{ActionsPerformed::BOIL}), 1},
+                        {Ingredient(QString("Soy Sauce"  ) ,{ActionsPerformed::BOIL}), 1}
 
                     });
 }

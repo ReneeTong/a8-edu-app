@@ -8,9 +8,10 @@
 #include<QVector>
 #include<QGraphicsView>
 #include<QGraphicsScene>
-#include"ingredient.h"
 #include"render.h"
 #include<random>
+
+
 namespace Ui {
 class s3Cooking;
 }
@@ -23,25 +24,8 @@ public:
     explicit s3Cooking(QWidget *parent = nullptr);
     ~s3Cooking();
 
-//    //Tzhou: play around
-//    void paintEvent(QPaintEvent *);
-
-//    //Ruini
-//    void mousePressEvent(QMouseEvent *event);
-//    void mouseMoveEvent(QMouseEvent *event);
-//    void mouseReleaseEvent(QMouseEvent *event);
-
-//    //Tzhou
-//    void updateWorld();
-
 public slots:
     void nextPage();
-
-//    //Ruini
-//    void handleCut(std::string name);
-
-    //Andy Tran: receiving s3 update method
-    void onS3Update(int curStep, QHash<Ingredient*, int>* todoList);
 
     //jeffeeeeeeee
     void recieveSelectedRecipe(RecipeNew* recipe);
@@ -49,20 +33,12 @@ public slots:
 signals:
     void goToPage4();
 
-
-    //Ruini: moved this to contact listner
-    //Andy Tran: sending s3 update method
-//    void onStepCookingUpdate(Ingredient, Action);
 private:
     Ui::s3Cooking *ui;
-     Render* render = new Render();
-
-    //AndyTran
-    QHash<Ingredient*, int>* todoList;
+    Render* render = new Render();
 
     //Ruini
     QMap<QString, QPixmap> xmaps;
-    void createLables();
 
 };
 

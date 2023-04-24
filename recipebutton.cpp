@@ -88,7 +88,7 @@ Recipe* recipeButton::getRecipe(){
 bool recipeButton::isIngredientChosen(const Ingredient &recipeIngredient, const QList<Ingredient *> &selectedIngredients)
 {
     for (Ingredient *selectedIngredient : selectedIngredients) {
-        if (recipeIngredient.getName() == selectedIngredient->getName()) {
+        if (recipeIngredient == *selectedIngredient) {
             return true;
         }
     }
@@ -106,6 +106,8 @@ void recipeButton::populateIngredientsList(const QList<Ingredient *> &recipeIngr
         QListWidgetItem *listItem = new QListWidgetItem(ui->matchingList);
         listItem->setText(recipeIngredient->getName());
 
+        qDebug() << "*recipeIngredient: " << recipeIngredient->getName();
+        qDebug() << "selectedIngredients: " << recipeIngredient->getName();
         if (isIngredientChosen(*recipeIngredient, selectedIngredients))
         {
             listItem->setForeground(Qt::green);
@@ -140,9 +142,9 @@ void recipeButton::onClicked()
 {
     if (previousClickedRecipe != nullptr) {
         previousClickedRecipe->setStyleSheet("");
+        setStyleSheet("recipeButton {border: 2px solid red};");
+        previousClickedRecipe = this;
     }
-    setStyleSheet("recipeButton {border: 2px solid red};");
-    previousClickedRecipe = this;
 }
 
 
