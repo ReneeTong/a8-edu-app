@@ -20,8 +20,23 @@ IngredientButton::IngredientButton(Ingredient ingredient, int size, QWidget *par
             emit onSelected(getSelected());
         }
     });
+
+    //
+    setMouseTracking(true);
+    setAttribute(Qt::WA_Hover);
 }
 
+bool IngredientButton::event(QEvent *event) {
+    if (event->type() == QEvent::HoverEnter) {
+        QToolTip::showText(cursor().pos(), ingredient.getName(), this);
+        return true;
+    } else if (event->type() == QEvent::HoverLeave) {
+        QToolTip::hideText();
+        return true;
+    }
+
+    return QPushButton::event(event);
+}
 
 Ingredient IngredientButton::getIngredient() const {
     return ingredient;
@@ -43,3 +58,4 @@ void IngredientButton::setSelected(bool selected) {
 void IngredientButton::setSelectable(bool value) {
     selectable = value;
 }
+
