@@ -117,7 +117,8 @@ void Model::cut(Shape *shape) {
             b2Vec2 variance(x, y);
             variance *= 15;
 
-            Shape *copy = new Shape(m_world, position + variance, size);
+            Shape *copy = nullptr;
+            copy = new Shape(m_world, position + variance, size);
             copy->getBody()->SetLinearVelocity(variance);
             copy->setData(newIngredient);
             copy->setStatic(false);

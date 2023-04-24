@@ -44,6 +44,8 @@ private:
     Ingredient currentDrop;
 
     QVector<Shape*> shapes;
+
+    Shape* ground;
     Shape* fryingPan;
 
 

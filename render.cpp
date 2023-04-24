@@ -35,7 +35,7 @@ Render::Render(QWidget *parent)
     {
         b2Vec2 size = b2Vec2(WINDOW_WIDTH/2, GROUND_HEIGHT);
         b2Vec2 position = b2Vec2(size.x, WINDOW_HEIGHT-size.y);
-        Shape *ground = new Shape(&world, position, size);
+        ground = new Shape(&world, position, size);
         ground->setStatic(true);
     }
 
@@ -96,7 +96,7 @@ void Render::mousePressEvent(QMouseEvent* event) {
         // Iterate through all bodies in the world
         for (b2Body* body = world.GetBodyList(); body; body = body->GetNext())
         {
-            if (body == fryingPan->getBody()) continue;
+            if (body == ground->getBody()) continue;
 
             // Calculate the distance between the mouse click and the body position
             b2Vec2 bodyPos = body->GetPosition();
@@ -107,7 +107,7 @@ void Render::mousePressEvent(QMouseEvent* event) {
             if (distance < 50)
             {
                 b2MouseJointDef md;
-                md.bodyA = fryingPan->getBody();
+                md.bodyA = ground->getBody();
                 md.bodyB = body;
                 md.target = targetPos;
                 md.maxForce = 1000.0f * body->GetMass();
@@ -135,12 +135,12 @@ void Render::mouseMoveEvent(QMouseEvent* event) {
 
 void Render::mouseReleaseEvent(QMouseEvent* event) {
     if (event->button() == Qt::LeftButton) {
-        for (b2MouseJoint *joint : m_mouseJoints) {
-            b2Body *bodyB = joint->GetBodyB();
-            if (joint && bodyB->IsActive()) {
-                world.DestroyJoint(joint);
-            }
-        }
+//        for (b2MouseJoint *joint : m_mouseJoints) {
+//            b2Body *bodyB = joint->GetBodyB();
+//            if (joint && bodyB) {
+//                world.DestroyJoint(joint);
+//            }
+//        }
         m_mouseJoints.clear();
     }
 }
@@ -226,14 +226,14 @@ void Render::dragLeaveEvent(QDragLeaveEvent *event)
 
 void Render::dragMoveEvent(QDragMoveEvent *event)
 {
-    event->accept();
-    event->acceptProposedAction();
+    //event->accept();
+    //event->acceptProposedAction();
 }
 
 
 // [== WORLD STEP SECTION ==]
 void Render::renderWorld() {
-    world.Step(1.0/60.0, 6, 2);
+    world.Step(2.0/60.0, 6, 2);
 
     for (const auto& method : model.actionQueue) {
         method();

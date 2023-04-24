@@ -22,6 +22,7 @@ Shape::Shape(b2World* world, const b2Vec2& position, const b2Vec2& size, float32
 
     qDebug() << world->GetBodyCount();
 
+    m_body = nullptr;
     m_body = world->CreateBody(&bodyDef);
     m_body->CreateFixture(&fixtureDef);
     m_body->SetUserData(this);
@@ -30,10 +31,8 @@ Shape::Shape(b2World* world, const b2Vec2& position, const b2Vec2& size, float32
 }
 
 Shape::~Shape() {
-
     for (b2JointEdge* edge = m_body->GetJointList(); edge; edge = edge->next) {
         b2Joint* joint = edge->joint;
-        qDebug() << joint;
         m_body->GetWorld()->DestroyJoint(joint);
     }
     m_body->GetWorld()->DestroyBody( m_body );
