@@ -17,7 +17,7 @@ public:
     QVector<function<void()>> actionQueue;
 
     void setRecipe(RecipeNew*);
-    RecipeNew * getRecipe(){return m_recipe;};
+    RecipeNew * getRecipe(){return m_recipe;}
 
     void incrementIngredient(Ingredient* ingredient);
     bool checkTasks();
@@ -33,8 +33,8 @@ private:
     int currentTask;
     map<Ingredient, int> trackerTask;
 
-    RecipeNew *m_recipe;
-    b2World *m_world;
+    RecipeNew *m_recipe=nullptr;
+    b2World *m_world=nullptr;
 
 signals:
     void updateDisplayText(QString text); // temp feedback solution

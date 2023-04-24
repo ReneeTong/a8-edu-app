@@ -25,11 +25,11 @@ public slots:
     void restart();
 
 private:
-    Ui::MainWindow *ui;
-    s0Title *page0;
-    s1Pantry *page1;
-    s2Recipe *page2;
-    s3Cooking *page3;
-    s4Complete *page4;
+    Ui::MainWindow *ui=nullptr;
+    s0Title *page0=nullptr;
+    s1Pantry *page1=nullptr;
+    s2Recipe *page2=nullptr;
+    s3Cooking *page3=nullptr;
+    s4Complete *page4=nullptr;
 };
 #endif // MAINWINDOW_H

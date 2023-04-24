@@ -25,7 +25,7 @@ public:
     bool getSelected() const;
     void setSelected(bool);
 
-    RecipeNew* getRecipe() const { return m_recipe; } ;
+    RecipeNew* getRecipe() const { return m_recipe; }
 
     // jeffohh
     void setTitle(QString text);
@@ -40,8 +40,8 @@ protected:
     recipeButton(QWidget *parent = nullptr);
 
 private:
-    Ui::RecipeButton *ui;
-    RecipeNew* m_recipe;
+    Ui::RecipeButton *ui=nullptr;
+    RecipeNew* m_recipe=nullptr;
     bool selected;
 };
 

@@ -19,7 +19,7 @@ public:
 
 private:
     //std::vector<Box>* boxes;
-    QMap<std::string, b2Body*>*  boxes;
+    QMap<std::string, b2Body*>*  boxes=nullptr;
 
 signals:
     void cut(std::string);

@@ -25,7 +25,7 @@ public:
     void setData(void* data) { m_data = data; }
 
 private:
-    b2Body* m_body;
+    b2Body* m_body=nullptr;
     b2Vec2 m_size;
 
     void* m_data;
