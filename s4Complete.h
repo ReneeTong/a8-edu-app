@@ -31,8 +31,8 @@ signals:
     void restartApp();
 
 private:
-    Ui::s4Complete *ui;
-     RecipeNew *currentRecipe;
+    Ui::s4Complete *ui=nullptr;
+    RecipeNew *currentRecipe=nullptr;
 };
 
 #endif // S4COMPLETE_H

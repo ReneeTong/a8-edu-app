@@ -18,7 +18,7 @@ public:
     void DrawTransform(const b2Transform& xf);
 
 private:
-    QWidget *widget;
+    QWidget *widget=nullptr;
 };
 
 #endif // DEBUGDRAW_H

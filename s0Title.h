@@ -22,7 +22,7 @@ signals:
     void goToPage1();
 
 private:
-    Ui::s0Title *ui;
+    Ui::s0Title *ui=nullptr;
 };
 
 #endif // S0TITLE_H

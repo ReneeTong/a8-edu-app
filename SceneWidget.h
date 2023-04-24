@@ -18,7 +18,7 @@ public slots:
 
 private:
     b2World world;
-    b2Body* body;
+    b2Body* body=nullptr;
     QTimer timer;
     QImage image;
 };

@@ -28,7 +28,7 @@ signals:
     void sendSelectedIngredients(QList<Ingredient*>);
 
 private:
-    Ui::s1Pantry *ui;
+    Ui::s1Pantry *ui=nullptr;
 
     QList<Ingredient*> selectedIngredients;
 

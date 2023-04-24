@@ -30,7 +30,7 @@ private slots:
     void backButtonClickedSlot();
 
 private:
-    Ui::s2Recipe *ui;
+    Ui::s2Recipe *ui=nullptr;
     FoodLibrary foodLibrary;
 
     RecipeNew* selectedRecipe = nullptr;

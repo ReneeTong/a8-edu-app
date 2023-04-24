@@ -40,8 +40,8 @@ protected:
     recipeButton(QWidget *parent = nullptr);
 
 private:
-    Ui::RecipeButton *ui;
-    RecipeNew* m_recipe;
+    Ui::RecipeButton *ui=nullptr;
+    RecipeNew* m_recipe=nullptr;
     bool selected;
 };
 
