@@ -22,6 +22,7 @@ public:
     ~MainWindow();
 
 public slots:
+    void restart();
 
 private:
     Ui::MainWindow *ui;

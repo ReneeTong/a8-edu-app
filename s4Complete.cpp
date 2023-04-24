@@ -8,8 +8,9 @@ s4Complete::s4Complete(QWidget *parent) :
 
 {
     ui->setupUi(this);
-    connect(ui->tryAgainBtn, &QPushButton::clicked, this, &s4Complete::nextPage);
+    connect(ui->tryAgainBtn, &QPushButton::clicked, this, &s4Complete::restartApp);
       connect(ui->ExitBtn, &QPushButton::clicked, QApplication::instance(), &QApplication::quit);
+
 
 }
 

@@ -28,6 +28,7 @@ public slots:
 signals:
     void goToPage1();
     void exitButtonClicked();
+    void restartApp();
 
 private:
     Ui::s4Complete *ui;
