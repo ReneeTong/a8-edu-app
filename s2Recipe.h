@@ -27,13 +27,13 @@ signals:
     void backButtonClicked();
 
 private slots:
-    void on_backButton_clicked();
+    void backButtonClickedSlot();
 
 
 private:
     Ui::s2Recipe *ui;
     QList<Ingredient*> selectedIngredients;
-
+    void initializeRecipeButtons();
 
 };
 

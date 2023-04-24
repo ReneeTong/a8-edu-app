@@ -17,7 +17,6 @@ setObjectName("mainRecipeButton");
 
     ui->matchingList->setEnabled(false);
     ui->recipeName->setText(recipe.getName());
-    qDebug() << "Recipe name:" << recipe.getName();
     ui->recipeDifficulty->setValue(recipe.getDifficulty());
     ui->recipeDifficulty->setRange(0, 100); // Set range from 0 to 100
     ui->recipeDifficulty->setValue((recipe.getDifficulty() * 100) / 5); // Calculate the percentage based on difficulty level
@@ -63,10 +62,6 @@ Recipe* recipeButton::getRecipe(){
 
 bool recipeButton::isIngredientChosen(const Ingredient &recipeIngredient, const QList<Ingredient *> &selectedIngredients)
 {
-    if (selectedIngredients.isEmpty()) {
-        qDebug() << "The selectedIngredients list is empty.";
-        return false;
-    }
     for (Ingredient *selectedIngredient : selectedIngredients) {
         if (recipeIngredient.getName() == selectedIngredient->getName()) {
             return true;
