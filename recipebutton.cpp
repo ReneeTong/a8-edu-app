@@ -27,6 +27,31 @@ setObjectName("mainRecipeButton");
 
     connect(ui->aboutBtn, &QPushButton::clicked, this, [this, &recipe]() {
         QMessageBox msgBox(this);
+
+        // Set up the messagebox style
+        QString msgBoxStyle = "QMessageBox {"
+                              "background-color: #333333;"
+                              "border: 2px solid #555555;"
+                              "border-radius: 8px;"
+                              "}"
+                              "QLabel {"
+                              "color: #ffffff;"
+                              "}"
+                              "QPushButton {"
+                              "background-color: #555555;"
+                              "color: #ffffff;"
+                              "border: 1px solid #666666;"
+                              "border-radius: 4px;"
+                              "padding: 4px;"
+                              "}"
+                              "QPushButton:hover {"
+                              "background-color: #888888;"
+                              "}"
+                              "QPushButton:pressed {"
+                              "background-color: #444444;"
+                              "}";
+        msgBox.setStyleSheet(msgBoxStyle);
+
         msgBox.setWindowTitle("Learn more");
         msgBox.setText(recipe.getLearnMore());
         msgBox.setStandardButtons(QMessageBox::Ok);
@@ -35,7 +60,7 @@ setObjectName("mainRecipeButton");
 
     connect(ui->stepsBtn, &QPushButton::clicked, this, [this, &recipe]() {
         QMessageBox msgBox(this);
-         msgBox.setWindowTitle("Step By Step");
+        msgBox.setWindowTitle("Step By Step");
         msgBox.setText(recipe.getDescription());
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();

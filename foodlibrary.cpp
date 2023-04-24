@@ -61,7 +61,11 @@ void FoodLibrary::initialRecipes()
                         "4. Add all the vegetables into the soup and cook 30 more minutes. \n"
                         "5. Cook the noodle in the soup for 5 minutes. And add some soysauce. \n"
                         "6. Pour all content to a bowl. ");
-    pho->setLearnMore("This is learn more. ");
+    pho->setLearnMore("Phở is a Vietnamese soup dish consisting of broth, rice noodles (bánh phở), herbs, and meat (usually beef (phở bò), sometimes chicken (phở gà)). Phở is a popular food in Vietnam, where it is served in households, street-stalls, and restaurants country-wide.\n"
+                      "Residents of the city of Nam Định were the first to create Vietnamese traditional phở. It is considered Vietnam's national dish.\n"
+                      "Phở originated in the early 20th century in Northern Vietnam, and was popularized throughout the world by refugees after the Vietnam War.\n "
+                      "Because phở's origins are poorly documented,there is disagreement over the cultural influences that led to its development in Vietnam, as well as the etymology of the name. \n The Hanoi (northern) and Saigon (southern) styles of pho differ by noodle width, sweetness of broth, and choice of herbs and sauce."
+                      );
     pho->setRecipeTags({RecipeTags::DAIRYFREE, RecipeTags::GLUTENFREE, RecipeTags::NUTFREE});
     recipes.push_back(pho);
     pho->setTasks(  {
