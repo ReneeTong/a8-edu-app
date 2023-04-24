@@ -81,17 +81,53 @@ Render::Render(QWidget *parent)
 
 void Render::mousePressEvent(QMouseEvent* event) {
     if (event->button() == Qt::LeftButton) {
-        QPoint point = event->pos();
+        QPointF clickPos = event->pos();
+        b2Vec2 targetPos = b2Vec2(clickPos.x(), clickPos.y());
 
-        b2Vec2 position(point.x(), point.y());
-        b2Vec2 size(10.0f, 10.0f);
+        // Iterate through all bodies in the world
+        for (b2Body* body = world.GetBodyList(); body; body = body->GetNext())
+        {
+            // Calculate the distance between the mouse click and the body position
+            b2Vec2 bodyPos = body->GetPosition();
+            b2Vec2 clickPosB2(bodyPos.x - clickPos.x(), bodyPos.y - clickPos.y());
+            float distance = clickPosB2.Length();
 
-        Shape* shape = new Shape(&world, position, size);
-        shape->setStatic(false);
-        //shape->setData(new Ingredient("tomato", {}));
-        //bad: delete later
-        shape->setData(new Ingredient(currentDrop.getName(), {}));
-        shapes.push_back(shape);
+            // Check if the distance is less than the desired radius
+            if (distance < 50)
+            {
+                b2MouseJointDef md;
+                md.bodyA = fryingPan->getBody();
+                md.bodyB = body;
+                md.target = targetPos;
+                md.maxForce = 1000.0f * body->GetMass();
+                b2MouseJoint* joint = static_cast<b2MouseJoint*>(world.CreateJoint(&md));
+                body->SetAwake(true);
+
+                m_mouseJoints.append(joint);
+            }
+        }
+    }
+}
+
+void Render::mouseMoveEvent(QMouseEvent* event) {
+    if (event->buttons() & Qt::LeftButton) {
+        QPointF clickPos = event->pos();
+        b2Vec2 targetPos = b2Vec2(clickPos.x(), clickPos.y());
+
+        for (b2MouseJoint *joint : m_mouseJoints) {
+            if (joint) {
+                joint->SetTarget(targetPos);
+            }
+        }
+    }
+}
+
+void Render::mouseReleaseEvent(QMouseEvent* event) {
+    if (event->button() == Qt::LeftButton) {
+        for (b2MouseJoint *joint : m_mouseJoints) {
+            world.DestroyJoint(joint);
+        }
+        m_mouseJoints.clear();
     }
 }
 
@@ -101,9 +137,6 @@ void Render::paintEvent(QPaintEvent *) {
 
     QPixmap background(":/sprites/icons/Kitchen.PNG");
     painter.drawPixmap(rect(), background);
-
-
-
 
     //painter.drawPixmap(30, 30, currentDrop.getPixmap());
 
@@ -137,19 +170,27 @@ void Render::paintEvent(QPaintEvent *) {
 
 void Render::dropEvent(QDropEvent*event)
 {
-    //qDebug() << "drop";
-    QPointF localPos = this->mapFromGlobal(QCursor::pos());
-    QPointF windowPos = this->mapFromGlobal(QCursor::pos());
-    QPointF screenPos = QCursor::pos();
-    Qt::MouseButton button = Qt::LeftButton;
-    Qt::MouseButtons buttons = Qt::LeftButton;
-    Qt::KeyboardModifiers modifiers = Qt::NoModifier;
-    QMouseEvent *mousePressEvent = new QMouseEvent(QEvent::MouseButtonPress, localPos, windowPos, screenPos, button, buttons, modifiers);
-    QApplication::postEvent(this, mousePressEvent);
+//    QPointF localPos = this->mapFromGlobal(QCursor::pos());
+//    QPointF windowPos = this->mapFromGlobal(QCursor::pos());
+//    QPointF screenPos = QCursor::pos();
+//    Qt::MouseButton button = Qt::LeftButton;
+//    Qt::MouseButtons buttons = Qt::LeftButton;
+//    Qt::KeyboardModifiers modifiers = Qt::NoModifier;
+//    QMouseEvent *mousePressEvent = new QMouseEvent(QEvent::MouseButtonPress, localPos, windowPos, screenPos, button, buttons, modifiers);
+//    QApplication::postEvent(this, mousePressEvent);
 
     DragAndDropLabel *label = qobject_cast<DragAndDropLabel*>(event->source());
     currentDrop = qvariant_cast<Ingredient>(label->property("Ingredient"));
-    qDebug() << currentDrop.getName();
+
+    QPoint point = event->position().toPoint();
+
+    b2Vec2 position(point.x(), point.y());
+    b2Vec2 size(10.0f, 10.0f);
+
+    Shape* shape = new Shape(&world, position, size);
+    shape->setStatic(false);
+    shape->setData(new Ingredient(currentDrop.getName(), {}));
+    shapes.push_back(shape);
 }
 
 void Render::dragEnterEvent(QDragEnterEvent *event)

@@ -30,7 +30,7 @@ void DebugDraw::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, cons
     painter.setPen(QPen(QColor(color.r * 255, color.g * 255, color.b * 255), 1));
 
     QColor c(Qt::black);
-    c.setAlpha(128);
+    c.setAlpha(32);
     QBrush brush(c, Qt::SolidPattern);
     painter.setBrush(brush);
 

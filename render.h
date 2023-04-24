@@ -19,20 +19,26 @@ public:
     explicit Render(QWidget *parent = nullptr);
 
     Model* getModel() { return &model; }
-    void mousePressEvent(QMouseEvent * event) override;
 
 protected:
+    void mousePressEvent(QMouseEvent * event) override;
+    void mouseMoveEvent(QMouseEvent * event) override;
+    void mouseReleaseEvent(QMouseEvent * event) override;
+
     void paintEvent(QPaintEvent* event) override;
     void dropEvent(QDropEvent*) override;
     void dragEnterEvent(QDragEnterEvent* event) override;
     void dragLeaveEvent(QDragLeaveEvent* event) override;
     void dragMoveEvent(QDragMoveEvent* event) override;
+
     using QWidget::QWidget;
 
 private:
     void renderWorld();
 
     b2World world;
+    QList<b2MouseJoint*> m_mouseJoints;
+
     Model model;
 
     Ingredient currentDrop;
