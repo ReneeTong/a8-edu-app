@@ -10,30 +10,8 @@ s2Recipe::s2Recipe(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->nextBtn, &QPushButton::clicked, this, &s2Recipe::nextPage);
+    connect(ui->backBtn, &QPushButton::clicked, this, &s2Recipe::backButtonClickedSlot);
 
-    QTimer::singleShot(0, this, [this](){
-
-        FoodLibrary foodLibrary;
-
-        Recipe* phoRecipe = foodLibrary.getRecipeByName("Pho");
-
-        recipeButton *phoButton = new recipeButton(*phoRecipe, this, selectedIngredients);
-        ui->scrollArea_2->addWidget(phoButton);
-
-
-        //default is the first one
-        emit phoButton->clicked(true);
-
-        recipeButton *phoButton1 = new recipeButton(*phoRecipe);
-       ui->scrollArea_2->addWidget(phoButton1);
-
-        recipeButton *phoButton2 = new recipeButton(*phoRecipe);
-       ui->scrollArea_2->addWidget(phoButton2);
-
-    });
-
-
-    connect(ui->backBtn, &QPushButton::clicked, this, &s2Recipe::on_backButton_clicked);
 }
 
 s2Recipe::~s2Recipe()
@@ -73,9 +51,7 @@ void s2Recipe::nextPage()
 
 void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> receivedIngredients){
 
-    qDebug() << "Received ingredients count:" << receivedIngredients.size();
     selectedIngredients = receivedIngredients;
-    qDebug() << "selected ingredients count:" << this->selectedIngredients.size();
     ui->ingredientArea->clearWidgets();
     for (Ingredient *ingredient : selectedIngredients) {
         IngredientButton *button = new IngredientButton(*ingredient, 75);
@@ -84,6 +60,27 @@ void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> receivedIngredients
         ui->ingredientArea->addWidget(button);
     }
 
+    initializeRecipeButtons();
+
+}
+
+void s2Recipe::initializeRecipeButtons()
+{
+    FoodLibrary foodLibrary;
+    Recipe* phoRecipe = foodLibrary.getRecipeByName("Pho");
+
+    recipeButton *phoButton = new recipeButton(*phoRecipe, this, selectedIngredients);
+    ui->scrollArea_2->addWidget(phoButton);
+
+    //default is the first one
+    emit phoButton->clicked(true);
+
+    //test one, replace with real one.
+    recipeButton *phoButton1 = new recipeButton(*phoRecipe);
+    ui->scrollArea_2->addWidget(phoButton1);
+
+    recipeButton *phoButton2 = new recipeButton(*phoRecipe);
+    ui->scrollArea_2->addWidget(phoButton2);
 }
 
 
@@ -116,6 +113,10 @@ void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> receivedIngredients
 
 //}
 
-void s2Recipe::on_backButton_clicked() {
+void s2Recipe::backButtonClickedSlot() {
+    selectedIngredients.clear();
     emit backButtonClicked();
+
+
 }
+
