@@ -22,7 +22,7 @@ public:
 
 public slots:
     void nextPage();
-//    void receiveSelectedRecipe(RecipeNew *recipe);
+    void receiveSelectedRecipe(RecipeNew *recipe);
 
 
 signals:

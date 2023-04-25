@@ -43,10 +43,16 @@ void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> receivedIngredients
         recipeButton *button = new recipeButton(recipe, receivedIngredients);
         buttons.append(button);
 
-        // we can sort here maybe????
-        // recipe button can contain some "matching" stuff
-        // sort by matching, then difficulty
-        ui->scrollArea_2->addWidget(button);
+    }   
+
+    // Sort the buttons based on the matching count (highest to lowest)
+    std::sort(buttons.begin(), buttons.end(), [](const recipeButton* a, const recipeButton* b) {
+        return a->getMatchingCount() > b->getMatchingCount();
+    });
+
+    int numRecipesToDisplay = 4;
+    for (int i = 0; i < numRecipesToDisplay && i < buttons.size(); i++) {
+        ui->scrollArea_2->addWidget(buttons[i]);
     }
 
     for (recipeButton* button : buttons) {
@@ -56,39 +62,10 @@ void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> receivedIngredients
             }
             button->setSelected(true);
             selectedRecipe = button->getRecipe();
+
         });
     }
 }
-
-
-////This function is used to compare recipe which will have more matching ingredient with choosenIngredients.
-//bool sortRecipeByIngredients (QWidget *widget1, QWidget *widget2 ){
-//    Recipe *recipe1 = widget1->property("recipe").value<Recipe *>();
-//    Recipe *recipe2 = widget2->property("recipe").value<Recipe *>();
-
-//    if(!recipe1 || !recipe2){
-//         return false;
-//     }
-
-//     //TODO: Add the list in here later.
-//    QList<Ingredient*> choosenIngredients = {};
-
-//     auto countMatchingIngredient = [&](Recipe *recipe){
-//        int count = 0;
-//            for(Ingredient *ingredient : choosenIngredients){
-//            if(recipe->getIngredients().contains(ingredient)){
-//                    count++;
-//                }
-//        }
-//            return count;
-//    };
-
-//    int matchingIngredients1 = countMatchingIngredient(recipe1);
-//    int matchingIngredients2 = countMatchingIngredient(recipe2);
-
-//    return matchingIngredients1 > matchingIngredients2;
-
-//}
 
 void s2Recipe::backButtonClickedSlot() {
     emit backButtonClicked();
