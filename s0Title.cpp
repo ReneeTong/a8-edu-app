@@ -69,11 +69,11 @@ void s0Title::aboutPage()
     infoLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     infoLabel->setTextFormat(Qt::RichText); // Enable rich text formatting
 
-    QString authorsText = "<pre>Author: Andy Duong\n"
-                          "        Andy Tran\n"
-                          "        Jeffrey Le\n"
-                          "        TingTing Zhou\n"
-                          "        Renee Tong</pre>";
+    QString authorsText = "<pre><b>Authors:</b> Andy Duong\n"
+                          "         Andy Tran\n"
+                          "         Jeffrey Le\n"
+                          "         TingTing Zhou\n"
+                          "         Renee Tong</pre>";
 
     infoLabel->setText(
         "<h1>Kitchen Killer&trade;</h1>"
@@ -81,7 +81,15 @@ void s0Title::aboutPage()
         " We believe that food is a great way to show people the amazing cultures in Asia."
         " With our app, we hope to bring people together by helping them enjoy a tasty meal, learn about different cooking styles, and discover the rich culture behind each dish. We want everyone who uses our app, from beginners to experienced cooks, "
         " to have fun exploring new flavors and understanding the traditions that make Asian food so special.</p>"
-        "<p>Version: 1.0</p>"
+
+        "\n<h2>Disclaimer</h2>"
+         "<p>The cooking steps provided on this website are intended to be a general guide only. "
+        "While we have taken care to ensure that the information provided is accurate, we make no guarantees as to the accuracy, completeness, or suitability of the information for any particular purpose. "
+        "We recommend that you use your own judgment and follow all relevant safety precautions when preparing food. "
+        "Additionally, please note that the steps listed here may not be precisely accurate for every recipe, but are generally representative of the cooking process. "
+        "As always, we encourage you to experiment and adjust to your personal taste and preference.</p>"
+
+        "<p><b>Version: 1.0</b></p>"
         + authorsText
         );
 

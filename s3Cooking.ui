@@ -126,7 +126,7 @@
     <property name="font">
      <font>
       <family>Comic Sans MS</family>
-      <pointsize>10</pointsize>
+      <pointsize>14</pointsize>
       <bold>false</bold>
      </font>
     </property>
