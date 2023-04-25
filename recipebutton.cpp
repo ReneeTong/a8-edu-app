@@ -89,7 +89,7 @@ void recipeButton::setPixmap(QPixmap pixmap){
 };
 
 void recipeButton::setIngredientList(QList<Ingredient> ingredients, QList<Ingredient*> pantry) {
-    int matchingCount = 0;
+    matchingCount = 0;
     for (const auto &ingredient : ingredients) {
         QListWidgetItem *listItem = new QListWidgetItem(ui->matchingList);
         listItem->setText(ingredient.getName());

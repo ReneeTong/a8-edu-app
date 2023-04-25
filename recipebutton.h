@@ -33,8 +33,9 @@ public:
     void setLearnMore(QString text);
     void setDifficulty(int difficulty);
     void setPixmap(QPixmap pixmap);
-
+    int getMatchingCount() const{return matchingCount;}
     void setIngredientList(QList<Ingredient> ingredients, QList<Ingredient*> pantry);
+
 
 protected:
     recipeButton(QWidget *parent = nullptr);
@@ -43,6 +44,7 @@ private:
     Ui::RecipeButton *ui=nullptr;
     RecipeNew* m_recipe=nullptr;
     bool selected;
+   int matchingCount;
 };
 
 #endif // RECIPEBUTTON_H
