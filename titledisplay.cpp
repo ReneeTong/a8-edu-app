@@ -20,7 +20,7 @@ void titleDisplay::paintEvent(QPaintEvent *event) {
     painter.setRenderHint(QPainter::Antialiasing);
 
     QString title = "Bad Habits ©️";
-    QFont font("Brush Script MT", 12);
+    QFont font("Brush Script MT", 18);
     QFontMetrics fm(font);
     int textWidth = fm.horizontalAdvance(title);
 
