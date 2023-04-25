@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent)
         page2Half->showLoadingScreen();
     });
 
-    connect(page2Half, &s2RecipeTransition::loadingFinished, this, [=]() {
+    connect(page2Half, &s2RecipeTransition::goToPage3, this, [=]() {
         stackedWidget->setCurrentWidget(page3);
     });
 

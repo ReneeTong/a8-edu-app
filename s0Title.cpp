@@ -10,6 +10,7 @@ s0Title::s0Title(QWidget *parent) :
     setObjectName("s0Title");
     ui->setupUi(this);
     connect(ui->startBtn, &QPushButton::clicked, this , &s0Title::nextPage);
+    connect(ui->aboutBtn, &QPushButton::clicked, this , &s0Title::aboutPage);
 
     QSequentialAnimationGroup *animationGroup = new QSequentialAnimationGroup(ui->title);
     animationGroup->setLoopCount(-1); // Set the loop count to -1 for infinite looping
@@ -54,4 +55,40 @@ s0Title::~s0Title()
 void s0Title::nextPage()
 {
     emit goToPage1();
+}
+
+void s0Title::aboutPage()
+{
+    QDialog aboutDialog(this);
+    aboutDialog.setWindowTitle("About");
+
+    QVBoxLayout *layout = new QVBoxLayout(&aboutDialog);
+
+    QLabel *infoLabel = new QLabel(&aboutDialog);
+    infoLabel->setWordWrap(true);
+    infoLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+    infoLabel->setTextFormat(Qt::RichText); // Enable rich text formatting
+
+    QString authorsText = "<pre>Author: Andy Duong\n"
+                          "        Andy Tran\n"
+                          "        Jeffrey Le\n"
+                          "        TingTing Zhou\n"
+                          "        Renee Tong</pre>";
+
+    infoLabel->setText(
+        "<h1>Kitchen Killer&trade;</h1>"
+        "<p>We started making Kitchen Killer because we wanted to share our love for Asian heritage with everyone, especially those who might not have any cooking experience."
+        " We believe that food is a great way to show people the amazing cultures in Asia."
+        " With our app, we hope to bring people together by helping them enjoy a tasty meal, learn about different cooking styles, and discover the rich culture behind each dish. We want everyone who uses our app, from beginners to experienced cooks, "
+        " to have fun exploring new flavors and understanding the traditions that make Asian food so special.</p>"
+        "<p>Version: 1.0</p>"
+        + authorsText
+        );
+
+    layout->addWidget(infoLabel);
+
+    // Set the layout for the dialog
+    aboutDialog.setLayout(layout);
+    aboutDialog.setFixedSize(450, 350);
+    aboutDialog.exec();
 }

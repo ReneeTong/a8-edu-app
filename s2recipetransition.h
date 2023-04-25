@@ -19,11 +19,11 @@ public:
     ~s2RecipeTransition();
 
 signals:
-    void loadingFinished();
+    void goToPage3();
 
 public slots:
+    void nextPage();
     void showLoadingScreen();
-    void setColor(QColor );
 
 private:
     Ui::s2RecipeTransition *ui;

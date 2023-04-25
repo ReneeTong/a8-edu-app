@@ -16,20 +16,20 @@
   <widget class="QLabel" name="prepLab">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>210</x>
      <y>120</y>
-     <width>581</width>
+     <width>521</width>
      <height>81</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Rockwell</family>
-     <pointsize>36</pointsize>
+     <pointsize>32</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>Getting Everything Ready </string>
+    <string>Prepping All Ingredients</string>
    </property>
   </widget>
   <widget class="QProgressBar" name="progressBar">
