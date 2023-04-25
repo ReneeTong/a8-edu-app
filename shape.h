@@ -13,7 +13,7 @@ class Shape : public QObject
 {
     Q_OBJECT
 public:
-    explicit Shape(b2World *world, const b2Vec2& position, const b2Vec2& size, float32 density = 1.0f, float32 friction = 0.3f, QObject *parent = nullptr);
+    explicit Shape(b2World *world, const b2Vec2& position, const b2Vec2& size, float32 density = 0.5f, float32 friction = 0.3f, QObject *parent = nullptr);
     ~Shape();
 
 

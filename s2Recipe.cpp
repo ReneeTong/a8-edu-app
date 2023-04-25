@@ -50,8 +50,8 @@ void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> receivedIngredients
         return a->getMatchingCount() > b->getMatchingCount();
     });
 
-    int numRecipesToDisplay = 4;
-    for (int i = 0; i < numRecipesToDisplay && i < buttons.size(); i++) {
+    //int numRecipesToDisplay = 4;
+    for (int i = 0; i < buttons.size(); i++) {
         ui->scrollArea_2->addWidget(buttons[i]);
     }
 
