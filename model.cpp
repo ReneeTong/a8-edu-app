@@ -30,8 +30,6 @@ void Model::incrementIngredient(Ingredient* ingredient) {
         if (trackerTask.find(*ingredient) == trackerTask.end())
             trackerTask[*ingredient] = 0;
 
-        qDebug() << "incremeented";
-        // increment tracker
         trackerTask[*ingredient]++;
     }
 
@@ -106,6 +104,8 @@ void Model::cut(Shape *shape) {
         b2Vec2 size = shape->getSize();
         size *= 0.5;
 
+        delete shape;
+
         for (int i = 1; i <= 4; i++) {
             Ingredient *newIngredient = new Ingredient(ingredient->getName(), ingredient->actions);
 
@@ -117,6 +117,8 @@ void Model::cut(Shape *shape) {
             b2Vec2 variance(x, y);
             variance *= 15;
 
+            qDebug() << m_world->IsLocked();
+
             Shape *copy = nullptr;
             copy = new Shape(m_world, position + variance, size);
             copy->getBody()->SetLinearVelocity(variance);
@@ -125,8 +127,6 @@ void Model::cut(Shape *shape) {
         }
 
 
-
-        delete shape;
     };
 
     actionQueue.append(method);
@@ -139,8 +139,6 @@ void Model::boil(Shape *shape) {
 
     ingredient->actions.append(BOIL);
     incrementIngredient(ingredient);
-
-    qDebug() << ingredient->actions;
 
     if (ingredient->actions.contains(BOIL)) {
         auto method = [shape]() {
@@ -157,8 +155,6 @@ void Model::fry(Shape *shape) {
 
     ingredient->actions.append(FRY);
     incrementIngredient(ingredient);
-
-    qDebug() << ingredient->actions;
 
     if (ingredient->actions.contains(FRY)) {
         auto method = [shape]() {

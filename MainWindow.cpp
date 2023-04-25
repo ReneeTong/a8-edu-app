@@ -10,6 +10,12 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->widget->show();
+    setFixedSize(1000, 700);
+
+    setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
+    // setWindowFlag(Qt::FramelessWindowHint);
+
+    statusBar()->hide();
 
     //create stack element
     QStackedWidget *stackedWidget = new QStackedWidget;

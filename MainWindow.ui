@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Kitchen Killers 🔪</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="SceneWidget" name="widget" native="true">

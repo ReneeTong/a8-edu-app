@@ -20,7 +20,7 @@ Shape::Shape(b2World* world, const b2Vec2& position, const b2Vec2& size, float32
     fixtureDef.density = density;
     fixtureDef.friction = friction;
 
-    qDebug() << world->GetBodyCount();
+    qDebug() << world->IsLocked();
 
     m_body = nullptr;
     m_body = world->CreateBody(&bodyDef);
