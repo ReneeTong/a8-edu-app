@@ -207,10 +207,14 @@ void Render::dropEvent(QDropEvent*event)
     b2Vec2 position(point.x(), point.y());
     b2Vec2 size(10.0f, 10.0f);
 
-    Shape* shape = new Shape(&world, position, size);
-    shape->setStatic(false);
-    shape->setData(new Ingredient(currentDrop.getName(), {}));
-    shapes.push_back(shape);
+    auto method = [this, position, size]() {
+        Shape* shape = new Shape(&world, position, size);
+        shape->setStatic(false);
+        shape->setData(new Ingredient(currentDrop.getName(), {}));
+        shapes.push_back(shape);
+    };
+
+    model.actionQueue.append(method);
 }
 
 void Render::dragEnterEvent(QDragEnterEvent *event)
