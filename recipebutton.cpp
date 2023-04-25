@@ -8,7 +8,7 @@ recipeButton::recipeButton(RecipeNew *recipe, QList<Ingredient*> pantry, QWidget
 {
     ui->setupUi(this);
     setObjectName("mainRecipeButton");
-    setFixedSize(350,425);
+    setFixedSize(400,425);
 
     setTitle(recipe->getName());
     setDescription(recipe->getDescription());

@@ -241,6 +241,7 @@ void Render::renderWorld() {
 
     if (!world.IsLocked()) {
         for (const auto& method : model.actionQueue) {
+            if (world.IsLocked()) return;
             method();
         }
         model.actionQueue.clear();
