@@ -86,7 +86,7 @@
     </font>
    </property>
    <property name="text">
-    <string>COOK</string>
+    <string>Finalized</string>
    </property>
   </widget>
   <widget class="QFrame" name="rightFrame">
@@ -131,7 +131,7 @@
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>stepLabel</string>
     </property>
     <property name="wordWrap">
      <bool>true</bool>

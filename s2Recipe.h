@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "recipenew.h"
 #include "foodlibrary.h"
+#include <Model.h>
 
 
 namespace Ui {
