@@ -29,7 +29,7 @@ protected:
     void dropEvent(QDropEvent*) override;
     void dragEnterEvent(QDragEnterEvent* event) override;
     void dragLeaveEvent(QDragLeaveEvent* event) override;
-    void dragMoveEvent(QDragMoveEvent* event) override;
+    //void dragMoveEvent(QDragMoveEvent*) override;
 
     using QWidget::QWidget;
 

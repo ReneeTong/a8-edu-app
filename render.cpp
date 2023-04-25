@@ -228,21 +228,23 @@ void Render::dragLeaveEvent(QDragLeaveEvent *event)
     event->accept();
 }
 
-void Render::dragMoveEvent(QDragMoveEvent *event)
-{
-    //event->accept();
-    //event->acceptProposedAction();
-}
+//void Render::dragMoveEvent(QDragMoveEvent *)
+//{
+//    //event->accept();
+//    //event->acceptProposedAction();
+//}
 
 
 // [== WORLD STEP SECTION ==]
 void Render::renderWorld() {
     world.Step(2.0/60.0, 6, 2);
 
-    for (const auto& method : model.actionQueue) {
-        method();
+    if (!world.IsLocked()) {
+        for (const auto& method : model.actionQueue) {
+            method();
+        }
+        model.actionQueue.clear();
     }
-    model.actionQueue.clear();
 
     update();
 }
