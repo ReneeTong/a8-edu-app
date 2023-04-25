@@ -10,6 +10,9 @@
 #include<QLabel>
 #include <QTimer>
 #include <Box2D/Box2D.h>
+#include <future>
+
+using std::future;
 
 Render::Render(QWidget *parent)
     : QWidget{parent},
@@ -236,15 +239,22 @@ void Render::dragLeaveEvent(QDragLeaveEvent *event)
 
 
 // [== WORLD STEP SECTION ==]
+bool lock = false;
 void Render::renderWorld() {
-    world.Step(2.0/60.0, 6, 2);
+    if (!lock)
+        world.Step(2.0/60.0, 6, 2);
 
     if (!world.IsLocked()) {
-        for (const auto& method : model.actionQueue) {
-            if (world.IsLocked()) return;
-            method();
+        lock = true;
+        std::vector<future<void>> futures;
+        for (auto& method : model.actionQueue) {
+            futures.push_back(std::async(std::launch::async, method));
+        }
+        for (auto& f : futures) {
+            f.wait();
         }
         model.actionQueue.clear();
+        lock = false;
     }
 
     update();
