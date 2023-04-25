@@ -20,11 +20,16 @@ s4Complete::~s4Complete()
     delete ui;
 }
 
-//void s4Complete::receiveSelectedRecipe(RecipeNew *recipe)
-//{
-//    currentRecipe = recipe;
-//    ui->titleLab->setText(QString("You have successfully made %1").arg(currentRecipe->getName()));
-//}
+void s4Complete::receiveSelectedRecipe(RecipeNew *recipe)
+{
+    currentRecipe = recipe;
+    ui->titleLab->setText(QString("You have successfully made %1").arg(currentRecipe->getName()));
+    // Set the pixmap for the recipePic QLabel
+    QPixmap pixmap = currentRecipe->getPixmap();
+    ui->recipePic->setPixmap(pixmap);
+    ui->recipePic->setScaledContents(true); // This line ensures the pixmap is scaled to fit the QLabel
+}
+
 
 void s4Complete::nextPage()
 {

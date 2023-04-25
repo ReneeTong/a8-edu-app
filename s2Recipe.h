@@ -32,7 +32,6 @@ private slots:
 private:
     Ui::s2Recipe *ui=nullptr;
     FoodLibrary foodLibrary;
-
     RecipeNew* selectedRecipe = nullptr;
 
 };
