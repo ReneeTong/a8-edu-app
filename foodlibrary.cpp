@@ -54,8 +54,29 @@ FoodLibrary::FoodLibrary()
     // [== RECIPES ==]
 
     // Fried Noodle?
-    {
-        RecipeNew *noodle = new RecipeNew("Fried Noodles");
+    {      
+        RecipeNew *noodle = new RecipeNew("Fried Noodles");       
+        noodle->setPixmap(QPixmap(":/sprites/icons/pho.png"));
+        noodle->setDescription("1. Chop broccoli, carrot and cabbage. \n "
+                            "2. Chop all the proteins including beef or chicken. \n"
+                            "3. Put all the chopped meat to boiling water to cook for 5 hours. \n"
+                            "4. Add all the vegetables into the soup and cook 30 minutes or more. \n"
+                            "5. Cook the noodle in the soup for 5 minutes. And add some soysauce. \n"
+                            "6. Pour all content to a bowl. "
+                            );
+
+        noodle->setLearnMore("<p>What is Phở?</p>"
+                          "<p>- Phở is a Vietnamese soup dish consisting of broth, rice noodles (bánh phở), herbs, and meat (usually beef (phở bò), sometimes chicken (phở gà)). Phở is a popular food in Vietnam, where it is served in households, street-stalls, and restaurants country-wide.</p>"
+                          "<p>Where did Phở emerge?</p>"
+                          "<p>- Residents of the city of Nam Định were the first to create Vietnamese traditional phở</p>"
+                          "<p>When did Phở become popular?</p>"
+                          "<p>- Originated in the early 20th century in Northern Vietnam, and was popularized throughout the world by refugees after the Vietnam War.</p>"
+                          "<p>Fun fact:</p>"
+                          "<p>- Because phở's origins are poorly documented, there is disagreement over the cultural influences that led to its development in Vietnam, as well as the etymology of the name.</p>"
+                          "<p>- The Hanoi (northern) and Saigon (southern) styles of pho differ by noodle width, sweetness of broth, and choice of herbs and sauce.</p>"
+                          );
+        noodle->setDifficulty(4);
+
         noodle->addTask("First, describe tasks...",
                         {
                             {Ingredient("Salt", {BOIL}),                {1, "Put salt in the boiling pot"}}

@@ -19,6 +19,8 @@ s1Pantry::s1Pantry(QWidget *parent) :
         FoodCategory food = static_cast<FoodCategory>(i);
 
         QGroupBox *box = new QGroupBox();
+        QFont font("Tahoma", 10, QFont::Bold);
+        box->setFont(font);
         box->setStyleSheet("QGroupBox {border: 0px;};");
         box->setFixedSize(675, 150);
         //box->setStyleSheet("QGroupBox {background-color: white};");
@@ -41,7 +43,8 @@ s1Pantry::s1Pantry(QWidget *parent) :
             break;
         }
 
-        ScrollCarousel *pantry = new ScrollCarousel(true);       
+        ScrollCarousel *pantry = new ScrollCarousel(true);
+
         pantry->setStyleSheet("ScrollCarousel > QWidget > QWidget {background-color: transparent};");
         pantry->setFixedSize(650, 100);
         layout->addWidget(pantry);

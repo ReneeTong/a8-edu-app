@@ -23,7 +23,8 @@ s4Complete::~s4Complete()
 void s4Complete::receiveSelectedRecipe(RecipeNew *recipe)
 {
     currentRecipe = recipe;
-    ui->titleLab->setText(QString("You have successfully made %1").arg(currentRecipe->getName()));
+    ui->titleLab->setText(QString("You have successfully made"));
+    ui->nameLab->setText(QString("%1").arg(currentRecipe->getName()));
     // Set the pixmap for the recipePic QLabel
     QPixmap pixmap = currentRecipe->getPixmap();
     ui->recipePic->setPixmap(pixmap);

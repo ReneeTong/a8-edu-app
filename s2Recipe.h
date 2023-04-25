@@ -4,6 +4,8 @@
 #include <QWidget>
 #include "recipenew.h"
 #include "foodlibrary.h"
+#include <Model.h>
+
 
 namespace Ui {
 class s2Recipe;
@@ -22,9 +24,9 @@ public slots:
     void recieveSelectedIngredients(QList<Ingredient*>);
 
 signals:
-    void goToPage3();
     void backButtonClicked();
     void sendSelectedRecipe(RecipeNew* recipe);
+    void goToPage2Half();
 
 private slots:
     void backButtonClickedSlot();
