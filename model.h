@@ -5,6 +5,7 @@
 #include "recipenew.h"
 #include "shape.h"
 #include <QObject>
+#include "qfont.h"
 
 using std::function;
 
@@ -38,6 +39,7 @@ private:
 
 signals:
     void updateDisplayText(QString text); // temp feedback solution
+    void enableFinalized();
 };
 
 #endif // MODEL_H
