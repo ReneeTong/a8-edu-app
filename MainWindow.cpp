@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "s1Pantry.h"
 #include "s2Recipe.h"
+#include "s2recipetransition.h"
 #include "ui_MainWindow.h"
 #include <QStackedWidget>
 
@@ -27,11 +28,13 @@ MainWindow::MainWindow(QWidget *parent)
     page2 = new s2Recipe(this);
     page3 = new s3Cooking(this);
     page4 = new s4Complete(this);
+    page2Half = new s2RecipeTransition(this);
 
     stackedWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     stackedWidget->addWidget(page0);
     stackedWidget->addWidget(page1);
     stackedWidget->addWidget(page2);
+    stackedWidget->addWidget(page2Half);
     stackedWidget->addWidget(page3);
     stackedWidget->addWidget(page4);
     stackedWidget->setCurrentWidget(page0);
@@ -43,9 +46,17 @@ MainWindow::MainWindow(QWidget *parent)
     connect(page1, &s1Pantry::goToPage2, this, [=]() {
         stackedWidget->setCurrentWidget(page2);
     });
-    connect(page2, &s2Recipe::goToPage3, this, [=]() {
+
+
+    connect(page2, &s2Recipe::goToPage2Half, this, [=]() {
+        stackedWidget->setCurrentWidget(page2Half);
+        page2Half->showLoadingScreen();
+    });
+
+    connect(page2Half, &s2RecipeTransition::loadingFinished, this, [=]() {
         stackedWidget->setCurrentWidget(page3);
     });
+
     connect(page3, &s3Cooking::goToPage4, this, [=]() {
         stackedWidget->setCurrentWidget(page4);
     });

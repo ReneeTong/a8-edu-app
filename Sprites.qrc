@@ -19,5 +19,6 @@
         <file>icons/FryPan.png</file>
         <file>icons/Title.png</file>
         <file>icons/pho.png</file>
+        <file>../../../Downloads/funny.gif</file>
     </qresource>
 </RCC>

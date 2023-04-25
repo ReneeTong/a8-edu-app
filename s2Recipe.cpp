@@ -21,8 +21,9 @@ void s2Recipe::nextPage()
 {
     if (selectedRecipe == nullptr) return;
 
-    emit goToPage3();
+    emit goToPage2Half();
     emit sendSelectedRecipe(selectedRecipe);
+
 }
 
 void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> receivedIngredients){

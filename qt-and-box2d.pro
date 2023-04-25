@@ -73,6 +73,7 @@ SOURCES += \
     s0Title.cpp \
     s1Pantry.cpp \
     s2Recipe.cpp \
+    s2recipetransition.cpp \
     s3Cooking.cpp \
     s4Complete.cpp \
     scrollcarousel.cpp \
@@ -145,6 +146,7 @@ HEADERS += \
     s0Title.h \
     s1Pantry.h \
     s2Recipe.h \
+    s2recipetransition.h \
     s3Cooking.h \
     s4Complete.h \
     scrollcarousel.h \
@@ -158,6 +160,7 @@ FORMS += \
     s0Title.ui \
     s1Pantry.ui \
     s2Recipe.ui \
+    s2recipetransition.ui \
     s3Cooking.ui \
     s4Complete.ui
 
@@ -177,6 +180,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    ../../../Downloads/funny.gif \
     ../../../Downloads/pho.png \
     Box2D/Box2DConfig.cmake \
     Box2D/CMakeLists.txt \
