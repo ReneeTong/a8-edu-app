@@ -244,7 +244,7 @@ void Render::renderWorld() {
     if (!lock)
         world.Step(2.0/60.0, 6, 2);
 
-    if (!world.IsLocked()) {
+    if (!world.IsLocked() && !lock) {
         lock = true;
         std::vector<future<void>> futures;
         for (auto& method : model.actionQueue) {
