@@ -16,34 +16,43 @@
   <widget class="QLabel" name="prepLab">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>150</y>
-     <width>391</width>
-     <height>61</height>
+     <x>190</x>
+     <y>120</y>
+     <width>581</width>
+     <height>81</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Rockwell</family>
+     <pointsize>36</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>Getting Everything Ready </string>
    </property>
   </widget>
   <widget class="QProgressBar" name="progressBar">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>520</y>
-     <width>581</width>
-     <height>81</height>
+     <x>210</x>
+     <y>220</y>
+     <width>521</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="value">
     <number>24</number>
    </property>
+   <property name="textVisible">
+    <bool>false</bool>
+   </property>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>240</y>
+     <x>210</x>
+     <y>280</y>
      <width>521</width>
      <height>261</height>
     </rect>

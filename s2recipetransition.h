@@ -23,6 +23,7 @@ signals:
 
 public slots:
     void showLoadingScreen();
+    void setColor(QColor );
 
 private:
     Ui::s2RecipeTransition *ui;
@@ -34,6 +35,7 @@ private:
     QMovie *movie;
     int progressBarValue;
     void updateProgressBar();
+    void startTextAnimations();
 };
 
 #endif // S2RECIPETRANSITION_H
