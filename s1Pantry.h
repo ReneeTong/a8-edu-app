@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QGroupBox>
 #include"foodLibrary.h"
+#include <Model.h>
 
 namespace Ui {
 class s1Pantry;

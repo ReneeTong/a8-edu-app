@@ -16,10 +16,10 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>460</y>
+     <x>340</x>
+     <y>470</y>
      <width>341</width>
-     <height>151</height>
+     <height>159</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="btnLayout">
@@ -36,9 +36,9 @@
       </property>
       <property name="font">
        <font>
-        <family>Courier New</family>
+        <family>Comic Sans MS</family>
         <pointsize>28</pointsize>
-        <bold>false</bold>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -56,8 +56,9 @@
       </property>
       <property name="font">
        <font>
-        <family>Courier New</family>
+        <family>Comic Sans MS</family>
         <pointsize>28</pointsize>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -70,8 +71,8 @@
   <widget class="QLabel" name="recipePic">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>200</y>
+     <x>360</x>
+     <y>210</y>
      <width>281</width>
      <height>201</height>
     </rect>
@@ -83,8 +84,8 @@
   <widget class="QLabel" name="titleLab">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>110</y>
+     <x>100</x>
+     <y>20</y>
      <width>801</width>
      <height>71</height>
     </rect>
@@ -96,7 +97,32 @@
     </font>
    </property>
    <property name="text">
-    <string>YOU HAVE SUCESSFULLY MADE PHO</string>
+    <string>titleLab</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nameLab">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>90</y>
+     <width>801</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe Print</family>
+     <pointsize>36</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Fried Noodles</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

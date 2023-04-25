@@ -39,9 +39,9 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>0</y>
-     <width>1001</width>
-     <height>701</height>
+     <y>-10</y>
+     <width>1031</width>
+     <height>711</height>
     </rect>
    </property>
    <property name="text">
@@ -76,10 +76,10 @@
   <widget class="QPushButton" name="startBtn">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>379</x>
      <y>350</y>
-     <width>700</width>
-     <height>60</height>
+     <width>221</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -92,6 +92,7 @@
     <font>
      <family>Comic Sans MS</family>
      <pointsize>16</pointsize>
+     <bold>true</bold>
     </font>
    </property>
    <property name="text">
@@ -101,10 +102,10 @@
   <widget class="QPushButton" name="aboutBtn">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>379</x>
      <y>450</y>
-     <width>500</width>
-     <height>50</height>
+     <width>221</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -117,6 +118,7 @@
     <font>
      <family>Comic Sans MS</family>
      <pointsize>16</pointsize>
+     <bold>true</bold>
     </font>
    </property>
    <property name="text">

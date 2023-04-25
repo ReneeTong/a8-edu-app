@@ -26,6 +26,7 @@ public:
 
 public slots:
     void nextPage();
+    void enableFinalized();
 
     //jeffeeeeeeee
     void recieveSelectedRecipe(RecipeNew* recipe);

@@ -7,8 +7,38 @@ recipeButton::recipeButton(RecipeNew *recipe, QList<Ingredient*> pantry, QWidget
     m_recipe(recipe)
 {
     ui->setupUi(this);
+    ui->matchingList->setEnabled(false);
     setObjectName("mainRecipeButton");
     setFixedSize(400,425);
+
+    msgBoxStyle = "QMessageBox {"
+                          "background-color: #333333;"
+                          "border: 2px solid #555555;"
+                          "border-radius: 8px;"
+                          "}"
+                          "QLabel {"
+                          "color: #ffffff;"
+                          "}"
+                          "QPushButton {"
+                          "background-color: #555555;"
+                          "color: #ffffff;"
+                          "border: 1px solid #666666;"
+                          "border-radius: 4px;"
+                          "padding: 4px;"
+                          "}"
+                          "QPushButton:hover {"
+                          "background-color: #888888;"
+                          "}"
+                          "QPushButton:pressed {"
+                          "background-color: #444444;"
+                          "}";
+    msgBox = new QMessageBox(this);
+    // Set up the messagebox style
+    msgBox->setStyleSheet(msgBoxStyle);
+    QFont font("Tahoma", 12);
+    msgBox->setFont(font);
+    msgBox->setTextFormat(Qt::RichText);
+    msgBox->setStandardButtons(QMessageBox::Ok);
 
     setTitle(recipe->getName());
     setDescription(recipe->getDescription());
@@ -29,48 +59,16 @@ void recipeButton::setTitle(QString text) {
 
 void recipeButton::setDescription(QString text) {
     connect(ui->stepsBtn, &QPushButton::clicked, this, [this, text]() {
-        QMessageBox *msgBox = new QMessageBox(this);
-        msgBox->setWindowTitle("Step By Step");
-        msgBox->setText(text);
-        msgBox->setStandardButtons(QMessageBox::Ok);
+        msgBox->setWindowTitle("Step by Step");
+        msgBox->setInformativeText(text);
         msgBox->exec();
     });
 };
 
 void recipeButton::setLearnMore(QString text) {
     connect(ui->aboutBtn, &QPushButton::clicked, this, [this, text]() {
-        QMessageBox *msgBox = new QMessageBox(this);
-
-        // Set up the messagebox style
-        QString msgBoxStyle = "QMessageBox {"
-                              "background-color: #333333;"
-                              "border: 2px solid #555555;"
-                              "border-radius: 8px;"
-                              "}"
-                              "QLabel {"
-                              "color: #ffffff;"
-                              "}"
-                              "QPushButton {"
-                              "background-color: #555555;"
-                              "color: #ffffff;"
-                              "border: 1px solid #666666;"
-                              "border-radius: 4px;"
-                              "padding: 4px;"
-                              "}"
-                              "QPushButton:hover {"
-                              "background-color: #888888;"
-                              "}"
-                              "QPushButton:pressed {"
-                              "background-color: #444444;"
-                              "}";
-        msgBox->setStyleSheet(msgBoxStyle);
-
         msgBox->setWindowTitle("Learn more");
         msgBox->setInformativeText(text);
-        msgBox->setStandardButtons(QMessageBox::Ok);
-        msgBox->setTextFormat(Qt::RichText);
-
-        msgBox->setStandardButtons(QMessageBox::Ok);
         msgBox->exec();
     });
 };
@@ -94,17 +92,20 @@ void recipeButton::setIngredientList(QList<Ingredient> ingredients, QList<Ingred
         QListWidgetItem *listItem = new QListWidgetItem(ui->matchingList);
         listItem->setText(ingredient.getName());
 
-        listItem->setForeground(Qt::gray);
+        listItem->setForeground(Qt::black);
         for (const auto& selected : pantry) {
             if (selected->getName() == ingredient.getName()) {
-                listItem->setForeground(Qt::green);
+                QFont font("Arial", 10, QFont::Bold);
+                QColor color(60, 176, 67, 225);
+                listItem->setFont(font);
+                listItem->setForeground(color);
                 matchingCount++;
                 break;
             }
         }
     }
 
-    QString matchingText = "%1/%2";
+    QString matchingText = "Ingredients: %1/%2";
     matchingText = matchingText.arg(matchingCount);
     matchingText = matchingText.arg(ingredients.size());
     ui->matchingLab->setText(matchingText);
@@ -124,7 +125,7 @@ bool recipeButton::getSelected() const {
 void recipeButton::setSelected(bool selected) {
     this->selected = selected;
     if (selected) {
-        setStyleSheet("recipeButton {border: 2px solid rgba(0, 255, 0, 0.5);}");
+        setStyleSheet("recipeButton {border: 2px solid rgba(0, 255, 0, 0.8);}");
     } else {
         setStyleSheet("recipeButton {};");
     }

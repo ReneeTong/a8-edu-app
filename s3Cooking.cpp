@@ -13,6 +13,10 @@ s3Cooking::s3Cooking(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //Andy Tran
+    ui->nextBtn->setEnabled(false);
+    connect(render->getModel(), &Model::enableFinalized, this, &s3Cooking::enableFinalized);
+
     // jeffeeeeeeeee
     QTimer::singleShot(0, this, [this]() {
         ui->scrollArea->addWidget(render);//render moved to .h
@@ -45,6 +49,9 @@ void s3Cooking::nextPage()
     emit goToPage4();
 }
 
+void s3Cooking::enableFinalized(){
+    ui->nextBtn->setEnabled(true);
+}
 
 void s3Cooking::recieveSelectedRecipe(RecipeNew* recipe) {
     render->getModel()->setRecipe(recipe);

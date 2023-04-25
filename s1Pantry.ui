@@ -91,6 +91,7 @@
     <property name="font">
      <font>
       <family>Tahoma</family>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="text">
@@ -109,6 +110,7 @@
     <property name="font">
      <font>
       <family>Tahoma</family>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="text">
@@ -124,6 +126,11 @@
      <width>731</width>
      <height>591</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Tahoma</family>
+    </font>
    </property>
    <property name="frameShape">
     <enum>QFrame::Panel</enum>

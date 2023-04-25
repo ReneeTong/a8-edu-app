@@ -44,7 +44,9 @@ private:
     Ui::RecipeButton *ui=nullptr;
     RecipeNew* m_recipe=nullptr;
     bool selected;
-   int matchingCount;
+    int matchingCount;
+    QString msgBoxStyle;
+    QMessageBox *msgBox;
 };
 
 #endif // RECIPEBUTTON_H

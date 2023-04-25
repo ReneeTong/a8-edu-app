@@ -1,7 +1,6 @@
 #include "model.h"
 #include "qdebug.h"
 
-
 Model::Model(b2World *world, QObject *parent)
     : QObject{parent},
       m_world(world)
@@ -63,8 +62,10 @@ bool Model::checkTasks() {
 }
 
 QString Model::getDisplayText() {
-    if (m_recipe->isCompleted(currentTask)) return "Completed!";
-
+    if (m_recipe->isCompleted(currentTask)){
+        emit enableFinalized();
+        return "Completed!";
+    }
     QString displayText = "Step " + QString::number(currentTask + 1);
     displayText += "\n" + m_recipe->getDisplayText(currentTask) + "\n";
 
