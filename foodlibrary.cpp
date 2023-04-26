@@ -217,8 +217,8 @@ Ingredient* FoodLibrary::getIngredientByName(const QString& name) const {
     return nullptr;
 }
 
-Recipe* FoodLibrary::getRecipeByName(const QString& recipeName) const {
-    for (Recipe* recipe : recipes) {
+RecipeNew* FoodLibrary::getRecipeByName(const QString& recipeName) const {
+    for (RecipeNew* recipe : recipes) {
         if (recipe->getName() == recipeName) {
             return recipe;
         }
