@@ -22,28 +22,6 @@
   <property name="autoFillBackground">
    <bool>true</bool>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>731</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Comic Sans MS</family>
-     <pointsize>30</pointsize>
-     <italic>false</italic>
-     <bold>true</bold>
-     <underline>false</underline>
-    </font>
-   </property>
-   <property name="text">
-    <string>PANTRY</string>
-   </property>
-  </widget>
   <widget class="QFrame" name="frame_2">
    <property name="geometry">
     <rect>
@@ -121,16 +99,19 @@
   <widget class="ScrollCarousel" name="pantryCategory">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>80</y>
-     <width>731</width>
-     <height>591</height>
+     <x>50</x>
+     <y>0</y>
+     <width>681</width>
+     <height>701</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Tahoma</family>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="frameShape">
     <enum>QFrame::Panel</enum>
@@ -149,12 +130,34 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>725</width>
-      <height>585</height>
+      <width>675</width>
+      <height>695</height>
      </rect>
     </property>
    </widget>
   </widget>
+  <widget class="QLabel" name="background">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1001</width>
+     <height>711</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="Sprites.qrc">:/sprites/icons/pantry.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>frame_2</zorder>
+  <zorder>pantryCategory</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -164,6 +167,8 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="Sprites.qrc"/>
+ </resources>
  <connections/>
 </ui>

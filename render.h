@@ -47,6 +47,8 @@ private:
 
     Shape* ground;
     Shape* fryingPan;
+    Shape* cuttingBoard;
+    Shape* boilingPot;
 
 
 signals:

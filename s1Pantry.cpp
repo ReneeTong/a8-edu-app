@@ -51,7 +51,6 @@ s1Pantry::s1Pantry(QWidget *parent) :
 
         pantryList.append(pantry);
 
-
         QTimer::singleShot(0, this, [this, box, f, pantry, food] {
 
             for (Ingredient *ingredient : f.getAllIngredients()) {
