@@ -39,15 +39,15 @@ void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> receivedIngredients
     // load recipes
     ui->scrollArea_2->clearWidgets();
 
-    QList<recipeButton*> buttons;
+    QList<RecipeButton*> buttons;
     for (RecipeNew* recipe : foodLibrary.getAllRecipesNew()) {
-        recipeButton *button = new recipeButton(recipe, receivedIngredients);
+        RecipeButton *button = new RecipeButton(recipe, receivedIngredients);
         buttons.append(button);
 
     }   
 
     // Sort the buttons based on the matching count (highest to lowest)
-    std::sort(buttons.begin(), buttons.end(), [](const recipeButton* a, const recipeButton* b) {
+    std::sort(buttons.begin(), buttons.end(), [](const RecipeButton* a, const RecipeButton* b) {
         return a->getMatchingCount() > b->getMatchingCount();
     });
 
@@ -56,7 +56,7 @@ void s2Recipe::recieveSelectedIngredients(QList<Ingredient*> receivedIngredients
         ui->scrollArea_2->addWidget(buttons[i]);
     }
 
-    for (recipeButton* button : buttons) {
+    for (RecipeButton* button : buttons) {
         connect(button, &QPushButton::clicked, this, [this, buttons, button]() {
             for (const auto& btn : buttons) {
                 btn->setSelected(false);

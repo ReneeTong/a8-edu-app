@@ -13,14 +13,14 @@ namespace Ui {
 class RecipeButton;
 }
 
-class recipeButton : public QPushButton
+class RecipeButton : public QPushButton
 {
     Q_OBJECT
 
 public:
     //explicit recipeButton(const Recipe &recipe, QWidget *parent = nullptr, const QList<Ingredient *> &selectedIngredients = QList<Ingredient *>());
-    explicit recipeButton(RecipeNew* recipe, QList<Ingredient*> pantry, QWidget *parent = nullptr);
-    ~recipeButton();
+    explicit RecipeButton(RecipeNew* recipe, QList<Ingredient*> pantry, QWidget *parent = nullptr);
+    ~RecipeButton();
 
     bool getSelected() const;
     void setSelected(bool);
@@ -38,7 +38,7 @@ public:
 
 
 protected:
-    recipeButton(QWidget *parent = nullptr);
+    RecipeButton(QWidget *parent = nullptr);
 
 private:
     Ui::RecipeButton *ui=nullptr;

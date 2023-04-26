@@ -55,7 +55,6 @@ SOURCES += \
     Box2D/Dynamics/b2World.cpp \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
-    SceneWidget.cpp \
     debugdraw.cpp \
     draganddrop.cpp \
     foodlibrary.cpp \
@@ -65,8 +64,6 @@ SOURCES += \
     main.cpp \
     MainWindow.cpp \
     model.cpp \
-    mycontactlistener.cpp \
-    recipe.cpp \
     recipebutton.cpp \
     recipenew.cpp \
     render.cpp \
@@ -78,7 +75,6 @@ SOURCES += \
     s4Complete.cpp \
     scrollcarousel.cpp \
     shape.cpp \
-    simulations.cpp \
     titledisplay.cpp
 
 HEADERS += \
@@ -130,7 +126,6 @@ HEADERS += \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
     MainWindow.h \
-    SceneWidget.h \
     debugdraw.h \
     draganddrop.h \
     foodlibrary.h \
@@ -138,8 +133,6 @@ HEADERS += \
     ingredientbutton.h \
     kitchencontactlistener.h \
     model.h \
-    mycontactlistener.h \
-    recipe.h \
     recipebutton.h \
     recipenew.h \
     render.h \
@@ -151,7 +144,6 @@ HEADERS += \
     s4Complete.h \
     scrollcarousel.h \
     shape.h \
-    simulations.h \
     titledisplay.h
 
 FORMS += \
