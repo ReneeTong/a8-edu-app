@@ -29,14 +29,6 @@ s3Cooking::s3Cooking(QWidget *parent) :
 
     xmaps.insert("Tomato",QPixmap(":/sprites/icons/Tomato.png"));
     xmaps.insert("Carrot",QPixmap(":/sprites/icons/Carrot.png"));
-
-    //Ruini:add backgound image
-//    QPixmap image(":/sprites/icons/Kitchen.PNG");
-//    QLabel* background = ui->backgoundImage;
-//    background->setPixmap(image);
-//    background->setScaledContents(true); // Scale the image to fit the label
-//    background->setGeometry(QRect(0, 0, background->width(), background->height()));
-//    background->lower();
 }
 
 s3Cooking::~s3Cooking()

@@ -20,5 +20,14 @@
         <file>icons/Title.png</file>
         <file>icons/pho.png</file>
         <file>icons/funny.gif</file>
+        <file>icons/about.png</file>
+        <file>icons/start.png</file>
+        <file>icons/pantry.png</file>
+        <file>icons/paper.png</file>
+        <file>icons/cutboard.png</file>
+        <file>icons/pot.png</file>
+        <file>icons/Garlic.png</file>
+        <file>icons/Oil.png</file>
+        <file>icons/Garlic_piece.png</file>
     </qresource>
 </RCC>

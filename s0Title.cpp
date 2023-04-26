@@ -31,6 +31,13 @@ s0Title::s0Title(QWidget *parent) :
     animationGroup->addAnimation(animation2);
     animationGroup->start(); // Start the animation
 
+    QPixmap startImage(":/sprites/icons/start.png");
+    ui->startBtn->setIcon(startImage);
+
+    QPixmap aboutImage(":/sprites/icons/about.png");
+    ui->aboutBtn->setIcon(aboutImage);
+
+
 //    //Ruini:add title image
 //    QPixmap imageTitle(":/sprites/icons/Title.png");
 //    QLabel* title = ui->title;

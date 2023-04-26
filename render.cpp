@@ -14,6 +14,11 @@
 
 using std::future;
 
+class PixmapUserData : public QPixmap {
+public:
+    PixmapUserData(const QPixmap& pixmap) : QPixmap(pixmap) {}
+};
+
 Render::Render(QWidget *parent)
     : QWidget{parent},
       world(b2Vec2(0.0f, 10.0f)),
@@ -51,7 +56,7 @@ Render::Render(QWidget *parent)
         b2Vec2 position = b2Vec2(WINDOW_WIDTH/(UTENSIL_COUNT+1) * 1, WINDOW_HEIGHT-(GROUND_HEIGHT*2)-size.y);
         position -= b2Vec2(35, 0); // hard coded to space them evenly
 
-        Shape* boilingPot = new Shape(&world, position, size);
+        boilingPot = new Shape(&world, position, size);
         boilingPot->setStatic(true);
 
         connect(boilingPot, &Shape::onContact, &model, &Model::boil);
@@ -61,7 +66,7 @@ Render::Render(QWidget *parent)
         b2Vec2 size = b2Vec2(70, 5);
         b2Vec2 position = b2Vec2(WINDOW_WIDTH/(UTENSIL_COUNT+1) * 2, WINDOW_HEIGHT-(GROUND_HEIGHT*2)-size.y);
 
-        Shape* cuttingBoard = new Shape(&world, position, size);
+        cuttingBoard = new Shape(&world, position, size);
         cuttingBoard->setStatic(true);
 
         connect(cuttingBoard, &Shape::onContact, &model, &Model::cut);
@@ -160,25 +165,54 @@ void Render::paintEvent(QPaintEvent *) {
 
     //painter.drawPixmap(30, 30, currentDrop.getPixmap());
 
-//    for (Shape* shape : shapes) {
-//        b2Vec2 position = shape->getBody()->GetPosition();
-//        Ingredient* ingredient = static_cast<Ingredient*>(shape->getData());
+    qDebug() << world.GetBodyCount();
+//    for (b2Body* body = world.GetBodyList(); body; body = body->GetNext())
+//    {
+//        // Get body position and size
+//        b2Vec2 position = body->GetPosition();
+//        //b2Vec2 size =
 
+//        if (body->GetType() == b2_dynamicBody) {
+//            //PixmapUserData* pixmapData = static_cast<PixmapUserData*>(body->GetUserData());
 
-//        QList<Ingredient> ingredients= model.getRecipe()->getIngredeints();
+//            //qDebug() <<ingredient->getName();
 
-//        qDebug() <<ingredient->getName();
+//            // Load image for body type
+//            //QPixmap pixmap = ingredient->getPixmap();
+//            QPixmap* userData = static_cast<QPixmap*>(body->GetUserData());
+//            QPixmap scaledPan = userData->scaled(QSize(50, 50), Qt::KeepAspectRatio);
+//            int xPan = (int)(position.x - scaledPan.width() / 2.0);
+//            int yPan = (int)(position.y - scaledPan.height() / 2.0);
 
-//        QPixmap current = parentWidget()->findChild<QWidget*>("ingredientList")->property("pixmap").value<QPixmap>();
-//        painter.drawPixmap((int)(position.x*20), (int)(position.y*20), current);
+//            // Draw image
+//            painter.drawPixmap(xPan, yPan, scaledPan);
+//        }
+
 //    }
 
+    //draw the frying pan
     b2Vec2 panPos = fryingPan->getBody()->GetPosition();
     QPixmap panPix(":/sprites/icons/FryPan.png");
-    QPixmap scaledPixmap = panPix.scaled(QSize(200, 200), Qt::KeepAspectRatio);
-    int x = (int)(panPos.x - scaledPixmap.width() / 2.0) + 32;//32 is the offset
-    int y = (int)(panPos.y - scaledPixmap.height() / 2.0);
-    painter.drawPixmap(x, y, scaledPixmap);
+    QPixmap scaledPan = panPix.scaled(QSize(200, 200), Qt::KeepAspectRatio);
+    int xPan = (int)(panPos.x - scaledPan.width() / 2.0) + 32;//32 is the offset
+    int yPan = (int)(panPos.y - scaledPan.height() / 2.0)-5;
+    painter.drawPixmap(xPan, yPan, scaledPan);
+
+    //draw the cut board
+    b2Vec2 boardPos = cuttingBoard->getBody()->GetPosition();
+    QPixmap boardPix(":/sprites/icons/cutboard.png");
+    QPixmap scaledBoard = boardPix.scaled(QSize(200, 200), Qt::KeepAspectRatio);
+    int xBoard = (int)(boardPos.x - scaledBoard.width() / 2.0)+32;//32 is the offset
+    int yBoard = (int)(boardPos.y - scaledBoard.height() / 2.0)-60;
+    painter.drawPixmap(xBoard, yBoard, scaledBoard);
+
+    //draw the pot
+    b2Vec2 potPos = boilingPot->getBody()->GetPosition();
+    QPixmap potPix(":/sprites/icons/pot.png");
+    QPixmap scaledPot = potPix.scaled(QSize(200, 200), Qt::KeepAspectRatio);
+    int x = (int)(potPos.x - scaledPot.width() / 2.0);//32 is the offset
+    int y = (int)(potPos.y - scaledPot.height() / 2.0)-10;
+    painter.drawPixmap(x, y, scaledPot);
 
     world.DrawDebugData();
 //    painter.drawPixmap((int)((panPos.x*13)), (int)(panPos.y*16), panPix);
@@ -213,8 +247,14 @@ void Render::dropEvent(QDropEvent*event)
     auto method = [this, position, size]() {
         Shape* shape = new Shape(&world, position, size);
         shape->setStatic(false);
-        shape->setData(new Ingredient(currentDrop.getName(), {}));
-        shapes.push_back(shape);
+        Ingredient* ingredient = new Ingredient(currentDrop.getName(), {});
+        shape->setData(ingredient);
+
+        //store the pix map in the body
+        //std::shared_ptr<PixmapUserData> pixmapUserData = std::make_shared<PixmapUserData>(ingredient->getPixmap());
+//        QPixmap* userData = new QPixmap(ingredient->getPixmap());
+//        shape->getBody()->SetUserData(userData);
+        //shapes.push_back(shape);
     };
 
     model.actionQueue.append(method);
