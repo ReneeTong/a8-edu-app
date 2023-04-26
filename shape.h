@@ -16,7 +16,7 @@ public:
     explicit Shape(b2World *world, const b2Vec2& position, const b2Vec2& size, float32 density = 0.5f, float32 friction = 0.3f, QObject *parent = nullptr);
     ~Shape();
 
-
+    static map<b2Body*, Shape*> shapes;
     b2Body* getBody() const { return m_body; }
     void* getData() { return m_data; }
     b2Vec2 getSize() const { return m_size; }

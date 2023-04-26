@@ -165,30 +165,54 @@ void Render::paintEvent(QPaintEvent *) {
 
     //painter.drawPixmap(30, 30, currentDrop.getPixmap());
 
-    qDebug() << world.GetBodyCount();
-//    for (b2Body* body = world.GetBodyList(); body; body = body->GetNext())
-//    {
-//        // Get body position and size
-//        b2Vec2 position = body->GetPosition();
-//        //b2Vec2 size =
+    //qDebug() << ;
+//    if(world.GetBodyCount() > 4){
+//        for (b2Body* body = world.GetBodyList(); body; body = body->GetNext())
+//        {
+//            // Get body position and size
+//            b2Vec2 position = body->GetPosition();
+//            //b2Vec2 size =
 
-//        if (body->GetType() == b2_dynamicBody) {
-//            //PixmapUserData* pixmapData = static_cast<PixmapUserData*>(body->GetUserData());
+//            if (body->GetType() == b2_dynamicBody) {
+//                //PixmapUserData* pixmapData = static_cast<PixmapUserData*>(body->GetUserData());
 
-//            //qDebug() <<ingredient->getName();
+//                //qDebug() <<ingredient->getName();
 
-//            // Load image for body type
-//            //QPixmap pixmap = ingredient->getPixmap();
-//            QPixmap* userData = static_cast<QPixmap*>(body->GetUserData());
-//            QPixmap scaledPan = userData->scaled(QSize(50, 50), Qt::KeepAspectRatio);
-//            int xPan = (int)(position.x - scaledPan.width() / 2.0);
-//            int yPan = (int)(position.y - scaledPan.height() / 2.0);
+//                // Load image for body type
+//                //QPixmap pixmap = ingredient->getPixmap();
+//                QPixmap* userData = static_cast<QPixmap*>(body->GetUserData());
+//                QPixmap scaledPan = userData->scaled(QSize(50, 50), Qt::KeepAspectRatio);
+//                int xPan = (int)(position.x - scaledPan.width() / 2.0);
+//                int yPan = (int)(position.y - scaledPan.height() / 2.0);
 
-//            // Draw image
-//            painter.drawPixmap(xPan, yPan, scaledPan);
+//                // Draw image
+//                painter.drawPixmap(xPan, yPan, scaledPan);
+//            }
 //        }
-
 //    }
+    for (auto& pair : Shape::shapes) {
+        Shape* shape = pair.second;
+        b2Vec2 position = pair.first->GetPosition();
+        //b2Vec2 size =
+
+        if (pair.first->GetType() == b2_dynamicBody) {
+            Ingredient* ingredient = static_cast<Ingredient*>(shape->getData());
+
+            //qDebug() <<ingredient->getName();
+
+            // Load image for body type
+            QPixmap pixmap = ingredient->getPixmap();
+//            QPixmap* userData = static_cast<QPixmap*>(pair.first->GetUserData());
+            QPixmap scaledPan = pixmap.scaled(QSize(50, 50), Qt::KeepAspectRatio);
+            int xPan = (int)(position.x - scaledPan.width() / 2.0);
+            int yPan = (int)(position.y - scaledPan.height() / 2.0);
+
+            // Draw image
+            painter.drawPixmap(xPan, yPan, scaledPan);
+        }
+    }
+
+
 
     //draw the frying pan
     b2Vec2 panPos = fryingPan->getBody()->GetPosition();
@@ -255,6 +279,9 @@ void Render::dropEvent(QDropEvent*event)
 //        QPixmap* userData = new QPixmap(ingredient->getPixmap());
 //        shape->getBody()->SetUserData(userData);
         //shapes.push_back(shape);
+
+//        std::shared_ptr<QPixmap> userData(new QPixmap(ingredient->getPixmap()));
+//        shape->getBody()->SetUserData(userData.get());
     };
 
     model.actionQueue.append(method);

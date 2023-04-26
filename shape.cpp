@@ -2,7 +2,7 @@
 #include "qdebug.h"
 
 
-//map<b2Body*, Shape*> Shape::shapes = map<b2Body*, Shape*>();
+map<b2Body*, Shape*> Shape::shapes = map<b2Body*, Shape*>();
 
 Shape::Shape(b2World* world, const b2Vec2& position, const b2Vec2& size, float32 density, float32 friction, QObject* parent)
     : QObject(parent),
@@ -26,6 +26,9 @@ Shape::Shape(b2World* world, const b2Vec2& position, const b2Vec2& size, float32
     m_body = world->CreateBody(&bodyDef);
     m_body->CreateFixture(&fixtureDef);
     m_body->SetUserData(this);
+
+    shapes[m_body] = this;
+    //m_body->SetUserData(m_data);
 }
 
 Shape::~Shape() {
@@ -37,8 +40,10 @@ Shape::~Shape() {
 
         m_body->GetWorld()->DestroyJoint(joint);
     }
+    m_body->SetUserData(nullptr);
     m_body->GetWorld()->DestroyBody( m_body );
     m_body = nullptr;
+    shapes.erase(m_body);
 }
 
 

@@ -40,6 +40,10 @@ public:
         QPixmap pix (path);
         pixmap = pix;
     }
+    void setPixmap(QString path){
+        QPixmap pix (path);
+        pixmap = pix;
+    }
     void setCate(FoodCategory newCate){cate = newCate;}
     void setTags(const QVector<FoodTags> &newTags){tags= newTags;}
     void setActions(const QList<ActionsPerformed> &newActions){actions = newActions;}
