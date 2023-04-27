@@ -188,7 +188,8 @@ FoodLibrary::FoodLibrary() {
   }
 
   //Kuyteav
-RecipeNew* kuyteav = new RecipeNew("Kuyteav");
+  {
+    RecipeNew* kuyteav = new RecipeNew("Kuyteav");
 kuyteav->setPixmap(QPixmap(":/sprites/icons/kuyteav.png"));
 kuyteav->setDescription("1. Prepare the pork broth by simmering pork bones, water, and seasonings. \n "
                         "2. Cook the rice noodles separately according to package instructions. \n"
@@ -221,10 +222,13 @@ kuyteav->addTask("Cook the minced pork and shrimp.", {
                  {Ingredient("Pork", {CUT,FRY}),                      {1, "Fry minced pork"}},
                  {Ingredient("Shrimp", {FRY}),                          {1, "Fry shrimp"}},
              });
+ m_recipes.append(kuyteav);
+}
 
 
   // Bun Bo Hue:
-  RecipeNew *bunBoHue = new RecipeNew("Bún Bò Huế");
+{
+ RecipeNew *bunBoHue = new RecipeNew("Bún Bò Huế");
   bunBoHue->setPixmap(QPixmap(":/sprites/icons/bun_bo_hue.png"));
   bunBoHue->setDescription(
       "1. Prepare lemongrass, garlic, shallots, and chilies. \n "
@@ -294,96 +298,136 @@ kuyteav->addTask("Cook the minced pork and shrimp.", {
   m_recipes.append(bunBoHue);
 }
 
+//YangChunMian
+{
+RecipeNew* yangChunMian = new RecipeNew("Yang Chun Mian");
+yangChunMian->setPixmap(QPixmap(":/sprites/icons/yangchunmian.png"));
+yangChunMian->setDescription("1. Bring water to a boil in a pot and cook the noodles until al dente. \n "
+                             "2. In a separate pot, simmer chicken stock, green onion, ginger, and seasonings. \n"
+                             "3. Heat oil in a pan and lightly sauté the vegetables. \n"
+                             "4. Drain the noodles and place them in serving bowls. \n"
+                             "5. Pour the hot chicken broth over the noodles. \n"
+                             "6. Top with sautéed vegetables, shredded chicken, and green onion. Serve immediately. "
+                             );
 
+yangChunMian->setLearnMore("<p>What is Yang Chun Mian?</p>"
+                           "<p>- Yang Chun Mian is a traditional Chinese noodle dish made with thin wheat noodles, a light chicken broth, and various toppings such as vegetables, shredded chicken, and green onions.</p>"
+                           "<p>Where did Yang Chun Mian emerge?</p>"
+                           "<p>- Yang Chun Mian has its origins in China, where it has been a popular dish for centuries.</p>"
+                           "<p>When did Yang Chun Mian become popular?</p>"
+                           "<p>- Yang Chun Mian has been a staple dish in China for centuries and continues to be popular in various Chinese communities around the world.</p>"
+                           "<p>Fun fact:</p>"
+                           "<p>- Yang Chun Mian is considered a comfort food in China and is enjoyed throughout the year, especially during colder months.</p>"
+                           );
 
+yangChunMian->setDifficulty(2);
 
+yangChunMian->addTask("Cook the noodles until al dente.", {
+                 {Ingredient("Noodles", {BOIL}),                        {1, "Boil noodles"}},
+             });
+yangChunMian->addTask("Simmer chicken stock, green onion, ginger, and seasonings.", {
+                 {Ingredient("Chicken", {BOIL}),                   {1, "Boil chicken stock"}},
+                 {Ingredient("GreenOnion", {BOIL}),                     {1, "Add green onion"}},
+                 {Ingredient("Ginger", {BOIL}),                         {1, "Add ginger"}},
+                 {Ingredient("SoySauce", {BOIL}),                     {1, "Add seasonings"}},
+             });
+yangChunMian->addTask("Sauté the vegetables.", {
+                 {Ingredient("Cabbage", {FRY}),                      {1, "Sauté vegetables"}},
+             });
+
+m_recipes.append(yangChunMian);
+}
+}
 
 void FoodLibrary::initialRecipes() {
-  //    Recipe* pho = new Recipe();
-  //    //Set all ingredient
-  //    pho->setIngredients({broccoli, carrot, cabbage, riceNoodles,beef,
-  //    chicken,soysauce}); pho->loadImageFromFile(":/sprites/icons/pho.png");
-  //    pho->setCountry(Country::VIETNAM);
-  //    pho->setName("Pho");
-  //    pho->setDifficulty(3);
-  //    pho->setDescription("1. Chop broccoli, carrot and cabbage. \n "
-  //                        "2. Chop all the proteins including beef or chicken.
-  //                        \n" "3. Put all the chopped meat to boiling water to
-  //                        cook for 5 hours. \n" "4. Add all the vegetables
-  //                        into the soup and cook 30 minutes or more. \n" "5.
-  //                        Cook the noodle in the soup for 5 minutes. And add
-  //                        some soysauce. \n" "6. Pour all content to a bowl.
-  //                        ");
+    //    Recipe* pho = new Recipe();
+    //    //Set all ingredient
+    //    pho->setIngredients({broccoli, carrot, cabbage, riceNoodles,beef,
+    //    chicken,soysauce}); pho->loadImageFromFile(":/sprites/icons/pho.png");
+    //    pho->setCountry(Country::VIETNAM);
+    //    pho->setName("Pho");
+    //    pho->setDifficulty(3);
+    //    pho->setDescription("1. Chop broccoli, carrot and cabbage. \n "
+    //                        "2. Chop all the proteins including beef or chicken.
+    //                        \n" "3. Put all the chopped meat to boiling water to
+    //                        cook for 5 hours. \n" "4. Add all the vegetables
+    //                        into the soup and cook 30 minutes or more. \n" "5.
+    //                        Cook the noodle in the soup for 5 minutes. And add
+    //                        some soysauce. \n" "6. Pour all content to a bowl.
+    //                        ");
 
-  //    pho->setLearnMore("<p>What is Phở?</p>"
-  //                         "<p>- Phở is a Vietnamese soup dish consisting of
-  //                         broth, rice noodles (bánh phở), herbs, and meat
-  //                         (usually beef (phở bò), sometimes chicken (phở
-  //                         gà)). Phở is a popular food in Vietnam, where it is
-  //                         served in households, street-stalls, and
-  //                         restaurants country-wide.</p>"
-  //                         "<p>Where did Phở emerge?</p>"
-  //                         "<p>- Residents of the city of Nam Định were the
-  //                         first to create Vietnamese traditional phở</p>"
-  //                         "<p>When did Phở become popular?</p>"
-  //                         "<p>- Originated in the early 20th century in
-  //                         Northern Vietnam, and was popularized throughout
-  //                         the world by refugees after the Vietnam War.</p>"
-  //                         "<p>Fun fact:</p>"
-  //                         "<p>- Because phở's origins are poorly documented,
-  //                         there is disagreement over the cultural influences
-  //                         that led to its development in Vietnam, as well as
-  //                         the etymology of the name.</p>"
-  //                         "<p>- The Hanoi (northern) and Saigon (southern)
-  //                         styles of pho differ by noodle width, sweetness of
-  //                         broth, and choice of herbs and sauce.</p>");
+    //    pho->setLearnMore("<p>What is Phở?</p>"
+    //                         "<p>- Phở is a Vietnamese soup dish consisting of
+    //                         broth, rice noodles (bánh phở), herbs, and meat
+    //                         (usually beef (phở bò), sometimes chicken (phở
+    //                         gà)). Phở is a popular food in Vietnam, where it is
+    //                         served in households, street-stalls, and
+    //                         restaurants country-wide.</p>"
+    //                         "<p>Where did Phở emerge?</p>"
+    //                         "<p>- Residents of the city of Nam Định were the
+    //                         first to create Vietnamese traditional phở</p>"
+    //                         "<p>When did Phở become popular?</p>"
+    //                         "<p>- Originated in the early 20th century in
+    //                         Northern Vietnam, and was popularized throughout
+    //                         the world by refugees after the Vietnam War.</p>"
+    //                         "<p>Fun fact:</p>"
+    //                         "<p>- Because phở's origins are poorly documented,
+    //                         there is disagreement over the cultural influences
+    //                         that led to its development in Vietnam, as well as
+    //                         the etymology of the name.</p>"
+    //                         "<p>- The Hanoi (northern) and Saigon (southern)
+    //                         styles of pho differ by noodle width, sweetness of
+    //                         broth, and choice of herbs and sauce.</p>");
 
-  //    pho->setRecipeTags({RecipeTags::DAIRYFREE, RecipeTags::GLUTENFREE,
-  //    RecipeTags::NUTFREE}); recipes.push_back(pho); pho->setTasks(  {
-  //                        {Ingredient(QString("Broccoli"),
-  //                        {ActionsPerformed::CUT}), 1},
-  //                        {Ingredient(QString("Carrort"),
-  //                        {ActionsPerformed::CUT}), 1},
-  //                        {Ingredient(QString("Cabbage"),
-  //                        {ActionsPerformed::CUT}), 1},
-  //                        {Ingredient(QString("Beef" ) ,
-  //                        {ActionsPerformed::CUT}), 1},
-  //                        {Ingredient(QString("Chicken"),
-  //                        {ActionsPerformed::CUT}), 1},
+    //    pho->setRecipeTags({RecipeTags::DAIRYFREE, RecipeTags::GLUTENFREE,
+    //    RecipeTags::NUTFREE}); recipes.push_back(pho); pho->setTasks(  {
+    //                        {Ingredient(QString("Broccoli"),
+    //                        {ActionsPerformed::CUT}), 1},
+    //                        {Ingredient(QString("Carrort"),
+    //                        {ActionsPerformed::CUT}), 1},
+    //                        {Ingredient(QString("Cabbage"),
+    //                        {ActionsPerformed::CUT}), 1},
+    //                        {Ingredient(QString("Beef" ) ,
+    //                        {ActionsPerformed::CUT}), 1},
+    //                        {Ingredient(QString("Chicken"),
+    //                        {ActionsPerformed::CUT}), 1},
 
-  //                        //Boil
-  //                        {Ingredient(QString("Beef"      ) ,
-  //                        {ActionsPerformed::CUT, ActionsPerformed::BOIL}),
-  //                        1}, {Ingredient(QString("Chicken"   ) ,
-  //                        {ActionsPerformed::CUT, ActionsPerformed::BOIL}),
-  //                        1}, {Ingredient(QString("Broccoli"
-  //                        ),{ActionsPerformed::CUT, ActionsPerformed::BOIL}),
-  //                        1}, {Ingredient(QString("Carrot"    ),
-  //                        {ActionsPerformed::CUT, ActionsPerformed::BOIL}),
-  //                        1}, {Ingredient(QString("Cabbage"   ),
-  //                        {ActionsPerformed::CUT, ActionsPerformed::BOIL}),
-  //                        1},
-  //                        {Ingredient(QString("RiceNoodles"),{ActionsPerformed::BOIL}),
-  //                        1}, {Ingredient(QString("SoySauce"  )
-  //                        ,{ActionsPerformed::BOIL}), 1}
+    //                        //Boil
+    //                        {Ingredient(QString("Beef"      ) ,
+    //                        {ActionsPerformed::CUT, ActionsPerformed::BOIL}),
+    //                        1}, {Ingredient(QString("Chicken"   ) ,
+    //                        {ActionsPerformed::CUT, ActionsPerformed::BOIL}),
+    //                        1}, {Ingredient(QString("Broccoli"
+    //                        ),{ActionsPerformed::CUT, ActionsPerformed::BOIL}),
+    //                        1}, {Ingredient(QString("Carrot"    ),
+    //                        {ActionsPerformed::CUT, ActionsPerformed::BOIL}),
+    //                        1}, {Ingredient(QString("Cabbage"   ),
+    //                        {ActionsPerformed::CUT, ActionsPerformed::BOIL}),
+    //                        1},
+    //                        {Ingredient(QString("RiceNoodles"),{ActionsPerformed::BOIL}),
+    //                        1}, {Ingredient(QString("SoySauce"  )
+    //                        ,{ActionsPerformed::BOIL}), 1}
 
-  //                    });
+    //                    });
 }
 
 Ingredient *FoodLibrary::getIngredientByName(const QString &name) const {
   for (Ingredient *ingredient : allIngredients) {
-    if (ingredient->getName() == name) {
-      return ingredient;
-    }
+      if (ingredient->getName() == name) {
+          return ingredient;
+      }
   }
   return nullptr;
 }
 
 RecipeNew *FoodLibrary::getRecipeByName(const QString &recipeName) const {
   for (RecipeNew *recipe : recipes) {
-    if (recipe->getName() == recipeName) {
-      return recipe;
-    }
+      if (recipe->getName() == recipeName) {
+          return recipe;
+      }
   }
   return nullptr;
 }
+
+
+
