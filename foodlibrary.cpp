@@ -187,6 +187,42 @@ FoodLibrary::FoodLibrary() {
     m_recipes.append(pho);
   }
 
+  //Kuyteav
+RecipeNew* kuyteav = new RecipeNew("Kuyteav");
+kuyteav->setPixmap(QPixmap(":/sprites/icons/kuyteav.png"));
+kuyteav->setDescription("1. Prepare the pork broth by simmering pork bones, water, and seasonings. \n "
+                        "2. Cook the rice noodles separately according to package instructions. \n"
+                        "3. In a separate pan, cook the minced pork and shrimp. \n"
+                        "4. Assemble the bowls by placing noodles first, then the cooked minced pork and shrimp. \n"
+                        "5. Pour the hot pork broth over the assembled bowls. \n"
+                        "6. Garnish with bean sprouts, lime wedges, and fresh herbs. Serve hot. "
+                        );
+
+kuyteav->setLearnMore("<p>What is Kuyteav?</p>"
+                      "<p>- Kuyteav is a Cambodian noodle soup dish made from rice noodles, minced pork, shrimp, and a rich pork broth. It is typically garnished with bean sprouts, lime wedges, and fresh herbs.</p>"
+                      "<p>Where did Kuyteav emerge?</p>"
+                      "<p>- Kuyteav has its origins in Cambodia, where it is considered a national dish.</p>"
+                      "<p>When did Kuyteav become popular?</p>"
+                      "<p>- Kuyteav has been a popular Cambodian dish for centuries and has gained popularity in neighboring countries such as Vietnam and Thailand.</p>"
+                      "<p>Fun fact:</p>"
+                      "<p>- Kuyteav is often enjoyed as a breakfast dish in Cambodia, but it can be found and enjoyed at any time of the day.</p>"
+                      );
+
+kuyteav->setDifficulty(2);
+
+kuyteav->addTask("Prepare the pork broth.", {
+                 {Ingredient("Pork", {BOIL}),                      {1, "Boil pork"}},
+
+             });
+kuyteav->addTask("Cook the rice noodles separately.", {
+                 {Ingredient("RiceNoodles", {BOIL}),                    {1, "Boil rice noodles"}},
+             });
+kuyteav->addTask("Cook the minced pork and shrimp.", {
+                 {Ingredient("Pork", {CUT,FRY}),                      {1, "Fry minced pork"}},
+                 {Ingredient("Shrimp", {FRY}),                          {1, "Fry shrimp"}},
+             });
+
+
   // Bun Bo Hue:
   RecipeNew *bunBoHue = new RecipeNew("Bún Bò Huế");
   bunBoHue->setPixmap(QPixmap(":/sprites/icons/bun_bo_hue.png"));
@@ -219,17 +255,18 @@ FoodLibrary::FoodLibrary() {
       "<p>- The soup is usually served with a variety of accompaniments, such "
       "as bean sprouts, mint, cilantro, and lime wedges.</p>");
 
-  bunBoHue->setDifficulty(3);
+  bunBoHue->setDifficulty(4);
 
   bunBoHue->addTask("Chop beef and pork.",
                     {
                         {Ingredient("Beef", {CUT}), {1, "Chop beef"}},
                         {Ingredient("Pork", {CUT}), {1, "Chop pork"}},
                     });
+
   bunBoHue->addTask("Simmer beef and pork for 4 hours.",
                     {
-                        {Ingredient("Beef", {BOIL}), {4, "Boil cut beef"}},
-                        {Ingredient("Pork", {BOIL}), {4, "Boil cut pork"}},
+                        {Ingredient("Beef", {BOIL}), {4, "Boil chopped beef"}},
+                        {Ingredient("Pork", {BOIL}), {4, "Boil chopped pork"}},
                     });
 
   bunBoHue->addTask(
@@ -256,6 +293,10 @@ FoodLibrary::FoodLibrary() {
 
   m_recipes.append(bunBoHue);
 }
+
+
+
+
 
 void FoodLibrary::initialRecipes() {
   //    Recipe* pho = new Recipe();
