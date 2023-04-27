@@ -49,5 +49,9 @@
         <file>icons/Shrimp.png</file>
         <file>icons/Ginger.png</file>
         <file>icons/GreenOnion.png</file>
+        <file>icons/Ginger_piece.png</file>
+        <file>icons/GreenOnion_piece.png</file>
+        <file>icons/Shrimp_piece.png</file>
+        <file>icons/Pork_piece.png</file>
     </qresource>
 </RCC>

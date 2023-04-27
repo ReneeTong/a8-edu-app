@@ -6,13 +6,13 @@ Model::Model(b2World *world, QObject *parent)
       m_world(world)
 {
     cutSound = new QSoundEffect(this);
-    cutSound->setSource(QUrl("qrc:/sprites/icons/chopping.wav"));
+    cutSound->setSource(QUrl(":/sprites/icons/chopping.wav"));
 
     boilSound = new QSoundEffect(this);
-    boilSound->setSource(QUrl("qrc:/sprites/icons/boiling.wav"));
+    boilSound->setSource(QUrl(":/sprites/icons/boiling.wav"));
 
     frySound = new QSoundEffect(this);
-    frySound->setSource(QUrl("qrc:/sprites/icons/sizzling.wav"));
+    frySound->setSource(QUrl(":/sprites/icons/sizzling.wav"));
 
 }
 

@@ -26,6 +26,8 @@ MainWindow::MainWindow(QWidget *parent)
     QStackedWidget *stackedWidget = new QStackedWidget;
     setCentralWidget(stackedWidget);
 
+    stackedWidget->raise();
+
     //add all the pages
     page0 = new s0Title(this);
     page1 = new s1Pantry(this);
@@ -45,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
     backgroundMusic = new QSoundEffect(this);
 //    backgroundMusic->setSource(QUrl("qrc:/sprites/icons/s0Music.wav"));
 //    backgroundMusic -> play();
-    changeBackgroundMusic("qrc:/sprites/icons/s0Music.wav");
+    changeBackgroundMusic(":/sprites/icons/s0Music.wav");
 
     //connect to next page button
     connect(page0, &s0Title::goToPage1, this, [=]() {
