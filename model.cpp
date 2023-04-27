@@ -18,6 +18,7 @@ Model::Model(b2World *world, QObject *parent)
 
 
 void Model::setRecipe(RecipeNew* recipe) {
+    // reset tasks
     currentTask = 0;
     trackerTask.clear();
 
@@ -80,6 +81,7 @@ QString Model::getDisplayText() {
     map<Ingredient, int> tasks = m_recipe->getTasks(currentTask);
     map<Ingredient, QString> tasksText = m_recipe->getTasksText(currentTask);
 
+    // get step instructions and add format to them
     for (const auto& [ingredient, count] : tasks) {
         QString text = tasksText[ingredient] + " (%2/%1)";
         text = text.arg(count);
