@@ -28,7 +28,7 @@
    <property name="font">
     <font>
      <family>Segoe Print</family>
-     <pointsize>36</pointsize>
+     <pointsize>30</pointsize>
      <underline>true</underline>
     </font>
    </property>
