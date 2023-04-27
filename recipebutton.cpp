@@ -17,6 +17,7 @@ RecipeButton::RecipeButton(RecipeNew *recipe, QList<Ingredient*> pantry, QWidget
                           "border-radius: 8px;"
                           "}"
                           "QLabel {"
+                  "background-color: transparent;"
                           "color: #ffffff;"
                           "}"
                           "QPushButton {"
