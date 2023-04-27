@@ -40,7 +40,12 @@ public:
         QPixmap pix (path);
         pixmap = pix;
     }
-    void setPixmap(QString path){
+    //reset pixmap to piece image
+    void setPiece(){
+        QString path = ":/sprites/icons//";
+        path += name;
+        path += "_piece.png";
+//        path+= ".png";
         QPixmap pix (path);
         pixmap = pix;
     }

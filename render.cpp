@@ -165,31 +165,6 @@ void Render::paintEvent(QPaintEvent *) {
 
     //painter.drawPixmap(30, 30, currentDrop.getPixmap());
 
-    //qDebug() << ;
-//    if(world.GetBodyCount() > 4){
-//        for (b2Body* body = world.GetBodyList(); body; body = body->GetNext())
-//        {
-//            // Get body position and size
-//            b2Vec2 position = body->GetPosition();
-//            //b2Vec2 size =
-
-//            if (body->GetType() == b2_dynamicBody) {
-//                //PixmapUserData* pixmapData = static_cast<PixmapUserData*>(body->GetUserData());
-
-//                //qDebug() <<ingredient->getName();
-
-//                // Load image for body type
-//                //QPixmap pixmap = ingredient->getPixmap();
-//                QPixmap* userData = static_cast<QPixmap*>(body->GetUserData());
-//                QPixmap scaledPan = userData->scaled(QSize(50, 50), Qt::KeepAspectRatio);
-//                int xPan = (int)(position.x - scaledPan.width() / 2.0);
-//                int yPan = (int)(position.y - scaledPan.height() / 2.0);
-
-//                // Draw image
-//                painter.drawPixmap(xPan, yPan, scaledPan);
-//            }
-//        }
-//    }
     for (auto& pair : Shape::shapes) {
         Shape* shape = pair.second;
         b2Vec2 position = pair.first->GetPosition();
@@ -238,7 +213,7 @@ void Render::paintEvent(QPaintEvent *) {
     int y = (int)(potPos.y - scaledPot.height() / 2.0)-10;
     painter.drawPixmap(x, y, scaledPot);
 
-    world.DrawDebugData();
+//    world.DrawDebugData();
 //    painter.drawPixmap((int)((panPos.x*13)), (int)(panPos.y*16), panPix);
 
 

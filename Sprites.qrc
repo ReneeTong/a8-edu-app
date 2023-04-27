@@ -4,7 +4,6 @@
         <file>icons/Broccoli.png</file>
         <file>icons/Chicken.png</file>
         <file>icons/Peanut.png</file>
-        <file>icons/Pepper.png</file>
         <file>icons/Pork.png</file>
         <file>icons/Tomato.png</file>
         <file>icons/Carrot.png</file>
@@ -29,5 +28,11 @@
         <file>icons/Garlic.png</file>
         <file>icons/Oil.png</file>
         <file>icons/Garlic_piece.png</file>
+        <file>icons/Tomato_piece.png</file>
+        <file>icons/Beef_piece.png</file>
+        <file>icons/Cabbage_piece.png</file>
+        <file>icons/window.png</file>
+        <file>icons/ChiliYum.png</file>
+        <file>icons/Pepper.png</file>
     </qresource>
 </RCC>

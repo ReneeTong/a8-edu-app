@@ -2,6 +2,7 @@
 #include "ingredientbutton.h"
 #include "ui_s1Pantry.h"
 #include "ingredient.h"
+#include <QGraphicsDropShadowEffect>
 
 s1Pantry::s1Pantry(QWidget *parent) :
     QWidget(parent),
@@ -48,6 +49,8 @@ s1Pantry::s1Pantry(QWidget *parent) :
         pantry->setStyleSheet("ScrollCarousel > QWidget > QWidget {background-color: transparent};");
         pantry->setFixedSize(650, 100);
         layout->addWidget(pantry);
+//        pantry->setStyleSheet("background-image: url(:/sprites/icons/Kitchen.PNG);");
+//        ui->scrollAreaWidgetContents_2->setStyleSheet("background-image: url(:/sprites/icons/Kitchen.PNG);");
 
         pantryList.append(pantry);
 

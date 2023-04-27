@@ -13,11 +13,14 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:transparent;</string>
+  </property>
   <widget class="QLabel" name="prepLab">
    <property name="geometry">
     <rect>
      <x>210</x>
-     <y>120</y>
+     <y>150</y>
      <width>521</width>
      <height>81</height>
     </rect>
@@ -59,7 +62,32 @@
    </property>
    <layout class="QVBoxLayout" name="layout"/>
   </widget>
+  <widget class="QLabel" name="background">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>-10</y>
+     <width>1031</width>
+     <height>711</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="Sprites.qrc">:/sprites/icons/Kitchen.PNG</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>prepLab</zorder>
+  <zorder>progressBar</zorder>
+  <zorder>verticalLayoutWidget</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="Sprites.qrc"/>
+ </resources>
  <connections/>
 </ui>

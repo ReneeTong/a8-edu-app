@@ -110,7 +110,7 @@ void Model::cut(Shape *shape) {
         for (int i = 1; i <= 4; i++) {
             Ingredient *newIngredient = new Ingredient(ingredient->getName(), ingredient->actions);
 
-            newIngredient->setPixmap(":/sprites/icons/Garlic_piece.png");
+            newIngredient->setPiece();
 
             float x = rand() / (RAND_MAX + 1.);
             x = (x - 0.5) * 2;
