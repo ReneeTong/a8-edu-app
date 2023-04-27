@@ -9,6 +9,10 @@ FoodLibrary::FoodLibrary() {
     Ingredient *riceNoodles =
         new Ingredient("RiceNoodles", STAPLE, {VEGAN}, {});
     allIngredients.push_back(riceNoodles);
+
+    Ingredient *eggNoodles =
+        new Ingredient("EggNoddles", STAPLE, {}, {});
+    allIngredients.push_back(eggNoodles);
   }
 
   // MEAT
@@ -21,6 +25,9 @@ FoodLibrary::FoodLibrary() {
 
     Ingredient *chicken = new Ingredient("Chicken", MEAT, {}, {});
     allIngredients.push_back(chicken);
+
+    Ingredient *shrimp = new Ingredient("Shrimp", MEAT, {}, {});
+    allIngredients.push_back(shrimp);
   }
 
   // VEGET
@@ -36,6 +43,14 @@ FoodLibrary::FoodLibrary() {
 
     Ingredient *cabbage = new Ingredient("Cabbage", VEGETABLE, {VEGAN}, {});
     allIngredients.push_back(cabbage);
+
+    Ingredient *greenonion = new Ingredient("GreenOnion", VEGETABLE, {VEGAN}, {});
+    allIngredients.push_back(greenonion);
+
+    Ingredient *ginger = new Ingredient("Ginger", VEGETABLE, {VEGAN}, {});
+    allIngredients.push_back(ginger);
+
+
   }
 
   // CONDIMENT
@@ -48,6 +63,11 @@ FoodLibrary::FoodLibrary() {
 
     Ingredient *soysauce = new Ingredient("SoySauce", CONDIMENT, {VEGAN}, {});
     allIngredients.push_back(soysauce);
+
+    Ingredient *fishsauce = new Ingredient("FishSauce", CONDIMENT, {}, {});
+    allIngredients.push_back(fishsauce);
+
+
   }
 
   // [== RECIPES ==]
@@ -55,7 +75,7 @@ FoodLibrary::FoodLibrary() {
   // Chow Mein
   {
     RecipeNew *stirFryNoddle = new RecipeNew("Chǎo miàn");
-    stirFryNoddle->setPixmap(QPixmap(":/sprites/icons/pho.png"));
+    stirFryNoddle->setPixmap(QPixmap(":/sprites/icons/chao mian.png"));
     stirFryNoddle->setDescription(
         "1. Chop bell peppers, onions, and carrots. \n "
         "2. Slice the chicken or beef. \n"
@@ -145,7 +165,7 @@ FoodLibrary::FoodLibrary() {
         "by noodle width, sweetness of broth, and choice of herbs and "
         "sauce.</p>");
 
-    pho->setDifficulty(3);
+    pho->setDifficulty(4);
 
     pho->addTask("Chop beef and chicken.",
                  {
@@ -189,7 +209,7 @@ FoodLibrary::FoodLibrary() {
 
   //Kuyteav
   {
-    RecipeNew* kuyteav = new RecipeNew("Kuyteav");
+    RecipeNew* kuyteav = new RecipeNew("Kŭytéav");
 kuyteav->setPixmap(QPixmap(":/sprites/icons/kuyteav.png"));
 kuyteav->setDescription("1. Prepare the pork broth by simmering pork bones, water, and seasonings. \n "
                         "2. Cook the rice noodles separately according to package instructions. \n"
@@ -229,7 +249,7 @@ kuyteav->addTask("Cook the minced pork and shrimp.", {
   // Bun Bo Hue:
 {
  RecipeNew *bunBoHue = new RecipeNew("Bún Bò Huế");
-  bunBoHue->setPixmap(QPixmap(":/sprites/icons/bun_bo_hue.png"));
+  bunBoHue->setPixmap(QPixmap(":/sprites/icons/bun bo hue.png"));
   bunBoHue->setDescription(
       "1. Prepare lemongrass, garlic, shallots, and chilies. \n "
       "2. Chop beef and pork. \n"
@@ -269,8 +289,8 @@ kuyteav->addTask("Cook the minced pork and shrimp.", {
 
   bunBoHue->addTask("Simmer beef and pork for 4 hours.",
                     {
-                        {Ingredient("Beef", {BOIL}), {4, "Boil chopped beef"}},
-                        {Ingredient("Pork", {BOIL}), {4, "Boil chopped pork"}},
+                        {Ingredient("Beef", {CUT, BOIL}), {4, "Boil chopped beef"}},
+                        {Ingredient("Pork", {CUT, BOIL}), {4, "Boil chopped pork"}},
                     });
 
   bunBoHue->addTask(
@@ -281,12 +301,14 @@ kuyteav->addTask("Cook the minced pork and shrimp.", {
           {Ingredient("Chilies", {CUT}), {1, "Chop chilies"}},
       });
   bunBoHue->addTask(
-      "Add lemongrass, garlic, and chilies to the broth and simmer for 1 hour.",
+      "Add lemongrass, garlic, and chilies to the broth, and add fish sauce. simmer for 1 hour.",
       {
           {Ingredient("Lemongrass", {CUT, BOIL}),
            {4, "Boil chopped lemongrass"}},
           {Ingredient("Garlic", {CUT, BOIL}), {4, "Boil chopped garlic"}},
           {Ingredient("Chilies", {CUT, BOIL}), {4, "Boil chopped chilies"}},
+          {Ingredient("FishSauce", {BOIL}),
+           {1, "Add fish sauce to the boiling pot"}},
       });
 
   bunBoHue->addTask(
@@ -300,8 +322,8 @@ kuyteav->addTask("Cook the minced pork and shrimp.", {
 
 //YangChunMian
 {
-RecipeNew* yangChunMian = new RecipeNew("Yang Chun Mian");
-yangChunMian->setPixmap(QPixmap(":/sprites/icons/yangchunmian.png"));
+RecipeNew* yangChunMian = new RecipeNew("Yángchūn miàn ");
+yangChunMian->setPixmap(QPixmap(":/sprites/icons/yang chun.png"));
 yangChunMian->setDescription("1. Bring water to a boil in a pot and cook the noodles until al dente. \n "
                              "2. In a separate pot, simmer chicken stock, green onion, ginger, and seasonings. \n"
                              "3. Heat oil in a pan and lightly sauté the vegetables. \n"
@@ -311,7 +333,7 @@ yangChunMian->setDescription("1. Bring water to a boil in a pot and cook the noo
                              );
 
 yangChunMian->setLearnMore("<p>What is Yang Chun Mian?</p>"
-                           "<p>- Yang Chun Mian is a traditional Chinese noodle dish made with thin wheat noodles, a light chicken broth, and various toppings such as vegetables, shredded chicken, and green onions.</p>"
+                           "<p>- Yang Chun Mian is a traditional Chinese noodle dish made with thin egg noodles, a light chicken broth, and various toppings such as vegetables, shredded chicken, and green onions.</p>"
                            "<p>Where did Yang Chun Mian emerge?</p>"
                            "<p>- Yang Chun Mian has its origins in China, where it has been a popular dish for centuries.</p>"
                            "<p>When did Yang Chun Mian become popular?</p>"
@@ -320,10 +342,10 @@ yangChunMian->setLearnMore("<p>What is Yang Chun Mian?</p>"
                            "<p>- Yang Chun Mian is considered a comfort food in China and is enjoyed throughout the year, especially during colder months.</p>"
                            );
 
-yangChunMian->setDifficulty(2);
+yangChunMian->setDifficulty(1);
 
-yangChunMian->addTask("Cook the noodles until al dente.", {
-                 {Ingredient("Noodles", {BOIL}),                        {1, "Boil noodles"}},
+yangChunMian->addTask("Cook egg noodles until al dente.", {
+                 {Ingredient("EggNoodles", {BOIL}),                        {1, "Boil Egg Noodles"}},
              });
 yangChunMian->addTask("Simmer chicken stock, green onion, ginger, and seasonings.", {
                  {Ingredient("Chicken", {BOIL}),                   {1, "Boil chicken stock"}},
@@ -332,7 +354,7 @@ yangChunMian->addTask("Simmer chicken stock, green onion, ginger, and seasonings
                  {Ingredient("SoySauce", {BOIL}),                     {1, "Add seasonings"}},
              });
 yangChunMian->addTask("Sauté the vegetables.", {
-                 {Ingredient("Cabbage", {FRY}),                      {1, "Sauté vegetables"}},
+                 {Ingredient("Cabbage", {CUT, FRY}),                      {1, "Sauté chopped cabbage "}},
              });
 
 m_recipes.append(yangChunMian);

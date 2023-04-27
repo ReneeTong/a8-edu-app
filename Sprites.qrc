@@ -40,5 +40,9 @@
         <file>icons/s0Music.mp3</file>
         <file>icons/s3Music.mp3</file>
         <file>icons/s4Music.mp3</file>
+        <file>icons/bun bo hue.png</file>
+        <file>icons/chao mian.png</file>
+        <file>icons/kuyteav.png</file>
+        <file>icons/yang chun.png</file>
     </qresource>
 </RCC>
