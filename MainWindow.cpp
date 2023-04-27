@@ -4,14 +4,19 @@
 #include "s2recipetransition.h"
 #include "ui_MainWindow.h"
 #include <QStackedWidget>
+#include <QMediaPlayer>
+#include <QUrl>
+#include <QAudioDevice>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
-      ui(new Ui::MainWindow)
+      ui(new Ui::MainWindow),      
+    backgroundMusic(new QMediaPlayer(this))
 {
     ui->setupUi(this);
 //    ui->widget->show();
     setFixedSize(1000, 700);
+
 
     setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
     // setWindowFlag(Qt::FramelessWindowHint);
@@ -38,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
     stackedWidget->addWidget(page3);
     stackedWidget->addWidget(page4);
     stackedWidget->setCurrentWidget(page0);
+    changeBackgroundMusic(":/sprites/icons/s0Music.mp3");
 
     //connect to next page button
     connect(page0, &s0Title::goToPage1, this, [=]() {
@@ -55,16 +61,23 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(page2Half, &s2RecipeTransition::goToPage3, this, [=]() {
         stackedWidget->setCurrentWidget(page3);
+        changeBackgroundMusic("qrc:/sprites/icons/s3Music.mp3");
     });
 
     connect(page3, &s3Cooking::goToPage4, this, [=]() {
         stackedWidget->setCurrentWidget(page4);
+        changeBackgroundMusic("qrc:/sprites/icons/s4Music.mp3");
     });
     connect(page4, &s4Complete::goToPage1, this, [=]() {
         stackedWidget->setCurrentWidget(page0);
+        changeBackgroundMusic("qrc:/sprites/icons/s0Music.mp3");
     });
     connect(page2, &s2Recipe::backButtonClicked, this, [=]() {
         stackedWidget->setCurrentWidget(page1);
+    });
+
+    connect(backgroundMusic, &QMediaPlayer::errorOccurred, this, [this](QMediaPlayer::Error error) {
+        qDebug() << "Media error occurred:" << error << backgroundMusic->errorString();
     });
 
 
@@ -89,4 +102,12 @@ void MainWindow::restart()
 
     // Close the current MainWindow instance
     this->close();
+}
+
+void MainWindow::changeBackgroundMusic(const QString &musicFile)
+{
+
+    backgroundMusic->stop();
+    backgroundMusic->setSource(QUrl(musicFile));
+    backgroundMusic->play();
 }

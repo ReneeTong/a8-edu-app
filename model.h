@@ -6,6 +6,7 @@
 #include "shape.h"
 #include <QObject>
 #include "qfont.h"
+#include <QSoundEffect>
 
 using std::function;
 
@@ -36,6 +37,9 @@ private:
 
     RecipeNew *m_recipe=nullptr;
     b2World *m_world=nullptr;
+    QSoundEffect *cutSound;
+    QSoundEffect *boilSound;
+    QSoundEffect *frySound;
 
 signals:
     void updateDisplayText(QString text); // temp feedback solution

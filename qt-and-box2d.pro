@@ -1,4 +1,5 @@
 QT       += core gui
+QT += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -70,7 +71,7 @@ SOURCES += \
     s0Title.cpp \
     s1Pantry.cpp \
     s2Recipe.cpp \
-    s2recipetransition.cpp \
+    s2RecipeTransition.cpp \
     s3Cooking.cpp \
     s4Complete.cpp \
     scrollcarousel.cpp \
@@ -139,7 +140,7 @@ HEADERS += \
     s0Title.h \
     s1Pantry.h \
     s2Recipe.h \
-    s2recipetransition.h \
+    s2RecipeTransition.h \
     s3Cooking.h \
     s4Complete.h \
     scrollcarousel.h \
@@ -152,7 +153,7 @@ FORMS += \
     s0Title.ui \
     s1Pantry.ui \
     s2Recipe.ui \
-    s2recipetransition.ui \
+    s2RecipeTransition.ui \
     s3Cooking.ui \
     s4Complete.ui
 
@@ -177,7 +178,10 @@ DISTFILES += \
     Box2D/Box2DConfig.cmake \
     Box2D/CMakeLists.txt \
     alien1.png \
-    icons/Salt.png
+    icons/Salt.png \
+    sounds/s1Music.mp3 \
+    sounds/s3Music.mp3 \
+    sounds/s4Music.mp3
 
 RESOURCES += \
     Sprites.qrc

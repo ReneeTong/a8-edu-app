@@ -5,6 +5,14 @@ Model::Model(b2World *world, QObject *parent)
     : QObject{parent},
       m_world(world)
 {
+    cutSound = new QSoundEffect(this);
+    cutSound->setSource(QUrl("qrc:/sprites/icons/chopping.wav"));
+
+    boilSound = new QSoundEffect(this);
+    boilSound->setSource(QUrl("qrc:/sprites/icons/boiling.wav"));
+
+    frySound = new QSoundEffect(this);
+    frySound->setSource(QUrl("qrc:/sprites/icons/sizzling.wav"));
 
 }
 
@@ -92,7 +100,9 @@ QString Model::getDisplayText() {
 
 // [== COOKING EVENTS ==]
 void Model::cut(Shape *shape) {
+
     Ingredient *ingredient = static_cast<Ingredient*>(shape->getData());
+
     if (!ingredient) return;
     if (ingredient->actions.contains(CUT)) return;
 
@@ -106,8 +116,11 @@ void Model::cut(Shape *shape) {
         size *= 0.5;
 
         delete shape;
+        cutSound->play();
 
         for (int i = 1; i <= 4; i++) {
+
+
             Ingredient *newIngredient = new Ingredient(ingredient->getName(), ingredient->actions);
 
             newIngredient->setPiece();
@@ -135,7 +148,10 @@ void Model::cut(Shape *shape) {
 }
 
 void Model::boil(Shape *shape) {
+
     Ingredient *ingredient = static_cast<Ingredient*>(shape->getData());
+       boilSound->play();
+
     if (!ingredient) return;
     if (ingredient->actions.contains(BOIL)) return;
 
@@ -144,14 +160,19 @@ void Model::boil(Shape *shape) {
 
     if (ingredient->actions.contains(BOIL)) {
         auto method = [shape]() {
+
             delete shape;
         };
+
         actionQueue.append(method);
     }
 }
 
 void Model::fry(Shape *shape) {
+
     Ingredient *ingredient = static_cast<Ingredient*>(shape->getData());
+    frySound->play();
+
     if (!ingredient) return;
     if (ingredient->actions.contains(FRY)) return;
 
@@ -160,8 +181,10 @@ void Model::fry(Shape *shape) {
 
     if (ingredient->actions.contains(FRY)) {
         auto method = [shape]() {
+
             delete shape;
         };
+
         actionQueue.append(method);
     }
 }

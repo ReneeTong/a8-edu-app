@@ -9,6 +9,8 @@
 #include "s2recipetransition.h"
 #include <QMainWindow>
 #include <QVBoxLayout>
+#include <QMediaPlayer>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,6 +35,9 @@ private:
     s2RecipeTransition *page2Half = nullptr;
     s3Cooking *page3=nullptr;
     s4Complete *page4=nullptr;
+    QMediaPlayer *backgroundMusic;
+
+    void changeBackgroundMusic(const QString &musicFile);
 
 
 };

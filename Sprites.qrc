@@ -34,5 +34,11 @@
         <file>icons/window.png</file>
         <file>icons/ChiliYum.png</file>
         <file>icons/Pepper.png</file>
+        <file>icons/sizzling.wav</file>
+        <file>icons/boiling.wav</file>
+        <file>icons/chopping.wav</file>
+        <file>icons/s0Music.mp3</file>
+        <file>icons/s3Music.mp3</file>
+        <file>icons/s4Music.mp3</file>
     </qresource>
 </RCC>

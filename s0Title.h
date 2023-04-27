@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 
+
 namespace Ui {
 class s0Title;
 }
