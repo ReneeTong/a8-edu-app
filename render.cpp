@@ -296,8 +296,8 @@ void Render::renderWorld() {
             f.wait();
         }
         model.actionQueue.clear();
+        update();
         lock = false;
     }
 
-    update();
 }
