@@ -111,14 +111,17 @@ void Model::cut(Shape *shape) {
     ingredient->actions.append(CUT);
     incrementIngredient(ingredient);
 
+    cutSound->play();
+
     // check if cuttable?
     auto method = [this, shape, ingredient]() {
+
         b2Vec2 position = shape->getBody()->GetPosition();
         b2Vec2 size = shape->getSize();
         size *= 0.5;
 
         delete shape;
-        cutSound->play();
+
 
         for (int i = 1; i <= 4; i++) {
 
