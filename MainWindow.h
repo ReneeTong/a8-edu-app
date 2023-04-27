@@ -16,15 +16,27 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+/**
+ * @brief The MainWindow class
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
+
+    /**
+     * @brief MainWindow Constructor
+     * @param parent
+     */
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 public slots:
+
+    /**
+     * @brief restart Restart the window
+     */
     void restart();
 
 private:
@@ -38,6 +50,10 @@ private:
 //    QMediaPlayer *backgroundMusic;
     QSoundEffect * backgroundMusic;
 
+    /**
+     * @brief changeBackgroundMusic Changes the background music
+     * @param musicFile Music file path
+     */
     void changeBackgroundMusic(const QString &musicFile);
 
 
