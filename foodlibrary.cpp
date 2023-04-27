@@ -10,9 +10,9 @@ FoodLibrary::FoodLibrary() {
         new Ingredient("RiceNoodles", STAPLE, {VEGAN}, {});
     allIngredients.push_back(riceNoodles);
 
-    Ingredient *eggNoodles =
-        new Ingredient("EggNoddles", STAPLE, {}, {});
-    allIngredients.push_back(eggNoodles);
+//    Ingredient *eggNoodles =
+//        new Ingredient("EggNoddles", STAPLE, {}, {});
+//    allIngredients.push_back(eggNoodles);
   }
 
   // MEAT
@@ -64,8 +64,8 @@ FoodLibrary::FoodLibrary() {
     Ingredient *soysauce = new Ingredient("SoySauce", CONDIMENT, {VEGAN}, {});
     allIngredients.push_back(soysauce);
 
-    Ingredient *fishsauce = new Ingredient("FishSauce", CONDIMENT, {}, {});
-    allIngredients.push_back(fishsauce);
+//    Ingredient *fishsauce = new Ingredient("FishSauce", CONDIMENT, {}, {});
+//    allIngredients.push_back(fishsauce);
 
 
   }
@@ -344,8 +344,8 @@ yangChunMian->setLearnMore("<p>What is Yang Chun Mian?</p>"
 
 yangChunMian->setDifficulty(1);
 
-yangChunMian->addTask("Cook egg noodles until al dente.", {
-                 {Ingredient("EggNoodles", {BOIL}),                        {1, "Boil Egg Noodles"}},
+yangChunMian->addTask("Cook rice noodles until al dente.", {
+                 {Ingredient("Rice Noodles", {BOIL}),                        {1, "Boil Rice Noodles"}},
              });
 yangChunMian->addTask("Simmer chicken stock, green onion, ginger, and seasonings.", {
                  {Ingredient("Chicken", {BOIL}),                   {1, "Boil chicken stock"}},

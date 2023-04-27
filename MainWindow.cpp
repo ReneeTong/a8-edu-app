@@ -43,9 +43,9 @@ MainWindow::MainWindow(QWidget *parent)
     stackedWidget->addWidget(page4);
     stackedWidget->setCurrentWidget(page0);
     backgroundMusic = new QSoundEffect(this);
-    backgroundMusic->setSource(QUrl("qrc:/sprites/icons/s0Music.wav"));
-    backgroundMusic -> play();
-//    changeBackgroundMusic(":/sprites/icons/s0Music.mp3");
+//    backgroundMusic->setSource(QUrl("qrc:/sprites/icons/s0Music.wav"));
+//    backgroundMusic -> play();
+    changeBackgroundMusic("qrc:/sprites/icons/s0Music.wav");
 
     //connect to next page button
     connect(page0, &s0Title::goToPage1, this, [=]() {
@@ -72,7 +72,7 @@ MainWindow::MainWindow(QWidget *parent)
     });
     connect(page4, &s4Complete::goToPage1, this, [=]() {
         stackedWidget->setCurrentWidget(page0);
-        changeBackgroundMusic("qrc:/sprites/icons/s0Music.wav");
+
     });
     connect(page2, &s2Recipe::backButtonClicked, this, [=]() {
         stackedWidget->setCurrentWidget(page1);

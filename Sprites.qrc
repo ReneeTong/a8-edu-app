@@ -46,5 +46,8 @@
         <file>icons/Chicken_piece.png</file>
         <file>icons/Carrot_piece.png</file>
         <file>icons/Broccoli_piece.png</file>
+        <file>icons/Shrimp.png</file>
+        <file>icons/Ginger.png</file>
+        <file>icons/GreenOnion.png</file>
     </qresource>
 </RCC>
