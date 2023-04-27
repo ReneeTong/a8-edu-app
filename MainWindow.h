@@ -35,7 +35,8 @@ private:
     s2RecipeTransition *page2Half = nullptr;
     s3Cooking *page3=nullptr;
     s4Complete *page4=nullptr;
-    QMediaPlayer *backgroundMusic;
+//    QMediaPlayer *backgroundMusic;
+    QSoundEffect * backgroundMusic;
 
     void changeBackgroundMusic(const QString &musicFile);
 
