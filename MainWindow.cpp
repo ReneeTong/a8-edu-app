@@ -10,8 +10,7 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
-      ui(new Ui::MainWindow),      
-    backgroundMusic(new QMediaPlayer(this))
+      ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 //    ui->widget->show();
@@ -43,7 +42,10 @@ MainWindow::MainWindow(QWidget *parent)
     stackedWidget->addWidget(page3);
     stackedWidget->addWidget(page4);
     stackedWidget->setCurrentWidget(page0);
-    changeBackgroundMusic(":/sprites/icons/s0Music.mp3");
+    backgroundMusic = new QSoundEffect(this);
+    backgroundMusic->setSource(QUrl("qrc:/sprites/icons/s0Music.wav"));
+    backgroundMusic -> play();
+//    changeBackgroundMusic(":/sprites/icons/s0Music.mp3");
 
     //connect to next page button
     connect(page0, &s0Title::goToPage1, this, [=]() {
@@ -61,24 +63,24 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(page2Half, &s2RecipeTransition::goToPage3, this, [=]() {
         stackedWidget->setCurrentWidget(page3);
-        changeBackgroundMusic("qrc:/sprites/icons/s3Music.mp3");
+        changeBackgroundMusic("qrc:/sprites/icons/s3Music.wav");
     });
 
     connect(page3, &s3Cooking::goToPage4, this, [=]() {
         stackedWidget->setCurrentWidget(page4);
-        changeBackgroundMusic("qrc:/sprites/icons/s4Music.mp3");
+        changeBackgroundMusic("qrc:/sprites/icons/s4Music.wav");
     });
     connect(page4, &s4Complete::goToPage1, this, [=]() {
         stackedWidget->setCurrentWidget(page0);
-        changeBackgroundMusic("qrc:/sprites/icons/s0Music.mp3");
+        changeBackgroundMusic("qrc:/sprites/icons/s0Music.wav");
     });
     connect(page2, &s2Recipe::backButtonClicked, this, [=]() {
         stackedWidget->setCurrentWidget(page1);
     });
 
-    connect(backgroundMusic, &QMediaPlayer::errorOccurred, this, [this](QMediaPlayer::Error error) {
-        qDebug() << "Media error occurred:" << error << backgroundMusic->errorString();
-    });
+//    connect(backgroundMusic, &QMediaPlayer::errorOccurred, this, [this](QMediaPlayer::Error error) {
+//        qDebug() << "Media error occurred:" << error << backgroundMusic->errorString();
+//    });
 
 
     connect(page1, &s1Pantry::sendSelectedIngredients, page2, &s2Recipe::recieveSelectedIngredients);

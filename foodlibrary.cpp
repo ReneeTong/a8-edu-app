@@ -443,7 +443,7 @@ Ingredient *FoodLibrary::getIngredientByName(const QString &name) const {
 }
 
 RecipeNew *FoodLibrary::getRecipeByName(const QString &recipeName) const {
-  for (RecipeNew *recipe : recipes) {
+    for (RecipeNew *recipe : m_recipes) {
       if (recipe->getName() == recipeName) {
           return recipe;
       }
